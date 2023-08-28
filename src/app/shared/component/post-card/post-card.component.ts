@@ -77,17 +77,6 @@ export class PostCardComponent implements OnInit {
             return moment(inputDate).format('MMM DD');
         }
     }
-    // onPageChange(event: PageEvent): void {
-    //     this.currentPage = event.pageIndex;
-    //     this.calculatePagination();
-    // }
-    // calculatePagination() {
-    //     this.totalPages = Math.ceil(this.cards.length / this.pageSize);
-    //     this.paginatedCards = this.cards.slice(
-    //         this.currentPage * this.pageSize,
-    //         (this.currentPage + 1) * this.pageSize
-    //     );
-    // }
     getMainCategories() {
         this.commonService.getAllCategory().subscribe((data: any) => {
             this.mainCategories = data;

@@ -3,7 +3,6 @@
     display: flex;
     height: 100%;
     min-width: 100% !important;
-    /* justify-content: center; */
     flex-wrap: wrap;
     gap: 15px;
 }
@@ -16,21 +15,6 @@
     
 }
 
-/* Changes made by hamza */
-/* .premium-chip {
-    position: absolute;
-    height: 45px;
-    top: 2px;
-    background: yellow !important;
-    border: none !important;
-    border-radius: 0px;
-    border-top-left-radius: 33px;
-    border-top-right-radius: 38px;
-    left: -15px;
-    transform: rotate(-45deg);
-    z-index: 1;
-  } */
-
 .udayopen {
     display: none;
     width: 100%;
@@ -41,7 +25,6 @@
     top: 50px;
     padding: 2rem;
     margin-top: 62px;
-    /* display: flex; */
 }
 
 .dropdown:hover .udayopen {
@@ -185,20 +168,7 @@
     font-weight: 600;
 }
 
-.mat-app-background {
 
-    /* display: grid; */
-    /* grid-template-columns: 24% 24% 24% 24%; */
-    /* grid-template-columns: 33% 33% 33%;
-     grid-gap: 1%;
-     padding: 0px 2vw;
-     padding-top: 20px; */
-    /* display: flex;
-    grid-gap: 1%;
-    padding: 0px 2vw;
-    padding-top: 20px;
-    flex-wrap: wrap; */
-}
 
 .second-nav li {
     padding: 0rem 3rem;
@@ -340,11 +310,6 @@
     font-weight: 500;
     font-size: 16px;
   }
-
-  /* .back-to-top-btn:hover{
-    border: 1px solid #222;
-  }
-   */
   .back-to-top-btn.show {
     display: flex;
   }

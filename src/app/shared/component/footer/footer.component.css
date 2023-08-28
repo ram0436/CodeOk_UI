@@ -1,4 +1,4 @@
-footer{
+/* footer{
     padding: 15px 0;
     font-family: "Montserrat", sans-serif;
 }
@@ -64,4 +64,182 @@ i {
 .copyright-text{
     color: #fff;
     padding-top: 10px;
+} */
+
+.footer{
+    padding: 7rem 0 4rem;
+    position: relative;
+    background-color: #3c3c3c;
+    align-self: flex-end;
+}
+
+.footer .container{
+    max-width: 117rem;
+    margin: 0 auto;
+    padding: 0;
+}
+
+.footer ul{
+    list-style: none;
+    padding-left: 0;
+}
+
+ul li{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer .container .link-list{
+    margin-bottom: 5rem;
+    position: relative;
+}
+
+.link-list .list{
+    display: flex;
+    justify-content: space-between;
+}
+
+.link-list .list .list-item{
+    width: auto;
+    flex: 1;
+}
+
+.link-list .list .last-list-item{
+    width: auto;
+    flex: 1.5;
+    margin-top: -5px;
+}
+
+.link-list .list .list-item .link-title{
+    margin-bottom: 1rem;
+    font-size: 1.8rem;
+    line-height: 24px;
+    color: #f8673b;
+    position: relative;
+    transform: all ease .3s;
+}
+
+.link-list .list .nav-link{
+    font-size: 1.8rem;
+    line-height: 4rem;
+    color: #fff!important;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.link-list .last-link-title{
+    color: #f8673b;
+    margin-bottom: 1rem;
+    font-size: 2.6rem;
+    line-height: 38px;
+}
+
+.link-list .list-item .last-link-desc{
+    font-size: 1.6rem;
+    color: #fff;
+    line-height: 22px;
+}
+
+.signup-form{
+    margin-top: 2.3rem;
+}
+
+.form-list{
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.full-width{
+    width: 100%;
+}
+
+.input-wrap{
+    margin-bottom: 2rem;
+}
+
+.inputDefault{
+    width: 100%;
+    background: 0 0;
+    border: none;
+    outline: none;
+    border-bottom: 1px solid #979797;
+    padding: 0.6rem 0;
+    color: #fff;
+    font-size: 1.8rem;
+}
+
+.error-wrap{
+    text-align: left;
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+    line-height: 1.2rem;
+    color: #a80000;
+    padding: 0.5rem 1rem;
+    background: #9f9f9f;
+    border-radius: 15px;
+    font-family: barlow-medium;
+    font-style: italic;
+    display: none;
+    position: absolute;
+    left: 0;
+    bottom: -3rem;
+}
+
+.signup-form .act-btn{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btn.btn-outline {
+    background: 0 0;
+    color: #fff;
+    opacity: 1;
+    border: 1px solid #fff;
+    border-radius: 4px;
+    padding: 10px 15px;
+}
+
+.privacyLink {
+    color: #fff!important;
+    font-size: 1.4rem;
+    text-decoration: underline;
+    position: relative;
+    top: 6px;
+}
+
+.bottom-part {
+    border-top: 1px solid #979797;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 3rem;
+}
+
+.footer-logo{
+    font-size: 40px;
+    color: #fff;
+    text-decoration: none;
+}
+
+.socialIconList {
+    display: flex;
+    text-align: right;
+    padding-left: 6rem;
+    padding-bottom: 2rem;
+}
+
+.socialIconList .socialLink {
+    color: #fff!important;
+    font-size: 1.6rem;
+}
+
+.b-text {
+    margin-top: 7px;
+    font-size: 1.5rem;
+    color: #fff;
 }
