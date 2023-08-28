@@ -1,4 +1,4 @@
-.tabs{
+/* .tabs{
     position: relative;
     display: flex;
     flex-direction: row;
@@ -50,7 +50,6 @@
 .tabs .tabs-content {
     order: 1;
     flex: 0;
-    /* display: none; */
     flex-basis: 100%;
     margin: 0;
     background-color: #fff;
@@ -100,4 +99,16 @@ h4 {
 .tabs .tabs-title.is-active::before{
     top: calc(100% - 5px);
     padding: 10px;
+} */
+
+.quote{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 30vh;
+}
+
+.quote p{
+    font-size: 3rem;
+    color: #3c3c3c;
 }

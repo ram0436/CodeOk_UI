@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef, Renderer2 } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/modules/user/service/user.service';
@@ -10,9 +10,6 @@ import { ElectronicApplianceType } from '../../enum/ElectronicApplianceType';
 import { FurnitureType } from '../../enum/FurnitureType';
 import { MatIconModule } from '@angular/material/icon';
 import { SportType } from '../../enum/SportType';
-import { PetType } from '../../enum/PetType';
-import { FashionType } from '../../enum/FashionType';
-import { BookType } from '../../enum/BookType';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -20,22 +17,58 @@ import { BookType } from '../../enum/BookType';
 })
 export class HeaderComponent implements OnInit {
 
-  expandIconVisible: boolean = true;
+  expandIconVisible: boolean = false;
   vehicleTypes = VehicleType;
   gadgetsTypes = GadgetType;
   ElectronicAppliancesTypes = ElectronicApplianceType;
   furnitureTypes = FurnitureType;
   sportTypes = SportType;
-  petTypes = PetType;
-  fashionTypes  = FashionType;
-  bookTypes = BookType;
   isUserLogedIn: boolean = false;
   userData: any;
   imageUrl: string = "https://icon-library.com/images/default-profile-icon/default-profile-icon-24.jpg";
   dialogRef: MatDialogRef<any> | null = null;
-  constructor(private dialog: MatDialog, private router: Router, private userService: UserService) {
+
+  isDropdownOpen: { [key: string]: boolean } = {
+    allCategories: false,
+    projectCategory: false,
+    projectType: false,
+    languageTech: false
+  };
+
+  
+  toggleDropdown(dropdownKey: string) {
+  if (this.isDropdownOpen[dropdownKey]) {
+    this.isDropdownOpen[dropdownKey] = false;
+  } else {
+    Object.keys(this.isDropdownOpen).forEach(key => {
+      this.isDropdownOpen[key] = false;
+    });
+    this.isDropdownOpen[dropdownKey] = true;
+  }
+  // this.toggleExpandIcons(dropdownKey);
+  }
+
+
+  constructor(private dialog: MatDialog, private router: Router, private userService: UserService, private elementRef: ElementRef, private renderer: Renderer2) {
 
    }
+
+   @HostListener('document:click', ['$event'])
+   onClick(event: Event) {
+     const clickedElement = event.target as HTMLElement;
+     const dropdownToggle = document.querySelector('.dropdown-toggle') as HTMLElement;
+     const dropdownMenu = document.querySelector('.category-dropdown-menu') as HTMLElement;
+   
+     if (this.isDropdownOpen && !this.elementRef.nativeElement.contains(clickedElement) && !dropdownToggle.contains(clickedElement) && !dropdownMenu.contains(clickedElement)) {
+      Object.keys(this.isDropdownOpen).forEach(key => {
+        this.isDropdownOpen[key] = false;
+      });
+
+      // this.expandIconVisible = false;
+     }
+
+   }
+
 
    generateGadgetsLink(subCategory?: GadgetType) {
     if (subCategory) {
@@ -76,6 +109,7 @@ export class HeaderComponent implements OnInit {
     this.userService.getData().subscribe(data => {
       this.getUserData();
     })
+    
   }
   openLoginModal() {
 
@@ -122,6 +156,7 @@ export class HeaderComponent implements OnInit {
       });
     }
   }
+  
   toggleExpandIcons(): void {
     this.expandIconVisible = !this.expandIconVisible;
   }
@@ -132,3 +167,4 @@ export class HeaderComponent implements OnInit {
       this.openLoginModal();
   }
 }
+
