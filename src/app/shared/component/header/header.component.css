@@ -80,13 +80,15 @@
      display: flex;
      align-items: center;
      width: 100%;
+     margin: 0 !important;
+     padding: 0 !important;
  }
  .search-bar-container{
     position: relative;
     background-color: #0d475c;
     width: 60%; 
     margin-left: 100px;
-    margin-right: 100px;
+    margin-right: 50px;
  }
  .seearch-bar{
      max-width: 1024px;
@@ -553,6 +555,7 @@
 
  .navbar-nav>li>a{
     border-radius: 16px;
+    padding: 15px !important;
  }
 
  .navbar-right>li>a:focus, .navbar-right>li>a:hover {
@@ -579,6 +582,8 @@
 }
 .login{
     cursor: pointer;
+    margin-top: 5px;
+    margin-right: 4px;
 }
 
 .profile_i {
@@ -627,12 +632,15 @@
     position: relative;
     display: inline-block;
     margin-top: 5px;
-    padding: 10px;
-    color: #f8673b !important;
+    margin-right: -20px;
+    padding: 15px;
+    letter-spacing: 3px;
+    color: #03e9f4 !important;
     text-decoration: none;
     text-transform: uppercase;
     transition: 0.5s;
     overflow: hidden;
+    word-wrap: nowrap;
 }
 
 .neon__button:hover{
@@ -641,12 +649,12 @@
 }
 
 .neon__button a:hover{
-    background-color: #f8673b !important;
+    background-color: #03e9f4 !important;
     color: #fff !important;
-    box-shadow: 0 0 5px #f8673b,
-                0 0 25px #f8673b,
-                0 0 50px #f8673b,
-                0 0 200px #f8673b;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 200px #03e9f4;
      -webkit-box-reflect:below 1px linear-gradient(transparent, #0005);
 }
 
@@ -664,7 +672,7 @@
     left: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(90deg,transparent,#f8673b);
+    background: linear-gradient(90deg,transparent,#03e9f4);
     animation: animate1 1s linear infinite;
 }
 @keyframes animate1{
@@ -680,7 +688,7 @@
     right: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(180deg,transparent,#f8673b);
+    background: linear-gradient(180deg,transparent,#03e9f4);
     animation: animate2 1s linear infinite;
     animation-delay: 0.25s;
 }
@@ -697,7 +705,7 @@
     right: 0;
     width: 100%;
     height: 2px;
-    background: linear-gradient(270deg,transparent,#f8673b);
+    background: linear-gradient(270deg,transparent,#03e9f4);
     animation: animate3 1s linear infinite;
     animation-delay: 0.50s;
 }
@@ -716,7 +724,7 @@
     left: 0;
     width: 2px;
     height: 100%;
-    background: linear-gradient(360deg,transparent,#f8673b);
+    background: linear-gradient(360deg,transparent,#03e9f4);
     animation: animate4 1s linear infinite;
     animation-delay: 0.75s;
 }
