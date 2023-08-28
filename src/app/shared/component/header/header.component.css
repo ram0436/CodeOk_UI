@@ -558,6 +558,10 @@
     padding: 15px !important;
  }
 
+ .postfreeadd{
+    border-radius: 0px !important;
+ }
+
  .navbar-right>li>a:focus, .navbar-right>li>a:hover {
      text-decoration: none !important;
      background-color:#000;
