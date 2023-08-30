@@ -109,7 +109,16 @@ export class HeaderComponent implements OnInit {
     this.userService.getData().subscribe(data => {
       this.getUserData();
     })
+
+    const dropdownContent = this.elementRef.nativeElement.querySelector('.dropdown');
     
+    this.renderer.listen(dropdownContent, 'mouseenter', () => {
+      this.isDropdownOpen['allCategories'] = true;
+    });
+
+    this.renderer.listen(dropdownContent, 'mouseleave', () => {
+      this.isDropdownOpen['allCategories'] = false;
+    });
   }
   openLoginModal() {
 
