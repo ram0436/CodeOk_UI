@@ -1,7 +1,4 @@
-<header
-  class="stick stick-header"
-  [class.dropdown-active]="isDropdownOpen['allCategories']"
->
+<header class="stick stick-header">
   <nav class="nav-bar">
     <div class="container">
       <div class="icon-text">
@@ -54,47 +51,58 @@
             </div>
           </form>
         </div>
-        <mat-menu #beforeMenu="matMenu" xPosition="before">
-          <button mat-menu-item>
+        <mat-menu
+          #beforeMenu="matMenu"
+          xPosition="before"
+          [class]="customMatMenuClass"
+        >
+          <button mat-menu-item class="">
             <img [src]="imageUrl" alt="" class="img_stl" />
             <div class="mt-10">
-              <p class="mt-0">{{ userData?.firstName || "" }}</p>
-              <a routerLink="/user/account/personal">Go to profile</a>
+              <p class="mt-0 text-white">{{ userData?.firstName || "" }}</p>
+              <a routerLink="/user/account/personal" class="text-orange"
+                >Go to profile</a
+              >
             </div>
           </button>
-          <hr class="profile-hr" />
+          <hr class="profile-hr text-white" />
           <button
             mat-menu-item
             routerLink="/user/account/myadds"
             class="button-item"
           >
-            <span class="material-icons"> upload_file </span>
-            <span>My ads</span>
+            <span class="material-icons text-white"> upload_file </span>
+            <span class="text-white">My ads</span>
           </button>
           <button mat-menu-item class="button-item">
-            <span class="material-icons"> bookmark_border </span>
-            <span>Saved</span>
+            <span class="material-icons text-white"> bookmark_border </span>
+            <span class="text-white">Saved</span>
           </button>
           <button mat-menu-item class="button-item">
-            <span class="material-icons"> chat_bubble_outline </span>
-            <span>Chats</span>
+            <span class="material-icons text-white"> chat_bubble_outline </span>
+            <span class="text-white">Chats</span>
           </button>
           <hr class="profile-hr" />
           <button mat-menu-item routerLink="/user/account" class="button-item">
-            <span class="material-icons">settings</span>
-            <span>Account</span>
+            <span class="material-icons text-white">settings</span>
+            <span class="text-white">Account</span>
           </button>
           <hr class="profile-hr" />
           <button mat-menu-item (click)="logout()" class="button-item">
-            <span class="material-icons">logout</span>
-            <span>Log Out</span>
+            <span class="material-icons text-white">logout</span>
+            <span class="text-white">Log Out</span>
           </button>
         </mat-menu>
         <div class="pull-right header-actions">
           <ul class="nav navbar-nav navbar-right">
             <li class="login profile_i" *ngIf="isUserLogedIn">
               <img [src]="imageUrl" alt="" class="img_stl" />
-              <button class="arrow" mat-button [matMenuTriggerFor]="beforeMenu">
+              <button
+                class="arrow"
+                mat-button
+                [matMenuTriggerFor]="beforeMenu"
+                (click)="toggleExpandIcons()"
+              >
                 <mat-icon class="expand" *ngIf="!expandIconVisible"
                   >expand_less</mat-icon
                 >
@@ -126,7 +134,7 @@
       </div>
     </div>
   </nav>
-  <nav class="navbar navbar-inverse">
+  <nav class="navbar navbar-inverse" [class.hide-second-nav]="hideSecondNav">
     <div class="second-nav">
       <ul class="nav navbar-nav no-pointer-nav">
         <li class="dropdown auto-pointer-events mr-30">
@@ -232,7 +240,7 @@
                   <a class="category-group-subtitle">Others</a>
                   <a>AI/ML</a>
                   <a>Data Science</a>
-                  <a class="category-group-title">E-Commerce</a>
+                  <!-- <a class="category-group-title">E-Commerce</a>
                   <a class="category-group-subtitle">B2C</a>
                   <a>Clothing</a>
                   <a>Classified</a>
@@ -250,7 +258,7 @@
                   <a>Classified Portal</a>
                   <a class="category-group-title">Chat</a>
                   <a class="category-group-subtitle">Chatbot</a>
-                  <a class="category-group-subtitle">Whatsapp Chat</a>
+                  <a class="category-group-subtitle">Whatsapp Chat</a> -->
                 </div>
               </div>
             </div>
@@ -402,11 +410,11 @@
           <div class="category-dropdown">
             <ul class="category-dropdown-menu col-2">
               <li class="category-group-subtitle-li">
-                <a class="category-group-title">E-Commerce</a>
+                <a class="category-group-subtitle">E-Commerce</a>
               </li>
-              <li class="category-group-subtitle-li">
+              <!-- <li class="category-group-subtitle-li">
                 <a class="category-group-subtitle">B2C</a>
-              </li>
+              </li> -->
               <li><a>Clothing</a></li>
               <li><a>Classified</a></li>
               <li><a>Footwear</a></li>
@@ -419,18 +427,18 @@
               <li><a>Food & Beverage</a></li>
               <li><a>Pet & Animals</a></li>
               <li><a>Toys & Games</a></li>
-              <li class="category-group-subtitle-li">
+              <!-- <li class="category-group-subtitle-li">
                 <a class="category-group-subtitle">C2C</a>
-              </li>
+              </li> -->
               <li><a>Classified Portal</a></li>
               <li class="category-group-subtitle-li">
-                <a class="category-group-title">Chat</a>
+                <a class="category-group-subtitle">Chat</a>
               </li>
-              <li class="category-group-subtitle-li">
-                <a class="category-group-subtitle">Chatbot</a>
+              <li>
+                <a>Chatbot</a>
               </li>
-              <li class="category-group-subtitle-li">
-                <a class="category-group-subtitle">Whatsapp Chat</a>
+              <li>
+                <a>Whatsapp Chat</a>
               </li>
             </ul>
           </div>
