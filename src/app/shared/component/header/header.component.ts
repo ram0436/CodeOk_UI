@@ -17,6 +17,7 @@ import { SportType } from '../../enum/SportType';
 })
 export class HeaderComponent implements OnInit {
 
+  customMatMenuClass = 'custom-mat-menu';
   expandIconVisible: boolean = false;
   vehicleTypes = VehicleType;
   gadgetsTypes = GadgetType;
@@ -35,6 +36,15 @@ export class HeaderComponent implements OnInit {
     languageTech: false
   };
 
+  hideSecondNav = false;
+
+  // Function to handle the scroll event
+  @HostListener('window:scroll', [])
+  onWindowScroll() {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    // Adjust the value (e.g., 200) based on when you want the effect to trigger
+    this.hideSecondNav = scrollPosition > 0;
+  }
   
   toggleDropdown(dropdownKey: string) {
   if (this.isDropdownOpen[dropdownKey]) {
@@ -110,15 +120,6 @@ export class HeaderComponent implements OnInit {
       this.getUserData();
     })
 
-    const dropdownContent = this.elementRef.nativeElement.querySelector('.dropdown');
-    
-    this.renderer.listen(dropdownContent, 'mouseenter', () => {
-      this.isDropdownOpen['allCategories'] = true;
-    });
-
-    this.renderer.listen(dropdownContent, 'mouseleave', () => {
-      this.isDropdownOpen['allCategories'] = false;
-    });
   }
   openLoginModal() {
 
