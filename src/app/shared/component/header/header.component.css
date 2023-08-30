@@ -354,6 +354,7 @@
     padding-top: 30px;
     background-color: transparent;
     display: none;
+    overflow: auto;
 }
 
 .category-dropdown-menu{
@@ -382,9 +383,14 @@
     border-bottom: 15px solid #3c3c3c;
 }
 
-.col-2{
+.col-1{
     columns: 1 !important;
     min-width: 200px !important;
+}
+
+.col-2{
+    columns: 2 !important;
+    min-width: 400px !important;
 }
 
 .category-dropdown-menu-col-2{
@@ -423,14 +429,14 @@
 }
 
 .category-group-subtitle{
-    font-size: 18px !important;
+    font-size: 17px !important;
     font-weight: 500 !important;
     color: #f8673b !important; 
 }
 
 .category-group-subtitle:hover{
-    background-color: #3c3c3c;
-    color: #f8673b;
+    background-color: #3c3c3c !important;
+    color: #f8673b !important;
 }
 
 .expand-icon{
@@ -440,13 +446,13 @@
 
 
 .l-10{
-    left: -220px;
+    left: -240px;
 }
 
 .col-6{
     display: block;
     columns: 7;
-    width: 1400px;
+    width: 1450px;
     position: relative;
     margin-top: 38px;
     list-style: none;
@@ -459,13 +465,43 @@
 .col-6::after{
     content: " ";
     position: absolute;
-    left: 240px;
+    left: 260px;
     top: -14px;
     border-top: none;
     border-right: 15px solid transparent;
     border-left: 15px solid transparent;
     border-bottom: 15px solid #3c3c3c;
 }
+
+.content-container {
+    max-height: 678px; /* Adjust the max height as needed */
+    overflow-x: scroll;
+    width: 1450px !important;
+    display: block;
+    columns: 7;
+}
+
+.scroll-right{
+    position: absolute;
+    bottom: 7px;
+    color: #f8673b;
+    right: 10px;
+    font-size: 12px;
+}
+
+.scroll-left{
+    position: absolute;
+    bottom: 7px;
+    color: #f8673b;
+    left: 10px;
+    font-size: 12px;
+}
+
+.content-container::-webkit-scrollbar {
+    width: 0px !important; /* Adjust the width as needed */
+    height: 0px !important;
+  }
+
 
 .col-6 .category-group{
     display: flex;
@@ -476,6 +512,12 @@
 
 .col-6 .category-group a{
     padding: 10px 14px;
+}
+
+.category-group-title{
+    font-size: 20px !important;
+    font-weight: 500 !important;
+    color: #f8673b !important;
 }
 
 .col-6 .category-group-title{
@@ -621,9 +663,15 @@
 .stick{
     position: fixed;
     top: 0;
-    z-index: 1;
+    z-index: 1000;
     width: 100%;
 }
+
+.dropdown-active {
+    position: absolute !important;
+  }
+
+
 .flex{
     display: grid;
     grid-template-columns: repeat(6, 1fr);

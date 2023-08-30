@@ -1,4 +1,7 @@
-<header class="stick stick-header">
+<header
+  class="stick stick-header"
+  [class.dropdown-active]="isDropdownOpen['allCategories']"
+>
   <nav class="nav-bar">
     <div class="container">
       <div class="icon-text">
@@ -138,94 +141,117 @@
           </div>
           <div class="category-dropdown l-10">
             <div class="col-6">
-              <div class="category-group">
-                <a class="category-group-title mtn-4">Project Category</a>
-                <a>Theme & Template</a>
-                <a>Website</a>
-                <a>Web Application</a>
-                <a>Mobile Application</a>
-                <a>Plugin</a>
-                <a>Code Architecture</a>
-                <a>Design Patterns</a>
-                <a>API Design</a>
-                <!-- <a>Package Managers</a> -->
-                <a>Others</a>
-                <a class="category-group-title">Industry Type</a>
-                <a>Art & Design</a>
-                <a>Technology</a>
-                <a>Real Estate</a>
-                <a>Food & Restaurant</a>
-                <a>Fashion & Beauty</a>
-                <a>Academic</a>
-                <a>Industrial</a>
-                <a>Interior</a>
-                <a>Cars & Transportation</a>
-                <a>Travel & Hotels</a>
-                <a>Sports</a>
-                <a>Music & Entertainment</a>
-                <a>Sale</a>
-                <a>Medicine & Science</a>
-                <a>Nature</a>
-                <a>Real Estate</a>
-                <a>Wedding</a>
-                <a>Pets & Animals</a>
-                <a>Portfolio</a>
-                <a>Ecommerce</a>
-                <a>Health & Fitness</a>
-                <a>Farm & Agriculture</a>
-                <a>Business</a>
-                <a>Marketing</a>
-                <a>Blog</a>
-                <a>Personal</a>
-                <a>Landing Page</a>
-                <a>News</a>
-                <a>Social Media</a>
-                <a>NGO</a>
-                <a>Subscription</a>
-                <a>Others</a>
-                <a class="category-group-title">Language & Tech</a>
-                <a class="category-group-subtitle">Client Side</a>
-                <a>WordPress</a>
-                <a>JavaScript</a>
-                <a>CSS</a>
-                <a>HTML5</a>
-                <a>Angular</a>
-                <a>React</a>
-                <a>Vue JS</a>
-                <a>Node JS</a>
-                <a>Jquery</a>
-                <a>Joomla</a>
-                <a>TypeScript</a>
-                <a>Wix</a>
-                <a>C++</a>
-                <a class="category-group-subtitle">Server Side</a>
-                <a>.NET</a>
-                <a>PHP</a>
-                <a>Java</a>
-                <a>Node JS</a>
-                <a>PHP</a>
-                <a>Python</a>
-                <a>Django</a>
-                <a>MySQL</a>
-                <a>SQL-Server</a>
-                <a>MongoDB</a>
-                <a class="category-group-subtitle">Mobile</a>
-                <a>Flutter</a>
-                <a>Android</a>
-                <a>React Native</a>
-                <a>Xamarin</a>
-                <a>IOS</a>
-                <a>Ionic</a>
-                <a>Swift</a>
-                <a>HTML5</a>
-                <a>JavaScript</a>
-                <a class="category-group-subtitle">Cloud</a>
-                <a>Azure</a>
-                <a>AWS</a>
-                <a>Google Cloud</a>
-                <a class="category-group-subtitle">Others</a>
-                <a>AI/ML</a>
-                <a>Data Science</a>
+              <div class="content-container">
+                <!-- <span class="scroll-right">Scroll Right</span>
+                <span class="scroll-left">Scroll Left</span> -->
+                <div class="category-group">
+                  <a class="category-group-title mtn-4">Project Category</a>
+                  <a>Theme & Template</a>
+                  <a>Website</a>
+                  <a>Web Application</a>
+                  <a>Mobile Application</a>
+                  <a>Plugin</a>
+                  <a>Code Architecture</a>
+                  <a>Design Patterns</a>
+                  <a>API Design</a>
+                  <!-- <a>Package Managers</a> -->
+                  <a>Others</a>
+                  <a class="category-group-title">Industry Type</a>
+                  <a>Art & Design</a>
+                  <a>Technology</a>
+                  <a>Real Estate</a>
+                  <a>Food & Restaurant</a>
+                  <a>Fashion & Beauty</a>
+                  <a>Academic</a>
+                  <a>Industrial</a>
+                  <a>Interior</a>
+                  <a>Cars & Transportation</a>
+                  <a>Travel & Hotels</a>
+                  <a>Sports</a>
+                  <a>Music & Entertainment</a>
+                  <a>Sale</a>
+                  <a>Medicine & Science</a>
+                  <a>Nature</a>
+                  <a>Real Estate</a>
+                  <a>Wedding</a>
+                  <a>Pets & Animals</a>
+                  <a>Portfolio</a>
+                  <a>Ecommerce</a>
+                  <a>Health & Fitness</a>
+                  <a>Farm & Agriculture</a>
+                  <a>Business</a>
+                  <a>Marketing</a>
+                  <a>Blog</a>
+                  <a>Personal</a>
+                  <a>Landing Page</a>
+                  <a>News</a>
+                  <a>Social Media</a>
+                  <a>NGO</a>
+                  <a>Subscription</a>
+                  <a>Others</a>
+                  <a class="category-group-title">Language & Tech</a>
+                  <a class="category-group-subtitle">Client Side</a>
+                  <a>WordPress</a>
+                  <a>JavaScript</a>
+                  <a>CSS</a>
+                  <a>HTML5</a>
+                  <a>Angular</a>
+                  <a>React</a>
+                  <a>Vue JS</a>
+                  <a>Node JS</a>
+                  <a>Jquery</a>
+                  <a>Joomla</a>
+                  <a>TypeScript</a>
+                  <a>Wix</a>
+                  <a>C++</a>
+                  <a class="category-group-subtitle">Server Side</a>
+                  <a>.NET</a>
+                  <a>PHP</a>
+                  <a>Java</a>
+                  <a>Node JS</a>
+                  <a>PHP</a>
+                  <a>Python</a>
+                  <a>Django</a>
+                  <a>MySQL</a>
+                  <a>SQL-Server</a>
+                  <a>MongoDB</a>
+                  <a class="category-group-subtitle">Mobile</a>
+                  <a>Flutter</a>
+                  <a>Android</a>
+                  <a>React Native</a>
+                  <a>Xamarin</a>
+                  <a>IOS</a>
+                  <a>Ionic</a>
+                  <a>Swift</a>
+                  <a>HTML5</a>
+                  <a>JavaScript</a>
+                  <a class="category-group-subtitle">Cloud</a>
+                  <a>Azure</a>
+                  <a>AWS</a>
+                  <a>Google Cloud</a>
+                  <a class="category-group-subtitle">Others</a>
+                  <a>AI/ML</a>
+                  <a>Data Science</a>
+                  <a class="category-group-title">E-Commerce</a>
+                  <a class="category-group-subtitle">B2C</a>
+                  <a>Clothing</a>
+                  <a>Classified</a>
+                  <a>Footwear</a>
+                  <a>Electronics</a>
+                  <a>Health & Wellness</a>
+                  <a>Beauty & Personal Care</a>
+                  <a>Consumer Electronics</a>
+                  <a>Furniture & Decoration</a>
+                  <a>Auto & Parts</a>
+                  <a>Food & Beverage</a>
+                  <a>Pet & Animals</a>
+                  <a>Toys & Games</a>
+                  <a class="category-group-subtitle">C2C</a>
+                  <a>Classified Portal</a>
+                  <a class="category-group-title">Chat</a>
+                  <a class="category-group-subtitle">Chatbot</a>
+                  <a class="category-group-subtitle">Whatsapp Chat</a>
+                </div>
               </div>
             </div>
           </div>
@@ -239,7 +265,7 @@
             <span class="material-icons expand-icon"> expand_more </span>
           </div>
           <div class="category-dropdown">
-            <ul class="category-dropdown-menu col-2">
+            <ul class="category-dropdown-menu col-1">
               <li><a>Theme & Template</a></li>
               <li><a>Website</a></li>
               <li><a>Web Application</a></li>
@@ -369,11 +395,43 @@
             (click)="toggleDropdown('projectType')"
           >
             <a>Premium Apps</a>
-            <span class="material-icons expand-icon"> expand_more </span>
+            <span class="material-icons-outlined expand-icon">
+              expand_more
+            </span>
           </div>
           <div class="category-dropdown">
             <ul class="category-dropdown-menu col-2">
-              <li><a>E-Commerce</a></li>
+              <li class="category-group-subtitle-li">
+                <a class="category-group-title">E-Commerce</a>
+              </li>
+              <li class="category-group-subtitle-li">
+                <a class="category-group-subtitle">B2C</a>
+              </li>
+              <li><a>Clothing</a></li>
+              <li><a>Classified</a></li>
+              <li><a>Footwear</a></li>
+              <li><a>Electronics</a></li>
+              <li><a>Health & Wellness</a></li>
+              <li><a>Beauty & Personal Care</a></li>
+              <li><a>Consumer Electronics</a></li>
+              <li><a>Furniture & Decoration</a></li>
+              <li><a>Auto & Parts</a></li>
+              <li><a>Food & Beverage</a></li>
+              <li><a>Pet & Animals</a></li>
+              <li><a>Toys & Games</a></li>
+              <li class="category-group-subtitle-li">
+                <a class="category-group-subtitle">C2C</a>
+              </li>
+              <li><a>Classified Portal</a></li>
+              <li class="category-group-subtitle-li">
+                <a class="category-group-title">Chat</a>
+              </li>
+              <li class="category-group-subtitle-li">
+                <a class="category-group-subtitle">Chatbot</a>
+              </li>
+              <li class="category-group-subtitle-li">
+                <a class="category-group-subtitle">Whatsapp Chat</a>
+              </li>
             </ul>
           </div>
         </li>
