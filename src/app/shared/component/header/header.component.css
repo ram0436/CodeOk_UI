@@ -718,7 +718,7 @@
 }
 
 .neon__button:hover{
-    background-color: #3c3c3c !important;
+    background-color: black !important;
     cursor: pointer;
 }
 
