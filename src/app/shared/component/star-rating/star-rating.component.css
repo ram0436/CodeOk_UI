@@ -1,0 +1,7 @@
+.rating-star {
+    font-size: 23px;
+    color: gold;
+    margin-right: 0px;
+    display: inline-block;
+    cursor: pointer;
+  }

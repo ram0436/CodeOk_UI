@@ -1,0 +1,94 @@
+<div class="grid sidebar-container">
+    <div class="filters-head">
+        <div class="filter-heading">Filters</div>
+        <div class="clear-filters" *ngIf="filtersSelected && appliedFilters.length > 0" (click)="clearFilters()">
+            Reset
+        </div>
+        <iframe id="hiddenFrame" style="display: none"></iframe>
+    </div>
+    <div>
+        <div class="selected-states-container">
+            <mat-chip-listbox>
+                <div class="selected-states">
+                    <mat-chip-option *ngFor="let filter of appliedFilters" (removed)="removeItem(filter)">{{
+                        filter.value }}
+                        <button matChipRemove aria-label="Remove orange">
+                            <mat-icon>cancel</mat-icon>
+                        </button>
+                    </mat-chip-option>
+                </div>
+            </mat-chip-listbox>
+        </div>
+    </div>
+    <br />
+    <hr class="filterSepreator" />
+    <mat-form-field class="form-field-w-100">
+        <mat-label>Project Category</mat-label>
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="categoryControl"
+            [matAutocomplete]="category" />
+        <mat-autocomplete autoActiveFirstOption #category="matAutocomplete"
+            (optionSelected)="handleCategory($event.option.value)" [displayWith]="displayCategory">
+            <mat-option *ngFor="let category of filteredCategorys | async" [value]="category">
+                {{ category.name }}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="form-field-w-100">
+        <mat-label>Industry Type</mat-label>
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="industryControl"
+            [matAutocomplete]="industry" />
+        <mat-autocomplete autoActiveFirstOption #industry="matAutocomplete"
+            (optionSelected)="handleIndustry($event.option.value)" [displayWith]="displayCategory">
+            <mat-option *ngFor="let industry of filteredIndustries | async" [value]="industry">
+                {{ industry.name }}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field-w-100">
+        <mat-label>Operating system</mat-label>
+        <mat-select #osMultiSelect [(ngModel)]="selectedOs" multiple (selectionChange)="handleOs($event)">
+            <mat-option *ngFor="let os of operatingSystems" [value]="os">{{
+                os.name
+                }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field-w-100">
+        <mat-label>Technology</mat-label>
+        <mat-select #technologyMultiSelect [(ngModel)]="selectedTechnology" multiple
+            (selectionChange)="handleTechnology($event)">
+            <mat-option *ngFor="let technology of technologies" [value]="technology">{{
+                technology.name
+                }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field-w-100" *ngIf="versions.length > 0">
+        <mat-label>Software version</mat-label>
+        <mat-select #versionMultiSelect [(ngModel)]="selectedVersion" multiple
+            (selectionChange)="handleVersion($event)">
+            <mat-option *ngFor="let version of versions" [value]="version">{{
+                version.name
+                }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <div class="example-label-container">
+        <label id="example-name-label" class="example-name-label">Price</label>
+        <div class="pd-5">
+            <label class="example-value-label">{{
+                fromPrice | currency : "INR" : "symbol" : "1.0-0"
+                }}</label>
+            <label class="example-value-label fl-r">{{
+                toPrice | currency : "INR" : "symbol" : "1.0-0"
+                }}</label>
+        </div>
+    </div>
+    <div style="display: flex" class="price-slider">
+        <mat-slider class="example-margin" min="0" max="1000000" discrete="false" showTickMarks="false" invert="false">
+            <input matSliderStartThumb [(ngModel)]="fromPrice" />
+            <input matSliderEndThumb [(ngModel)]="toPrice" />
+        </mat-slider>
+        <button class="post" mat-raised-button color="primary" (click)="priceChange()">
+            Apply
+        </button>
+    </div>
+</div>

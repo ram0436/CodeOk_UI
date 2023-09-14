@@ -12,17 +12,21 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
 import { HeaderComponent } from './component/header/header.component';
-import { PostCardComponent } from './component/post-card/post-card.component';
 import { RouterModule } from '@angular/router';
 import { FooterComponent } from './component/footer/footer.component';
 import { LocationsComponent } from './component/locations/locations.component';
+import { StarRatingComponent } from './component/star-rating/star-rating.component';
+import { DashboardPostCardComponent } from './component/dashboard-post-card/dashboard-post-card.component';
+import { CategoryPostCardComponent } from './component/category-post-card/category-post-card.component';
 
 @NgModule({
   declarations: [
     HeaderComponent,
-    PostCardComponent,
     FooterComponent,
-    LocationsComponent
+    LocationsComponent,
+    StarRatingComponent,
+    DashboardPostCardComponent,
+    CategoryPostCardComponent
   ],
   imports: [
     CommonModule,
@@ -40,10 +44,12 @@ import { LocationsComponent } from './component/locations/locations.component';
     RouterModule
   ],
   exports : [
-    PostCardComponent,
     HeaderComponent,
     FooterComponent,
-    LocationsComponent
+    LocationsComponent,
+    StarRatingComponent,
+    DashboardPostCardComponent,
+    CategoryPostCardComponent
   ]
 })
 export class SharedModule { }

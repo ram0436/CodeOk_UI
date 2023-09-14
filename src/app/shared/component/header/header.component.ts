@@ -10,6 +10,7 @@ import { ElectronicApplianceType } from '../../enum/ElectronicApplianceType';
 import { FurnitureType } from '../../enum/FurnitureType';
 import { MatIconModule } from '@angular/material/icon';
 import { SportType } from '../../enum/SportType';
+import { CommonService } from '../../service/common.service';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -37,7 +38,11 @@ export class HeaderComponent implements OnInit {
   };
 
   hideSecondNav = false;
-
+  projectCategories: any = [];
+  industryTypes: any = [];
+  operatingSystems: any = [];
+  technologies: any = [];
+  versions: any = [];
   // Function to handle the scroll event
   @HostListener('window:scroll', [])
   onWindowScroll() {
@@ -59,7 +64,8 @@ export class HeaderComponent implements OnInit {
   }
 
 
-  constructor(private dialog: MatDialog, private router: Router, private userService: UserService, private elementRef: ElementRef, private renderer: Renderer2) {
+  constructor(private dialog: MatDialog, private router: Router, private userService: UserService, private elementRef: ElementRef, private renderer: Renderer2,
+    private commonService : CommonService) {
 
    }
 
@@ -119,7 +125,9 @@ export class HeaderComponent implements OnInit {
     this.userService.getData().subscribe(data => {
       this.getUserData();
     })
-
+    this.getAllProjectCategory();
+    this.getAllIndustryTypes();
+    this.getAllTechnologies();
   }
   openLoginModal() {
 
@@ -172,9 +180,24 @@ export class HeaderComponent implements OnInit {
   }
   postAdd() {
     if (localStorage.getItem('id') != null)
-      this.router.navigate(['/post-menu']);
+      this.router.navigate(['/add-post']);
     else
       this.openLoginModal();
+  }
+  getAllProjectCategory() {
+    this.commonService.getAllProjectCategory().subscribe(res => {
+      this.projectCategories = res;
+    })
+  }
+  getAllIndustryTypes() {
+    this.commonService.getAllIndustryType().subscribe(res => {
+      this.industryTypes = res;
+    })
+  }
+  getAllTechnologies() {
+    this.commonService.getAllTechnology().subscribe(res => {
+      this.technologies = res;
+    })
   }
 }
 

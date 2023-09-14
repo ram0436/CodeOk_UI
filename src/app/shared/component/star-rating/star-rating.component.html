@@ -1,0 +1,10 @@
+<div class="stars-rating">
+  <span
+    *ngFor="let star of stars"
+    [class.full]="star.filled"
+    (click)="rate(star.value)"
+    class="rating-star"
+  >
+    &#9733;
+  </span>
+</div>

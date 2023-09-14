@@ -9,46 +9,35 @@ import { environment } from 'src/environments/environment';
 export class CommonService {
 
   private dataSubject = new Subject<any>();
-  private postDetailsSubject = new BehaviorSubject<any>(null);
-  
-  constructor(private httpClient : HttpClient) { }
+
+  constructor(private http: HttpClient) { }
   private BaseURL = environment.baseUrl;
 
-  getAllItems(){
-    return this.httpClient.get(`${this.BaseURL}Dashboard/GetAll?pageIndex=1&pageSize=30`);
+  getAllProjectCategory() {
+    return this.http.get(`${this.BaseURL}Common/GetAllProjectCategory`);
   }
-  getAddress(pinCode:any){
-    return this.httpClient.get('https://api.postalpincode.in/pincode/'+pinCode);
+
+  getAllOperatingSystem() {
+    return this.http.get(`${this.BaseURL}Common/GetAllOperatingSystem`);
   }
-  getCountry(){
-    return this.httpClient.get(`${this.BaseURL}Common/GetCountry`);
+
+  getAllTechnology() {
+    return this.http.get(`${this.BaseURL}Common/GetAllTechnology`);
   }
-  getStatesByCountry(countryId:Number){
-    return this.httpClient.get(`${this.BaseURL}Common/GetAllState?countryId=`+countryId);
+
+  getAllIndustryType() {
+    return this.http.get(`${this.BaseURL}Common/GetAllIndustryType`);
   }
-  getCitiesByState(stateId:Number){
-    return this.httpClient.get(`${this.BaseURL}Common/GetAllCity?stateId=`+stateId);
+
+  getVersionByTechnologyId(id: number) {
+    return this.http.get(`${this.BaseURL}Common/GetVersionByTechnologyId?technologyId=${id}`)
   }
-  getNearPlacesByCity(cityId:Number){
-    return this.httpClient.get(`${this.BaseURL}Common/GetAllNearBy?cityId=`+cityId);
-  }
-  getAllCategory(){
-    return this.httpClient.get(`${this.BaseURL}Common/GetAllCategory`);
-  }
-  getSubCategoryByCategoryId(categoryId:Number){
-    return this.httpClient.get(`${this.BaseURL}Common/GetSubCategory?categoryId=`+categoryId);
-  }
+
   setData(data: any) {
     this.dataSubject.next(data);
   }
 
   getData() {
     return this.dataSubject.asObservable();
-  }
-  setPostDetails(data : any){
-    this.postDetailsSubject.next(data);
-  }
-  getPostDetails(){
-    return this.postDetailsSubject.asObservable();
   }
 }

@@ -1,0 +1,197 @@
+<div class="container-fluid">
+  <div class="header">Post your add</div>
+  <div class="container">
+    <h4>INCLUDE SOME DETAILS</h4>
+    <div class="include-details">
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Enter Name" [(ngModel)]="payload.name" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Enter Description" name="textareaInput" [(ngModel)]="payload.description"
+          rows="3"></textarea>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Project Category</mat-label>
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="categoryControl"
+          [matAutocomplete]="auto" />
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
+          (optionSelected)="handleCategory($event.option.value)" [displayWith]="displayCategory">
+          <mat-option *ngFor="let category of filteredCategorys | async" [value]="category">
+            {{ category.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Industry Type</mat-label>
+        <input type="text" placeholder="Pick one" aria-label="Number" matInput [formControl]="industryControl"
+          [matAutocomplete]="industry" />
+        <mat-autocomplete autoActiveFirstOption #industry="matAutocomplete"
+          (optionSelected)="handleIndustry($event.option.value)" [displayWith]="displayCategory">
+          <mat-option *ngFor="let industry of filteredIndustries | async" [value]="industry">
+            {{ industry.name }}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="form-field-w-100">
+        <mat-label>Operating system</mat-label>
+        <mat-select #osMultiSelect [(ngModel)]="selectedOs" multiple (selectionChange)="handleOs($event)">
+          <mat-option *ngFor="let os of operatingSystems" [value]="os">{{
+            os.name
+            }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="form-field-w-100">
+        <mat-label>Technology</mat-label>
+        <mat-select #technologyMultiSelect [(ngModel)]="selectedTechnology" multiple
+          (selectionChange)="handleTechnology($event)">
+          <mat-option *ngFor="let technology of technologies" [value]="technology">{{
+            technology.name
+            }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="form-field-w-100">
+        <mat-label>Software version</mat-label>
+        <mat-select #versionMultiSelect [(ngModel)]="selectedVersion" multiple
+          (selectionChange)="handleVersion($event)">
+          <mat-option *ngFor="let version of versions" [value]="version">{{
+            version.name
+            }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>System Requirements</mat-label>
+        <input matInput placeholder="Enter system requirements" [(ngModel)]="payload.systemRequirement" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Installation steps</mat-label>
+        <input matInput placeholder="Enter Installation steps" [(ngModel)]="payload.installationSteps" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Features</mat-label>
+        <input matInput placeholder="Enter Features" [(ngModel)]="payload.features" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Demo URL</mat-label>
+        <input matInput placeholder="Enter Demo URL" [(ngModel)]="payload.demoURL" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Documentaion URL</mat-label>
+        <input matInput placeholder="Enter Documentaion URL" [(ngModel)]="payload.documentaionURL" />
+      </mat-form-field>
+      <mat-form-field class="example-chip-list">
+        <mat-label>tags</mat-label>
+        <mat-chip-grid #chipGrid aria-label="tag selection">
+          <mat-chip-row *ngFor="let tag of tags" (removed)="remove(tag)">
+            {{tag}}
+            <button matChipRemove [attr.aria-label]="'remove ' + tag">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+        </mat-chip-grid>
+        <input placeholder="New tag..." #fruitInput [formControl]="tagCtrl" [matChipInputFor]="chipGrid"
+          [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Comment For Reviewer</mat-label>
+        <textarea matInput placeholder="Enter Comment For Reviewer" name="textareaInput"
+          [(ngModel)]="payload.commentForReviewer" rows="3"></textarea>
+      </mat-form-field>
+    </div>
+    <div class="price-section">
+      <h4>SET A PRICE</h4>
+      <div class="include-details">
+        <mat-form-field>
+          <mat-label>Price</mat-label>
+          <input matInput placeholder="Enter price" (input)="allowOnlyNumbers($event)" [(ngModel)]="payload.price" />
+        </mat-form-field>
+      </div>
+    </div>
+    <div class="uplod-sectin h-550">
+      <h4>Project images</h4>
+      <div class="progs" *ngIf="imageProgress">
+        <h5>Upload Progress</h5>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+      <div class="cards">
+        <ul class="upld">
+          <li class="upload-card" *ngFor="let item of cardsCount; let i = index">
+            <div class="upload-card-brd" (click)="selectFile()" id="{{ i }}" *ngIf="item == ''">
+              <input type="file" id="fileUpload" name="fileUpload" (change)="selectImage($event)" style="display: none"
+                multiple />
+              <div>
+                <button class="camera">
+                  <img src="../../../assets/camera.svg" alt="camera" />
+                </button>
+                <span class="add">Add photo</span>
+              </div>
+            </div>
+            <div class="upload-card-brd" *ngIf="item != ''">
+              <div class="preview">
+                <button class="delete-button" (click)="deleteBackgroundImage(i)">
+                  <span class="delete-icon">&#10006;</span>
+                </button>
+                <div class="first-image" *ngIf="i === 0 && firstImageUploaded">
+                  <div class="cover-tag">Cover Photo</div>
+                </div>
+                <img [src]="item" height="100px" width="100px" alt="" />
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="uplod-sectin h-365">
+      <h4>Project code</h4>
+      <div class="progs" *ngIf="projectCodeProgress">
+        <h5>Upload Progress</h5>
+        <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+      </div>
+      <div class="cards">
+        <div class="file-upload-container">
+          <input #fileUpload class="input_fileupload--hidden" type="file" (change)="selectProjectCode($event)" multiple>
+          <button mat-raised-button color="primary" (click)="onClick($event)">Browse</button>
+        </div>
+
+        <div class="file-list">
+          <ul>
+            <li *ngFor="let file of uploadedFiles; let i = index">
+              {{ file.file.name }}
+              <button mat-icon-button color="warn" (click)="deleteFile(i)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="details">
+      <h4>REVIEW YOUR DETAILS</h4>
+      <div class="flx">
+        <div class="circle">
+          <img [src]="imageUrl" alt="Uploaded Image" />
+          <input type="file" id="upload" (change)="uploadProfilePicture($event)" style="display: none" />
+        </div>
+        <button class="upload-button" (click)="selectProfilePicture()">
+          +
+        </button>
+        <div class="wd-300">
+          <div class="wd-100">
+            <p class="w-50">Name</p>
+            <p>{{ userData?.firstName }}</p>
+          </div>
+          <div class="wd-100">
+            <p class="w-50">Phone number</p>
+            <p>{{ userData?.mobileNo }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <button class="post" mat-raised-button color="primary" (click)="postAdd()">
+        Publish Now
+      </button>
+    </div>
+  </div>
+</div>
