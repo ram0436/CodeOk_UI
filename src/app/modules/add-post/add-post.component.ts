@@ -140,8 +140,7 @@ export class AddPostComponent {
     this.payload.modifiedOn = new Date().toISOString().slice(0, 23);
     this.payload.price = Number(this.payload.price);
     var payload = this.addAttachmentsPayload(this.payload);
-    console.log(payload);
-    //this.saveProjectCodePost(payload);
+    this.saveProjectCodePost(payload);
   }
   showNotification(message: string): void {
     this.snackBar.open(message, 'Close', {
@@ -154,7 +153,6 @@ export class AddPostComponent {
     if (this.validatePostForm(payload))
       this.projectService.saveProjectCodePost(payload).subscribe(data => {
         this.showNotification("Post added succesfully");
-        console.log(data);
         this.router.navigateByUrl('/');
       });
   }
@@ -205,7 +203,6 @@ export class AddPostComponent {
           if (userData.length > 0) {
             userData[0].userImageList.push({ "id": 0, "imageId": "st", "imageURL": data[0], "usersId": Number(localStorage.getItem("id")) });
             this.userService.updateUser(userData[0]).subscribe(res => {
-              console.log(res);
             })
           }
         })
