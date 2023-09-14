@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonService } from 'src/app/shared/service/common.service';
+import { ProjectService } from '../service/project.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,15 +9,14 @@ import { CommonService } from 'src/app/shared/service/common.service';
 })
 export class DashboardComponent {
 
-  constructor(private commonService: CommonService) { }
+  constructor(private projectService: ProjectService) { }
 
   cards: any = [];
   currentDate: Date = new Date();
-  isLoading: Boolean = true;
+  isLoading: Boolean = false;
   ngOnInit(): void {
-    this.commonService.getAllItems().subscribe((data: any) => {
-      this.cards = data;
-      this.isLoading = false;
-    })
+    this.projectService.getAllProjectCodePosts().subscribe(res=>{
+      this.cards = res;
+    });
   }
 }

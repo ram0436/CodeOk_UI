@@ -1,0 +1,174 @@
+<!-- <div class="mat-app-background" *ngIf="!isLoading">
+  <button
+    class="back-to-top-btn"
+    (click)="scrollToTop()"
+    *ngIf="isScrolledDown"
+  >
+    <span class="material-icons-outlined"> keyboard_double_arrow_up </span>
+    Back to Top
+  </button>
+  <mat-card
+    class="example-card"
+    *ngFor="let card of paginatedCards; let isFirst = first"
+  >
+    <a
+      class="custom-link"
+      [routerLink]="
+        '/' + card.mainCategory + '/post-details/' + card.tableRefGuid
+      "
+      target="_self"
+    >
+      <div class="post-image">
+        <img
+          mat-card-image
+          [src]="getCardImageURL(card)"
+          alt="{{ card?.title }}"
+          class="card-image"
+        />
+        <span class="ribbon-featured" *ngIf="isFirst && card?.isFeatured">
+          <strong class="ribbon">
+            <span class="hide-visually">This ad is</span>
+            Premium
+          </strong>
+        </span>
+        <div class="image-count">
+          <span class="material-icons"> photo_camera </span>
+          {{ imagesList.length }}
+        </div>
+      </div>
+      <mat-card-title class="title">{{
+        card?.price | currency : "INR"
+      }}</mat-card-title>
+      <mat-card-content class="description">
+        <p style="margin: 0">{{ card?.title }}</p>
+        <p *ngIf="card?.year">
+          {{ card?.year || "" }} -
+          {{ card?.kmDriven ? card.kmDriven + " kms" : "" }}
+        </p>
+        <div class="loc-date">
+          <p class="loc">{{ card?.nearBy }}, {{ card?.city }}</p>
+          <p class="date">{{ formatDate(card?.createdOn) }}</p>
+        </div>
+      </mat-card-content>
+    </a>
+  </mat-card>
+  <div *ngIf="paginatedCards.length == 0">
+    <p class="noposts">No Posts found</p>
+  </div>
+
+  <div class="load-more-container" *ngIf="displayedCardCount < cards.length">
+    <button class="load-more-btn" (click)="loadMoreCards()">
+      <span class="material-icons-outlined"> keyboard_double_arrow_down </span>
+      Load More
+    </button>
+  </div>
+</div> -->
+
+<div class="mat-app-background">
+    <div class="post-card-container">
+      <!-- <div class="post-card" *ngFor="let postCard of postCards">
+        <div class="img-wrapper">
+          <img src="../../../../assets/Feature.avif" alt="" />
+        </div>
+        <div class="details-wrapper">
+          <h3 class="item-name">{{ postCard.title }}</h3>
+          <div class="post-author">
+            <i>by </i><span class="bold">{{ postCard.author }}</span> in
+            <span class="bold">{{ postCard.category }}</span>
+          </div>
+          <div class="attrs-wrapper">
+            <div class="included-files">
+              File types included:
+              <ul>
+                <li class="file-type">JavaScript</li>
+                <li class="file-type">HTML</li>
+                <li class="file-type">CSS</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="price-wrapper">
+          <div class="post-info">
+            <div class="fav-collections">
+              <span class="material-icons-outlined button-icon">
+                playlist_add
+              </span>
+              <span class="material-icons-outlined button-icon border-left">
+                favorite_border
+              </span>
+            </div>
+            <div class="post-price">{{ postCard.price }}</div>
+            <div class="rating-wrapper">
+              <div class="star-ratings">
+                <app-star-rating></app-star-rating>
+              </div>
+              <span class="star-rating-count">({{ postCard.ratingCount }})</span>
+            </div>
+            <div class="sales">1.7k Sales</div>
+            <div class="last-updated">Last updated: 20 May 2023</div>
+          </div>
+          <div class="cover-wrapper">
+            <span class="material-icons-outlined cart-icon"> shopping_cart </span>
+            <div class="preview">Live Preview</div>
+          </div>
+        </div>
+      </div> -->
+      <div class="post-card-grid">
+        <div class="post-item-card" *ngFor="let postCard of cards">
+          <div class="post-item-img">
+            <img [src]="postCard.projectImageList[0].codeImageURL"alt="Post Pic" >
+          </div>
+          <div class="post-item-content">
+            <h3 class="post-item-name">
+              {{ postCard.name }}
+            </h3>
+            <div class="post-item-author">
+              <!-- <i>by </i><span class="bold">{{ postCard.author }}</span> in -->
+              <span class="bold">{{ postCard.category }}</span>
+            </div>
+            <div class="attrs-wrapper">
+              <div class="included-files">
+                Tags:
+                <ul>
+                  <li class="file-type" *ngFor="let tag of postCard.tagList">{{tag.name}}</li>
+                </ul>
+              </div>
+            </div>
+            <br>
+            <div class="attrs-wrapper">
+              <div class="included-files">
+                Technologies:
+                <ul>
+                  <li class="file-type" *ngFor="let technology of postCard.technologyMappingList">{{getName(technology.technologyId)}}</li>
+                </ul>
+              </div>
+            </div>
+            <div class="post-item-details">
+              <div class="details-content">
+                <div class="post-item-price">{{ postCard.price }}</div>
+                <div class="post-item-rating-wrapper">
+                  <div class="star-ratings">
+                    <app-star-rating></app-star-rating>
+                  </div>
+                  <span class="star-rating-count"
+                    >({{ postCard.ratingCount }})</span
+                  >
+                </div>
+                <div class="post-item-sales">{{ postCard.sales }}</div>
+                <div class="post-item-sales">{{formatDate(postCard.createdOn)}}</div>
+              </div>
+              <div class="post-item-buttons">
+                <div class="cover-wrapper">
+                  <span class="material-icons-outlined cart-icon">
+                    shopping_cart
+                  </span>
+                  <span class="preview">Live Preview</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

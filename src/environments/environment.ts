@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl : "https://cfd.azurewebsites.net/api/"
+  baseUrl : "https://codeok-stage-api.azurewebsites.net/api/"
 };
 
 /*
