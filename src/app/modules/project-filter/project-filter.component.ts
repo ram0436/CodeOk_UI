@@ -108,16 +108,13 @@ export class ProjectFilterComponent {
     this.appliedFilters = this.appliedFilters.filter((item: any) => item.name != 'technology');
     this.appliedFilters = this.appliedFilters.filter((item: any) => item.name != 'version');
     this.technologyMappingList = [];
+    this.filterObj.technologyVersionMappingList = null;
     event.value.forEach((technology: any) => {
       let technologyObj = { id: 0, technologyId: technology.id, projectCodeId: 0 }
       this.technologyMappingList.push(technologyObj);
       observables.push(this.commonService.getVersionByTechnologyId(technology.id));
       technologyIds.push(technology.id);
       this.updateAppliedFilters("technology", technology.name);
-      if (this.selectedVersion != null) {
-        this.selectedVersion = this.selectedVersion.filter((version: any) => version.technologyId == technology.id);
-        this.cdr.detectChanges();
-      }
     });
     this.filterObj.technologyMappingList = technologyIds;
     this.commonService.setData(this.filterObj);
@@ -185,14 +182,17 @@ export class ProjectFilterComponent {
     this.filtersSelected = false;
     this.categoryControl.patchValue("");
     this.industryControl.patchValue("");
+    this.categoryAutocomplete.options.forEach(option => option.deselect());
+    this.industryAutocomplete.options.forEach(option => option.deselect());
     this.fromPrice = 0;
     this.toPrice = 0;
     this.filterObj = { ...this.initialFilters };
     this.appliedFilters = [];
     this.osMultiSelect.writeValue([]);
     this.technologyMultiSelect.writeValue([]);
+    if(this.versionMultiSelect !=undefined)
     this.versionMultiSelect.writeValue([]);
-    window.location.reload();
+    this.commonService.setData(this.filterObj);
   }
   removeItem(item: any): void {
     const index = this.appliedFilters.indexOf(item);
@@ -205,6 +205,7 @@ export class ProjectFilterComponent {
     switch (filter.name) {
       case "technology":
         this.removeOptionFromArray(this.technologyMultiSelect, (this.filterObj.technologyMappingList || []), "name", filter.value);
+        this.modifyVersions();
         break;
       case "version":
         this.removeOptionFromArray(this.versionMultiSelect, (this.filterObj.technologyVersionMappingList || []), "name", filter.value);
@@ -225,6 +226,7 @@ export class ProjectFilterComponent {
     this.commonService.setData(this.filterObj);
   }
   setInitialFilters() {
+    this.appliedFilters = [];
     if (this.menuId != null) {
       this.categoryControl.patchValue("");
       this.industryControl.patchValue("");
@@ -234,6 +236,7 @@ export class ProjectFilterComponent {
           this.categoryControl.patchValue(selectedCategory);
           this.appliedFilters.push({ name: "projectCategoryId", value: selectedCategory.name });
           this.filtersSelected = true;
+          this.filterObj.projectCategoryId = this.menuId;
           break;
         }
         case "Industry": {
@@ -241,6 +244,7 @@ export class ProjectFilterComponent {
           this.industryControl.patchValue(selectedIndustry);
           this.appliedFilters.push({ name: "industryTypeId", value: selectedCategory.name });
           this.filtersSelected = true;
+          this.filterObj.industryTypeId = this.menuId;
           break;
         }
       }
@@ -283,7 +287,6 @@ export class ProjectFilterComponent {
   }
   removeOptionFromArray(select: any, dataArray: any[], key: string | null, value: any) {
     const selectedOptions = select.value as any[];
-    console.log(selectedOptions);
     const index = selectedOptions.findIndex((option: any) => {
       if (key) {
         return option[key].toLowerCase() === value.toLowerCase();
@@ -299,5 +302,17 @@ export class ProjectFilterComponent {
       selectedOptions.splice(index, 1);
       select.writeValue(selectedOptions);
     }
+  }
+  modifyVersions(){
+    const observables: any = [];
+    this.versions = [];
+    this.selectedTechnology.forEach((technology: any) => {
+      observables.push(this.commonService.getVersionByTechnologyId(technology.id));
+    });
+    forkJoin(observables).subscribe((responses: any) => {
+      this.versions = [].concat(...responses);
+    });
+    this.filterObj.technologyVersionMappingList = null;
+    this.appliedFilters = this.appliedFilters.filter((item: any) => item.name != 'version');
   }
 }
