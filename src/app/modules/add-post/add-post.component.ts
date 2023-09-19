@@ -153,7 +153,7 @@ export class AddPostComponent {
     if (this.validatePostForm(payload))
       this.projectService.saveProjectCodePost(payload).subscribe(data => {
         this.showNotification("Post added succesfully");
-        this.router.navigateByUrl('/');
+       // this.router.navigateByUrl('/');
       });
   }
   addAttachmentsPayload(commonPayload: any): any {
