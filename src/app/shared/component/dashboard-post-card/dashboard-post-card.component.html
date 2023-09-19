@@ -115,6 +115,10 @@
       </div> -->
       <div class="post-card-grid">
         <div class="post-item-card" *ngFor="let postCard of cards">
+          <a class="custom-link"
+            [routerLink]="'/post-details/' + postCard.tableRefGuid"
+            target="_self"
+          >
           <div class="post-item-img">
             <img [src]="postCard.projectImageList[0].codeImageURL"alt="Post Pic" >
           </div>
@@ -167,7 +171,9 @@
               </div>
             </div>
           </div>
+          </a>
         </div>
+        <h3 *ngIf="cards.length == 0">No posts avaialble</h3>
       </div>
     </div>
   </div>

@@ -144,7 +144,10 @@
           <div class="category-dropdown">
             <ul class="category-dropdown-menu col-1">
               <li *ngFor="let projectCategory of projectCategories">
-                <a>{{projectCategory.name}}</a>
+                <a [routerLink]="'/project-posts'" [queryParams]="{
+                  menu: 'Category',
+                  id: projectCategory.id
+                }">{{projectCategory.name}}</a>
               </li>
             </ul>
           </div>
@@ -159,7 +162,10 @@
           <div class="category-dropdown">
             <ul class="category-dropdown-menu">
               <li *ngFor="let industryType of industryTypes">
-                <a>{{industryType.name}}</a>
+                <a [routerLink]="'/project-posts'" [queryParams]="{
+                  menu: 'Industry',
+                  id: industryType.id
+                }">{{industryType.name}}</a>
               </li>
             </ul>
           </div>
@@ -172,7 +178,10 @@
           <div class="category-dropdown">
             <ul class="category-dropdown-menu col-1">
               <li *ngFor="let technology of technologies">
-                <a>{{technology.name}}</a>
+                <a [routerLink]="'/project-posts'" [queryParams]="{
+                  menu: 'Technology',
+                  id: technology.id
+                }">{{technology.name}}</a>
               </li>
             </ul>
           </div>

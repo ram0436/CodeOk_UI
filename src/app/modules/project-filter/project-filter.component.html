@@ -44,15 +44,6 @@
             </mat-option>
         </mat-autocomplete>
     </mat-form-field>
-
-    <mat-form-field appearance="fill" class="form-field-w-100">
-        <mat-label>Operating system</mat-label>
-        <mat-select #osMultiSelect [(ngModel)]="selectedOs" multiple (selectionChange)="handleOs($event)">
-            <mat-option *ngFor="let os of operatingSystems" [value]="os">{{
-                os.name
-                }}</mat-option>
-        </mat-select>
-    </mat-form-field>
     <mat-form-field appearance="fill" class="form-field-w-100">
         <mat-label>Technology</mat-label>
         <mat-select #technologyMultiSelect [(ngModel)]="selectedTechnology" multiple
@@ -68,6 +59,14 @@
             (selectionChange)="handleVersion($event)">
             <mat-option *ngFor="let version of versions" [value]="version">{{
                 version.name
+                }}</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="form-field-w-100">
+        <mat-label>Operating system</mat-label>
+        <mat-select #osMultiSelect [(ngModel)]="selectedOs" multiple (selectionChange)="handleOs($event)">
+            <mat-option *ngFor="let os of operatingSystems" [value]="os">{{
+                os.name
                 }}</mat-option>
         </mat-select>
     </mat-form-field>

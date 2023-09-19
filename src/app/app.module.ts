@@ -28,6 +28,7 @@ import { DashboardComponent } from './modules/dashboard/dashboard.component';
 import { PostMenuComponent } from './modules/post-menu/post-menu.component';
 import { ProjectPostsComponent } from './modules/project-posts/project-posts.component';
 import { ProjectFilterComponent } from './modules/project-filter/project-filter.component';
+import { PostDetailsComponent } from './modules/post-details/post-details.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ProjectFilterComponent } from './modules/project-filter/project-filter.
     AddPostComponent,
     ProjectPostsComponent,
     ProjectFilterComponent,
+    PostDetailsComponent,
   ],
   imports: [
     BrowserModule,
