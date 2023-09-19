@@ -1,0 +1,69 @@
+<div class="container-center bg">
+  <div class="spinner__loading" *ngIf="isLoading">
+    <div>
+      <mat-spinner></mat-spinner>
+    </div>
+  </div>
+  <div class="pd-3" *ngIf="!isLoading">
+    <div class="flex">
+      <button class="back-btn" (click)="goBack()">
+        <span class="material-icons-outlined"> chevron_left </span>Back
+      </button>
+      <div class="pl-50">
+        <h1>{{ postDetails?.name }}</h1>
+        <p>Posted : {{formatDate(postDetails?.createdOn) }}</p>
+      </div>
+    </div>
+    <div class="flex gap-2 pt-3">
+      <div>
+        <mat-card class="border-1 mb-2 block img-mat-card" *ngFor="let image of postDetails.projectImageList">
+          <div class="pg-card">
+            <div class="postImgCont">
+              <img class="postImg" [src]="image.codeImageURL" alt="" />
+            </div>
+          </div>
+        </mat-card>
+      </div>
+      <div class="col-5">
+        <mat-card class="border-1">
+          <mat-card-title>{{
+            postDetails?.price | currency : "INR"
+            }}</mat-card-title>
+          <mat-card-content class="description">
+            <p style="margin: 0">{{ postDetails?.name }}</p>
+            <div class="loc-date">
+              <p class="date">{{ formatDate(postDetails?.createdOn) }}</p>
+            </div>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="mt-10 border-1">
+          <mat-card-title>Description</mat-card-title>
+          <mat-card-content>
+            <p class="description-content">{{ postDetails?.discription }}</p>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="mt-10 border-1">
+          <mat-card-title>Overview</mat-card-title>
+          <mat-card-content>
+            <p class="description-content">Project category : {{
+              getSingleValue(postDetails?.projectCategoryId,'category') }}</p>
+            <p class="description-content">Industry : {{ getSingleValue(postDetails?.industryTypeId,'industry') }}</p>
+            <p class="description-content">Technology : {{
+              getMultipleValues(postDetails?.technologyMappingList,'technology') }}</p>
+            <p class="description-content">Version : {{
+              getMultipleValues(postDetails?.technologyVersionMappingList,'version') }}</p>
+            <p class="description-content">Operating system : {{
+              getMultipleValues(postDetails?.operatingSystemMappingList,'os') }}</p>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="mt-10 border-1">
+          <mat-card-title>Installation steps</mat-card-title>
+          <mat-card-content>
+            <p class="description-content">{{ postDetails?.installationSteps }}</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  </div>
+  <div></div>
+</div>

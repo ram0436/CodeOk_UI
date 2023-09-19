@@ -21,4 +21,8 @@ export class ProjectService {
   getAllProjectCodePosts(){
     return this.http.get(`${this.BaseURL}ProjectCode/GetDashboard`);
   }
+
+  getProjectCodeById(id:any){
+    return this.http.get(`${this.BaseURL}ProjectCode/GetByTabRefGuid?tabRefGuid=`+id);
+  }
 }

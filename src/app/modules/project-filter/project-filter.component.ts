@@ -227,6 +227,7 @@ export class ProjectFilterComponent {
   }
   setInitialFilters() {
     this.appliedFilters = [];
+    this.versions = [];
     if (this.menuId != null) {
       this.categoryControl.patchValue("");
       this.industryControl.patchValue("");
@@ -245,6 +246,18 @@ export class ProjectFilterComponent {
           this.appliedFilters.push({ name: "industryTypeId", value: selectedCategory.name });
           this.filtersSelected = true;
           this.filterObj.industryTypeId = this.menuId;
+          break;
+        }
+        case "Technology": {
+          var technologyIds = [];
+          this.selectedTechnology = this.technologies.filter((technology: any) => technology.id == this.menuId);
+          this.appliedFilters.push({ name: "technology", value: this.selectedTechnology[0].name });
+          this.filtersSelected = true;
+          technologyIds.push(this.menuId);
+          this.filterObj.technologyVersionMappingList = technologyIds;
+          this.commonService.getVersionByTechnologyId(this.menuId).subscribe(res=>{
+            this.versions =res;
+          })
           break;
         }
       }

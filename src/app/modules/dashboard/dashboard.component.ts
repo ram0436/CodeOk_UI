@@ -13,10 +13,11 @@ export class DashboardComponent {
 
   cards: any = [];
   currentDate: Date = new Date();
-  isLoading: Boolean = false;
+  isLoading: Boolean = true;
   ngOnInit(): void {
     this.projectService.getAllProjectCodePosts().subscribe(res=>{
       this.cards = res;
+      this.isLoading = false;
     });
   }
 }

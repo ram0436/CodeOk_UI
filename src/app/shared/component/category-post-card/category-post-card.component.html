@@ -67,6 +67,10 @@
 <div class="mat-app-background">
     <div class="post-card-container">
       <div class="post-card" *ngFor="let postCard of cards">
+        <a class="flex"
+        [routerLink]="'/post-details/' + postCard.tableRefGuid"
+        target="_self"
+      >
         <div class="img-wrapper">
           <img [src]="postCard.projectImageList[0].codeImageURL"alt="Post Pic" >
         </div>
@@ -118,6 +122,7 @@
             <div class="preview">Live Preview</div>
           </div>
         </div>
+        </a>
       </div>
       <h3 *ngIf="cards.length == 0">No posts avaialble</h3>
     </div>
