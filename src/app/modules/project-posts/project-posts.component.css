@@ -68,4 +68,15 @@
   .mat-mdc-card-content.description{
     font-size: 14px !important;
   }
+
+  .bg-white{
+    background-color: #fff;
+    z-index: 10;
+  }
+
+  .details-wrapper{
+    width: calc(63% - 150px) !important;
+    padding: 0 16px;
+}
+  
   

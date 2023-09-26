@@ -27,6 +27,11 @@ export class PostDetailsComponent {
   operatingSystems: any = [];
   technologies: any = [];
   versions: any = [];
+
+  isContentVisible = false;
+  isReqVisible = false;
+  isTagsVisible = false;
+
   constructor(private route: ActivatedRoute, private projectService: ProjectService,
     private commonService: CommonService, private location: Location) { }
 
@@ -44,6 +49,23 @@ export class PostDetailsComponent {
       this.getPostDetails(tableRefGuid);
     }
   }
+
+  formatTags(tagList: any[]): string {
+    return tagList?.map(tag => tag.name).join(', ');
+  }
+
+  toggleCardContent() {
+    this.isContentVisible = !this.isContentVisible;
+  }
+
+  toggleReqContent(){
+    this.isReqVisible = !this.isReqVisible;
+  }
+
+  toggleTagsContent(){
+    this.isTagsVisible = !this.isTagsVisible;
+  }
+
   goBack() {
     this.location.back();
   }
@@ -53,6 +75,7 @@ export class PostDetailsComponent {
       this.postDetails = res[0];
       this.getVersionsByTechnologyIds(this.postDetails.technologyMappingList);
       this.isLoading = false;
+      console.log(this.postDetails);
     })
   }
   formatDate(date: any): any {

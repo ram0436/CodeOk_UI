@@ -406,6 +406,12 @@
     min-width: 100% !important;
     flex-wrap: wrap;
     gap: 15px;
+    background-color: #fafafa;
+}
+
+.mpt{
+    margin-top: -50px;
+    padding-top: 50px;
 }
 
 .post-card-container{

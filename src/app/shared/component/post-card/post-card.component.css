@@ -7,6 +7,10 @@
     gap: 15px;
 }
 
+.mpt{
+    /* margin-top: -40px */
+}
+
 .card-image {
     padding: 10px;
     object-fit: cover;

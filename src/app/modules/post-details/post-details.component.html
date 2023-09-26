@@ -1,4 +1,4 @@
-<div class="container-center bg">
+<div class="container-center bg mpt">
   <div class="spinner__loading" *ngIf="isLoading">
     <div>
       <mat-spinner></mat-spinner>
@@ -9,14 +9,17 @@
       <button class="back-btn" (click)="goBack()">
         <span class="material-icons-outlined"> chevron_left </span>Back
       </button>
-      <div class="pl-50">
+      <!-- <div class="pl-50">
         <h1>{{ postDetails?.name }}</h1>
         <p>Posted : {{formatDate(postDetails?.createdOn) }}</p>
-      </div>
+      </div> -->
     </div>
     <div class="flex gap-2 pt-3">
       <div>
-        <mat-card class="border-1 mb-2 block img-mat-card" *ngFor="let image of postDetails.projectImageList">
+        <mat-card
+          class="border-1 mb-2 block img-mat-card"
+          *ngFor="let image of postDetails.projectImageList"
+        >
           <div class="pg-card">
             <div class="postImgCont">
               <img class="postImg" [src]="image.codeImageURL" alt="" />
@@ -26,9 +29,123 @@
       </div>
       <div class="col-5">
         <mat-card class="border-1">
-          <mat-card-title>{{
-            postDetails?.price | currency : "INR"
-            }}</mat-card-title>
+          <div class="title-flex services-title">
+            <span class="services-caption"
+              >Popular Services from HTML Website Templates Experts</span
+            >
+          </div>
+          <mat-card-content>
+            <label class="cart-service cart-service_support checkbox">
+              <input
+                type="checkbox"
+                name=""
+                id=""
+                class="cart-service-checkbox checkbox-input"
+              />
+              <i class="cart-service-checkbox-icon checkbox-icon"></i>
+              <span class="cart-service-label checkbox-label"
+                >Get 6 more months of support and save $15</span
+              >
+              <span class="cart-service-prices">
+                <strong class="cart-service-price cart-service-price_original"
+                  >$27</strong
+                >
+                <strong class="cart-service-price cart-service-price_discount"
+                  >$12</strong
+                >
+              </span>
+            </label>
+            <label class="cart-service cart-service_support checkbox">
+              <input
+                type="checkbox"
+                name=""
+                id=""
+                class="cart-service-checkbox checkbox-input"
+              />
+              <i class="cart-service-checkbox-icon checkbox-icon"></i>
+              <span class="cart-service-label checkbox-label"
+                >Must-Have Launch Pack</span
+              >
+              <span class="custom-tooltip cart-service-tooltip">
+                <span class="custom-tooltip-button">
+                  <span
+                    class="material-icons-outlined cart-service-tooltip-icon"
+                  >
+                    report
+                  </span>
+                </span>
+              </span>
+              <span class="cart-service-prices">
+                <strong class="cart-service-price cart-service-price_original"
+                  >$27</strong
+                >
+                <strong class="cart-service-price cart-service-price_discount"
+                  >$12</strong
+                >
+              </span>
+            </label>
+            <label class="cart-service cart-service_support checkbox">
+              <input
+                type="checkbox"
+                name=""
+                id=""
+                class="cart-service-checkbox checkbox-input"
+              />
+              <i class="cart-service-checkbox-icon checkbox-icon"></i>
+              <span class="cart-service-label checkbox-label"
+                >Conversion to WordPress with Page Builder</span
+              >
+              <span class="custom-tooltip cart-service-tooltip">
+                <span class="custom-tooltip-button">
+                  <span
+                    class="material-icons-outlined cart-service-tooltip-icon"
+                  >
+                    report
+                  </span>
+                </span>
+              </span>
+              <span class="cart-service-prices">
+                <strong class="cart-service-price cart-service-price_original"
+                  >$27</strong
+                >
+                <strong class="cart-service-price cart-service-price_discount"
+                  >$12</strong
+                >
+              </span>
+            </label>
+            <label class="cart-service cart-service_support checkbox">
+              <input
+                type="checkbox"
+                name=""
+                id=""
+                class="cart-service-checkbox checkbox-input"
+              />
+              <i class="cart-service-checkbox-icon checkbox-icon"></i>
+              <span class="cart-service-label checkbox-label"
+                >Classic Website Customization Service</span
+              >
+              <span class="custom-tooltip cart-service-tooltip">
+                <span class="custom-tooltip-button">
+                  <span
+                    class="material-icons-outlined cart-service-tooltip-icon"
+                  >
+                    report
+                  </span>
+                </span>
+              </span>
+              <span class="cart-service-prices">
+                <strong class="cart-service-price cart-service-price_original"
+                  >$27</strong
+                >
+                <strong class="cart-service-price cart-service-price_discount"
+                  >$12</strong
+                >
+              </span>
+            </label>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="mt-10 border-1">
+          <mat-card-title>${{ postDetails?.price }}</mat-card-title>
           <mat-card-content class="description">
             <p style="margin: 0">{{ postDetails?.name }}</p>
             <div class="loc-date">
@@ -37,29 +154,93 @@
           </mat-card-content>
         </mat-card>
         <mat-card class="mt-10 border-1">
-          <mat-card-title>Description</mat-card-title>
-          <mat-card-content>
-            <p class="description-content">{{ postDetails?.discription }}</p>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="mt-10 border-1">
           <mat-card-title>Overview</mat-card-title>
           <mat-card-content>
-            <p class="description-content">Project category : {{
-              getSingleValue(postDetails?.projectCategoryId,'category') }}</p>
-            <p class="description-content">Industry : {{ getSingleValue(postDetails?.industryTypeId,'industry') }}</p>
-            <p class="description-content">Technology : {{
-              getMultipleValues(postDetails?.technologyMappingList,'technology') }}</p>
-            <p class="description-content">Version : {{
-              getMultipleValues(postDetails?.technologyVersionMappingList,'version') }}</p>
-            <p class="description-content">Operating system : {{
-              getMultipleValues(postDetails?.operatingSystemMappingList,'os') }}</p>
+            <p class="description-content">
+              Project category :
+              {{ getSingleValue(postDetails?.projectCategoryId, "category") }}
+            </p>
+            <p class="description-content">
+              Industry :
+              {{ getSingleValue(postDetails?.industryTypeId, "industry") }}
+            </p>
+            <p class="description-content">
+              Technology :
+              {{
+                getMultipleValues(
+                  postDetails?.technologyMappingList,
+                  "technology"
+                )
+              }}
+            </p>
+            <p class="description-content">
+              Version :
+              {{
+                getMultipleValues(
+                  postDetails?.technologyVersionMappingList,
+                  "version"
+                )
+              }}
+            </p>
+            <p class="description-content">
+              Operating system :
+              {{
+                getMultipleValues(postDetails?.operatingSystemMappingList, "os")
+              }}
+            </p>
           </mat-card-content>
         </mat-card>
         <mat-card class="mt-10 border-1">
+          <mat-card-title>Key Feature</mat-card-title>
+          <mat-card-content>
+            <p class="description-content">{{ postDetails?.description }}</p>
+          </mat-card-content>
+        </mat-card>
+        <!-- <mat-card class="mt-10 border-1">
           <mat-card-title>Installation steps</mat-card-title>
           <mat-card-content>
-            <p class="description-content">{{ postDetails?.installationSteps }}</p>
+            <p class="description-content">
+              {{ postDetails?.installationSteps }}
+            </p>
+          </mat-card-content>
+        </mat-card> -->
+        <mat-card class="mt-10 border-1">
+          <mat-card-title class="title-flex"
+            >System Requirements
+            <span class="material-icons-outlined" (click)="toggleReqContent()"
+              >{{ isReqVisible ? "remove" : "add" }}
+            </span>
+          </mat-card-title>
+          <mat-card-content *ngIf="isReqVisible">
+            <p class="description-content">
+              {{ postDetails?.systemRequirement }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="mt-10 border-1">
+          <mat-card-title class="title-flex">
+            Installation steps
+            <span class="material-icons-outlined" (click)="toggleCardContent()">
+              {{ isContentVisible ? "remove" : "add" }}
+            </span></mat-card-title
+          >
+          <mat-card-content *ngIf="isContentVisible">
+            <p class="description-content">
+              {{ postDetails?.installationSteps }}
+            </p>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="mt-10 border-1">
+          <mat-card-title class="title-flex">
+            Tags
+            <span class="material-icons-outlined" (click)="toggleTagsContent()">
+              {{ isTagsVisible ? "remove" : "add" }}
+            </span></mat-card-title
+          >
+          <mat-card-content *ngIf="isTagsVisible">
+            <p class="description-content">
+              {{ formatTags(postDetails?.tagList) }}
+            </p>
           </mat-card-content>
         </mat-card>
       </div>
