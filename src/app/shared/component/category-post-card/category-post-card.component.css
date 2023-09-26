@@ -401,11 +401,13 @@
 .mat-app-background {
     display: flex;
     min-height: 100vh;
-    justify-content: center;
+    /* justify-content: center; */
+    padding-left: 40px;
     /* margin-top: 110px; */
     min-width: 100% !important;
     flex-wrap: wrap;
     gap: 15px;
+    background-color: #fafafa;
 }
 
 .post-card-container{
@@ -414,18 +416,24 @@
     height: 100%;
 }
 
+.mpt{
+    margin-top: -50px;
+    padding-top: 50px;
+}
+
 .post-card{
     display: flex;
     flex-direction: row;
     padding: 14px;
     background-color: #fff;
+    /* width: 90%; */
     /* gap: 30px; */
     margin-top: 20px;
     box-shadow: 0 0 4px #e6e6e6;
 }
 
 .img-wrapper{
-    width: 450px;
+    width: 400px;
     height: 200px;
 }
 
@@ -435,7 +443,7 @@
 }
 
 .details-wrapper{
-    width: calc(63% - 234px);
+    width: calc(63% - 150px);
     padding: 0 16px;
 }
 

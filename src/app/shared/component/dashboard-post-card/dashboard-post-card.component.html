@@ -64,9 +64,9 @@
   </div>
 </div> -->
 
-<div class="mat-app-background">
-    <div class="post-card-container">
-      <!-- <div class="post-card" *ngFor="let postCard of postCards">
+<div class="mat-app-background mpt">
+  <div class="post-card-container">
+    <!-- <div class="post-card" *ngFor="let postCard of postCards">
         <div class="img-wrapper">
           <img src="../../../../assets/Feature.avif" alt="" />
         </div>
@@ -113,14 +113,18 @@
           </div>
         </div>
       </div> -->
-      <div class="post-card-grid">
-        <div class="post-item-card" *ngFor="let postCard of cards">
-          <a class="custom-link"
-            [routerLink]="'/post-details/' + postCard.tableRefGuid"
-            target="_self"
-          >
+    <div class="post-card-grid">
+      <div class="post-item-card" *ngFor="let postCard of cards">
+        <a
+          class="custom-link"
+          [routerLink]="'/post-details/' + postCard.tableRefGuid"
+          target="_self"
+        >
           <div class="post-item-img">
-            <img [src]="postCard.projectImageList[0].codeImageURL"alt="Post Pic" >
+            <img
+              [src]="postCard.projectImageList[0].codeImageURL"
+              alt="Post Pic"
+            />
           </div>
           <div class="post-item-content">
             <h3 class="post-item-name">
@@ -134,22 +138,29 @@
               <div class="included-files">
                 Tags:
                 <ul>
-                  <li class="file-type" *ngFor="let tag of postCard.tagList">{{tag.name}}</li>
+                  <li class="file-type" *ngFor="let tag of postCard.tagList">
+                    {{ tag.name }}
+                  </li>
                 </ul>
               </div>
             </div>
-            <br>
+            <br />
             <div class="attrs-wrapper">
               <div class="included-files">
                 Technologies:
                 <ul>
-                  <li class="file-type" *ngFor="let technology of postCard.technologyMappingList">{{getName(technology.technologyId)}}</li>
+                  <li
+                    class="file-type"
+                    *ngFor="let technology of postCard.technologyMappingList"
+                  >
+                    {{ getName(technology.technologyId) }}
+                  </li>
                 </ul>
               </div>
             </div>
             <div class="post-item-details">
               <div class="details-content">
-                <div class="post-item-price">{{ postCard.price }}</div>
+                <div class="post-item-price">${{ postCard.price }}</div>
                 <div class="post-item-rating-wrapper">
                   <div class="star-ratings">
                     <app-star-rating></app-star-rating>
@@ -159,7 +170,9 @@
                   >
                 </div>
                 <div class="post-item-sales">{{ postCard.sales }}</div>
-                <div class="post-item-sales">{{formatDate(postCard.createdOn)}}</div>
+                <div class="post-item-sales">
+                  {{ formatDate(postCard.createdOn) }}
+                </div>
               </div>
               <div class="post-item-buttons">
                 <div class="cover-wrapper">
@@ -171,10 +184,9 @@
               </div>
             </div>
           </div>
-          </a>
-        </div>
-        <h3 *ngIf="cards.length == 0">No posts avaialble</h3>
+        </a>
       </div>
+      <h3 *ngIf="cards.length == 0">No posts avaialble</h3>
     </div>
   </div>
-  
+</div>
