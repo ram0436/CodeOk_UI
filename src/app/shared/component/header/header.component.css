@@ -669,6 +669,10 @@
     color: #fff;
 }
 
+::ng-deep .mat-mdc-menu-content{
+    background-color: black !important;
+}
+
 .bg-light-black{
     background-color: #3c3c3c !important;
     color: #fff !important;

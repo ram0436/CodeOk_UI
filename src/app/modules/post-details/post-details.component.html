@@ -5,7 +5,7 @@
     </div>
   </div>
   <div class="pd-3" *ngIf="!isLoading">
-    <div class="flex">
+    <div class="flex ml-190">
       <button class="back-btn" (click)="goBack()">
         <span class="material-icons-outlined"> chevron_left </span>Back
       </button>
@@ -14,7 +14,7 @@
         <p>Posted : {{formatDate(postDetails?.createdOn) }}</p>
       </div> -->
     </div>
-    <div class="flex gap-2 pt-3">
+    <div class="flex flex-r gap-2 pt-3">
       <div>
         <mat-card
           class="border-1 mb-2 block img-mat-card"
@@ -157,15 +157,15 @@
           <mat-card-title>Overview</mat-card-title>
           <mat-card-content>
             <p class="description-content">
-              Project category :
+              <span>Project category :</span>
               {{ getSingleValue(postDetails?.projectCategoryId, "category") }}
             </p>
             <p class="description-content">
-              Industry :
+              <span>Industry :</span>
               {{ getSingleValue(postDetails?.industryTypeId, "industry") }}
             </p>
             <p class="description-content">
-              Technology :
+              <span>Technology :</span>
               {{
                 getMultipleValues(
                   postDetails?.technologyMappingList,
@@ -174,7 +174,7 @@
               }}
             </p>
             <p class="description-content">
-              Version :
+              <span>Version :</span>
               {{
                 getMultipleValues(
                   postDetails?.technologyVersionMappingList,
@@ -183,7 +183,7 @@
               }}
             </p>
             <p class="description-content">
-              Operating system :
+              <span>Operating system :</span>
               {{
                 getMultipleValues(postDetails?.operatingSystemMappingList, "os")
               }}
