@@ -19,31 +19,58 @@
                   <div class="keyword-search-field">
                     <div class="form-element form-element--input type-ahead">
                       <div class="form-element form-element--input">
-                        <input aria-label="Type search query" placeholder="What are you looking for?" maxlength="50"
-                          autocomplete="off" class="input input-text" type="text" id="q" name="q" value=""
-                          [(ngModel)]="searchQuery" />
-                        <span class="material-icons cross-icon" (click)="clearSearchText()">clear</span>
+                        <input
+                          aria-label="Type search query"
+                          placeholder="What are you looking for?"
+                          maxlength="50"
+                          autocomplete="off"
+                          class="input input-text"
+                          type="text"
+                          id="q"
+                          name="q"
+                          value=""
+                          [(ngModel)]="searchQuery"
+                        />
+                        <span
+                          class="material-icons cross-icon"
+                          (click)="clearSearchText()"
+                          >clear</span
+                        >
                       </div>
                     </div>
                   </div>
                 </div>
-                <button class="button button--primary search-button" rel="noopener noreferrer" type="submit">
+                <button
+                  class="button button--primary search-button"
+                  rel="noopener noreferrer"
+                  type="submit"
+                >
                   <span class="material-icons">search</span>
                 </button>
               </div>
             </div>
           </form>
         </div>
-        <mat-menu #beforeMenu="matMenu" xPosition="before" [class]="customMatMenuClass">
+        <mat-menu
+          #beforeMenu="matMenu"
+          xPosition="before"
+          [class]="customMatMenuClass"
+        >
           <button mat-menu-item class="">
             <img [src]="imageUrl" alt="" class="img_stl" />
             <div class="mt-10">
               <p class="mt-0 text-white">{{ userData?.firstName || "" }}</p>
-              <a routerLink="/user/account/personal" class="text-orange">Go to profile</a>
+              <a routerLink="/user/account/personal" class="text-orange"
+                >Go to profile</a
+              >
             </div>
           </button>
           <hr class="profile-hr text-white" />
-          <button mat-menu-item routerLink="/user/account/myadds" class="button-item">
+          <button
+            mat-menu-item
+            routerLink="/user/account/myadds"
+            class="button-item"
+          >
             <span class="material-icons text-white"> upload_file </span>
             <span class="text-white">My ads</span>
           </button>
@@ -70,9 +97,21 @@
           <ul class="nav navbar-nav navbar-right">
             <li class="login profile_i" *ngIf="isUserLogedIn">
               <img [src]="imageUrl" alt="" class="img_stl" />
-              <button class="arrow" mat-button [matMenuTriggerFor]="beforeMenu" (click)="toggleExpandIcons()">
-                <mat-icon class="expand" *ngIf="!expandIconVisible">expand_less</mat-icon>
-                <mat-icon class="expand" *ngIf="expandIconVisible" class="expand">expand_more</mat-icon>
+              <button
+                class="arrow"
+                mat-button
+                [matMenuTriggerFor]="beforeMenu"
+                (click)="toggleExpandIcons()"
+              >
+                <mat-icon class="expand" *ngIf="!expandIconVisible"
+                  >expand_less</mat-icon
+                >
+                <mat-icon
+                  class="expand"
+                  *ngIf="expandIconVisible"
+                  class="expand"
+                  >expand_more</mat-icon
+                >
               </button>
             </li>
             <li class="login" *ngIf="!isUserLogedIn">
@@ -98,34 +137,60 @@
   <nav class="navbar navbar-inverse" [class.hide-second-nav]="hideSecondNav">
     <div class="second-nav">
       <ul class="nav navbar-nav no-pointer-nav">
-        <li class="dropdown auto-pointer-events mr-30">
-          <div class="li-item dropdown-toggle" (click)="toggleDropdown('allCategories')">
+        <li class="dropdown auto-pointer-events mr-130">
+          <div
+            class="li-item dropdown-toggle"
+            (click)="toggleDropdown('allCategories')"
+          >
             <a>All categories</a>
             <span class="material-icons-outlined expand-icon">
               expand_more
             </span>
           </div>
-          <div class="category-dropdown l-10">
-            <div class="col-6">
+          <div class="category-dropdown l-0">
+            <div class="col-6 curve-l30">
               <div class="content-container">
                 <!-- <span class="scroll-right">Scroll Right</span>
                 <span class="scroll-left">Scroll Left</span> -->
                 <div class="category-group">
-                  <a class="category-group-title mtn-4" routerLink="/project-posts">Project Category</a>
-                  <a *ngFor="let projectCategory of projectCategories" [routerLink]="'/project-posts'" [queryParams]="{
-                    menu: 'Category',
-                    id: projectCategory.id
-                  }">{{projectCategory.name}}</a>
-                  <a class="category-group-title">Industry Type</a>
-                  <a *ngFor="let industryType of industryTypes" [routerLink]="'/project-posts'" [queryParams]="{
-                    menu: 'Industry',
-                    id: industryType.id
-                  }">{{industryType.name}}</a>
-                  <a class="category-group-title">Language & Tech</a>
-                  <a *ngFor="let technology of technologies" [routerLink]="'/project-posts'" [queryParams]="{
-                    menu: 'Technology',
-                    id: technology.id
-                  }">{{technology.name}}</a>
+                  <a
+                    class="category-group-title categories-group-title mtn-4"
+                    routerLink="/project-posts"
+                    >Project Category</a
+                  >
+                  <a
+                    *ngFor="let projectCategory of projectCategories"
+                    [routerLink]="'/project-posts'"
+                    [queryParams]="{
+                      menu: 'Category',
+                      id: projectCategory.id
+                    }"
+                    >{{ projectCategory.name }}</a
+                  >
+                  <a class="category-group-title industry-group-title"
+                    >Industry Type</a
+                  >
+                  <a
+                    *ngFor="let industryType of industryTypes"
+                    [routerLink]="'/project-posts'"
+                    [queryParams]="{
+                      menu: 'Industry',
+                      id: industryType.id
+                    }"
+                    >{{ industryType.name }}</a
+                  >
+                  <a class="category-group-title lt-group-titel"
+                    >Language & Tech</a
+                  >
+                  <a
+                    *ngFor="let technology of technologies"
+                    [routerLink]="'/project-posts'"
+                    [queryParams]="{
+                      menu: 'Technology',
+                      id: technology.id
+                    }"
+                    >{{ technology.name }}</a
+                  >
                   <!-- <a class="category-group-subtitle">Client Side</a> -->
                   <!-- <a class="category-group-subtitle">Server Side</a> -->
                   <!-- <a class="category-group-subtitle">Mobile</a> -->
@@ -137,23 +202,33 @@
           </div>
         </li>
         <li class="dropdown auto-pointer-events">
-          <div class="li-item dropdown-toggle" (click)="toggleDropdown('projectType')">
+          <div
+            class="li-item dropdown-toggle"
+            (click)="toggleDropdown('projectType')"
+          >
             <a>Project Category</a>
             <span class="material-icons expand-icon"> expand_more </span>
           </div>
           <div class="category-dropdown">
             <ul class="category-dropdown-menu col-1">
               <li *ngFor="let projectCategory of projectCategories">
-                <a [routerLink]="'/project-posts'" [queryParams]="{
-                  menu: 'Category',
-                  id: projectCategory.id
-                }">{{projectCategory.name}}</a>
+                <a
+                  [routerLink]="'/project-posts'"
+                  [queryParams]="{
+                    menu: 'Category',
+                    id: projectCategory.id
+                  }"
+                  >{{ projectCategory.name }}</a
+                >
               </li>
             </ul>
           </div>
         </li>
         <li class="dropdown auto-pointer-events">
-          <div class="li-item dropdown-toggle" (click)="toggleDropdown('projectCategory')">
+          <div
+            class="li-item dropdown-toggle"
+            (click)="toggleDropdown('projectCategory')"
+          >
             <a>Industry Type</a>
             <span class="material-icons-outlined expand-icon">
               expand_more
@@ -162,33 +237,93 @@
           <div class="category-dropdown">
             <ul class="category-dropdown-menu">
               <li *ngFor="let industryType of industryTypes">
-                <a [routerLink]="'/project-posts'" [queryParams]="{
-                  menu: 'Industry',
-                  id: industryType.id
-                }">{{industryType.name}}</a>
+                <a
+                  [routerLink]="'/project-posts'"
+                  [queryParams]="{
+                    menu: 'Industry',
+                    id: industryType.id
+                  }"
+                  >{{ industryType.name }}</a
+                >
               </li>
             </ul>
           </div>
         </li>
         <li class="dropdown auto-pointer-events">
-          <div class="li-item dropdown-toggle" (click)="toggleDropdown('languageTech')">
+          <div
+            class="li-item dropdown-toggle"
+            (click)="toggleDropdown('languageTech')"
+          >
             <a>Technology</a>
             <span class="material-icons-outlined expand-icon">expand_more</span>
           </div>
           <div class="category-dropdown">
             <ul class="category-dropdown-menu col-1">
               <li *ngFor="let technology of technologies">
-                <a [routerLink]="'/project-posts'" [queryParams]="{
-                  menu: 'Technology',
-                  id: technology.id
-                }">{{technology.name}}</a>
+                <a
+                  [routerLink]="'/project-posts'"
+                  [queryParams]="{
+                    menu: 'Technology',
+                    id: technology.id
+                  }"
+                  >{{ technology.name }}</a
+                >
               </li>
             </ul>
           </div>
         </li>
         <li class="dropdown auto-pointer-events">
-          <div class="li-item dropdown-toggle" (click)="toggleDropdown('projectType')">
+          <div
+            class="li-item dropdown-toggle"
+            (click)="toggleDropdown('projectType')"
+          >
             <a>Premium Apps</a>
+            <span class="material-icons-outlined expand-icon">
+              expand_more
+            </span>
+          </div>
+          <div class="category-dropdown">
+            <ul class="category-dropdown-menu col-2">
+              <li class="category-group-subtitle-li">
+                <a class="category-group-subtitle">E-Commerce</a>
+              </li>
+              <!-- <li class="category-group-subtitle-li">
+                <a class="category-group-subtitle">B2C</a>
+              </li> -->
+              <li><a>Clothing</a></li>
+              <li><a>Classified</a></li>
+              <li><a>Footwear</a></li>
+              <li><a>Electronics</a></li>
+              <li><a>Health & Wellness</a></li>
+              <li><a>Beauty & Personal Care</a></li>
+              <li><a>Consumer Electronics</a></li>
+              <li><a>Furniture & Decoration</a></li>
+              <li><a>Auto & Parts</a></li>
+              <li><a>Food & Beverage</a></li>
+              <li><a>Pet & Animals</a></li>
+              <li><a>Toys & Games</a></li>
+              <!-- <li class="category-group-subtitle-li">
+                <a class="category-group-subtitle">C2C</a>
+              </li> -->
+              <li><a>Classified Portal</a></li>
+              <li class="category-group-subtitle-li">
+                <a class="category-group-subtitle">Chat</a>
+              </li>
+              <li>
+                <a>Chatbot</a>
+              </li>
+              <li>
+                <a>Whatsapp Chat</a>
+              </li>
+            </ul>
+          </div>
+        </li>
+        <li class="dropdown auto-pointer-events">
+          <div
+            class="li-item dropdown-toggle"
+            (click)="toggleDropdown('projectType')"
+          >
+            <a>Enterprise Apps</a>
             <span class="material-icons-outlined expand-icon">
               expand_more
             </span>
