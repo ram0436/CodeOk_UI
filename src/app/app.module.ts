@@ -30,6 +30,7 @@ import { ProjectPostsComponent } from './modules/project-posts/project-posts.com
 import { ProjectFilterComponent } from './modules/project-filter/project-filter.component';
 import { PostDetailsComponent } from './modules/post-details/post-details.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,7 +62,7 @@ import { PostDetailsComponent } from './modules/post-details/post-details.compon
     MatButtonModule,
     MatPaginatorModule,
     MatSliderModule,
-    MatCheckboxModule
+    MatCheckboxModule,
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   { provide: LocationStrategy, useClass: HashLocationStrategy }],
