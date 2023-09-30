@@ -18,6 +18,7 @@ import { LocationsComponent } from './component/locations/locations.component';
 import { StarRatingComponent } from './component/star-rating/star-rating.component';
 import { DashboardPostCardComponent } from './component/dashboard-post-card/dashboard-post-card.component';
 import { CategoryPostCardComponent } from './component/category-post-card/category-post-card.component';
+import { PricingPlansComponent } from './component/pricing-plans/pricing-plans.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { CategoryPostCardComponent } from './component/category-post-card/catego
     LocationsComponent,
     StarRatingComponent,
     DashboardPostCardComponent,
-    CategoryPostCardComponent
+    CategoryPostCardComponent,
+    PricingPlansComponent
   ],
   imports: [
     CommonModule,
@@ -49,7 +51,8 @@ import { CategoryPostCardComponent } from './component/category-post-card/catego
     LocationsComponent,
     StarRatingComponent,
     DashboardPostCardComponent,
-    CategoryPostCardComponent
+    CategoryPostCardComponent,
+    PricingPlansComponent
   ]
 })
 export class SharedModule { }
