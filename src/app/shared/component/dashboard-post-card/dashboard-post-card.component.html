@@ -125,8 +125,14 @@
               [src]="postCard.projectImageList[0].codeImageURL"
               alt="Post Pic"
             />
-            <span class="material-icons-outlined set-fav-card">
-              favorite_border
+            <span
+              class="material-icons set-fav-card"
+              [class.material-icons-outlined]="!isFavorite"
+              [class.fill]="isFavorite"
+              [class.active]="isFavorite"
+              (click)="toggleFavorite($event)"
+            >
+              {{ isFavorite ? "favorite" : "favorite_border" }}
             </span>
             <span class="ribbon-featured" *ngIf="i === 0">
               <strong class="ribbon standard-ribbon">

@@ -472,8 +472,8 @@
 }
 
 .set-fav-card{
-    background: #fff;
-    color: #222;
+    background: #222;
+    color: #fff;
     border-radius: 50%;
     cursor: pointer;
     display: none;
@@ -483,12 +483,25 @@
     right: 15px;
     top: 15px;
     /* width: 48px; */
-    padding: 6px 6px 6px 7px;
+    padding: 15px 12px 12px 14px;
     z-index: 10;
     /* display: flex; */
     align-items: center;
     justify-content: center;
 }
+
+.set-fav-card:hover{
+    color: #f4511f;
+}
+
+.set-fav-card.fill{
+    background-color: #222;
+    color: #f4511f;
+}
+
+.set-fav-card.active {
+    display: block;
+  }
 
 .post-item-img:hover .set-fav-card{
     display: flex;
