@@ -70,7 +70,7 @@
      background-color: black;
      z-index: 1002;
      position: relative;
-     padding: 10px 0 10px 0;
+     padding: 3px 0;
  }
  .icon-text{
      display: flex;
@@ -930,9 +930,9 @@ header{
 
 .logo-img img {
     object-fit: contain;
-    height: 100%;
-    width: 18rem;
-    margin-top: 0px;
+    height: 7rem;
+    width: 20rem;
+    margin-top: 3px;
 }
 
 
