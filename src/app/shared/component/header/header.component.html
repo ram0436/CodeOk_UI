@@ -116,7 +116,7 @@
               </button>
             </li>
             <li class="login" *ngIf="!isUserLogedIn">
-              <a (click)="openSignUpModal()">Register</a>
+              <a (click)="openSignUpModal()" class="b-right">Register</a>
             </li>
             <li class="login" *ngIf="!isUserLogedIn">
               <a (click)="openLoginModal()">Login</a>
@@ -180,9 +180,7 @@
                     }"
                     >{{ industryType.name }}</a
                   >
-                  <a class="category-group-title lt-group-titel"
-                    >Technology</a
-                  >
+                  <a class="category-group-title lt-group-titel">Technology</a>
                   <a
                     *ngFor="let technology of technologies"
                     [routerLink]="'/project-posts'"

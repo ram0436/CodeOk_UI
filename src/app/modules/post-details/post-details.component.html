@@ -1,9 +1,9 @@
 <div class="container-center bg mpt p-relative">
-  <div class="watch-tutorial">
+  <div class="watch-tutorial" *ngIf="postDetails?.documentaionURL">
     <iframe
       width="350"
       height="250"
-      src="https://www.youtube.com/embed/79pKwdiqcwI?si=6kbVhP7426vGJx-4"
+      [src]="getEmbeddedVideoUrl(postDetails.documentaionURL)"
       title="YouTube video player"
       frameborder="0"
       class="youtube-video"
@@ -208,7 +208,7 @@
             <p class="description-content">{{ postDetails?.description }}</p>
           </mat-card-content>
         </mat-card>
-        <mat-card class="mt-10 border-1">
+        <!-- <mat-card class="mt-10 border-1">
           <mat-card-title class="title-flex">
             How it Works?
             <span class="material-icons-outlined" (click)="toggleTagsContent()">
@@ -229,7 +229,7 @@
               ></iframe>
             </p>
           </mat-card-content>
-        </mat-card>
+        </mat-card> -->
         <!-- <mat-card class="mt-10 border-1">
           <mat-card-title>Installation steps</mat-card-title>
           <mat-card-content>

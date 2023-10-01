@@ -28,6 +28,8 @@ export class CategoryPostCardComponent {
 
     isScrolledDown = false;
 
+    isFavorite: boolean = false;
+
     scrollToTop() {
         const scrollDuration = 300; // Duration of the scroll animation in milliseconds
         const scrollStep = -window.scrollY / (scrollDuration / 15); // Divide the scroll distance into smaller steps
@@ -52,6 +54,12 @@ export class CategoryPostCardComponent {
 
     ngOnInit() {
       this.getAllTechnologies();
+    }
+
+    toggleFavorite(event: Event) {
+      event.preventDefault(); 
+      event.stopPropagation();
+      this.isFavorite = !this.isFavorite;
     }
 
     loadMoreCards() {

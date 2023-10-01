@@ -1,6 +1,7 @@
 import { Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import * as moment from 'moment';
 import { forkJoin } from 'rxjs';
 import { CommonService } from 'src/app/shared/service/common.service';
@@ -33,7 +34,7 @@ export class PostDetailsComponent {
   isTagsVisible = false;
 
   constructor(private route: ActivatedRoute, private projectService: ProjectService,
-    private commonService: CommonService, private location: Location) { }
+    private commonService: CommonService, private location: Location, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.getAllProjectCategory();
@@ -49,6 +50,45 @@ export class PostDetailsComponent {
       this.getPostDetails(tableRefGuid);
     }
   }
+
+  getEmbeddedVideoUrl(url: string): SafeResourceUrl {
+    if (url) {
+      const videoId = this.getId(url);
+      if (videoId) {
+        const embeddedUrl = `https://www.youtube.com/embed/${videoId}`;
+        return this.sanitizer.bypassSecurityTrustResourceUrl(embeddedUrl);
+      }
+    }
+    return '';
+  }
+
+  getId(url: string): string | null {
+    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+    const match = url.match(regExp);
+    return (match && match[2].length === 11) ? match[2] : null;
+  }
+
+  // getYouTubeEmbedUrl(url: string): SafeResourceUrl{
+  //   const videoId = this.extractVideoId(url);
+  //   if (videoId) {
+  //     const embeddedUrl = `https://www.youtube.com/embed/${videoId}`;
+  //     return this.sanitizer.bypassSecurityTrustResourceUrl(embeddedUrl);
+  //   } else {
+  //     // Handle invalid YouTube URLs
+  //     return "";
+  //   }
+  // }
+  
+  // extractVideoId(url: string): string | null {
+  //   const urlParts = url.split('v=');
+  //   if (urlParts.length > 1) {
+  //     const videoId = urlParts[1].split('&')[0];
+  //     return videoId;
+  //   } else {
+  //     // Handle invalid YouTube URLs
+  //     return null;
+  //   }
+  // }
 
   formatTags(tagList: any[]): string {
     return tagList?.map(tag => tag.name).join(', ');
