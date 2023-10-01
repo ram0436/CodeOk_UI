@@ -528,7 +528,7 @@
     gap: 8px;
 }
 
-.price-wrapper .post-info .fav-collections .button-icon{
+/* .price-wrapper .post-info .fav-collections .button-icon{
     display: none;
     height: 20px;
     width: 20px;
@@ -538,7 +538,39 @@
     position: absolute;
     top: 0;
     right: 0;
+} */
+
+.price-wrapper .post-info .fav-collections .button-icon{
+    background: #222;
+    color: #fff;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    /* height: 48px;
+    line-height: 48px; */
+    position: absolute;
+    right: 0;
+    top: -5px;
+    /* width: 48px; */
+    padding: 15px 12px 12px 14px;
+    z-index: 10;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
 }
+
+.price-wrapper .post-info .fav-collections .button-icon:hover{
+    color: #f4511f;
+}
+
+.price-wrapper .post-info .fav-collections .button-icon.fill{
+    background-color: #222;
+    color: #f4511f;
+}
+
+.price-wrapper .post-info .fav-collections .button-icon.active {
+    display: block;
+  }
 
 .post-card:hover .price-wrapper .post-info .fav-collections .button-icon{
     display: block;

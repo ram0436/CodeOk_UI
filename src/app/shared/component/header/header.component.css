@@ -87,7 +87,7 @@
  .css-1pr0bng{
      display: flex;
      align-items: center;
-     width: 100%;
+     width: 140%;
      margin: 0 !important;
      padding: 0 !important;
  }
@@ -628,7 +628,7 @@
 
  .navbar-nav>li>a{
     border-radius: 16px;
-    padding: 15px !important;
+    padding: 15px;
  }
 
  .postfreeadd{
@@ -637,7 +637,7 @@
 
  .navbar-right>li>a:focus, .navbar-right>li>a:hover {
      text-decoration: none !important;
-     background-color:#3c3c3c;
+     background-color:transparent;
  }
  .spinner__loading {
      display: flex;
@@ -954,4 +954,11 @@ header{
 
 .navbar-right:hover{
     background-color: black !important;
+}
+
+.b-right{
+    border-radius: 0px !important;
+    border-right: 1px solid #ccc;
+    margin-top: 9px;
+    padding: 6px 15px !important;
 }

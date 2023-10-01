@@ -117,6 +117,15 @@
               <span class="material-icons-outlined button-icon d-hover">
                 favorite_border
               </span>
+              <span
+                class="material-icons button-icon d-hover"
+                [class.material-icons-outlined]="!isFavorite"
+                [class.fill]="isFavorite"
+                [class.active]="isFavorite"
+                (click)="toggleFavorite($event)"
+              >
+                {{ isFavorite ? "favorite" : "favorite_border" }}
+              </span>
             </div>
             <div class="post-price">${{ postCard.price }}</div>
             <div class="rating-wrapper">
