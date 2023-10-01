@@ -671,14 +671,14 @@
 .post-item-details-btn{
     margin-left: auto;
     padding: 8px 25px;
-    background-color: #00a3ff;
+    background-color: #141414;
     border: none;
     border-radius: 3px;
     color: #fff;
 }
 
 .post-item-details-btn:hover{
-    background-color: #0e96e5;
+    background-color: orangered;
 }
 
 .post-item-details .post-item-buttons .cover-wrapper{
