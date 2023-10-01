@@ -446,3 +446,14 @@ input{
     /* min-width: 16px; */
     /* width: 16px; */
 }
+
+.p-relative{
+    position: relative;
+}
+
+.watch-tutorial{
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 90;
+}

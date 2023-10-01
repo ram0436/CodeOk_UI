@@ -85,17 +85,6 @@
           </div>
           <div class="attrs-wrapper">
             <div class="included-files">
-              tags:
-              <ul>
-                <li class="file-type" *ngFor="let tag of postCard.tagList">
-                  {{ tag.name }}
-                </li>
-              </ul>
-            </div>
-          </div>
-          <br />
-          <div class="attrs-wrapper">
-            <div class="included-files">
               Technologies:
               <ul>
                 <li
@@ -103,6 +92,17 @@
                   *ngFor="let technology of postCard.technologyMappingList"
                 >
                   {{ getName(technology.technologyId) }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <br />
+          <div class="attrs-wrapper">
+            <div class="included-files">
+              tags:
+              <ul>
+                <li class="file-type" *ngFor="let tag of postCard.tagList">
+                  {{ tag.name }}
                 </li>
               </ul>
             </div>
