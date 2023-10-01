@@ -13,6 +13,17 @@
     font-weight: bold;
 }
 
+.text-normal{
+    font-weight: 500;
+    border-bottom: 1px solid rgb(200, 200, 200);
+    font-size: 26px;
+}
+
+.youtube-video{
+    text-align: center;
+    margin-bottom: 20px;
+}
+
 .pricing-plans-section .pricing-plans-container .pricing-plans{
     display: flex;
     align-items: center;
@@ -60,7 +71,7 @@
 }
 
 .plan .plan-head .plan-title{
-    margin-top: 30px;
+    margin-top: 20px;
     font-size: 24px;
     font-weight: 500;
     text-align: center;
