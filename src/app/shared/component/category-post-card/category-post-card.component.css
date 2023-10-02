@@ -518,6 +518,9 @@
 .price-wrapper .post-info{
     flex-grow: 1;
     padding-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .price-wrapper .post-info .fav-collections{
@@ -560,12 +563,12 @@
 }
 
 .price-wrapper .post-info .fav-collections .button-icon:hover{
-    color: #f4511f;
+    color: orangered;
 }
 
 .price-wrapper .post-info .fav-collections .button-icon.fill{
-    background-color: #222;
-    color: #f4511f;
+    background-color: #141414;
+    color: orangered;
 }
 
 .price-wrapper .post-info .fav-collections .button-icon.active {
@@ -643,19 +646,23 @@
 }
 
 .price-wrapper .cover-wrapper .preview{
-    color: #087096;
+    background-color: #141414;
+    color: #fff;
     cursor: pointer;
-    font-size: 13px;
-    font-weight: 700;
+    font-size: 14px;
+    font-weight: 500;
     height: 45px;
     line-height: 43px;
-    border: 1px solid #087096;
+    /* border: 1px solid #141414; */
     border-radius: 2px;
     margin: 0 4px;
     padding: 0 16px;
     width: 90%;
 }
 
+.price-wrapper .cover-wrapper .preview:hover{
+    background-color: orangered;
+}
 
 .flex{
     display: flex;

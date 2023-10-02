@@ -142,7 +142,8 @@
 }
 
 .img-mat-card{
-    padding: 10px;
+    /* padding: 10px; */
+    border-radius: 8px;
 }
 
 .pg-card{
@@ -184,6 +185,7 @@
 .postImg{
     width: 700px;
     height: 450px;
+    border-radius: 8px;
 }
 
 .bg{
@@ -192,7 +194,7 @@
 
 .back-btn{
     background-color: #f1f1f1;
-    color: #3f51b5;
+    color: #141414;
     border: none;
     padding: 10px 15px;
     border-radius: 5px;
@@ -418,7 +420,7 @@ input{
 }
 
 .cart-service-price_discount {
-    color: #f4511e;
+    color: orangered;
     font-weight: 700;
 }
 
