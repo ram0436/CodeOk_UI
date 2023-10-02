@@ -115,11 +115,7 @@
       </div> -->
     <div class="post-card-grid">
       <div class="post-item-card" *ngFor="let postCard of cards; let i = index">
-        <a
-          class="custom-link"
-          [routerLink]="'/post-details/' + postCard.tableRefGuid"
-          target="_self"
-        >
+        <a class="custom-link">
           <div class="post-item-img">
             <img
               [src]="postCard.projectImageList[0].codeImageURL"
@@ -162,7 +158,7 @@
           <div class="post-item-content">
             <div class="post-item-price">${{ postCard.price }}</div>
             <h3 class="post-item-name">
-              {{ postCard.name }}
+              {{ truncateTitle(postCard.name) }}
             </h3>
             <div class="attrs-wrapper">
               <div class="included-files">
@@ -186,7 +182,13 @@
                   <span class="star-rating-count"
                     >({{ postCard.ratingCount }})</span
                   >
-                  <button class="post-item-details-btn">Details</button>
+                  <button
+                    class="post-item-details-btn"
+                    [routerLink]="'/post-details/' + postCard.tableRefGuid"
+                    target="_self"
+                  >
+                    Details
+                  </button>
                 </div>
                 <div class="post-item-sales">{{ postCard.sales }}</div>
 

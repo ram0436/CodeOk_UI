@@ -56,6 +56,14 @@ export class CategoryPostCardComponent {
       this.getAllTechnologies();
     }
 
+    truncateTitle(title: string, maxLength: number = 45): string {
+      if (title.length <= maxLength) {
+        return title;
+      } else {
+        return title.substring(0, maxLength) + '...';
+      }
+    }
+
     toggleFavorite(event: Event) {
       event.preventDefault(); 
       event.stopPropagation();
