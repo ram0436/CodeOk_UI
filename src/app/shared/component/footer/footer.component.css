@@ -221,9 +221,16 @@ ul li{
 }
 
 .footer-logo{
-    font-size: 40px;
+    /* font-size: 40px; */
+    width: 12rem;
+    height: 12rem;
     color: #fff;
     text-decoration: none;
+}
+
+.footer-logo img{
+    width: 100%;
+    height: 100%;
 }
 
 .socialIconList {
