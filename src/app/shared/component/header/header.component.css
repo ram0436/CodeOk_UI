@@ -14,7 +14,7 @@
 }
 
 .text-orange{
-    color: #f8673b !important;
+    color: orangered !important;
 }
 
 .dropdown:hover{
@@ -87,7 +87,7 @@
  .css-1pr0bng{
      display: flex;
      align-items: center;
-     width: 140%;
+     width: 100%;
      margin: 0 !important;
      padding: 0 !important;
  }
@@ -137,7 +137,7 @@
     border-radius: 10px;
     width: 48px;
     height: 45.5px;
-    background: #f8673b;
+    background: orangered;
     border: none;
     color: #fff;
     margin-right: 0.28px;
@@ -171,21 +171,20 @@
  }
 
  .simple-icon{
-    color: #f8673b;
+    color: orangered;
     margin: 0px 0 0 4px;
     font-size: 29px;
  }
 
  .round-icon{
-    color: #f8673b;
+    color: orangered;
     margin: 0px 0 0 4px;
     font-size: 18px;
     padding: 5px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #f8673b;
-    background-color: #f8673b;
+    background-color: orangered;
     color: #fff;
     border-radius: 50%;
  }
@@ -353,7 +352,7 @@
 }   
 
 .dropdown:hover .li-item a, .dropdown:hover .li-item .expand-icon{
-    color: #f8673b !important;
+    color: orangered !important;
 }
 
 .category-dropdown{
@@ -369,7 +368,7 @@
     position: relative;
     margin-top: 38px;
     list-style: none;
-    background-color: black;
+    background-color: #141414;
     color: #fff;
     padding: 0;
     display: block;
@@ -420,15 +419,15 @@
 }
 
 .category-dropdown-menu li:hover{
-    background-color: #f8673b !important;
+    background-color: orangered !important;
 }
 
 .category-dropdown-menu .category-group-subtitle-li:hover{
-    background-color:  black !important;
+    background-color:  #141414 !important;
 }
 
 .category-dropdown-menu .category-group-subtitle-li:hover a{
-    color: #f8673b;
+    color: orangered;
     font-weight: 500;
 }
 
@@ -443,12 +442,12 @@
 .category-group-subtitle{
     font-size: 17px !important;
     font-weight: 500 !important;
-    color: #f8673b !important; 
+    color: orangered !important; 
 }
 
 .category-group-subtitle:hover{
-    background-color: black !important;
-    color: #f8673b !important;
+    background-color: #141414 !important;
+    color: orangered !important;
 }
 
 .expand-icon{
@@ -468,7 +467,7 @@
     position: relative;
     margin-top: 38px;
     list-style: none;
-    background-color: black;
+    background-color: #141414;
     color: #fff;
     box-shadow: 1px 1px 3px 2px rgba(63, 63, 63, 0.5);
     padding: 8px 0 10px 0;
@@ -540,7 +539,7 @@
 .category-group-title{
     font-size: 20px !important;
     font-weight: 500 !important;
-    color: #f8673b !important;
+    color: orangered !important;
 }
 
 .categories-group-title{
@@ -555,13 +554,13 @@
     padding-left: 10px;
     font-size: 20px;
     font-weight: 500;
-    color: #f8673b;
+    color: orangered;
     /* margin-top: -18px !important; */
 }
 
 .col-6 .category-group .category-group-title:hover, .col-6 .category-group  .category-group-subtitle:hover{
-    background-color: black !important;
-    color: #f8673b !important;
+    background-color: #141414 !important;
+    color: orangered !important;
 }
 
 .mtn-4{
@@ -570,7 +569,7 @@
 
 
 .col-6 .category-group a:hover{
-    background-color: #f8673b;
+    background-color: orangered;
 }
 
 .col-6 a{
@@ -728,6 +727,10 @@
 }
 
 /* Changes Made by hamza */
+
+.neon__button{
+    margin-right: -20px;
+}
 
 .neon__button a{
     position: relative;

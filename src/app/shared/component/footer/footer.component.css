@@ -115,7 +115,7 @@ ul li{
     margin-bottom: 1rem;
     font-size: 1.8rem;
     line-height: 24px;
-    color: #f8673b;
+    color: orangered;
     position: relative;
     transform: all ease .3s;
 }
@@ -129,7 +129,7 @@ ul li{
 }
 
 .link-list .last-link-title{
-    color: #f8673b;
+    color: orangered;
     margin-bottom: 1rem;
     font-size: 2.6rem;
     line-height: 38px;

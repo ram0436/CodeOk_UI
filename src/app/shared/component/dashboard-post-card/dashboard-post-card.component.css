@@ -472,7 +472,7 @@
 }
 
 .set-fav-card{
-    background: #222;
+    background: #141414;
     color: #fff;
     border-radius: 50%;
     cursor: pointer;
@@ -491,12 +491,12 @@
 }
 
 .set-fav-card:hover{
-    color: #f4511f;
+    color: orangered;
 }
 
 .set-fav-card.fill{
-    background-color: #222;
-    color: #f4511f;
+    background-color: #141414;
+    color: orangered;
 }
 
 .set-fav-card.active {
@@ -546,9 +546,10 @@
     color: #fff;
 }
 
-.ribbon-featured .premium-ribbon{
+.premium-ribbon{
     background-color: #960010;
     color: #fff;
+    letter-spacing: 0.75px !important;
 }
 
 .ribbon-featured .community-ribbon{

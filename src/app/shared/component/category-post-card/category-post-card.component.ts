@@ -80,7 +80,7 @@ export class CategoryPostCardComponent {
                 return daysAgo + ' days ago';
             }
         } else {
-            return moment(inputDate).format('MMM DD');
+            return moment(inputDate).format('MMM YYYY');
         }
     }
     getCardImageURL(card: any): string {
