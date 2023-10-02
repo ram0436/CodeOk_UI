@@ -62,6 +62,14 @@ export class CategoryPostCardComponent {
       this.isFavorite = !this.isFavorite;
     }
 
+    truncateTitle(title: string, maxLength: number = 45): string {
+      if (title.length <= maxLength) {
+        return title;
+      } else {
+        return title.substring(0, maxLength) + '...';
+      }
+    }
+
     loadMoreCards() {
         this.displayedCardCount += 16; // Increase the count for the next set of cards
         this.paginatedCards = this.cards.slice(0, this.displayedCardCount);

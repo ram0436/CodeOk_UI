@@ -67,11 +67,7 @@
 <div class="mat-app-background mpt">
   <div class="post-card-container">
     <div class="post-card" *ngFor="let postCard of cards">
-      <a
-        class="flex"
-        [routerLink]="'/post-details/' + postCard.tableRefGuid"
-        target="_self"
-      >
+      <a class="flex">
         <div class="img-wrapper">
           <img
             [src]="postCard.projectImageList[0].codeImageURL"
@@ -79,7 +75,7 @@
           />
         </div>
         <div class="details-wrapper">
-          <h3 class="item-name">{{ postCard.name }}</h3>
+          <h3 class="item-name">{{ truncateTitle(postCard.name) }}</h3>
           <div class="post-author">
             <span class="bold">{{ postCard.category }}</span>
           </div>
@@ -143,7 +139,13 @@
             <!-- <span class="material-icons-outlined cart-icon">
               shopping_cart
             </span> -->
-            <div class="preview">More Details</div>
+            <div
+              class="preview"
+              [routerLink]="'/post-details/' + postCard.tableRefGuid"
+              target="_self"
+            >
+              More Details
+            </div>
           </div>
         </div>
       </a>
