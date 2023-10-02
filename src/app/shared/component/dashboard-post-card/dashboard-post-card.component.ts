@@ -62,6 +62,14 @@ export class DashboardPostCardComponent {
         this.isFavorite = !this.isFavorite;
       }
 
+      truncateTitle(title: string, maxLength: number = 45): string {
+        if (title.length <= maxLength) {
+          return title;
+        } else {
+          return title.substring(0, maxLength) + '...';
+        }
+      }
+
     formatDate(date: any): any {
         const inputDate: Date = new Date(date);
         const daysAgo = moment(this.currentDate).diff(inputDate, 'days');
