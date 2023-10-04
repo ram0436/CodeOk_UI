@@ -87,21 +87,30 @@ export class DashboardPostCardComponent {
         }
     }
     getCardImageURL(card: any): string {
+        this.imagesList = [];
         if (card.gadgetImageList && card.gadgetImageList[0]?.imageURL) {
+            this.imagesList = card.gadgetImageList;
             return card.gadgetImageList[0]?.imageURL;
         } else if (card.vehicleImageList && card.vehicleImageList[0]?.imageURL) {
+            this.imagesList = card.gadgetImageList;
             return card.vehicleImageList[0]?.imageURL;
         } else if (card.electronicApplianceImageList && card.electronicApplianceImageList[0]?.imageURL) {
+            this.imagesList = card.gadgetImageList;
             return card.electronicApplianceImageList[0]?.imageURL;
         } else if (card.furnitureImageList && card.furnitureImageList[0]?.imageURL) {
+            this.imagesList = card.gadgetImageList;
             return card.furnitureImageList[0]?.imageURL;
         } else if (card.sportImageList && card.sportImageList[0]?.imageURL) {
+            this.imagesList = card.gadgetImageList;
             return card.sportImageList[0]?.imageURL;
         } else if (card.petImageList && card.petImageList[0]?.imageURL) {
+            this.imagesList = card.gadgetImageList;
             return card.petImageList[0]?.imageURL;
         } else if (card.fashionImageList && card.fashionImageList[0]?.imageURL) {
+            this.imagesList = card.gadgetImageList;
             return card.fashionImageList[0]?.imageURL;
         } else if (card.bookImageList && card.bookImageList[0]?.imageURL) {
+            this.imagesList = card.gadgetImageList;
             return card.bookImageList[0]?.imageURL;
         }
         else {
@@ -111,6 +120,7 @@ export class DashboardPostCardComponent {
     getAllTechnologies() {
         this.commonService.getAllTechnology().subscribe(res => {
           this.technologies = res;
+        //   console.log(this.technologies)
         })
     };
     getName(id:number){

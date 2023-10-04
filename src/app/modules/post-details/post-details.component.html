@@ -29,7 +29,7 @@
     <div class="flex flex-r gap-2 pt-3">
       <div>
         <mat-card
-          class="border-1 mb-2 block img-mat-card"
+          class="border-1 mb-2 block img-mat-card bg-gray-card"
           *ngFor="let image of postDetails.projectImageList"
         >
           <div class="pg-card">
@@ -41,12 +41,12 @@
       </div>
       <div class="col-5">
         <mat-card class="border-1">
-          <div class="title-flex services-title">
+          <div class="title-flex services-title bg-gray-card">
             <span class="services-caption"
               >Popular Services from HTML Website Templates Experts</span
             >
           </div>
-          <mat-card-content>
+          <mat-card-content class="bg-gray-card">
             <label class="cart-service cart-service_support checkbox">
               <input
                 type="checkbox"
@@ -156,7 +156,7 @@
             </label>
           </mat-card-content>
         </mat-card>
-        <mat-card class="mt-10 border-1">
+        <mat-card class="mt-10 border-1 bg-gray-card">
           <mat-card-title>${{ postDetails?.price }}</mat-card-title>
           <mat-card-content class="description">
             <p style="margin: 0">{{ postDetails?.name }}</p>
@@ -165,7 +165,7 @@
             </div>
           </mat-card-content>
         </mat-card>
-        <mat-card class="mt-10 border-1">
+        <mat-card class="mt-10 border-1 bg-gray-card">
           <mat-card-title>Overview</mat-card-title>
           <mat-card-content>
             <p class="description-content">
@@ -202,13 +202,13 @@
             </p>
           </mat-card-content>
         </mat-card>
-        <mat-card class="mt-10 border-1">
+        <mat-card class="mt-10 border-1 bg-gray-card">
           <mat-card-title>Key Feature</mat-card-title>
           <mat-card-content>
             <p class="description-content">{{ postDetails?.description }}</p>
           </mat-card-content>
         </mat-card>
-        <mat-card class="mt-10 border-1">
+        <!-- <mat-card class="mt-10 border-1 bg-gray-card">
           <mat-card-title class="title-flex">
             How it Works?
             <span class="material-icons-outlined" (click)="toggleTagsContent()">
@@ -229,7 +229,7 @@
               ></iframe>
             </p>
           </mat-card-content>
-        </mat-card>
+        </mat-card> -->
         <!-- <mat-card class="mt-10 border-1">
           <mat-card-title>Installation steps</mat-card-title>
           <mat-card-content>
@@ -238,7 +238,7 @@
             </p>
           </mat-card-content>
         </mat-card> -->
-        <mat-card class="mt-10 border-1">
+        <mat-card class="mt-10 border-1 bg-gray-card">
           <mat-card-title class="title-flex"
             >System Requirements
             <span class="material-icons-outlined" (click)="toggleReqContent()"
@@ -251,7 +251,7 @@
             </p>
           </mat-card-content>
         </mat-card>
-        <mat-card class="mt-10 border-1">
+        <mat-card class="mt-10 border-1 bg-gray-card">
           <mat-card-title class="title-flex">
             Installation steps
             <span class="material-icons-outlined" (click)="toggleCardContent()">
@@ -264,7 +264,7 @@
             </p>
           </mat-card-content>
         </mat-card>
-        <mat-card class="mt-10 border-1">
+        <mat-card class="mt-10 border-1 bg-gray-card">
           <mat-card-title class="title-flex">
             Tags
             <span class="material-icons-outlined" (click)="toggleTagsContent()">
