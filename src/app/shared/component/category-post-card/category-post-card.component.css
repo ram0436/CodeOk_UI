@@ -440,6 +440,7 @@
 .img-wrapper{
     width: 400px;
     height: 200px;
+    position: relative;
 }
 
 .img-wrapper img{
@@ -676,4 +677,17 @@
 
 .d-none{
     display: none;
+}
+
+.image-count{
+    position: absolute;
+    bottom: 0px;
+    /* left: 12px; */
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    background-color: #222;
+    color: #fff;
+    padding: 3px 5px;
+    border-radius: 3px;
 }
