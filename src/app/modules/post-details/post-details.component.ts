@@ -90,17 +90,17 @@ export class PostDetailsComponent {
     const daysAgo = moment(this.currentDate).diff(inputDate, 'days');
 
     if (daysAgo >= 0 && daysAgo <= 7) {
-      if (daysAgo === 0) {
-        return 'Today';
-      } else if (daysAgo === 1) {
-        return 'Yesterday';
-      } else {
-        return daysAgo + ' days ago';
-      }
+        if (daysAgo === 0) {
+            return 'Today';
+        } else if (daysAgo === 1) {
+            return 'Yesterday';
+        } else {
+            return daysAgo + ' days ago';
+        }
     } else {
-      return moment(inputDate).format('MMM DD');
+        return moment(inputDate).format('MMM YYYY');
     }
-  }
+}
   getAllProjectCategory() {
     this.commonService.getAllProjectCategory().subscribe(res => {
       this.projectCategories = res;
