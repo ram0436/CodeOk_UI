@@ -93,7 +93,6 @@
  }
  .search-bar-container{
     position: relative;
-    background-color: #0d475c;
     width: 60%; 
     margin-left: 100px;
     margin-right: 50px;
@@ -933,9 +932,9 @@ header{
 
 .logo-img img {
     object-fit: contain;
-    height: 7rem;
-    width: 20rem;
-    margin-top: 3px;
+    height: 10rem;
+    width: 40rem;
+    margin-top: -12px;
 }
 
 
