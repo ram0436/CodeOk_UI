@@ -157,7 +157,10 @@
           </mat-card-content>
         </mat-card>
         <mat-card class="mt-10 border-1 bg-gray-card">
-          <mat-card-title>${{ postDetails?.price }}</mat-card-title>
+          <mat-card-title class="post-price"
+            ><span class="dollar">$</span
+            >{{ postDetails?.price }}</mat-card-title
+          >
           <mat-card-content class="description">
             <p style="margin: 0">{{ postDetails?.name }}</p>
             <div class="loc-date">
@@ -272,9 +275,21 @@
             </span></mat-card-title
           >
           <mat-card-content *ngIf="isTagsVisible">
-            <p class="description-content">
+            <!-- <p class="description-content">
               {{ formatTags(postDetails?.tagList) }}
-            </p>
+            </p> -->
+            <div class="attrs-wrapper">
+              <div class="included-files">
+                <ul>
+                  <li
+                    class="file-type"
+                    *ngFor="let tag of postDetails?.tagList"
+                  >
+                    {{ tag.name }}
+                  </li>
+                </ul>
+              </div>
+            </div>
           </mat-card-content>
         </mat-card>
       </div>
