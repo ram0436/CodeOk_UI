@@ -646,6 +646,10 @@
     line-height: 20px;
 }
 
+.dollar{
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
 .post-card-grid .post-item-card .post-item-content .post-item-details .details-content .post-item-rating-wrapper{
     display: flex;
     align-items: center;

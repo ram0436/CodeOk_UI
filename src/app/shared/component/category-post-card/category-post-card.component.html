@@ -127,7 +127,9 @@
                 {{ isFavorite ? "favorite" : "favorite_border" }}
               </span>
             </div>
-            <div class="post-price">${{ postCard.price }}</div>
+            <div class="post-price">
+              <span class="dollar">$</span>{{ postCard.price }}
+            </div>
             <div class="rating-wrapper">
               <div class="star-ratings">
                 <app-star-rating></app-star-rating>

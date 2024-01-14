@@ -568,6 +568,10 @@
     justify-content: center;
 }
 
+.dollar{
+    font-family: 'Be Vietnam Pro', sans-serif;
+}
+
 .price-wrapper .post-info .fav-collections .button-icon:hover{
     color: orangered;
 }
