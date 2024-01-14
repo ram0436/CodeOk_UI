@@ -66,53 +66,6 @@
 
 <div class="mat-app-background mpt">
   <div class="post-card-container">
-    <!-- <div class="post-card" *ngFor="let postCard of postCards">
-        <div class="img-wrapper">
-          <img src="../../../../assets/Feature.avif" alt="" />
-        </div>
-        <div class="details-wrapper">
-          <h3 class="item-name">{{ postCard.title }}</h3>
-          <div class="post-author">
-            <i>by </i><span class="bold">{{ postCard.author }}</span> in
-            <span class="bold">{{ postCard.category }}</span>
-          </div>
-          <div class="attrs-wrapper">
-            <div class="included-files">
-              File types included:
-              <ul>
-                <li class="file-type">JavaScript</li>
-                <li class="file-type">HTML</li>
-                <li class="file-type">CSS</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div class="price-wrapper">
-          <div class="post-info">
-            <div class="fav-collections">
-              <span class="material-icons-outlined button-icon">
-                playlist_add
-              </span>
-              <span class="material-icons-outlined button-icon border-left">
-                favorite_border
-              </span>
-            </div>
-            <div class="post-price">{{ postCard.price }}</div>
-            <div class="rating-wrapper">
-              <div class="star-ratings">
-                <app-star-rating></app-star-rating>
-              </div>
-              <span class="star-rating-count">({{ postCard.ratingCount }})</span>
-            </div>
-            <div class="sales">1.7k Sales</div>
-            <div class="last-updated">Last updated: 20 May 2023</div>
-          </div>
-          <div class="cover-wrapper">
-            <span class="material-icons-outlined cart-icon"> shopping_cart </span>
-            <div class="preview">Live Preview</div>
-          </div>
-        </div>
-      </div> -->
     <div class="post-card-grid">
       <div class="post-item-card" *ngFor="let postCard of cards; let i = index">
         <a class="custom-link">
@@ -160,7 +113,9 @@
             </div>
           </div>
           <div class="post-item-content">
-            <div class="post-item-price">${{ postCard.price }}</div>
+            <div class="post-item-price">
+              <span class="dollar">$</span>{{ postCard.price }}
+            </div>
             <h3 class="post-item-name">
               {{ truncateTitle(postCard.name) }}
             </h3>

@@ -488,7 +488,7 @@
     right: 15px;
     top: 15px;
     /* width: 48px; */
-    padding: 15px 12px 12px 14px;
+    padding: 6px 4.5px 4px 5.5px;
     z-index: 10;
     /* display: flex; */
     align-items: center;
@@ -644,6 +644,10 @@
     font-size: 18px;
     font-weight: 700;
     line-height: 20px;
+}
+
+.dollar{
+    font-family: 'Be Vietnam Pro', sans-serif;
 }
 
 .post-card-grid .post-item-card .post-item-content .post-item-details .details-content .post-item-rating-wrapper{

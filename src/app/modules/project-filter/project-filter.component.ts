@@ -243,7 +243,7 @@ export class ProjectFilterComponent {
         case "Industry": {
           var selectedIndustry = this.industryTypes.find((industry: any) => industry.id == this.menuId);
           this.industryControl.patchValue(selectedIndustry);
-          this.appliedFilters.push({ name: "industryTypeId", value: selectedCategory.name });
+          this.appliedFilters.push({ name: "industryTypeId", value: selectedIndustry.name });
           this.filtersSelected = true;
           this.filterObj.industryTypeId = this.menuId;
           break;
@@ -265,6 +265,7 @@ export class ProjectFilterComponent {
   }
   updateAppliedFilters(filterName: string, value: any) {
     let matchFound = false;
+    console.log(`The filter name is ${filterName} and value is ${value}`);
     for (let i = 0; i < this.appliedFilters.length; i++) {
       if (this.appliedFilters[i].name == filterName && (filterName == 'projectCategoryId' || filterName == 'industryTypeId' || filterName == 'price')) {
         matchFound = true;

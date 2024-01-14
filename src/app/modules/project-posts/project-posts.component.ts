@@ -37,7 +37,6 @@ export class ProjectPostsComponent {
     this.projectService.getAllProjectCodePosts().subscribe((data: any) => {
       this.actualCards = data;
       
-      console.log(this.actualCards)
       if (this.menuId != 0) {
         switch (this.menuName) {
           case "Category": {

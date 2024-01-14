@@ -99,7 +99,7 @@
           <br />
           <div class="attrs-wrapper">
             <div class="included-files">
-              tags:
+              Tags:
               <ul>
                 <li class="file-type" *ngFor="let tag of postCard.tagList">
                   {{ tag.name }}
@@ -127,7 +127,9 @@
                 {{ isFavorite ? "favorite" : "favorite_border" }}
               </span>
             </div>
-            <div class="post-price">${{ postCard.price }}</div>
+            <div class="post-price">
+              <span class="dollar">$</span>{{ postCard.price }}
+            </div>
             <div class="rating-wrapper">
               <div class="star-ratings">
                 <app-star-rating></app-star-rating>
