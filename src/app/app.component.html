@@ -5,7 +5,9 @@
   <router-outlet></router-outlet>
 </div>
 <div class="mt-30">
-  <app-pricing-plans></app-pricing-plans>
+  <ng-container *ngIf="!(currentRoute | async)?.includes('add-post')">
+    <app-pricing-plans></app-pricing-plans>
+  </ng-container>
   <app-locations></app-locations>
   <app-footer></app-footer>
 </div>

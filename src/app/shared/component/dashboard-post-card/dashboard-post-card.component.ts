@@ -62,7 +62,7 @@ export class DashboardPostCardComponent {
         this.isFavorite = !this.isFavorite;
       }
 
-      truncateTitle(title: string, maxLength: number = 45): string {
+      truncateTitle(title: string, maxLength: number = 43): string {
         if (title.length <= maxLength) {
           return title;
         } else {
@@ -120,12 +120,15 @@ export class DashboardPostCardComponent {
     getAllTechnologies() {
         this.commonService.getAllTechnology().subscribe(res => {
           this.technologies = res;
-        //   console.log(this.technologies)
         })
     };
     getName(id:number){
         var technology = this.technologies.filter((technology:any)=>technology.id==id);
         if(technology.length > 0)
         return technology[0].name;
-    }
+    };
+
+    getDisplayedTechnologies(postCard: any): any[] {
+        return postCard.technologyMappingList.slice(0, 4);
+    };
 }

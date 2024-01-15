@@ -12,19 +12,19 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   login(payload: any) {
-    return this.httpClient.post("https://cfd.azurewebsites.net/api/Auth", payload);
+    return this.httpClient.post("https://codeokk.azurewebsites.net/api/Auth", payload);
   }
   register(payload: any) {
-    return this.httpClient.post("https://cfd.azurewebsites.net/api/User", payload);
+    return this.httpClient.post("https://codeokk.azurewebsites.net/api/User", payload);
   }
   uploadProfilePicture(formData: any) {
-    return this.httpClient.post("https://cfd.azurewebsites.net/api/User/UploadImages", formData);
+    return this.httpClient.post("https://codeokk.azurewebsites.net/api/User/UploadImages", formData);
   }
   getUserById(id: number) {
-    return this.httpClient.get("https://cfd.azurewebsites.net/api/User/" + id);
+    return this.httpClient.get("https://codeokk.azurewebsites.net/api/User/" + id);
   }
   updateUser(payload: any) {
-    return this.httpClient.put("https://cfd.azurewebsites.net/api/User/" + payload.id, payload);
+    return this.httpClient.put("https://codeokk.azurewebsites.net/api/User/" + payload.id, payload);
   }
   setData(data: any) {
     this.dataSubject.next(data);

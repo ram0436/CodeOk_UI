@@ -122,5 +122,11 @@ export class CategoryPostCardComponent {
       var technology = this.technologies.filter((technology:any)=>technology.id==id);
       if(technology.length > 0)
       return technology[0].name;
-  }
+  };
+  getDisplayedTechnologies(postCard: any): any[] {
+    return postCard.technologyMappingList.slice(0, 5);
+  };
+  getDisplayedTags(postCard: any): any[] {
+    return postCard.tagList.slice(0, 5);
+  };
 }
