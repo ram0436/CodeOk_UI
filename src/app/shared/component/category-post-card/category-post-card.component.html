@@ -73,10 +73,10 @@
             [src]="postCard.projectImageList[0].codeImageURL"
             alt="Post Pic"
           />
-          <div class="image-count">
+          <!-- <div class="image-count">
             <span class="material-icons"> photo_camera </span>
             {{ postCard.projectImageList.length }}
-          </div>
+          </div> -->
         </div>
         <div class="details-wrapper">
           <h3 class="item-name">{{ truncateTitle(postCard.name) }}</h3>
@@ -89,7 +89,7 @@
               <ul>
                 <li
                   class="file-type"
-                  *ngFor="let technology of postCard.technologyMappingList"
+                  *ngFor="let technology of getDisplayedTechnologies(postCard)"
                 >
                   {{ getName(technology.technologyId) }}
                 </li>
@@ -101,7 +101,10 @@
             <div class="included-files">
               Tags:
               <ul>
-                <li class="file-type" *ngFor="let tag of postCard.tagList">
+                <li
+                  class="file-type"
+                  *ngFor="let tag of getDisplayedTags(postCard)"
+                >
                   {{ tag.name }}
                 </li>
               </ul>

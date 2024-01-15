@@ -82,7 +82,6 @@ export class PostDetailsComponent {
       this.documentationURL = this.sanitizer.bypassSecurityTrustHtml(modifiedIframeString);
       // this.documentationURL = this.sanitizer.bypassSecurityTrustHtml(res[0].documentaionURL);
       this.isLoading = false;
-      console.log(this.postDetails);
     })
   }
   formatDate(date: any): any {
@@ -143,25 +142,37 @@ export class PostDetailsComponent {
   getMultipleValues(data: any, name: string) {
     var names: string = "";
     if (name == 'technology') {
-      data.forEach((selectedTechnology: any) => {
+      data.forEach((selectedTechnology: any, index: number) => {
         let tech = this.technologies.find((technology: any) => technology.id == selectedTechnology.technologyId);
-        if (tech != undefined)
-          names = names + tech.name + ',';
-      })
+        if (tech != undefined) {
+          names += tech.name;
+          if (index < data.length - 1) {
+            names += ', ';
+          }
+        }
+      });
     }
     else if (name == 'version') {
-      data.forEach((selectedVersion: any) => {
+      data.forEach((selectedVersion: any, index: number) => {
         let version = this.versions.find((version: any) => version.id == selectedVersion.technologyVersionId);
-        if (version != undefined)
-          names = names + version.name + ',';
-      })
+        if (version != undefined) {
+          names += version.name;
+          if (index < data.length - 1) {
+            names += ', ';
+          }
+        }
+      });
     }
     else {
-      data.forEach((selectedOs: any) => {
+      data.forEach((selectedOs: any, index: number) => {
         let os = this.operatingSystems.find((os: any) => os.id == selectedOs.operatingSystemId);
-        if (os != undefined)
-          names = names + os.name + ',';
-      })
+        if (os != undefined) {
+          names += os.name;
+          if (index < data.length - 1) {
+            names += ', ';
+          }
+        }
+      });
     }
     return names;
   }

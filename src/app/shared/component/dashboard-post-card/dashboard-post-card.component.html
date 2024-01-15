@@ -107,10 +107,10 @@
                 Enterprise
               </strong>
             </span>
-            <div class="image-count">
+            <!-- <div class="image-count">
               <span class="material-icons"> photo_camera </span>
               {{ postCard.projectImageList.length }}
-            </div>
+            </div> -->
           </div>
           <div class="post-item-content">
             <div class="post-item-price">
@@ -124,7 +124,9 @@
                 <ul>
                   <li
                     class="file-type"
-                    *ngFor="let technology of postCard.technologyMappingList"
+                    *ngFor="
+                      let technology of getDisplayedTechnologies(postCard)
+                    "
                   >
                     {{ getName(technology.technologyId) }}
                   </li>
