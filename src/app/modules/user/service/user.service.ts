@@ -24,6 +24,7 @@ export class UserService {
     return this.httpClient.get("https://codeokk.azurewebsites.net/api/User/" + id);
   }
   updateUser(payload: any) {
+    
     return this.httpClient.put("https://codeokk.azurewebsites.net/api/User/" + payload.id, payload);
   }
   setData(data: any) {

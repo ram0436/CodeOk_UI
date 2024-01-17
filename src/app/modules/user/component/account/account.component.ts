@@ -31,7 +31,8 @@ export class AccountComponent {
         this.imageUrl = data[0];
         this.userService.getUserById(Number(localStorage.getItem("id"))).subscribe((userData: any) => {
           if (userData.length > 0) {
-            userData[0].userImageList.push({ "id": 0, "imageId": "st", "imageURL": data[0], "usersId": Number(localStorage.getItem("id")) });
+            userData[0].userImageList.push({ "id": 0, "userImageURL": this.imageUrl });
+            console.log(userData[0])
             this.userService.updateUser(userData[0]).subscribe(res => {
             })
           }
@@ -39,12 +40,13 @@ export class AccountComponent {
       }
     })
   }
+  
   ngOnInit() {
     if (localStorage.getItem("id") != null) {
       this.userService.getUserById(Number(localStorage.getItem("id"))).subscribe((userData: any) => {
         this.userData = userData[0];
         if (this.userData.userImageList.length > 0) {
-          this.imageUrl = this.userData.userImageList[this.userData.userImageList.length - 1].imageURL;
+          this.imageUrl = this.userData.userImageList[this.userData.userImageList.length - 1].userImageURL;
         }
       });
     }
