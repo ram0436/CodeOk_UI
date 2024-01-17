@@ -1,10 +1,10 @@
 <div class="container-fluid">
-  <div class="header">Post your add</div>
+  <div class="header">Post Your Project Code</div>
   <div class="container">
-    <h4>INCLUDE SOME DETAILS</h4>
+    <h4>Enter Some Details</h4>
     <div class="include-details">
       <mat-form-field>
-        <mat-label>Name</mat-label>
+        <mat-label>Project Title</mat-label>
         <input matInput placeholder="Enter Name" [(ngModel)]="payload.name" />
       </mat-form-field>
       <mat-form-field>
@@ -81,7 +81,7 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="fill" class="form-field-w-100">
-        <mat-label>Software version</mat-label>
+        <mat-label>Software Version</mat-label>
         <mat-select
           #versionMultiSelect
           [(ngModel)]="selectedVersion"
@@ -94,7 +94,7 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="fill" class="form-field-w-100">
-        <mat-label>Operating system</mat-label>
+        <mat-label>Operating System</mat-label>
         <mat-select
           #osMultiSelect
           [(ngModel)]="selectedOs"
@@ -115,10 +115,10 @@
         />
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Installation steps</mat-label>
+        <mat-label>Installation Steps</mat-label>
         <input
           matInput
-          placeholder="Enter Installation steps"
+          placeholder="Enter Installation Steps"
           [(ngModel)]="payload.installationSteps"
         />
       </mat-form-field>
@@ -132,23 +132,23 @@
         ></textarea>
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Demo URL</mat-label>
+        <mat-label>Code Setup Video URL</mat-label>
         <input
           matInput
-          placeholder="Enter Demo URL"
+          placeholder="Enter Youtube Embed Code"
           [(ngModel)]="payload.demoURL"
         />
       </mat-form-field>
       <mat-form-field>
-        <mat-label>Documentaion URL</mat-label>
+        <mat-label>Aplication Demo Video URL</mat-label>
         <input
           matInput
-          placeholder="Enter Documentaion URL"
+          placeholder="Enter Youtube Embed Code"
           [(ngModel)]="payload.documentaionURL"
         />
       </mat-form-field>
       <mat-form-field class="example-chip-list">
-        <mat-label>Tags</mat-label>
+        <mat-label>Enter Tags</mat-label>
         <mat-chip-grid #chipGrid aria-label="tag selection">
           <mat-chip-row *ngFor="let tag of tags" (removed)="remove(tag)">
             {{ tag }}
@@ -195,7 +195,7 @@
       </div>
     </div>
     <div class="uplod-sectin h-550">
-      <h4>Project images</h4>
+      <h4>Upload Project Images/Screenshots</h4>
       <div class="progs" *ngIf="imageProgress">
         <h5>Upload Progress</h5>
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
@@ -246,7 +246,7 @@
       </div>
     </div>
     <div class="uplod-sectin">
-      <h4>Project code</h4>
+      <h4>Upload Project Code in Zip Format</h4>
       <div class="progs" *ngIf="projectCodeProgress">
         <h5>Upload Progress</h5>
         <mat-progress-bar mode="indeterminate"></mat-progress-bar>
@@ -307,7 +307,7 @@
       </div>
     </div>
     <div class="details">
-      <h4>REVIEW YOUR DETAILS</h4>
+      <h4>Review Your Personal Details</h4>
       <div class="flx">
         <div class="circle">
           <img [src]="imageUrl" alt="Uploaded Image" />
