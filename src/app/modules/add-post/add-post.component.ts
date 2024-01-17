@@ -37,7 +37,7 @@ export class AddPostComponent {
     "isMobileResponsive": true,
     "demoURL": "",
     "documentaionURL": "",
-    "price": 0,
+    "price": null as number | null,
     "commentForReviewer": "",
     "isApproved": true,
     "isPremium": true,
@@ -72,6 +72,8 @@ export class AddPostComponent {
   @ViewChild('fileUpload') fileUpload!: ElementRef
   firstImageUploaded: boolean = false; // Changes made by Hamza
 
+  isInputFocused: boolean = false;
+
   constructor(private commonService: CommonService, private snackBar: MatSnackBar, private projectService: ProjectService,
     @Inject(DOCUMENT) private document: Document, private userService: UserService, private router: Router) { }
 
@@ -85,6 +87,17 @@ export class AddPostComponent {
     this.getAllOperatingSystems();
     this.getAllTechnologies();
   }
+
+  onInputFocus() {
+    this.isInputFocused = true;
+  }
+
+  onInputBlur() {
+    if (!this.payload.price) {
+      this.isInputFocused = false;
+    }
+  }
+
   allowOnlyNumbers(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     const inputValue = inputElement.value;
@@ -186,7 +199,7 @@ export class AddPostComponent {
       this.userService.getUserById(Number(userId)).subscribe((res: any) => {
         this.userData = res[0];
         if (this.userData.userImageList.length > 0)
-          this.imageUrl = this.userData.userImageList[this.userData.userImageList.length - 1].imageURL;
+          this.imageUrl = this.userData.userImageList[this.userData.userImageList.length - 1].userImageURL;
       })
     }
   }
