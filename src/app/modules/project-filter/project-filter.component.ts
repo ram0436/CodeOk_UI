@@ -8,6 +8,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable, forkJoin, map, startWith } from 'rxjs';
 import { Filter } from 'src/app/shared/model/Filter';
 import { CommonService } from 'src/app/shared/service/common.service';
+import { ServiceType } from 'src/app/shared/enum/ServiceType';
 
 @Component({
   selector: 'app-project-filter',
@@ -15,6 +16,8 @@ import { CommonService } from 'src/app/shared/service/common.service';
   styleUrls: ['./project-filter.component.css']
 })
 export class ProjectFilterComponent {
+
+  // selectedService: ServiceType[] = [];
 
   filterObj = new Filter();
   categoryControl = new FormControl("");
@@ -24,12 +27,14 @@ export class ProjectFilterComponent {
   projectCategories: any = [];
   industryTypes: any = [];
   operatingSystems: any = [];
+  services: any = [];
   technologies: any = [];
   versions: any = [];
   tags: any = [];
   uploadedFiles: any = [];
   technologyMappingList: any = [];
   selectedOs: any;
+  selectedService: any;
   selectedTechnology: any[] = [{ id: 1, name: "Angular" }];
   selectedVersion: any;
   separatorKeysCodes: number[] = [ENTER, COMMA];
@@ -41,6 +46,7 @@ export class ProjectFilterComponent {
   menuName: any;
   menuId: any;
   @ViewChild('osMultiSelect') osMultiSelect!: MatSelect;
+  @ViewChild('serviceMultiSelect') serviceMultiSelect!: MatSelect;
   @ViewChild('technologyMultiSelect') technologyMultiSelect!: MatSelect;
   @ViewChild('versionMultiSelect') versionMultiSelect!: MatSelect;
 
@@ -63,6 +69,12 @@ export class ProjectFilterComponent {
         this.setInitialFilters();
       }, 1000)
     });
+    this.services = [
+      { id: ServiceType.Community, name: 'Community' },
+      { id: ServiceType.Standard, name: 'Standard' },
+      { id: ServiceType.Premium, name: 'Premium' },
+      { id: ServiceType.Enterprise, name: 'Enterprise' },
+    ];
   }
 
   filterDropDowns(value: any, data: any): { id: number; name: string }[] {
@@ -78,6 +90,19 @@ export class ProjectFilterComponent {
   displayCategory(brand: any): string {
     return brand.name || "";
   }
+
+  handleService(event: any) {
+    let serviceIds = [];
+    this.appliedFilters = this.appliedFilters.filter((item: any) => item.name != 'service');
+    for (let value of event.value) {
+      serviceIds.push(value.id);
+      this.updateAppliedFilters("service", value.name);
+    }
+    this.filterObj.servicesTypeMappingList = serviceIds;
+    this.commonService.setData(this.filterObj);
+    this.filtersSelected = true;
+  }
+
   handleCategory(event: any) {
     this.filterObj.projectCategoryId = (event == null) ? null : event.id;
     this.updateAppliedFilters("projectCategoryId", event.name);
@@ -189,6 +214,7 @@ export class ProjectFilterComponent {
     this.filterObj = { ...this.initialFilters };
     this.appliedFilters = [];
     this.osMultiSelect.writeValue([]);
+    this.serviceMultiSelect.writeValue([]);
     this.technologyMultiSelect.writeValue([]);
     if(this.versionMultiSelect !=undefined)
     this.versionMultiSelect.writeValue([]);
@@ -212,6 +238,9 @@ export class ProjectFilterComponent {
         break;
       case "os":
         this.removeOptionFromArray(this.osMultiSelect, (this.filterObj.operatingSystemMappingList || []), "name", filter.value);
+        break;
+      case "service":
+        this.removeOptionFromArray(this.serviceMultiSelect, (this.filterObj.servicesTypeMappingList || []), "name", filter.value);
         break;
       case "projectCategoryId":
         this.resetCategory();
