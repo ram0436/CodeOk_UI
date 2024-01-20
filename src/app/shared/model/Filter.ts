@@ -5,4 +5,5 @@ export class Filter{
     technologyVersionMappingList : number[] | null = null;
     operatingSystemMappingList : number[] | null = null;
     technologyMappingList : number[] | null = null;
+    servicesTypeMappingList: number[] | null = null;
 }

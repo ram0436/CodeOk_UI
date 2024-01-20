@@ -9,6 +9,7 @@ import { Observable, forkJoin, map, startWith } from 'rxjs';
 import { CommonService } from 'src/app/shared/service/common.service';
 import { ProjectService } from '../service/project.service';
 import { UserService } from '../user/service/user.service';
+import { ServiceType } from 'src/app/shared/enum/ServiceType';
 
 @Component({
   selector: 'app-add-post',
@@ -18,6 +19,10 @@ import { UserService } from '../user/service/user.service';
 export class AddPostComponent {
 
   cardsCount: any[] = new Array(20);
+
+  serviceTypes = Object.values(ServiceType).filter(value => typeof value === 'string');
+
+
   currentImageIndex: any = 0;
   numericValue: number = 0;
   selectedImage: string = "";
@@ -42,6 +47,7 @@ export class AddPostComponent {
     "isApproved": true,
     "isPremium": true,
     "createdBy": 0,
+    "serviceType": ServiceType.Community,
     "createdOn": "2023-09-06T06:37:55.962Z",
     "modifiedBy": 0,
     "modifiedOn": "2023-09-06T06:37:55.962Z"
@@ -74,10 +80,17 @@ export class AddPostComponent {
 
   isInputFocused: boolean = false;
 
+  isAdmin : boolean = false;
+
   constructor(private commonService: CommonService, private snackBar: MatSnackBar, private projectService: ProjectService,
     @Inject(DOCUMENT) private document: Document, private userService: UserService, private router: Router) { }
 
   ngOnInit() {
+    var role = localStorage.getItem("role");
+    if(role != null && role == 'Admin')
+      this.isAdmin = true;
+    else
+      this.isAdmin = false;
     this.getUserData();
     for (var i = 0; i < this.cardsCount.length; i++) {
       this.cardsCount[i] = "";
@@ -87,6 +100,8 @@ export class AddPostComponent {
     this.getAllOperatingSystems();
     this.getAllTechnologies();
   }
+
+
 
   onInputFocus() {
     this.isInputFocused = true;

@@ -178,6 +178,18 @@
       </mat-form-field>
     </div>
     <div class="price-section">
+      <h4>Service Type</h4>
+      <div class="include-details">
+        <mat-chip-listbox [(ngModel)]="payload.serviceType">
+          <ng-container *ngFor="let type of serviceTypes; let i = index">
+            <mat-chip-option *ngIf="isAdmin || i < 2" [value]="type">
+              {{ type }}
+            </mat-chip-option>
+          </ng-container>
+        </mat-chip-listbox>
+      </div>
+    </div>
+    <div class="price-section">
       <h4>SET A PRICE</h4>
       <div class="include-details">
         <mat-form-field>

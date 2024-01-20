@@ -108,7 +108,20 @@
       }}</mat-option>
     </mat-select>
   </mat-form-field>
-  <mat-form-field appearance="fill" class="form-field-w-100">
+  <mat-form-field class="form-field-w-100">
+    <mat-label>Service</mat-label>
+    <mat-select
+      #serviceMultiSelect
+      [(ngModel)]="selectedService"
+      multiple
+      (selectionChange)="handleService($event)"
+    >
+      <mat-option *ngFor="let service of services" [value]="service">{{
+        service.name
+      }}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <!-- <mat-form-field appearance="fill" class="form-field-w-100">
     <mat-label>Operating system</mat-label>
     <mat-select
       #osMultiSelect
@@ -120,7 +133,7 @@
         os.name
       }}</mat-option>
     </mat-select>
-  </mat-form-field>
+  </mat-form-field> -->
   <!-- <div class="example-label-container">
         <label id="example-name-label" class="example-name-label">Price</label>
         <div class="pd-5">
