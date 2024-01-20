@@ -403,6 +403,11 @@
     min-width: 400px !important;
 }
 
+.col-3{
+    columns: 3 !important;
+    min-width: 600px !important;
+}
+
 .category-dropdown-menu-col-2{
     grid-template-columns: repeat(2, minmax(0, 20rem)) !important;
     min-width: 400px !important;

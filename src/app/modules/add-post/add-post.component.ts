@@ -22,6 +22,7 @@ export class AddPostComponent {
 
   serviceTypes = Object.values(ServiceType).filter(value => typeof value === 'string');
 
+  selectedServiceType: ServiceType | string = ServiceType.Community;
 
   currentImageIndex: any = 0;
   numericValue: number = 0;
@@ -47,7 +48,7 @@ export class AddPostComponent {
     "isApproved": true,
     "isPremium": true,
     "createdBy": 0,
-    "serviceType": ServiceType.Community,
+    "serviceTypeId": 0,
     "createdOn": "2023-09-06T06:37:55.962Z",
     "modifiedBy": 0,
     "modifiedOn": "2023-09-06T06:37:55.962Z"
@@ -167,8 +168,13 @@ export class AddPostComponent {
     this.payload.modifiedBy = this.userData.id;
     this.payload.modifiedOn = new Date().toISOString().slice(0, 23);
     this.payload.price = Number(this.payload.price);
+    this.payload.serviceTypeId = this.mapServiceTypeToEnum(this.selectedServiceType);
     var payload = this.addAttachmentsPayload(this.payload);
+    // console.log(payload)
     this.saveProjectCodePost(payload);
+  }
+  mapServiceTypeToEnum(serviceType: string | ServiceType): ServiceType {
+    return typeof serviceType === 'string' ? ServiceType[serviceType as keyof typeof ServiceType] : serviceType;
   }
   showNotification(message: string): void {
     this.snackBar.open(message, 'Close', {

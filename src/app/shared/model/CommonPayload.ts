@@ -14,6 +14,7 @@ export class Common {
     isActive: Boolean = true;
     createdBy: Number= 0;
     createdOn:String= "";
+    serviceTypeId: Number = 0;
     modifiedBy: Number = 0;
     modifiedOn: String = "";
 }

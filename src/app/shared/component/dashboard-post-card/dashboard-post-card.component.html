@@ -83,28 +83,16 @@
             >
               {{ isFavorite ? "favorite" : "favorite_border" }}
             </span>
-            <span class="ribbon-featured" *ngIf="i === 0">
-              <strong class="ribbon standard-ribbon">
+            <span class="ribbon-featured">
+              <strong
+                [class.ribbon]="true"
+                [class.community-ribbon]="postCard.serviceTypeId === 1"
+                [class.standard-ribbon]="postCard.serviceTypeId === 2"
+                [class.premium-ribbon]="postCard.serviceTypeId === 3"
+                [class.enterprise-ribbon]="postCard.serviceTypeId === 4"
+              >
                 <span class="hide-visually">This ad is</span>
-                Standard
-              </strong>
-            </span>
-            <span class="ribbon-featured" *ngIf="i === 1">
-              <strong class="ribbon premium-ribbon">
-                <span class="hide-visually">This ad is</span>
-                Premium
-              </strong>
-            </span>
-            <span class="ribbon-featured" *ngIf="i === 2">
-              <strong class="ribbon community-ribbon">
-                <span class="hide-visually">This ad is</span>
-                Community
-              </strong>
-            </span>
-            <span class="ribbon-featured" *ngIf="i === 3">
-              <strong class="ribbon enterprise-ribbon">
-                <span class="hide-visually">This ad is</span>
-                Enterprise
+                {{ getRibbonText(postCard.serviceTypeId) }}
               </strong>
             </span>
             <!-- <div class="image-count">
