@@ -70,6 +70,21 @@ export class DashboardPostCardComponent {
         }
       }
 
+      getRibbonText(serviceTypeId: number): string {
+        switch (serviceTypeId) {
+          case 1:
+            return 'Community';
+          case 2:
+            return 'Standard';
+          case 3:
+            return 'Premium';
+          case 4:
+            return 'Enterprise';
+          default:
+            return '';
+        }
+      }
+
     formatDate(date: any): any {
         const inputDate: Date = new Date(date);
         const daysAgo = moment(this.currentDate).diff(inputDate, 'days');

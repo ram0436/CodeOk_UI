@@ -73,6 +73,18 @@
             [src]="postCard.projectImageList[0].codeImageURL"
             alt="Post Pic"
           />
+          <span class="ribbon-featured">
+            <strong
+              [class.ribbon]="true"
+              [class.community-ribbon]="postCard.serviceTypeId === 1"
+              [class.standard-ribbon]="postCard.serviceTypeId === 2"
+              [class.premium-ribbon]="postCard.serviceTypeId === 3"
+              [class.enterprise-ribbon]="postCard.serviceTypeId === 4"
+            >
+              <span class="hide-visually">This ad is</span>
+              {{ getRibbonText(postCard.serviceTypeId) }}
+            </strong>
+          </span>
           <!-- <div class="image-count">
             <span class="material-icons"> photo_camera </span>
             {{ postCard.projectImageList.length }}

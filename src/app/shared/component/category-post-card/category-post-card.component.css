@@ -695,3 +695,69 @@
     padding: 3px 5px;
     border-radius: 3px;
 }
+
+.ribbon-featured {
+    position: absolute;
+    top: -15px;
+    left: -15px;
+    overflow: hidden;
+    bottom: 0;
+    right: 0;
+}
+
+.ribbon-featured .ribbon {
+    /* background-color: #007bff;
+    color: #fff; */
+    box-shadow: 0 0 2px 0 rgba(0,0,0,.2);
+    text-transform: uppercase;
+    display: block;
+    text-align: center;
+    top: 15px;
+    left: -32px;
+    font-weight: 700;
+    width: 112px;
+    height: 24px;
+    padding: 3px 0;
+    position: relative;
+    font-size: 10.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    font-family: "Arial Narrow", sans-serif;
+    letter-spacing: 0.4px;
+}
+
+.ribbon-featured .standard-ribbon{
+    background-color: #7e0d91;
+    color: #fff;
+}
+
+.premium-ribbon{
+    background-color: #960010;
+    color: #fff;
+    letter-spacing: 0.75px !important;
+}
+
+.ribbon-featured .community-ribbon{
+    background-color: #3d0174;
+    color: #fff;
+}
+
+.ribbon-featured .enterprise-ribbon{
+    background-color: #222;
+    color: #d79955;
+}
+
+.hide-visually {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+}

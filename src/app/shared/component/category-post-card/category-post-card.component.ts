@@ -56,6 +56,21 @@ export class CategoryPostCardComponent {
       this.getAllTechnologies();
     }
 
+    getRibbonText(serviceTypeId: number): string {
+      switch (serviceTypeId) {
+        case 1:
+          return 'Community';
+        case 2:
+          return 'Standard';
+        case 3:
+          return 'Premium';
+        case 4:
+          return 'Enterprise';
+        default:
+          return '';
+      }
+    }
+
     toggleFavorite(event: Event) {
       event.preventDefault(); 
       event.stopPropagation();
