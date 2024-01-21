@@ -109,31 +109,28 @@
     </mat-select>
   </mat-form-field>
   <mat-form-field class="form-field-w-100">
-    <mat-label>Service</mat-label>
-    <mat-select
-      #serviceMultiSelect
-      [(ngModel)]="selectedService"
-      multiple
-      (selectionChange)="handleService($event)"
+    <mat-label>Service Type</mat-label>
+    <input
+      type="text"
+      placeholder="Pick one"
+      aria-label="Number"
+      matInput
+      [formControl]="serviceControl"
+      [matAutocomplete]="service"
+    />
+    <mat-autocomplete
+      #service="matAutocomplete"
+      (optionSelected)="handleService($event.option.value)"
+      [displayWith]="displayCategory"
     >
-      <mat-option *ngFor="let service of services" [value]="service">{{
-        service.name
-      }}</mat-option>
-    </mat-select>
+      <mat-option
+        *ngFor="let service of filteredServices | async"
+        [value]="service"
+      >
+        {{ service.name }}
+      </mat-option>
+    </mat-autocomplete>
   </mat-form-field>
-  <!-- <mat-form-field appearance="fill" class="form-field-w-100">
-    <mat-label>Operating system</mat-label>
-    <mat-select
-      #osMultiSelect
-      [(ngModel)]="selectedOs"
-      multiple
-      (selectionChange)="handleOs($event)"
-    >
-      <mat-option *ngFor="let os of operatingSystems" [value]="os">{{
-        os.name
-      }}</mat-option>
-    </mat-select>
-  </mat-form-field> -->
   <!-- <div class="example-label-container">
         <label id="example-name-label" class="example-name-label">Price</label>
         <div class="pd-5">
