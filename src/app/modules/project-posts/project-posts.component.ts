@@ -61,9 +61,14 @@ export class ProjectPostsComponent {
   }
   filterPosts(data: any) {
     const filterObj: { [key: string]: { operator: string; value: any } } = {};
+
+    // if (data.serviceTypeId) {
+    //   filterObj['serviceTypeId'] = { operator: 'includes', value: data.serviceTypeId };
+    // }
+
     Object.keys(data).forEach(key => {
       if (data[key] != null && data[key] != "") {
-        if (key == 'projectCategoryId' || key == 'industryTypeId')
+        if (key == 'projectCategoryId' || key == 'industryTypeId' || key == 'serviceTypeId')
           filterObj[key] = { operator: '==', value: data[key] };
         else if (key == 'price')
           filterObj[key] = { operator: 'between', value: data[key] };
@@ -71,13 +76,14 @@ export class ProjectPostsComponent {
           filterObj[key] = { operator: 'includes', value: data[key] };
       }
     });
+
     const filteredData = this.actualCards.filter((item: any) =>
       Object.entries(filterObj).every(([field, condition]) => {
         const { operator, value } = condition;
         const itemValue = item[field];
 
         if (Array.isArray(itemValue) && operator === 'includes') {
-          return itemValue.some(v => value.includes(v?.operatingSystemId || v?.technologyId || v?.technologyVersionId));
+          return itemValue.some(v => value.includes(v?.operatingSystemId || v?.technologyId || v?.technologyVersionId || v?.serviceTypeId));
         } else {
           switch (operator) {
             case '==':
