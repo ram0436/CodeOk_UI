@@ -498,3 +498,61 @@ input{
 .post-price{
     color: #337ab7;
 }
+
+.rating-star {
+    font-size: 27px;
+    color: orangered;
+    margin-right: 0px;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+.flex-row{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.ratings-stars{
+    margin-top: -10px;
+}
+
+.rating-box{
+    display: block;
+    width: 100%;
+    outline: none;
+    border: 1px solid gray;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    padding: 7px;
+}
+
+.total-ratings{
+    margin-left: 8px;
+    color: #337ab7;
+}
+
+.bold{
+    font-weight: 500;
+}
+
+.rate-btn{
+    background-color: #141414;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    height: 45px;
+    line-height: 43px;
+    /* border: 1px solid #141414; */
+    border-radius: 2px;
+    margin: 0 4px;
+    padding: 0 16px;
+    width: 98%;
+    border: none;
+    outline: none;
+}
+
+.rate-btn:hover{
+    background-color: orangered;
+}

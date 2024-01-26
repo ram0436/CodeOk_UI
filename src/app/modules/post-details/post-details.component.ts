@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { forkJoin } from 'rxjs';
 import { CommonService } from 'src/app/shared/service/common.service';
 import { ProjectService } from '../service/project.service';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-post-details',
@@ -32,11 +33,23 @@ export class PostDetailsComponent {
   isContentVisible = false;
   isReqVisible = false;
   isTagsVisible = false;
+  isRateVisible = false;
 
   documentationURL: SafeHtml = '';
 
+  maxRating: number = 0;
+  currentRating: number = 0;
 
-  constructor(private route: ActivatedRoute, private projectService: ProjectService,
+  selectedRating: number = 0;
+  reviewText: string = '';
+
+  stars: { filled: boolean; value: number }[] = [];
+
+  reviewsData: any[] = []; 
+  averageRating: number = 0;
+  totalRatings: number = 0;
+
+  constructor(private route: ActivatedRoute, private projectService: ProjectService, private snackBar: MatSnackBar,
     private commonService: CommonService, private location: Location, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
@@ -52,6 +65,65 @@ export class PostDetailsComponent {
     if (tableRefGuid != null) {
       this.getPostDetails(tableRefGuid);
     }
+    this.getRatingData(tableRefGuid);
+  }
+
+  getRatingData(tableRefGuid: any){
+    this.projectService.ProjectRatingData(tableRefGuid).subscribe(
+      (data: any) => {
+          this.reviewsData = data;
+          this.calculateAverageAndTotalRatings();
+        },
+        (error: any) => {
+        }
+    )
+  }
+
+  calculateAverageAndTotalRatings() {
+    if (this.reviewsData.length > 0) {
+      this.totalRatings = this.reviewsData.length;
+
+      const sumOfRatings = this.reviewsData.reduce((total, review) => total + review.rating, 0);
+      this.averageRating = sumOfRatings / this.totalRatings;
+    }
+  }
+
+  parseAverageRating(): number {
+    return parseFloat(this.averageRating.toFixed(2));
+  }
+
+  handleRatingSelected(rating: number) {
+    this.selectedRating = rating;
+  }
+
+  
+  submitRating(tableRefGuid: string) {
+    const userId = localStorage.getItem('id');
+
+    const payload = {
+      id: 0,
+      projectCodeTableRefGuid: tableRefGuid, 
+      rating: this.selectedRating,
+      review: this.reviewText,
+      createdBy: userId,
+      createdOn: new Date().toISOString()
+    };
+
+    this.projectService.ProjectRatingReview(payload).subscribe(
+      (response) => {
+        this.showNotification("Your rating has been submitted succesfully");
+      },
+      (error) => {
+      }
+    );
+  }
+
+  showNotification(message: string): void {
+    this.snackBar.open(message, 'Close', {
+      duration: 5000,
+      horizontalPosition: 'end',
+      verticalPosition: 'top'
+    });
   }
 
   formatTags(tagList: any[]): string {
@@ -60,6 +132,10 @@ export class PostDetailsComponent {
 
   toggleCardContent() {
     this.isContentVisible = !this.isContentVisible;
+  }
+
+  toggleRateContent() {
+    this.isRateVisible = !this.isRateVisible;
   }
 
   toggleReqContent(){

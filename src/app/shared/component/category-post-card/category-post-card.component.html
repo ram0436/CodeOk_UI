@@ -147,7 +147,10 @@
             </div>
             <div class="rating-wrapper">
               <div class="star-ratings">
-                <app-star-rating></app-star-rating>
+                <app-star-rating
+                  [readOnly]="true"
+                  [allStarsChecked]="true"
+                ></app-star-rating>
               </div>
               <span class="star-rating-count"
                 >({{ postCard.ratingCount }})</span

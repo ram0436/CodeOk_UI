@@ -166,6 +166,16 @@
             <div class="loc-date">
               <p class="date">{{ formatDate(postDetails?.createdOn) }}</p>
             </div>
+            <div class="flex-row">
+              <p class="bold">{{ averageRating.toFixed(2) }}</p>
+              <div class="ratings-stars">
+                <app-star-rating
+                  [readOnly]="true"
+                  [selectedStar]="parseAverageRating()"
+                ></app-star-rating>
+              </div>
+              <p class="total-ratings bold">{{ totalRatings }} Total Ratings</p>
+            </div>
           </mat-card-content>
         </mat-card>
         <mat-card class="mt-10 border-1 bg-gray-card">
@@ -290,6 +300,35 @@
                 </ul>
               </div>
             </div>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="mt-10 border-1 bg-gray-card">
+          <mat-card-title class="title-flex">
+            Rate Us
+            <span class="material-icons-outlined" (click)="toggleRateContent()">
+              {{ isRateVisible ? "remove" : "add" }}
+            </span></mat-card-title
+          >
+          <mat-card-content *ngIf="isRateVisible">
+            <p>How was your experience with our code?</p>
+            <div class="flex-row">
+              <div class="ratings-stars">
+                <app-star-rating
+                  (ratingSelected)="handleRatingSelected($event)"
+                ></app-star-rating>
+              </div>
+            </div>
+            <textarea
+              class="rating-box"
+              [(ngModel)]="reviewText"
+              placeholder="Write your review"
+            ></textarea>
+            <button
+              class="rate-btn"
+              (click)="submitRating(postDetails?.tableRefGuid)"
+            >
+              Rate
+            </button>
           </mat-card-content>
         </mat-card>
       </div>

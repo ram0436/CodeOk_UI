@@ -1,4 +1,4 @@
-<div class="stars-rating">
+<!-- <div class="stars-rating">
   <span
     *ngFor="let star of stars"
     [class.full]="star.filled"
@@ -7,4 +7,14 @@
   >
     &#9733;
   </span>
-</div>
+</div> -->
+<mat-icon
+  *ngFor="let icon of maxRatingArr; let index = index"
+  (mouseenter)="HandleMouseEnter(index)"
+  (mouseleave)="HandleMouseLeave()"
+  (click)="Rating(index)"
+  class="star"
+  [ngClass]="{ checked: selectedStar > index }"
+>
+  star
+</mat-icon>

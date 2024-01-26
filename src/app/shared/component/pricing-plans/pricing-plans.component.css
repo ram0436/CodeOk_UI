@@ -31,9 +31,12 @@
 }
 
 .plan{
-    min-height: 480px;
-    height: 480px;
-    max-height: 480px;
+    /* flex: 1; */
+    max-width: 320px;
+    min-width: 320px;
+    min-height: 660px;
+    height: 660px;
+    max-height: 660px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -86,7 +89,11 @@
 
 .plan .plan-body{
     min-height: 330px;
-    padding: 20px 30px;
+    padding: 20px 15px;
+}
+
+.plan .plan-body.standard-plan-body{
+    margin-right: 45px;
 }
 
 .plan .plan-body .features-included{
@@ -103,6 +110,11 @@
 
 .plan .plan-body .features-included .feature .done-icon{
     color: #24c223;
+    font-size: 28px;
+}
+
+.plan .plan-body .features-included .feature .close-icon{
+    color: red;
     font-size: 28px;
 }
 
