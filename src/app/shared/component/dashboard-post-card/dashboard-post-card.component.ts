@@ -30,6 +30,10 @@ export class DashboardPostCardComponent {
 
     isFavorite: boolean = false;
 
+    reviewsData: any[] = []; 
+    averageRating: number = 0;
+    totalRatings: number = 0;
+
     scrollToTop() {
         const scrollDuration = 300; // Duration of the scroll animation in milliseconds
         const scrollStep = -window.scrollY / (scrollDuration / 15); // Divide the scroll distance into smaller steps
