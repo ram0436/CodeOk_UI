@@ -5,3 +5,17 @@
     display: inline-block;
     cursor: pointer;
   }
+
+.star{
+  margin-top: 5.5px;
+  color: black;
+}
+
+
+.checked{
+  color: orange;
+}
+
+mat-icon{
+  cursor: pointer;
+}

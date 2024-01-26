@@ -25,4 +25,12 @@ export class ProjectService {
   getProjectCodeById(id:any){
     return this.http.get(`${this.BaseURL}ProjectCode/GetByTabRefGuid?tabRefGuid=`+id);
   }
+
+  ProjectRatingReview(payload: any){
+    return this.http.post(`${this.BaseURL}ProjectRatingReview`, payload);
+  }
+
+  ProjectRatingData(tableRefGuid: any){
+    return this.http.get(`${this.BaseURL}ProjectRatingReview/GetProjectRatingReviewByProjectTableRefGuid?projectTabRefGuid=`+tableRefGuid);
+  }
 }
