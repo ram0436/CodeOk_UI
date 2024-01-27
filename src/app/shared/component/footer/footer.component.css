@@ -118,14 +118,21 @@ ul li{
     color: orangered;
     position: relative;
     transform: all ease .3s;
+    font-family: 'Barlow', sans-serif;
+    font-weight: 600;
 }
 
 .link-list .list .nav-link{
     font-size: 1.8rem;
     line-height: 4rem;
-    color: #fff!important;
+    color: #a6a6a6;
     text-decoration: none;
     cursor: pointer;
+    font-family: 'Barlow', sans-serif;
+}
+
+.link-list .list .nav-link:hover{
+    color: rgb(252, 95, 38);
 }
 
 .link-list .last-link-title{
@@ -133,12 +140,15 @@ ul li{
     margin-bottom: 1rem;
     font-size: 2.6rem;
     line-height: 38px;
+    font-weight: 600;
+    font-family: 'Barlow', sans-serif;
 }
 
 .link-list .list-item .last-link-desc{
     font-size: 1.6rem;
     color: #fff;
     line-height: 22px;
+    font-family: 'Barlow', sans-serif;
 }
 
 .signup-form{
@@ -168,6 +178,7 @@ ul li{
     padding: 0.6rem 0;
     color: #fff;
     font-size: 1.8rem;
+    font-family: 'Barlow', sans-serif;
 }
 
 .error-wrap{
@@ -179,7 +190,7 @@ ul li{
     padding: 0.5rem 1rem;
     background: #9f9f9f;
     border-radius: 15px;
-    font-family: barlow-medium;
+    font-family: 'Barlow', sans-serif;
     font-style: italic;
     display: none;
     position: absolute;
@@ -200,6 +211,12 @@ ul li{
     border: 1px solid #fff;
     border-radius: 4px;
     padding: 10px 15px;
+    font-family: 'Barlow', sans-serif;
+}
+
+.btn.btn-outline:hover{
+    background-color: rgb(252, 95, 38);
+    border: none;
 }
 
 .privacyLink {
