@@ -128,11 +128,16 @@
                   <div class="star-ratings">
                     <app-star-rating
                       [readOnly]="true"
-                      [allStarsChecked]="true"
+                      [selectedStar]="
+                        ratingsMap.get(postCard.tableRefGuid)?.averageRating ||
+                        0
+                      "
                     ></app-star-rating>
                   </div>
                   <span class="star-rating-count"
-                    >({{ postCard.ratingCount }})</span
+                    >({{
+                      ratingsMap.get(postCard.tableRefGuid)?.totalRatings || 0
+                    }})</span
                   >
                   <button
                     class="post-item-details-btn"

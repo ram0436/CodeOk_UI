@@ -532,6 +532,14 @@ input{
     color: #337ab7;
 }
 
+.user-name{
+    margin-top: 8px;
+}
+
+.ratngs-given{
+    margin-top: -12px;
+}
+
 .bold{
     font-weight: 500;
 }
