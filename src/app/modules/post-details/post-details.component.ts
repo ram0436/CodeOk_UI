@@ -6,6 +6,7 @@ import * as moment from 'moment';
 import { forkJoin } from 'rxjs';
 import { CommonService } from 'src/app/shared/service/common.service';
 import { ProjectService } from '../service/project.service';
+import { UserService } from '../user/service/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
@@ -34,6 +35,7 @@ export class PostDetailsComponent {
   isReqVisible = false;
   isTagsVisible = false;
   isRateVisible = false;
+  isReviewsVisible = false;
 
   documentationURL: SafeHtml = '';
 
@@ -49,8 +51,7 @@ export class PostDetailsComponent {
   averageRating: number = 0;
   totalRatings: number = 0;
 
-  constructor(private route: ActivatedRoute, private projectService: ProjectService, private snackBar: MatSnackBar,
-    private commonService: CommonService, private location: Location, private sanitizer: DomSanitizer) { }
+  constructor(private route: ActivatedRoute, private projectService: ProjectService, private userService: UserService, private snackBar: MatSnackBar, private commonService: CommonService, private location: Location, private sanitizer: DomSanitizer) { }
 
   ngOnInit() {
     this.getAllProjectCategory();
@@ -92,6 +93,7 @@ export class PostDetailsComponent {
     return parseFloat(this.averageRating.toFixed(2));
   }
 
+
   handleRatingSelected(rating: number) {
     this.selectedRating = rating;
   }
@@ -132,6 +134,10 @@ export class PostDetailsComponent {
 
   toggleCardContent() {
     this.isContentVisible = !this.isContentVisible;
+  }
+
+  toggleReviewsContent() {
+    this.isReviewsVisible = !this.isReviewsVisible;
   }
 
   toggleRateContent() {

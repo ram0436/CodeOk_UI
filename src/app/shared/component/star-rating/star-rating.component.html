@@ -8,13 +8,13 @@
     &#9733;
   </span>
 </div> -->
-<mat-icon
+<span
   *ngFor="let icon of maxRatingArr; let index = index"
   (mouseenter)="HandleMouseEnter(index)"
   (mouseleave)="HandleMouseLeave()"
   (click)="Rating(index)"
-  class="star"
+  class="star material-icons-outlined"
   [ngClass]="{ checked: selectedStar > index }"
 >
-  star
-</mat-icon>
+  {{ selectedStar > index ? "star" : "star_outline" }}
+</span>

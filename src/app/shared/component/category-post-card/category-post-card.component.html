@@ -149,11 +149,16 @@
               <div class="star-ratings">
                 <app-star-rating
                   [readOnly]="true"
-                  [allStarsChecked]="true"
+                  [readOnly]="true"
+                  [selectedStar]="
+                    ratingsMap.get(postCard.tableRefGuid)?.averageRating || 0
+                  "
                 ></app-star-rating>
               </div>
               <span class="star-rating-count"
-                >({{ postCard.ratingCount }})</span
+                >({{
+                  ratingsMap.get(postCard.tableRefGuid)?.totalRatings || 0
+                }})</span
               >
             </div>
             <!-- <div class="sales">1.7k Sales</div> -->
