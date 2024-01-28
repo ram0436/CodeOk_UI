@@ -973,3 +973,11 @@ header{
 .sales-enquiry-menu{
     margin-left: 270px;
 }
+
+.landline-icon{
+    height: 50px;
+    position: absolute;
+    width: 35px;
+    right: 110px;
+    top: -2px;
+}

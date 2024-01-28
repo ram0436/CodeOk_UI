@@ -11,7 +11,7 @@ import { FurnitureType } from '../../enum/FurnitureType';
 import { MatIconModule } from '@angular/material/icon';
 import { SportType } from '../../enum/SportType';
 import { CommonService } from '../../service/common.service';
-import { SalesEnquiryComponent } from '../../sales-enquiry/sales-enquiry.component';
+import { SalesEnquiryComponent } from '../sales-enquiry/sales-enquiry.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
