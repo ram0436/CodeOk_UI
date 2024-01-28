@@ -972,6 +972,11 @@ header{
 
 .sales-enquiry-menu{
     margin-left: 270px;
+    cursor: pointer;
+}
+
+.sales-enquiry-li{
+    cursor: auto !important;
 }
 
 .landline-icon{
