@@ -1,0 +1,109 @@
+<mat-card class="mat-elevation-z12">
+  <mat-card-title style="text-align: center">Sales Enquiry</mat-card-title>
+  <span class="material-icons-outlined close-icon" (click)="closeMatDialog()">
+    close
+  </span>
+  <mat-card-content>
+    <div class="customer-section">
+      <h4>Are You</h4>
+      <div class="customer-details">
+        <mat-chip-listbox [(ngModel)]="selectedCustomerType">
+          <ng-container *ngFor="let type of customerTypes; let i = index">
+            <mat-chip-option>
+              {{ type }}
+            </mat-chip-option>
+          </ng-container>
+        </mat-chip-listbox>
+      </div>
+    </div>
+    <div class="enquiry-section">
+      <h4>Enquiry Type</h4>
+      <div class="enquiry-details">
+        <mat-chip-listbox [(ngModel)]="selectedEnquiryType">
+          <ng-container *ngFor="let type of enquiryTypes; let i = index">
+            <mat-chip-option>
+              {{ type }}
+            </mat-chip-option>
+          </ng-container>
+        </mat-chip-listbox>
+      </div>
+    </div>
+    <div class="country-select">
+      <mat-form-field class="country-select-field">
+        <mat-label>Select Country</mat-label>
+        <mat-select matNativeControl required [(ngModel)]="selectedCountry">
+          <mat-option *ngFor="let country of countries" [value]="country">
+            {{ country.countryName }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Enter name"
+        type="text"
+        name="firstName"
+        [(ngModel)]="firstName"
+      />
+      <mat-icon matSuffix>person</mat-icon>
+    </mat-form-field>
+    <mat-form-field>
+      <input
+        matInput
+        placeholder="Enter email"
+        type="text"
+        name="email"
+        [(ngModel)]="email"
+      />
+      <!-- (input)="validFirstNameMessage = !validateName()" -->
+      <mat-icon matSuffix>mail</mat-icon>
+    </mat-form-field>
+    <p class="failure-message" *ngIf="validEmailMessage">
+      <span class="material-icons-outlined"> report </span>
+      Email should have format like xyz@gmail.com*
+    </p>
+    <mat-form-field>
+      <span matPrefix class="country-code">{{
+        selectedCountry.countryCode
+      }}</span>
+      <input
+        matInput
+        placeholder="Enter 10 digit mobile."
+        name="phoneNumber"
+        [(ngModel)]="phoneNumber"
+        (input)="validatePhoneNumber()"
+      />
+      <!-- (input)="validPhoneNumberMessage = !validatePhoneNumber()" -->
+      <mat-icon matSuffix>phone</mat-icon>
+    </mat-form-field>
+    <p class="failure-message" *ngIf="validPhoneNumberMessage">
+      <span class="material-icons-outlined"> report </span>
+      Phone number should consist of only numbers*
+    </p>
+    <p class="failure-message" *ngIf="phoneNumberErrorMessage">
+      <span class="material-icons-outlined"> report </span>
+      Please enter a valid 10-digit mobile number*
+    </p>
+    <mat-form-field>
+      <mat-label>Message</mat-label>
+      <textarea
+        matInput
+        placeholder="Message"
+        type="text"
+        name="message"
+        [(ngModel)]="message"
+        rows="3"
+      ></textarea>
+      <!-- <mat-icon matSuffix>receipt</mat-icon> -->
+    </mat-form-field>
+    <button
+      mat-raised-button
+      class="login-button"
+      (click)="submitSalesEnquiry()"
+    >
+      Submit Enquiry
+    </button>
+  </mat-card-content>
+</mat-card>
+<!-- </div> -->

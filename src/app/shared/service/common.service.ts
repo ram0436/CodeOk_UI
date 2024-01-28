@@ -30,7 +30,7 @@ export class CommonService {
   }
 
   getVersionByTechnologyId(id: number) {
-    return this.http.get(`${this.BaseURL}Common/GetVersionByTechnologyId?technologyId=${id}`)
+    return this.http.get(`${this.BaseURL}Common/SalesEnquiry=${id}`)
   }
 
   setData(data: any) {
@@ -39,5 +39,9 @@ export class CommonService {
 
   getData() {
     return this.dataSubject.asObservable();
+  }
+
+  submitSalesEnquiry(payload: any) {
+    return this.http.post(`${this.BaseURL}SalesEnquiry`, payload)
   }
 }
