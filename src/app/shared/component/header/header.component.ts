@@ -11,6 +11,7 @@ import { FurnitureType } from '../../enum/FurnitureType';
 import { MatIconModule } from '@angular/material/icon';
 import { SportType } from '../../enum/SportType';
 import { CommonService } from '../../service/common.service';
+import { SalesEnquiryComponent } from '../../sales-enquiry/sales-enquiry.component';
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
@@ -150,6 +151,18 @@ export class HeaderComponent implements OnInit {
     this.dialogRef.afterClosed().subscribe(result => {
       this.isUserLogedIn = false;
     });
+  }
+  openSalesEnquiryModal() {
+
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+
+    this.dialogRef = this.dialog.open(SalesEnquiryComponent, { width: '500px' });
+
+    // this.dialogRef.afterClosed().subscribe(result => {
+    //   this.isUserLogedIn = false;
+    // });
   }
   logout() {
     if (localStorage.getItem("authToken") != null) {
