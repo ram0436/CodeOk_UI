@@ -30,7 +30,7 @@ export class CommonService {
   }
 
   getVersionByTechnologyId(id: number) {
-    return this.http.get(`${this.BaseURL}Common/SalesEnquiry=${id}`)
+    return this.http.get(`${this.BaseURL}Common/GetVersionByTechnologyId?technologyId=${id}`)
   }
 
   setData(data: any) {

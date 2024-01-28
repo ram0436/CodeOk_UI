@@ -1,9 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Router } from '@angular/router';
-import { CustomerType } from '../enum/CustomerType';
-import { EnquiryType } from '../enum/EnquiryType';
-import { CommonService } from '../service/common.service';
+import { CustomerType } from '../../enum/CustomerType';
+import { EnquiryType } from '../../enum/EnquiryType';
+import { CommonService } from '../../service/common.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
 

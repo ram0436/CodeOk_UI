@@ -19,7 +19,7 @@ import { StarRatingComponent } from './component/star-rating/star-rating.compone
 import { DashboardPostCardComponent } from './component/dashboard-post-card/dashboard-post-card.component';
 import { CategoryPostCardComponent } from './component/category-post-card/category-post-card.component';
 import { PricingPlansComponent } from './component/pricing-plans/pricing-plans.component';
-import { SalesEnquiryComponent } from './sales-enquiry/sales-enquiry.component';
+import { SalesEnquiryComponent } from './component/sales-enquiry/sales-enquiry.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatSelectModule} from '@angular/material/select';
