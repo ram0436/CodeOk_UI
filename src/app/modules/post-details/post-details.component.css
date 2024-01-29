@@ -561,6 +561,23 @@ input{
     outline: none;
 }
 
-.rate-btn:hover{
+.download-btn{
+    margin-top: 10px !important;
+    background-color: #141414;
+    color: #fff;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    height: 45px;
+    line-height: 43px;
+    border-radius: 6px;
+    margin: 0 4px;
+    padding: 0 16px;
+    width: 98%;
+    border: none;
+    outline: none;
+}
+
+.rate-btn:hover, .download-btn:hover{
     background-color: orangered;
 }
