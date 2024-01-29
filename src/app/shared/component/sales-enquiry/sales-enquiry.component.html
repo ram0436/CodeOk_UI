@@ -5,7 +5,7 @@
   </span>
   <mat-card-content>
     <div class="customer-section">
-      <h4>Are You</h4>
+      <h5>Are You</h5>
       <div class="customer-details">
         <mat-chip-listbox [(ngModel)]="selectedCustomerType">
           <ng-container *ngFor="let type of customerTypes; let i = index">
@@ -17,7 +17,7 @@
       </div>
     </div>
     <div class="enquiry-section">
-      <h4>Enquiry Type</h4>
+      <h5>Enquiry Type</h5>
       <div class="enquiry-details">
         <mat-chip-listbox [(ngModel)]="selectedEnquiryType">
           <ng-container *ngFor="let type of enquiryTypes; let i = index">
