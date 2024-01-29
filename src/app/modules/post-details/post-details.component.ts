@@ -36,6 +36,7 @@ export class PostDetailsComponent {
   isTagsVisible = false;
   isRateVisible = false;
   isReviewsVisible = false;
+  isDownloadVisible = false;
 
   documentationURL: SafeHtml = '';
 
@@ -132,6 +133,10 @@ export class PostDetailsComponent {
     return tagList?.map(tag => tag.name).join(', ');
   }
 
+  toggleDownloadContent() {
+    this.isDownloadVisible = !this.isDownloadVisible;
+  }
+
   toggleCardContent() {
     this.isContentVisible = !this.isContentVisible;
   }
@@ -166,6 +171,15 @@ export class PostDetailsComponent {
       this.isLoading = false;
     })
   }
+
+  downloadCode() {
+    if (this.postDetails?.projectRepositoryList && this.postDetails.projectRepositoryList.length > 0) {
+      const repositoryLink = this.postDetails.projectRepositoryList[0].codeRepositoryURL;
+      window.open(repositoryLink, '_blank');
+    }
+  }
+
+
   formatDate(date: any): any {
     const inputDate: Date = new Date(date);
     const daysAgo = moment(this.currentDate).diff(inputDate, 'days');
