@@ -101,7 +101,10 @@
             </div> -->
           </div>
           <div class="post-item-content">
-            <div class="post-item-price">
+            <div class="post-item-price" *ngIf="postCard.serviceTypeId === 1">
+              Free
+            </div>
+            <div class="post-item-price" *ngIf="postCard.serviceTypeId !== 1">
               <span class="dollar">$</span>{{ postCard.price }}
             </div>
             <h3 class="post-item-name">

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -34,4 +34,15 @@ export class UserService {
   getData() {
     return this.dataSubject.asObservable();
   }
+
+  applyForVacancy(vacancyData: any): Observable<any> {
+    return this.httpClient.post<any>(`https://codeokk.azurewebsites.net/api/User/ApplyForVacancy`, vacancyData);
+  }
+
+  uploadResume(formData: any){
+
+    return this.httpClient.post(`https://codeokk.azurewebsites.net/api/User/uploadResume`, formData);
+  }
+
 }
+

@@ -532,6 +532,12 @@ input{
     color: #337ab7;
 }
 
+.see-all-ratings{
+    color: #337ab7;
+    cursor: pointer;
+}
+
+
 .user-name{
     margin-top: 8px;
 }

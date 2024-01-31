@@ -128,8 +128,10 @@ button {
     width: 30px;
 }
 
-.add {
-    margin-left: 20px;
+.add-photo {
+    text-align: center;
+    width: 100% !important;
+    display: block;
 }
 
 .upld {
@@ -142,7 +144,6 @@ button {
     cursor: pointer;
     background-size: cover;
     background-repeat: no-repeat;
-    /* background-position: center; */
     height: 100%;
 }
 

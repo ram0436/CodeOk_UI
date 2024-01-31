@@ -167,14 +167,18 @@
               <p class="date">{{ formatDate(postDetails?.createdOn) }}</p>
             </div>
             <div class="flex-row">
-              <p class="bold">{{ averageRating.toFixed(2) }}</p>
+              <p class="bold">{{ averageRating.toFixed(1) }}</p>
               <div class="ratings-stars">
                 <app-star-rating
                   [readOnly]="true"
                   [selectedStar]="parseAverageRating()"
                 ></app-star-rating>
               </div>
-              <p class="total-ratings bold">{{ totalRatings }} Total Ratings</p>
+              <p class="total-ratings bold">{{ totalRatings }} Ratings</p>
+              <p class="dash">|</p>
+              <p class="see-all-ratings bold" (click)="goToCustomerReviews()">
+                See All Ratings
+              </p>
             </div>
           </mat-card-content>
         </mat-card>
@@ -277,7 +281,7 @@
             </p>
           </mat-card-content>
         </mat-card>
-        <mat-card class="mt-10 border-1 bg-gray-card">
+        <mat-card class="mt-10 border-1 bg-gray-card" id="customerReviews">
           <mat-card-title class="title-flex">
             Tags
             <span class="material-icons-outlined" (click)="toggleTagsContent()">

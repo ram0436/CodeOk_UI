@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -33,4 +34,14 @@ export class ProjectService {
   ProjectRatingData(tableRefGuid: any){
     return this.http.get(`${this.BaseURL}ProjectRatingReview/GetProjectRatingReviewByProjectTableRefGuid?projectTabRefGuid=`+tableRefGuid);
   }
+
+  applyForVacancy(vacancyData: any): Observable<any> {
+    return this.http.post<any>(`https://codeokk.azurewebsites.net/api/User/ApplyForVacancy`, vacancyData);
+  }
+
+  uploadResume(formData: any){
+
+    return this.http.post(`https://codeokk.azurewebsites.net/api/User/uploadResume`, formData);
+  }
+
 }

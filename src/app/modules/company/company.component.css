@@ -1,0 +1,34 @@
+.adds-conrainer{
+    max-width: 1400px;
+    padding: 1rem;
+    margin: auto;
+}
+.cursor{
+    cursor: pointer;
+}
+
+.content-container p{
+    font-size: 16px;
+    color: gray;
+}
+
+.content-container h2{
+    font-size: 24px;
+}
+
+ul{
+    /* padding: 0; */
+    margin: 0;
+}
+
+ul li{
+    text-decoration:  none;
+    color: rgb(75, 75, 75);
+}
+
+@media (max-width: 750px){
+    .adds-conrainer{
+        margin-top: 175px;
+        padding: 1rem 1.5rem;
+    }
+}
