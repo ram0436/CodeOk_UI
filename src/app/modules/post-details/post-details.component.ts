@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl, SafeHtml } from '@angular/platform-browser';
 import * as moment from 'moment';
@@ -52,7 +52,7 @@ export class PostDetailsComponent {
   averageRating: number = 0;
   totalRatings: number = 0;
 
-  constructor(private route: ActivatedRoute, private projectService: ProjectService, private userService: UserService, private snackBar: MatSnackBar, private commonService: CommonService, private location: Location, private sanitizer: DomSanitizer) { }
+  constructor(private route: ActivatedRoute, private projectService: ProjectService, private userService: UserService, private snackBar: MatSnackBar, private commonService: CommonService, private location: Location, private sanitizer: DomSanitizer, private el: ElementRef) { }
 
   ngOnInit() {
     this.getAllProjectCategory();
@@ -68,6 +68,14 @@ export class PostDetailsComponent {
       this.getPostDetails(tableRefGuid);
     }
     this.getRatingData(tableRefGuid);
+  }
+
+  goToCustomerReviews() {
+    const customerReviewsElement = this.el.nativeElement.querySelector('#customerReviews');
+    this.isReviewsVisible = true;
+    if (customerReviewsElement) {
+      customerReviewsElement.scrollIntoView();
+    }
   }
 
   getRatingData(tableRefGuid: any){
@@ -91,7 +99,7 @@ export class PostDetailsComponent {
   }
 
   parseAverageRating(): number {
-    return parseFloat(this.averageRating.toFixed(2));
+    return parseFloat(this.averageRating.toFixed(1));
   }
 
 

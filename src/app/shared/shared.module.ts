@@ -33,7 +33,7 @@ import {MatSelectModule} from '@angular/material/select';
     DashboardPostCardComponent,
     CategoryPostCardComponent,
     PricingPlansComponent,
-    SalesEnquiryComponent
+    SalesEnquiryComponent,
   ],
   imports: [
     CommonModule,

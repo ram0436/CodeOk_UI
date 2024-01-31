@@ -29,6 +29,9 @@ import { PostMenuComponent } from './modules/post-menu/post-menu.component';
 import { ProjectPostsComponent } from './modules/project-posts/project-posts.component';
 import { ProjectFilterComponent } from './modules/project-filter/project-filter.component';
 import { PostDetailsComponent } from './modules/post-details/post-details.component';
+import { CompanyComponent } from './modules/company/company.component';
+import { MatTabsModule } from '@angular/material/tabs';
+import { CareerComponent } from './modules/career/career.component';
 
 
 @NgModule({
@@ -40,6 +43,8 @@ import { PostDetailsComponent } from './modules/post-details/post-details.compon
     ProjectPostsComponent,
     ProjectFilterComponent,
     PostDetailsComponent,
+    CompanyComponent,
+    CareerComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +68,7 @@ import { PostDetailsComponent } from './modules/post-details/post-details.compon
     MatPaginatorModule,
     MatSliderModule,
     MatCheckboxModule,
+    MatTabsModule
   ],
   providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
   { provide: LocationStrategy, useClass: HashLocationStrategy }],

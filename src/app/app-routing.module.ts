@@ -7,6 +7,8 @@ import { AddPostComponent } from './modules/add-post/add-post.component';
 import { ProjectPostsComponent } from './modules/project-posts/project-posts.component';
 import { PostDetailsComponent } from './modules/post-details/post-details.component';
 import { PricingPlansComponent } from './shared/component/pricing-plans/pricing-plans.component';
+import { CompanyComponent } from './modules/company/company.component';
+import { CareerComponent } from './modules/career/career.component';
 
 
 const routes: Routes = [
@@ -17,6 +19,8 @@ const routes: Routes = [
   { path : 'project-posts', component : ProjectPostsComponent},
   { path : 'post-details/:id', component : PostDetailsComponent},
   { path: 'pricing-plans', component: PricingPlansComponent },
+  { path: 'company', component: CompanyComponent },
+  { path: 'career', component: CareerComponent }
 ];
 
 @NgModule({
