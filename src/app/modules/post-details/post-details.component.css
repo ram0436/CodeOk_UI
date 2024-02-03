@@ -532,11 +532,14 @@ input{
     color: #337ab7;
 }
 
-.see-all-ratings{
+.see-all-ratings, .buy-code{
     color: #337ab7;
     cursor: pointer;
 }
 
+.buy-code{
+    margin-left: 10px;
+}
 
 .user-name{
     margin-top: 8px;
@@ -567,7 +570,7 @@ input{
     outline: none;
 }
 
-.download-btn{
+.download-btn, .buy-btn{
     margin-top: 10px !important;
     background-color: #141414;
     color: #fff;
@@ -584,6 +587,6 @@ input{
     outline: none;
 }
 
-.rate-btn:hover, .download-btn:hover{
+.rate-btn:hover, .download-btn:hover, .buy-btn:hover{
     background-color: orangered;
 }

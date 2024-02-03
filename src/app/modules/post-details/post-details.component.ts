@@ -9,6 +9,8 @@ import { ProjectService } from '../service/project.service';
 import { UserService } from '../user/service/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
+declare var Razorpay: any;
+
 @Component({
   selector: 'app-post-details',
   templateUrl: './post-details.component.html',
@@ -68,6 +70,35 @@ export class PostDetailsComponent {
       this.getPostDetails(tableRefGuid);
     }
     this.getRatingData(tableRefGuid);
+  }
+
+  payNow() {
+    const RozarpayOptions = {
+      description: 'Razorpay',
+      currency: 'INR',
+      amount: 100000,
+      name: 'Ram',
+      key: 'rzp_test_9Jens2a59xJEKP',
+      image: 'https://cfdblob.blob.core.windows.net/logo/CodeOkk_logo.gif',
+      theme: {
+        color: '#6466e3'
+      },
+      modal: {
+        ondismiss:  () => {
+          console.log('dismissed')
+        }
+      }
+    }
+
+    const successCallback = (paymentid: any) => {
+      console.log('Payment Successful! Payment ID:', paymentid);
+    }
+
+    const failureCallback = (e: any) => {
+      console.log(e);
+    }
+
+    Razorpay.open(RozarpayOptions,successCallback, failureCallback)
   }
 
   goToCustomerReviews() {
