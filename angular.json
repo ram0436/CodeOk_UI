@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Claxified": {
+    "CodeOkk": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/claxified",
+            "outputPath": "dist/CodeOkk",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -46,8 +46,8 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "10kb",
-                  "maximumError": "10kb"
+                  "maximumWarning": "20kb",
+                  "maximumError": "20kb"
                 }
               ],
               "outputHashing": "all"
@@ -67,10 +67,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "Claxified:build:production"
+              "browserTarget": "CodeOkk:build:production"
             },
             "development": {
-              "browserTarget": "Claxified:build:development"
+              "browserTarget": "CodeOkk:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -78,7 +78,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Claxified:build"
+            "browserTarget": "CodeOkk:build"
           }
         },
         "test": {
