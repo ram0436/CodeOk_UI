@@ -3,6 +3,59 @@
     padding-top: 40px;
 }
 
+.top-content{
+    background-color: rgb(245, 245, 245);
+    padding: 6px 16px 0px 16px;
+}
+
+.color-green{
+    color: #1ab744 !important;
+}
+
+.sp-bw{
+    margin-top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.sp-bw p{
+    font-size: 20px;
+}
+
+.summary{
+    color: gray;
+}
+
+.overall-price{
+    color: orangered;
+    font-weight: bold;
+}
+
+.line-break{
+    margin: 5px 0 !important;
+}
+
+.bottom-content{
+    padding: 0px 16px 16px 16px;
+}
+
+.lg{
+    font-size: 18px;
+}
+
+.padding-0{
+    padding: 0 !important;
+}
+
+.pbot-5{
+    padding-bottom: 5px !important;
+}
+
+.mbot-5{
+    margin-bottom: 5px !important;
+}
+
 .col-7 {
     width: 63%;
 }

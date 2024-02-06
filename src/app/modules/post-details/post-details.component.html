@@ -40,132 +40,15 @@
         </mat-card>
       </div>
       <div class="col-5">
-        <mat-card class="border-1">
-          <div class="title-flex services-title bg-gray-card">
-            <span class="services-caption"
-              >Popular Services from HTML Website Templates Experts</span
-            >
-          </div>
-          <mat-card-content class="bg-gray-card">
-            <label class="cart-service cart-service_support checkbox">
-              <input
-                type="checkbox"
-                name=""
-                id=""
-                class="cart-service-checkbox checkbox-input"
-              />
-              <i class="cart-service-checkbox-icon checkbox-icon"></i>
-              <span class="cart-service-label checkbox-label"
-                >Get 6 more months of support and save $15</span
-              >
-              <span class="cart-service-prices">
-                <strong class="cart-service-price cart-service-price_original"
-                  >$27</strong
-                >
-                <strong class="cart-service-price cart-service-price_discount"
-                  >$12</strong
-                >
-              </span>
-            </label>
-            <label class="cart-service cart-service_support checkbox">
-              <input
-                type="checkbox"
-                name=""
-                id=""
-                class="cart-service-checkbox checkbox-input"
-              />
-              <i class="cart-service-checkbox-icon checkbox-icon"></i>
-              <span class="cart-service-label checkbox-label"
-                >Must-Have Launch Pack</span
-              >
-              <span class="custom-tooltip cart-service-tooltip">
-                <span class="custom-tooltip-button">
-                  <span
-                    class="material-icons-outlined cart-service-tooltip-icon"
-                  >
-                    report
-                  </span>
-                </span>
-              </span>
-              <span class="cart-service-prices">
-                <strong class="cart-service-price cart-service-price_original"
-                  >$27</strong
-                >
-                <strong class="cart-service-price cart-service-price_discount"
-                  >$12</strong
-                >
-              </span>
-            </label>
-            <label class="cart-service cart-service_support checkbox">
-              <input
-                type="checkbox"
-                name=""
-                id=""
-                class="cart-service-checkbox checkbox-input"
-              />
-              <i class="cart-service-checkbox-icon checkbox-icon"></i>
-              <span class="cart-service-label checkbox-label"
-                >Conversion to WordPress with Page Builder</span
-              >
-              <span class="custom-tooltip cart-service-tooltip">
-                <span class="custom-tooltip-button">
-                  <span
-                    class="material-icons-outlined cart-service-tooltip-icon"
-                  >
-                    report
-                  </span>
-                </span>
-              </span>
-              <span class="cart-service-prices">
-                <strong class="cart-service-price cart-service-price_original"
-                  >$27</strong
-                >
-                <strong class="cart-service-price cart-service-price_discount"
-                  >$12</strong
-                >
-              </span>
-            </label>
-            <label class="cart-service cart-service_support checkbox">
-              <input
-                type="checkbox"
-                name=""
-                id=""
-                class="cart-service-checkbox checkbox-input"
-              />
-              <i class="cart-service-checkbox-icon checkbox-icon"></i>
-              <span class="cart-service-label checkbox-label"
-                >Classic Website Customization Service</span
-              >
-              <span class="custom-tooltip cart-service-tooltip">
-                <span class="custom-tooltip-button">
-                  <span
-                    class="material-icons-outlined cart-service-tooltip-icon"
-                  >
-                    report
-                  </span>
-                </span>
-              </span>
-              <span class="cart-service-prices">
-                <strong class="cart-service-price cart-service-price_original"
-                  >$27</strong
-                >
-                <strong class="cart-service-price cart-service-price_discount"
-                  >$12</strong
-                >
-              </span>
-            </label>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="mt-10 border-1 bg-gray-card">
-          <mat-card-title class="post-price"
+        <mat-card class="border-1 bg-gray-card">
+          <mat-card-content class="description pbot-5">
+            <!-- <mat-card-title class="post-price"
             ><span class="dollar">$</span
             >{{ postDetails?.price }}</mat-card-title
-          >
-          <mat-card-content class="description">
-            <p style="margin: 0">{{ postDetails?.name }}</p>
-            <div class="loc-date">
+            > -->
+            <!-- <div class="loc-date">
               <p class="date">{{ formatDate(postDetails?.createdOn) }}</p>
-            </div>
+            </div> -->
             <div class="flex-row">
               <p class="bold">{{ averageRating.toFixed(1) }}</p>
               <div class="ratings-stars">
@@ -180,12 +63,68 @@
                 See All Ratings
               </p>
             </div>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="border-1 mt-10">
+          <mat-card-content class="bg-gray-card padding-0">
+            <div class="top-content">
+              <ng-container *ngFor="let item of serviceTypeData[0]?.items; let i = index">
+                <label class="cart-service cart-service_support checkbox">
+                  <input
+                    type="radio"
+                    name="licenseType"
+                    class="cart-service-checkbox checkbox-input"
+                    (change)="onRadioChange(item)"
+                    [checked]="item.checked"
+                  />
+                  <i class="cart-service-checkbox-icon checkbox-icon"></i>
+                  <span class="cart-service-label checkbox-label lg">{{ item.label }}</span>
+                  <span class="custom-tooltip cart-service-tooltip">
+                    <span class="custom-tooltip-button">
+                      <span class="material-icons-outlined cart-service-tooltip-icon color-green" (click)="openLicenseModal(item.label); $event.stopPropagation(); $event.preventDefault()">
+                        help_outline
+                      </span>
+                    </span>
+                  </span>
+                  <span *ngIf="item.price" class="cart-service-prices lg">
+                    <strong class="cart-service-price cart-service-price_discount">${{ item.price }}</strong>
+                  </span>
+                </label>
+              </ng-container>
+            </div>
+            
+          <div class="bottom-content">
+            <ng-container *ngFor="let item of serviceTypeData[postDetails.serviceTypeId]?.items">
+              <label class="cart-service cart-service_support checkbox">
+                <input 
+                type="checkbox" 
+                name="" 
+                id="" 
+                class="cart-service-checkbox checkbox-input" 
+                [checked]="item.checked" 
+                (change)="onCheckboxChange(item)"
+                [disabled]="postDetails.serviceTypeId === 4"
+                />
+                <i class="cart-service-checkbox-icon checkbox-icon"></i>
+                <span class="cart-service-label checkbox-label">{{ item.label }}</span>
+                <span *ngIf="item.price" class="cart-service-prices">
+                  <strong class="cart-service-price cart-service-price_discount">${{ item.price }}</strong>
+                </span>
+              </label>
+            </ng-container>
+            <hr class="line-break">
+            <div class="sp-bw">
+              <p class="summary">Summary:</p>
+              <p class="overall-price">${{ checkboxPrice + radioPrice }}</p>
+            </div>
             <button class="buy-btn" (click)="payNow()">Buy Code</button>
+          </div>
           </mat-card-content>
         </mat-card>
         <mat-card class="mt-10 border-1 bg-gray-card">
           <mat-card-title>Overview</mat-card-title>
           <mat-card-content>
+            <p style="margin: 0" class="mbot-5">{{ postDetails?.name }}</p>
             <p class="description-content">
               <span>Project category :</span>
               {{ getSingleValue(postDetails?.projectCategoryId, "category") }}
@@ -382,5 +321,7 @@
       </div>
     </div>
   </div>
-  <div></div>
+
+  
 </div>
+

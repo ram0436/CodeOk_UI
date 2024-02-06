@@ -1,0 +1,41 @@
+
+<mat-card class="mat-elevation-z12" *ngIf="singleLicense">
+    <mat-card-title style="text-align: center" class="license-title">Single App License</mat-card-title>
+    <span class="material-icons-outlined close-icon" (click)="closeMatDialog()">
+      close
+    </span>
+    <mat-card-content>
+        <div class="pd-16 license-content">
+            <p>With the Single app license you can make use of the purchased product for personal or commercial uses with no need to pay extra fees or charges except for the initial purchase price.</p>
+            <p>You are allowed to use the product for one project of your own or on behalf of your customer (personal, commercial, non profit).</p>
+            <p>You or your client cannot resale the purchased item again not on its own neither as a part of a project.</p>
+            <p>The purchased items under this license type must not be resold or redistributed "AS IS" or as a part of a bundle of files.</p>
+            <p>You can use this license for:</p>
+            <ul style="list-style-type: disc;">
+            <li>Integrate the product in one app.</li>
+            <li>You can distribute the product only as binary (distributing the source code is forbidden).</li>
+            <li>You can make a commercial use of the product.</li>
+            <li>You can further develop or edit the code</li>
+            </ul>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="mat-elevation-z12" *ngIf="multipleLicense">
+    <mat-card-title style="text-align: center" class="license-title">Multiple App License</mat-card-title>
+    <span class="material-icons-outlined close-icon" (click)="closeMatDialog()">
+      close
+    </span>
+    <mat-card-content>
+        <div class="pd-16 license-content">
+            <p>The multiple app license allows you to make a personal and commercial use for a project that will be sold with no need to pay extra fees or charges except for the initial purchase price.</p>
+            <p>The purchased items under this license type must not be resold or redistributed "AS IS".</p>
+            <p>You can use this license for:</p>
+            <ul style="list-style-type: disc;">
+            <li>You can integrate the product in an unlimited number of projects</li>
+            <li>You can redistribute or sublicense it in a project.</li>
+            <li>You can further develop or edit the code</li>
+            </ul>
+        </div>
+    </mat-card-content>
+</mat-card>

@@ -1,5 +1,6 @@
 import { Location } from '@angular/common';
 import { Component, ElementRef } from '@angular/core';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { DomSanitizer, SafeResourceUrl, SafeHtml } from '@angular/platform-browser';
 import * as moment from 'moment';
@@ -8,6 +9,7 @@ import { CommonService } from 'src/app/shared/service/common.service';
 import { ProjectService } from '../service/project.service';
 import { UserService } from '../user/service/user.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { AppLicenseComponent } from 'src/app/shared/component/app-license/app-license.component';
 
 declare var Razorpay: any;
 
@@ -17,6 +19,8 @@ declare var Razorpay: any;
   styleUrls: ['./post-details.component.css']
 })
 export class PostDetailsComponent {
+
+  dialogRef: MatDialogRef<any> | null = null;
 
   postDetails: any;
   post: any;
@@ -54,7 +58,56 @@ export class PostDetailsComponent {
   averageRating: number = 0;
   totalRatings: number = 0;
 
-  constructor(private route: ActivatedRoute, private projectService: ProjectService, private userService: UserService, private snackBar: MatSnackBar, private commonService: CommonService, private location: Location, private sanitizer: DomSanitizer, private el: ElementRef) { }
+  serviceTypeData: any = {
+    0: {
+      items: [
+        { label: 'Single App License', price: '100', checked: true },
+        { label: 'Multiple App License', price: '300', checked: false }
+      ]
+    },
+    1: {
+      items: [
+        { label: 'Include one time initial project setup cost', price: '5', checked: false },
+        { label: 'Include future project updates', price: '10', checked: false },
+        { label: 'Include 3 months customer support', price: '10', checked: false },
+        { label: 'Extend customer support for 6 months', price: '15', checked: false },
+        { label: 'Extend customer support for 12 months', price: '20', checked: false }
+      ]
+    },
+    2: {
+      items: [
+        { label: 'Include one time initial project setup cost', price: '5', checked: false},
+        { label: 'Include future project updates', price: '10', checked: false },
+        { label: 'Include 3 months customer support', price: '10', checked: false },
+        { label: 'Extend customer support for 6 months', price: '15', checked: false },
+        { label: 'Extend customer support for 12 months', price: '20', checked: false }
+      ]
+    },
+    3: {
+      items: [
+        { label: 'Include one time initial project setup cost', price: '25', checked: false },
+        { label: 'Include future project updates', price: '25', checked: false },
+        { label: 'Include 3 months customer support', price: '25', checked: false },
+        { label: 'Extend customer support for 6 months', price: '35', checked: false },
+        { label: 'Extend customer support for 12 months', price: '45', checked: false }
+      ]
+    },
+    4: {
+      items: [
+        { label: 'Code quality assured by CodeOKK', checked: true },
+        { label: 'Project setup cost included', checked: true },
+        { label: 'Future project updates Included', checked: true },
+        { label: 'Customer support included', checked: true },
+        { label: 'Technical support included', checked: true },
+        { label: 'AMC required', checked: true }
+      ]
+    }
+  };
+
+  radioPrice: number = 0;
+  checkboxPrice: number = 0;
+
+  constructor(private dialog: MatDialog, private route: ActivatedRoute, private projectService: ProjectService, private userService: UserService, private snackBar: MatSnackBar, private commonService: CommonService, private location: Location, private sanitizer: DomSanitizer, private el: ElementRef) { }
 
   ngOnInit() {
     this.getAllProjectCategory();
@@ -70,7 +123,60 @@ export class PostDetailsComponent {
       this.getPostDetails(tableRefGuid);
     }
     this.getRatingData(tableRefGuid);
+    this.calculateTotal()
   }
+
+  onRadioChange(selectedItem: any) {
+
+    this.serviceTypeData[0].items.forEach((item: any) => {
+      item.checked = false;
+      if (item === selectedItem) {
+        this.radioPrice = 0;
+        selectedItem.checked = true;
+      }
+    });
+
+    this.calculateTotal();
+  }
+
+  calculateTotal() {
+
+    this.checkboxPrice = 0;
+
+    this.serviceTypeData[0].items.forEach((item: any) => {
+      if (item.checked){
+        this.radioPrice = parseFloat(item.price);
+      }
+    });
+
+    for (let key = 1; key < Object.keys(this.serviceTypeData).length; key++) {
+      this.serviceTypeData[key].items.forEach((item: any) => {
+        if (item.checked && item.price) {
+          this.checkboxPrice += parseFloat(item.price);
+        }
+      });
+    }
+    
+  }
+
+  onCheckboxChange(item: any) {
+    item.checked = !item.checked;
+  
+    this.calculateTotal();
+  }
+   
+
+  openLicenseModal(selectedLicenseType: string) {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+  
+    this.dialogRef = this.dialog.open(AppLicenseComponent, { 
+      width: '500px',
+      data: { licenseType: selectedLicenseType }
+    });
+  } 
+  
 
   payNow() {
     const RozarpayOptions = {
@@ -85,17 +191,14 @@ export class PostDetailsComponent {
       },
       modal: {
         ondismiss:  () => {
-          console.log('dismissed')
         }
       }
     }
 
     const successCallback = (paymentid: any) => {
-      console.log('Payment Successful! Payment ID:', paymentid);
     }
 
     const failureCallback = (e: any) => {
-      console.log(e);
     }
 
     Razorpay.open(RozarpayOptions,successCallback, failureCallback)
@@ -204,7 +307,7 @@ export class PostDetailsComponent {
     this.projectService.getProjectCodeById(guid).subscribe((res: any) => {
       this.postDetails = res[0];
       this.getVersionsByTechnologyIds(this.postDetails.technologyMappingList);
-      const modifiedIframeString = res[0].documentaionURL.replace('width="853"', 'width="350"').replace('height="480"', 'height="250"');
+      const modifiedIframeString = res[0].documentaionURL.replace('width="853"', 'width="320"').replace('height="480"', 'height="200"');
       this.documentationURL = this.sanitizer.bypassSecurityTrustHtml(modifiedIframeString);
       // this.documentationURL = this.sanitizer.bypassSecurityTrustHtml(res[0].documentaionURL);
       this.isLoading = false;
