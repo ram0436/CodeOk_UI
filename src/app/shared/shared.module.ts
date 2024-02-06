@@ -23,6 +23,7 @@ import { SalesEnquiryComponent } from './component/sales-enquiry/sales-enquiry.c
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatChipsModule } from '@angular/material/chips';
 import {MatSelectModule} from '@angular/material/select';
+import { AppLicenseComponent } from './component/app-license/app-license.component';
 
 @NgModule({
   declarations: [
@@ -34,6 +35,7 @@ import {MatSelectModule} from '@angular/material/select';
     CategoryPostCardComponent,
     PricingPlansComponent,
     SalesEnquiryComponent,
+    AppLicenseComponent,
   ],
   imports: [
     CommonModule,
