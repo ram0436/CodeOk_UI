@@ -307,7 +307,7 @@ export class PostDetailsComponent {
     this.projectService.getProjectCodeById(guid).subscribe((res: any) => {
       this.postDetails = res[0];
       this.getVersionsByTechnologyIds(this.postDetails.technologyMappingList);
-      const modifiedIframeString = res[0].documentaionURL.replace('width="853"', 'width="320"').replace('height="480"', 'height="200"');
+      const modifiedIframeString = res[0].documentaionURL.replace('width="853"', 'width="280"').replace('height="480"', 'height="180"');
       this.documentationURL = this.sanitizer.bypassSecurityTrustHtml(modifiedIframeString);
       // this.documentationURL = this.sanitizer.bypassSecurityTrustHtml(res[0].documentaionURL);
       this.isLoading = false;
