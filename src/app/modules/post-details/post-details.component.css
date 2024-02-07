@@ -583,6 +583,11 @@ input{
 .total-ratings{
     margin-left: 8px;
     color: #337ab7;
+    cursor: pointer;
+}
+
+.margin-t-2{
+    margin-top: 2px;
 }
 
 .see-all-ratings, .buy-code{

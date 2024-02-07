@@ -179,10 +179,13 @@ export class PostDetailsComponent {
   
 
   payNow() {
+
+    const totalAmount = (this.checkboxPrice + this.radioPrice) * 100;
+
     const RozarpayOptions = {
       description: 'Razorpay',
-      currency: 'INR',
-      amount: 100000,
+      currency: 'USD',
+      amount: totalAmount,
       name: 'Ram',
       key: 'rzp_test_9Jens2a59xJEKP',
       image: 'https://cfdblob.blob.core.windows.net/logo/CodeOkk_logo.gif',

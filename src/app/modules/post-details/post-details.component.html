@@ -50,17 +50,17 @@
               <p class="date">{{ formatDate(postDetails?.createdOn) }}</p>
             </div> -->
             <div class="flex-row">
-              <p class="bold">{{ averageRating.toFixed(1) }}</p>
+              <p class="bold margin-t-2">{{ averageRating.toFixed(1) }}</p>
               <div class="ratings-stars">
                 <app-star-rating
                   [readOnly]="true"
                   [selectedStar]="parseAverageRating()"
                 ></app-star-rating>
               </div>
-              <p class="total-ratings bold">{{ totalRatings }} Ratings</p>
-              <p class="dash">|</p>
-              <p class="see-all-ratings bold" (click)="goToCustomerReviews()">
-                See All Ratings
+              <p class="total-ratings bold margin-t-2"  (click)="goToCustomerReviews()">{{ totalRatings }} Ratings</p>
+              <p class="dash margin-t-2">|</p>
+              <p class="see-all-ratings bold margin-t-2" (click)="goToCustomerReviews()">
+                See Customer Reviews
               </p>
             </div>
           </mat-card-content>
@@ -78,31 +78,59 @@
         <mat-card class="border-1 mt-10" *ngIf="postDetails.serviceTypeId !== 1">
           <mat-card-content class="bg-gray-card padding-0">
             <div class="top-content">
-              <ng-container *ngFor="let item of serviceTypeData[0]?.items; let i = index">
+              <ng-container *ngIf="postDetails.serviceTypeId === 4">
                 <label class="cart-service cart-service_support checkbox">
                   <input
                     type="radio"
                     name="licenseType"
                     class="cart-service-checkbox checkbox-input"
-                    (change)="onRadioChange(item)"
-                    [checked]="item.checked"
+                    (change)="onRadioChange(serviceTypeData[0]?.items[0])"
+                    [checked]="serviceTypeData[0]?.items[0].checked"
                   />
                   <i class="cart-service-checkbox-icon checkbox-icon"></i>
-                  <span class="cart-service-label checkbox-label lg">{{ item.label }}</span>
+                  <span class="cart-service-label checkbox-label lg">{{ serviceTypeData[0]?.items[0].label }}</span>
                   <span class="custom-tooltip cart-service-tooltip">
                     <span class="custom-tooltip-button">
-                      <span class="material-icons-outlined cart-service-tooltip-icon color-green" (click)="openLicenseModal(item.label); $event.stopPropagation(); $event.preventDefault()">
+                      <span class="material-icons-outlined cart-service-tooltip-icon color-green" (click)="openLicenseModal(serviceTypeData[0]?.items[0].label); $event.stopPropagation(); $event.preventDefault()">
                         help_outline
                       </span>
                     </span>
                   </span>
-                  <span *ngIf="item.price" class="cart-service-prices lg">
+                  <span *ngIf="serviceTypeData[0]?.items[0].price" class="cart-service-prices lg">
                     <strong class="cart-service-price cart-service-price_discount"><span class="dollar">$</span
-                      >{{ item.price }}</strong>
+                      >{{ serviceTypeData[0]?.items[0].price }}</strong>
                   </span>
                 </label>
               </ng-container>
+              
+              <ng-container *ngIf="postDetails.serviceTypeId !== 4">
+                <ng-container *ngFor="let item of serviceTypeData[0]?.items; let i = index">
+                  <label class="cart-service cart-service_support checkbox">
+                    <input
+                      type="radio"
+                      name="licenseType"
+                      class="cart-service-checkbox checkbox-input"
+                      (change)="onRadioChange(item)"
+                      [checked]="item.checked"
+                    />
+                    <i class="cart-service-checkbox-icon checkbox-icon"></i>
+                    <span class="cart-service-label checkbox-label lg">{{ item.label }}</span>
+                    <span class="custom-tooltip cart-service-tooltip">
+                      <span class="custom-tooltip-button">
+                        <span class="material-icons-outlined cart-service-tooltip-icon color-green" (click)="openLicenseModal(item.label); $event.stopPropagation(); $event.preventDefault()">
+                          help_outline
+                        </span>
+                      </span>
+                    </span>
+                    <span *ngIf="item.price" class="cart-service-prices lg">
+                      <strong class="cart-service-price cart-service-price_discount"><span class="dollar">$</span
+                        >{{ item.price }}</strong>
+                    </span>
+                  </label>
+                </ng-container>
+              </ng-container>
             </div>
+            
             
           <div class="bottom-content">
             <ng-container *ngFor="let item of serviceTypeData[postDetails.serviceTypeId]?.items">
