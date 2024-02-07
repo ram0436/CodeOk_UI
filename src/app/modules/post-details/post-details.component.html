@@ -141,7 +141,7 @@
                 id="" 
                 class="cart-service-checkbox checkbox-input" 
                 [checked]="item.checked" 
-                (change)="onCheckboxChange(item)"
+                (change)="onCheckboxChange(item, postDetails.serviceTypeId)"
                 [disabled]="postDetails.serviceTypeId === 4"
                 />
                 <i class="cart-service-checkbox-icon checkbox-icon"></i>

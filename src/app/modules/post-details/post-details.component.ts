@@ -159,7 +159,16 @@ export class PostDetailsComponent {
     
   }
 
-  onCheckboxChange(item: any) {
+  onCheckboxChange(item: any, serviceTypeId: number) {
+
+    if (item.label === 'Include 3 months customer support' || 
+    item.label === 'Extend customer support for 6 months' || 
+    item.label === 'Extend customer support for 12 months') {
+      this.serviceTypeData[serviceTypeId].items.slice(2).forEach((serviceItem: any) => {
+        serviceItem.checked = false;
+    });
+  }
+  
     item.checked = !item.checked;
   
     this.calculateTotal();
