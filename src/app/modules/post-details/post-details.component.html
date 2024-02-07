@@ -1,5 +1,5 @@
 <div class="container-center bg mpt p-relative">
-  <div class="watch-tutorial" [innerHTML]="documentationURL"></div>
+  <div class="watch-tutorial" [innerHTML]="documentationURL" *ngIf="documentationURL"></div>
 
   <!-- <iframe
       width="350"
@@ -65,7 +65,17 @@
             </div>
           </mat-card-content>
         </mat-card>
-        <mat-card class="border-1 mt-10">
+        <mat-card class="mt-10 border-1 bg-gray-card" *ngIf="postDetails.serviceTypeId === 1">
+          <mat-card-title class="title-flex">
+            Download</mat-card-title
+          >
+          <mat-card-content>
+            <button class="download-btn" (click)="downloadCode()">
+              Download Code
+            </button>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="border-1 mt-10" *ngIf="postDetails.serviceTypeId !== 1">
           <mat-card-content class="bg-gray-card padding-0">
             <div class="top-content">
               <ng-container *ngFor="let item of serviceTypeData[0]?.items; let i = index">
@@ -87,7 +97,8 @@
                     </span>
                   </span>
                   <span *ngIf="item.price" class="cart-service-prices lg">
-                    <strong class="cart-service-price cart-service-price_discount">${{ item.price }}</strong>
+                    <strong class="cart-service-price cart-service-price_discount"><span class="dollar">$</span
+                      >{{ item.price }}</strong>
                   </span>
                 </label>
               </ng-container>
@@ -108,16 +119,19 @@
                 <i class="cart-service-checkbox-icon checkbox-icon"></i>
                 <span class="cart-service-label checkbox-label">{{ item.label }}</span>
                 <span *ngIf="item.price" class="cart-service-prices">
-                  <strong class="cart-service-price cart-service-price_discount">${{ item.price }}</strong>
+                  <strong class="cart-service-price cart-service-price_discount"><span class="dollar">$</span
+                    >{{ item.price }}</strong>
                 </span>
               </label>
             </ng-container>
             <hr class="line-break">
             <div class="sp-bw">
               <p class="summary">Summary:</p>
-              <p class="overall-price">${{ checkboxPrice + radioPrice }}</p>
+              <p class="overall-price"><span class="dollar">$</span
+                >{{ checkboxPrice + radioPrice }}</p>
             </div>
-            <button class="buy-btn" (click)="payNow()">Buy Code</button>
+            <button *ngIf="postDetails.serviceTypeId !== 1" class="buy-btn" (click)="payNow()">Buy Code</button>
+            <button *ngIf="postDetails.serviceTypeId === 1" class="buy-btn" (click)="downloadCode()">Download Code</button>
           </div>
           </mat-card-content>
         </mat-card>
@@ -208,7 +222,7 @@
             </p>
           </mat-card-content>
         </mat-card>
-        <mat-card class="mt-10 border-1 bg-gray-card">
+        <mat-card class="mt-10 border-1 bg-gray-card" id="customerReviews">
           <mat-card-title class="title-flex">
             Installation steps
             <span class="material-icons-outlined" (click)="toggleCardContent()">
@@ -221,7 +235,7 @@
             </p>
           </mat-card-content>
         </mat-card>
-        <mat-card class="mt-10 border-1 bg-gray-card" id="customerReviews">
+        <mat-card class="mt-10 border-1 bg-gray-card">
           <mat-card-title class="title-flex">
             Tags
             <span class="material-icons-outlined" (click)="toggleTagsContent()">
@@ -244,25 +258,6 @@
                 </ul>
               </div>
             </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="mt-10 border-1 bg-gray-card">
-          <mat-card-title class="title-flex">
-            Download Code
-            <span
-              class="material-icons-outlined"
-              (click)="toggleDownloadContent()"
-            >
-              {{ isDownloadVisible ? "remove" : "add" }}
-            </span></mat-card-title
-          >
-          <mat-card-content *ngIf="isDownloadVisible">
-            <button class="download-btn" (click)="downloadCode()">
-              Download Code
-            </button>
-            <!-- <div class="attrs-wrapper">
-              <div class="included-files"></div>
-            </div> -->
           </mat-card-content>
         </mat-card>
         <mat-card class="mt-10 border-1 bg-gray-card">

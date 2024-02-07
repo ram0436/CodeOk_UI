@@ -438,7 +438,7 @@ input{
 
 .checkbox-input:checked~.checkbox-label {
     color: #1da650 !important;
-    font-weight: 700 !important;
+    /* font-weight: 700 !important; */
     letter-spacing: -.4px !important;
 }
 
@@ -642,4 +642,8 @@ input{
 
 .rate-btn:hover, .download-btn:hover, .buy-btn:hover{
     background-color: orangered;
+}
+
+.dollar{
+    font-family: 'Be Vietnam Pro', sans-serif;
 }
