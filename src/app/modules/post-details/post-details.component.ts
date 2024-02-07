@@ -266,6 +266,7 @@ export class PostDetailsComponent {
       createdOn: new Date().toISOString()
     };
 
+
     this.projectService.ProjectRatingReview(payload).subscribe(
       (response) => {
         this.showNotification("Your rating has been submitted succesfully");

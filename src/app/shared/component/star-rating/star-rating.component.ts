@@ -25,6 +25,7 @@ export class StarRatingComponent implements OnInit {
   constructor() {
   }
 
+
   ngOnInit() {
     this.maxRatingArr = Array(this.maxRating).fill(0);
     if (this.allStarsChecked) {
@@ -46,6 +47,17 @@ export class StarRatingComponent implements OnInit {
       else{
         this.selectedStar = 0;
       }
+    }
+  }
+
+  getSelectedStar(index: number): string {
+    const roundedRating = Math.round(this.selectedStar * 2) / 2; // Round to the nearest half-star increment
+    if (roundedRating >= index + 1) {
+      return 'star'; // Full star
+    } else if (roundedRating >= index + 0.5) {
+      return 'star_half'; // Half star
+    } else {
+      return 'star_outline'; // Outline star
     }
   }
 

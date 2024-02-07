@@ -1,13 +1,3 @@
-<!-- <div class="stars-rating">
-  <span
-    *ngFor="let star of stars"
-    [class.full]="star.filled"
-    (click)="rate(star.value)"
-    class="rating-star"
-  >
-    &#9733;
-  </span>
-</div> -->
 <span
   *ngFor="let icon of maxRatingArr; let index = index"
   (mouseenter)="HandleMouseEnter(index)"
@@ -16,5 +6,5 @@
   class="star material-icons-outlined"
   [ngClass]="{ checked: selectedStar > index }"
 >
-  {{ selectedStar > index ? "star" : "star_outline" }}
+{{ getSelectedStar(index) }}
 </span>
