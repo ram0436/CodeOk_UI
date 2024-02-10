@@ -40,8 +40,11 @@ export class UserService {
   }
 
   uploadResume(formData: any){
-
     return this.httpClient.post(`https://codeokk.azurewebsites.net/api/User/uploadResume`, formData);
+  }
+
+  makePayment(payload: any){
+    return this.httpClient.post(`https://codeokk.azurewebsites.net/api/User/MakePayment`, payload);
   }
 
 }
