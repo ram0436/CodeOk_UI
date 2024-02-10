@@ -58,6 +58,9 @@ export class PostDetailsComponent {
   averageRating: number = 0;
   totalRatings: number = 0;
 
+  razorpayPaymentId: string = '';
+  paymentStatus: boolean = false;
+
   serviceTypeData: any = {
     0: {
       items: [
@@ -188,10 +191,9 @@ export class PostDetailsComponent {
   
 
   payNow() {
-
     const totalAmount = (this.checkboxPrice + this.radioPrice) * 100;
-
-    const RozarpayOptions = {
+  
+    const RazorpayOptions = {
       description: 'Razorpay',
       currency: 'USD',
       amount: totalAmount,
@@ -202,19 +204,59 @@ export class PostDetailsComponent {
         color: '#6466e3'
       },
       modal: {
-        ondismiss:  () => {
+        ondismiss: () => {
+        }
+      },
+      handler: (response: any) => {
+        if (response && response.razorpay_payment_id) {
+          this.razorpayPaymentId = response.razorpay_payment_id;
+          this.paymentStatus = true;
+          this.verifyPayment();
+        } else {
         }
       }
-    }
-
-    const successCallback = (paymentid: any) => {
-    }
-
+    };
+    
+  
     const failureCallback = (e: any) => {
-    }
+      this.razorpayPaymentId = '';
+      this.paymentStatus = false;
+      this.verifyPayment();
+    };
+  
+    const rzp = new Razorpay(RazorpayOptions);
+    rzp.on('payment.failed', failureCallback);
+  
+    rzp.open();
 
-    Razorpay.open(RozarpayOptions,successCallback, failureCallback)
   }
+
+  verifyPayment(){
+
+    const userId = localStorage.getItem('id');
+
+    const tableRefGuid = this.postDetails.tableRefGuid;
+
+    const payload = {
+      paymentId: this.razorpayPaymentId,
+      projectTableRefGuid: tableRefGuid,
+      status: this.paymentStatus, 
+      userId: Number(userId),
+      createdOn: new Date().toISOString()
+    };
+
+    console.log(payload);
+
+    this.userService.makePayment(payload).subscribe(
+      (response) => {
+        // this.showNotification("Your rating has been submitted succesfully");
+      },
+      (error) => {
+      }
+    )
+
+  }
+  
 
   goToCustomerReviews() {
     const customerReviewsElement = this.el.nativeElement.querySelector('#customerReviews');
