@@ -395,10 +395,11 @@ export class PostDetailsComponent {
     const tableRefGuid = this.postDetails.tableRefGuid;
 
     const payload = {
-      projectTableRefGuid: tableRefGuid,
+      tableRefGuid: tableRefGuid,
       createdBy: Number(userId),
       createdOn: new Date().toISOString()
     };
+
 
     this.projectService.codeDownload(payload).subscribe(
       (response) => {
