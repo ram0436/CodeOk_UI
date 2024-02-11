@@ -31,8 +31,16 @@ export class ProjectService {
     return this.http.post(`${this.BaseURL}ProjectRatingReview`, payload);
   }
 
+  codeDownload(payload: any){
+    return this.http.post(`${this.BaseURL}ProjectCode/Download`, payload);
+  }
+
   ProjectRatingData(tableRefGuid: any){
     return this.http.get(`${this.BaseURL}ProjectRatingReview/GetProjectRatingReviewByProjectTableRefGuid?projectTabRefGuid=`+tableRefGuid);
+  }
+
+  downloadCount(tableRefGuid: any){
+    return this.http.get(`${this.BaseURL}ProjectCode/DownloadCountByTableRefGuid?tableRefGuid=`+tableRefGuid);
   }
 
   applyForVacancy(vacancyData: any): Observable<any> {

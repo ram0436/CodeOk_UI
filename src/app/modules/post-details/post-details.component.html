@@ -167,6 +167,7 @@
           <mat-card-title>Overview</mat-card-title>
           <mat-card-content>
             <p style="margin: 0" class="mbot-5">{{ postDetails?.name }}</p>
+            <p class="total-downloads">Total Sales ({{downloadCount}})</p>
             <p class="description-content">
               <span>Project category :</span>
               {{ getSingleValue(postDetails?.projectCategoryId, "category") }}

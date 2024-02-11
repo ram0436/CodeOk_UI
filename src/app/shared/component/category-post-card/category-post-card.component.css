@@ -633,6 +633,12 @@
     margin-top: 4px;
 }
 
+.download-count{
+    color: #999;
+    font-size: 15px;
+    line-height: 22px;
+}
+
 .price-wrapper .cover-wrapper{
     display: flex;
     height: 40px;
