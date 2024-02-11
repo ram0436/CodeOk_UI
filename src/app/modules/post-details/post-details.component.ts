@@ -61,6 +61,8 @@ export class PostDetailsComponent {
   razorpayPaymentId: string = '';
   paymentStatus: boolean = false;
 
+  downloadCount: number = 0;
+
   serviceTypeData: any = {
     0: {
       items: [
@@ -127,7 +129,19 @@ export class PostDetailsComponent {
     }
     this.getRatingData(tableRefGuid);
     this.calculateTotal()
+    this.getDownloadCount(tableRefGuid);
   }
+
+  getDownloadCount(tableRefGuid: any){
+    this.projectService.downloadCount(tableRefGuid).subscribe(
+      (data: any) => {
+          this.downloadCount = data;
+        },
+        (error: any) => {
+        }
+    )
+  }
+
 
   onRadioChange(selectedItem: any) {
 
@@ -290,6 +304,7 @@ export class PostDetailsComponent {
     return parseFloat(this.averageRating.toFixed(1));
   }
 
+  
 
   handleRatingSelected(rating: number) {
     this.selectedRating = rating;
@@ -374,6 +389,24 @@ export class PostDetailsComponent {
       const repositoryLink = this.postDetails.projectRepositoryList[0].codeRepositoryURL;
       window.open(repositoryLink, '_blank');
     }
+
+    const userId = localStorage.getItem('id');
+
+    const tableRefGuid = this.postDetails.tableRefGuid;
+
+    const payload = {
+      projectTableRefGuid: tableRefGuid,
+      createdBy: Number(userId),
+      createdOn: new Date().toISOString()
+    };
+
+    this.projectService.codeDownload(payload).subscribe(
+      (response) => {
+      },
+      (error) => {
+      }
+    );
+
   }
 
 
