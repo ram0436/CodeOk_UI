@@ -158,8 +158,8 @@
               <p class="overall-price"><span class="dollar">$</span
                 >{{ checkboxPrice + radioPrice }}</p>
             </div>
-            <button *ngIf="postDetails.serviceTypeId !== 1" class="buy-btn" (click)="payNow()">Buy Code</button>
-            <button *ngIf="postDetails.serviceTypeId === 1" class="buy-btn" (click)="downloadCode()">Download Code</button>
+            <button *ngIf="postDetails.serviceTypeId !== 1 && !showDownloadButton" class="buy-btn" (click)="payNow()">Buy Code</button>
+            <button *ngIf="postDetails.serviceTypeId === 1 || showDownloadButton" class="download-btn" (click)="downloadCode()">Download Code</button>
           </div>
           </mat-card-content>
         </mat-card>

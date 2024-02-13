@@ -112,6 +112,9 @@ export class PostDetailsComponent {
   radioPrice: number = 0;
   checkboxPrice: number = 0;
 
+  showDownloadButton: boolean = false;
+  showBuyButton: boolean = false;
+
   constructor(private dialog: MatDialog, private route: ActivatedRoute, private projectService: ProjectService, private userService: UserService, private snackBar: MatSnackBar, private commonService: CommonService, private location: Location, private sanitizer: DomSanitizer, private el: ElementRef) { }
 
   ngOnInit() {
@@ -126,10 +129,24 @@ export class PostDetailsComponent {
     });
     if (tableRefGuid != null) {
       this.getPostDetails(tableRefGuid);
+      this.checkPaymentStatus(tableRefGuid);
     }
     this.getRatingData(tableRefGuid);
     this.calculateTotal()
     this.getDownloadCount(tableRefGuid);
+
+
+  }
+
+  checkPaymentStatus(tableRefGuid: any){
+    const userId = localStorage.getItem('id');
+    this.userService.checkPaymentStatus(tableRefGuid, Number(userId)).subscribe(status => {
+      if (status) {
+        this.showDownloadButton = true;
+      } else {
+        this.showBuyButton = true;
+      }
+    });
   }
 
   getDownloadCount(tableRefGuid: any){
@@ -226,6 +243,7 @@ export class PostDetailsComponent {
           this.razorpayPaymentId = response.razorpay_payment_id;
           this.paymentStatus = true;
           this.verifyPayment();
+          this.checkPaymentStatus(this.postDetails.tableRefGuid);
         } else {
         }
       }
@@ -236,6 +254,7 @@ export class PostDetailsComponent {
       this.razorpayPaymentId = '';
       this.paymentStatus = false;
       this.verifyPayment();
+      this.checkPaymentStatus(this.postDetails.tableRefGuid);
     };
   
     const rzp = new Razorpay(RazorpayOptions);
@@ -258,8 +277,6 @@ export class PostDetailsComponent {
       userId: Number(userId),
       createdOn: new Date().toISOString()
     };
-
-    console.log(payload);
 
     this.userService.makePayment(payload).subscribe(
       (response) => {
