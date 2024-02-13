@@ -141,6 +141,7 @@ export class PostDetailsComponent {
   checkPaymentStatus(tableRefGuid: any){
     const userId = localStorage.getItem('id');
     this.userService.checkPaymentStatus(tableRefGuid, Number(userId)).subscribe(status => {
+      console.log(status)
       if (status) {
         this.showDownloadButton = true;
       } else {
@@ -243,7 +244,10 @@ export class PostDetailsComponent {
           this.razorpayPaymentId = response.razorpay_payment_id;
           this.paymentStatus = true;
           this.verifyPayment();
-          this.checkPaymentStatus(this.postDetails.tableRefGuid);
+          setTimeout(() => {
+            this.checkPaymentStatus(this.postDetails.tableRefGuid);
+          }, 3000);
+          // this.checkPaymentStatus(this.postDetails.tableRefGuid);
         } else {
         }
       }
