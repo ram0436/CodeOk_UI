@@ -47,5 +47,11 @@ export class UserService {
     return this.httpClient.post(`https://codeokk.azurewebsites.net/api/User/MakePayment`, payload);
   }
 
+  checkPaymentStatus(tableRefGuid: string, userId: number): Observable<any> {
+    return this.httpClient.get(
+      `https://codeokk.azurewebsites.net/api/User/IsPaymentVerified?projectTableRefGuid=${tableRefGuid}&userId=${userId}`
+    );
+  }
+
 }
 

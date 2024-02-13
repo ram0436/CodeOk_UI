@@ -51,13 +51,13 @@ export class StarRatingComponent implements OnInit {
   }
 
   getSelectedStar(index: number): string {
-    const roundedRating = Math.round(this.selectedStar * 2) / 2; // Round to the nearest half-star increment
+    const roundedRating = Math.round(this.selectedStar * 2) / 2;
     if (roundedRating >= index + 1) {
-      return 'star'; // Full star
+      return 'star'; 
     } else if (roundedRating >= index + 0.5) {
-      return 'star_half'; // Half star
+      return 'star_half'; 
     } else {
-      return 'star_outline'; // Outline star
+      return 'star_outline';
     }
   }
 
