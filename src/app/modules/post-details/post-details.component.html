@@ -195,6 +195,15 @@
               }}
             </p>
             <p class="description-content">
+              <span>Framework :</span>
+              {{
+                getMultipleValues(
+                  postDetails?.technologyFrameworkMappingList,
+                  "framework"
+                )
+              }}
+            </p>
+            <p class="description-content">
               <span>Operating system :</span>
               {{
                 getMultipleValues(postDetails?.operatingSystemMappingList, "os")
@@ -342,6 +351,13 @@
             </button>
           </mat-card-content>
         </mat-card>
+      <mat-card class="mt-10 approve-btn-carousel border-1 bg-gray-card">
+          <button class="download-btn"           (click)="
+          verifyAdd(postDetails.tableRefGuid)
+        ">
+            Approve Now
+          </button>
+      </mat-card>
       </div>
     </div>
   </div>

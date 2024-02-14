@@ -94,6 +94,19 @@
         </mat-select>
       </mat-form-field>
       <mat-form-field appearance="fill" class="form-field-w-100">
+        <mat-label>Technology Framework</mat-label>
+        <mat-select
+          #versionMultiSelect
+          [(ngModel)]="selectedFramework"
+          multiple
+          (selectionChange)="handleFramework($event)"
+        >
+          <mat-option *ngFor="let framework of frameworks" [value]="framework">{{
+            framework.name
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="form-field-w-100">
         <mat-label>Operating System</mat-label>
         <mat-select
           #osMultiSelect

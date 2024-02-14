@@ -27,6 +27,8 @@ export class CategoryPostCardComponent {
     imageIndex: number = 0;
     imagesList: any = [1];
     technologies : any = [];
+    versions : any = [];
+    frameworks : any = [];
     displayedCardCount: number = 16;
 
     isScrolledDown = false;
@@ -62,6 +64,7 @@ export class CategoryPostCardComponent {
 
     ngOnInit() {
       this.getAllTechnologies();
+      this.fetchPostsData();
       this.fetchReviewsData();
     }
 
@@ -76,6 +79,13 @@ export class CategoryPostCardComponent {
             console.error('Error fetching reviews data:', error);
           }
         );
+      }
+    }
+
+    fetchPostsData() {
+      for (const postCard of this.cards) {
+        this.getAllTechnologiesVersion(postCard.technologyMappingList);
+        this.getAllTechnologiesFramework(postCard.technologyMappingList);
       }
     }
   
@@ -171,13 +181,49 @@ export class CategoryPostCardComponent {
         this.technologies = res;
       })
   };
-  getName(id:number){
+
+  getAllTechnologiesVersion(technologies: any) {
+    this.versions = [];
+    technologies.forEach((technology: any) => {
+      this.commonService.getVersionByTechnologyId(technology.technologyId).subscribe((response: any) => {
+        this.versions.push(...response);
+      });
+    });
+  }
+  getAllTechnologiesFramework(technologies: any) {
+    this.frameworks = [];
+    technologies.forEach((technology: any) => {
+      this.projectService.getFrameworkByTechnologyId(technology.technologyId).subscribe((response: any) => {
+        this.frameworks.push(...response);
+      });
+    });
+  }
+  getName(id:number, name: string){
+    if (name == 'technology'){
       var technology = this.technologies.filter((technology:any)=>technology.id==id);
       if(technology.length > 0)
       return technology[0].name;
+    }
+    else if (name == 'version'){
+      var version = this.versions.filter((version:any)=>version.id==id);
+      if(version.length > 0)
+      return version[0].name;
+    }
+    else if (name == 'framework'){
+      var framework = this.frameworks.filter((framework:any)=>framework.id==id);
+      if(framework.length > 0)
+      return framework[0].name;
+    }
+
   };
   getDisplayedTechnologies(postCard: any): any[] {
     return postCard.technologyMappingList.slice(0, 5);
+  };
+  getDisplayedTechnologiesVersion(postCard: any): any[] {
+    return postCard.technologyVersionMappingList.slice(0, 5);
+  };
+  getDisplayedTechnologiesFramework(postCard: any): any[] {
+    return postCard.technologyFrameworkMappingList.slice(0, 5);
   };
   getDisplayedTags(postCard: any): any[] {
     return postCard.tagList.slice(0, 5);

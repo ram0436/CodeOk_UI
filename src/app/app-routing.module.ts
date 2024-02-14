@@ -20,7 +20,8 @@ const routes: Routes = [
   { path : 'post-details/:id', component : PostDetailsComponent},
   { path: 'pricing-plans', component: PricingPlansComponent },
   { path: 'company', component: CompanyComponent },
-  { path: 'career', component: CareerComponent }
+  { path: 'career', component: CareerComponent },
+  { path: 'admin', loadChildren: () => import('./modules/admin/admin.module').then(m => m.AdminModule) },
 ];
 
 @NgModule({

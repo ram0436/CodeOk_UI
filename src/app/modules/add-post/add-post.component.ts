@@ -36,6 +36,7 @@ export class AddPostComponent {
     "industryTypeId": 0,
     "technologyMappingList": [],
     "technologyVersionMappingList": [],
+    "technologyFrameworkMappingList": [],
     "operatingSystemMappingList": [],
     "systemRequirement": "",
     "installationSteps": "",
@@ -69,12 +70,14 @@ export class AddPostComponent {
   operatingSystems: any = [];
   technologies: any = [];
   versions: any = [];
+  frameworks: any = [];
   tags: any = [];
   uploadedFiles: any = [];
   technologyMappingList: any = [];
   selectedOs: any;
   selectedTechnology: any;
   selectedVersion: any;
+  selectedFramework: any;
   separatorKeysCodes: number[] = [ENTER, COMMA];
   @ViewChild('fileUpload') fileUpload!: ElementRef
   firstImageUploaded: boolean = false; // Changes made by Hamza
@@ -296,16 +299,22 @@ export class AddPostComponent {
   }
   handleTechnology(event: any) {
     this.versions = [];
+    this.frameworks = [];
     const observables: any = [];
+    const frameworkObservables: any = [];
     this.technologyMappingList = [];
     event.value.forEach((technology: any) => {
       let technologyObj = { id: 0, technologyId: technology.id, projectCodeId: 0 }
       this.technologyMappingList.push(technologyObj);
       observables.push(this.commonService.getVersionByTechnologyId(technology.id));
+      frameworkObservables.push(this.projectService.getFrameworkByTechnologyId(technology.id));
     });
     this.payload.technologyMappingList = this.technologyMappingList;
     forkJoin(observables).subscribe((responses: any) => {
       this.versions = [].concat(...responses);
+    });
+    forkJoin(frameworkObservables).subscribe((responses: any) => {
+      this.frameworks = [].concat(...responses);
     });
   }
   handleVersion(event: any) {
@@ -315,6 +324,14 @@ export class AddPostComponent {
       technologyVersionMappingList.push(versionObj);
     });
     this.payload.technologyVersionMappingList = technologyVersionMappingList;
+  }
+  handleFramework(event: any) {
+    var technologyFrameworkMappingList: any = [];
+    event.value.forEach((version: any) => {
+      let frameworkObj = { id: 0, technologyFrameworkId: version.id, projectCodeId: 0 }
+      technologyFrameworkMappingList.push(frameworkObj);
+    });
+    this.payload.technologyFrameworkMappingList = technologyFrameworkMappingList;
   }
   getAllProjectCategory() {
     this.commonService.getAllProjectCategory().subscribe(res => {

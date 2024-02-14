@@ -586,6 +586,7 @@ input{
     cursor: pointer;
 }
 
+
 .margin-t-2{
     margin-top: 2px;
 }
@@ -593,6 +594,10 @@ input{
 .see-all-ratings, .buy-code{
     color: #337ab7;
     cursor: pointer;
+}
+
+.approve-btn-carousel{
+    padding-bottom: 10px;
 }
 
 .buy-code{

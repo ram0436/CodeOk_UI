@@ -92,9 +92,9 @@
         </div>
         <div class="details-wrapper">
           <h3 class="item-name">{{ truncateTitle(postCard.name) }}</h3>
-          <div class="post-author">
+          <!-- <div class="post-author">
             <span class="bold">{{ postCard.category }}</span>
-          </div>
+          </div> -->
           <div class="attrs-wrapper">
             <div class="included-files">
               Technologies:
@@ -103,13 +103,41 @@
                   class="file-type"
                   *ngFor="let technology of getDisplayedTechnologies(postCard)"
                 >
-                  {{ getName(technology.technologyId) }}
+                  {{ getName(technology.technologyId, "technology") }}
                 </li>
               </ul>
             </div>
           </div>
           <br />
           <div class="attrs-wrapper">
+            <div class="included-files">
+              Version:
+              <ul>
+                <li
+                  class="file-type"
+                  *ngFor="let version of getDisplayedTechnologiesVersion(postCard)"
+                >
+                  {{ getName(version.technologyVersionId,
+                    "version") }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <br />
+          <div class="attrs-wrapper">
+            <div class="included-files">
+              Framework:
+              <ul>
+                <li
+                  class="file-type"
+                  *ngFor="let framework of getDisplayedTechnologiesFramework(postCard)"
+                >
+                  {{ getName(framework.technologyFrameworkId, "framework") }}
+                </li>
+              </ul>
+            </div>
+          </div>
+          <!-- <div class="attrs-wrapper">
             <div class="included-files">
               Tags:
               <ul>
@@ -121,7 +149,7 @@
                 </li>
               </ul>
             </div>
-          </div>
+          </div> -->
         </div>
         <div class="price-wrapper">
           <div class="post-info">
