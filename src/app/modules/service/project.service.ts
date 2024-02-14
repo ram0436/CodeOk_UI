@@ -23,9 +23,18 @@ export class ProjectService {
     return this.http.get(`${this.BaseURL}ProjectCode/GetDashboard`);
   }
 
+  getAllAdminProjectCodePosts(){
+    return this.http.get(`${this.BaseURL}ProjectCode/AdminDashboard`);
+  }
+
   getProjectCodeById(id:any){
     return this.http.get(`${this.BaseURL}ProjectCode/GetByTabRefGuid?tabRefGuid=`+id);
   }
+
+  approveCode(tableRefGuid: any) {
+    return this.http.post(`${this.BaseURL}ProjectCode/ApprovedByAdmin?tabRefGuid=` + tableRefGuid, null);
+  }
+  
 
   ProjectRatingReview(payload: any){
     return this.http.post(`${this.BaseURL}ProjectRatingReview`, payload);
@@ -50,6 +59,10 @@ export class ProjectService {
   uploadResume(formData: any){
 
     return this.http.post(`https://codeokk.azurewebsites.net/api/User/uploadResume`, formData);
+  }
+
+  getFrameworkByTechnologyId(id: number) {
+    return this.http.get(`${this.BaseURL}ProjectCode/GetTechnologyFrameworkById?technologyId=${id}`)
   }
 
 }

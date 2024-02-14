@@ -68,6 +68,15 @@
           </button>
           <hr class="profile-hr text-white" />
           <button
+          mat-menu-item
+          routerLink="/admin/dashboard"
+          class="button-item"
+        >
+        <!-- *ngIf="isAdmin" -->
+          <span class="material-icons-outlined text-white"> admin_panel_settings </span>
+          <span class="text-white">Admin Dashboard</span>
+        </button>
+          <button
             mat-menu-item
             routerLink="/user/account/myadds"
             class="button-item"

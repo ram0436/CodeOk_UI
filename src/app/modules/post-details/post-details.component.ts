@@ -36,6 +36,7 @@ export class PostDetailsComponent {
   operatingSystems: any = [];
   technologies: any = [];
   versions: any = [];
+  frameworks: any = [];
 
   isContentVisible = false;
   isReqVisible = false;
@@ -134,8 +135,21 @@ export class PostDetailsComponent {
     this.getRatingData(tableRefGuid);
     this.calculateTotal()
     this.getDownloadCount(tableRefGuid);
+  }
 
-
+  verifyAdd(tableRefGuid: string): void {
+    // if (this.isAdmin) {
+        this.route.queryParams.subscribe(params => {
+          this.projectService.approveCode(tableRefGuid).subscribe(
+            (response: any) => {
+              this.showNotification('Ad verified successfully');
+            },
+            (error: any) => {
+              this.showNotification('Cannot verify this ad');
+            }
+          );
+        });
+      // }
   }
 
   checkPaymentStatus(tableRefGuid: any){
@@ -394,6 +408,7 @@ export class PostDetailsComponent {
     this.projectService.getProjectCodeById(guid).subscribe((res: any) => {
       this.postDetails = res[0];
       this.getVersionsByTechnologyIds(this.postDetails.technologyMappingList);
+      this.getFrameworksByTechnologyIds(this.postDetails.technologyMappingList);
       const modifiedIframeString = res[0].documentaionURL.replace('width="853"', 'width="280"').replace('height="480"', 'height="180"');
       this.documentationURL = this.sanitizer.bypassSecurityTrustHtml(modifiedIframeString);
       // this.documentationURL = this.sanitizer.bypassSecurityTrustHtml(res[0].documentaionURL);
@@ -466,12 +481,20 @@ export class PostDetailsComponent {
   }
   getVersionsByTechnologyIds(technologies: any) {
     this.versions = [];
-    const observables: any = [];
     technologies.forEach((technology: any) => {
-      observables.push(this.commonService.getVersionByTechnologyId(technology.id));
+      this.commonService.getVersionByTechnologyId(technology.technologyId).subscribe((response: any) => {
+        // console.log(response)
+        this.versions.push(...response);
+      });
     });
-    forkJoin(observables).subscribe((responses: any) => {
-      this.versions = [].concat(...responses);
+  }
+  getFrameworksByTechnologyIds(technologies: any) {
+    this.frameworks = [];
+    technologies.forEach((technology: any) => {
+      this.projectService.getFrameworkByTechnologyId(technology.technologyId).subscribe((response: any) => {
+        // console.log(response)
+        this.frameworks.push(...response);
+      });
     });
   }
   getSingleValue(id: any, name: string) {
@@ -501,6 +524,17 @@ export class PostDetailsComponent {
         let version = this.versions.find((version: any) => version.id == selectedVersion.technologyVersionId);
         if (version != undefined) {
           names += version.name;
+          if (index < data.length - 1) {
+            names += ', ';
+          }
+        }
+      });
+    }
+    else if (name == 'framework') {
+      data.forEach((selectedFramework: any, index: number) => {
+        let framework = this.frameworks.find((framework: any) => framework.id == selectedFramework.technologyFrameworkId);
+        if (framework != undefined) {
+          names += framework.name;
           if (index < data.length - 1) {
             names += ', ';
           }
