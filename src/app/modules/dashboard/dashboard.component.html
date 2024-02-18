@@ -4,5 +4,15 @@
   </div>
 </div>
 <div *ngIf="!isLoading" class="d-card">
-  <app-dashboard-post-card [isLoading]="isLoading" [cards]="cards"></app-dashboard-post-card>
+  <div class="marquee-message">
+    <div class="messages">
+      <div class="message" *ngFor="let message of messages">
+        <h5>{{ message.title }} {{ message.message }}</h5>
+      </div>
+    </div>
+  </div>
+  <app-dashboard-post-card
+    [isLoading]="isLoading"
+    [cards]="cards"
+  ></app-dashboard-post-card>
 </div>

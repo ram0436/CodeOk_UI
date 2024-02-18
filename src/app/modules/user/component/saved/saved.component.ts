@@ -1,25 +1,28 @@
 import { Component, HostListener, Input } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import * as moment from "moment";
-import { CommonService } from "../../service/common.service";
 import { ProjectService } from "src/app/modules/service/project.service";
 import { MatDialog, MatDialogRef } from "@angular/material/dialog";
 import { UserService } from "src/app/modules/user/service/user.service";
 import { LoginComponent } from "src/app/modules/user/component/login/login.component";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { CommonService } from "src/app/shared/service/common.service";
 
 @Component({
-  selector: "app-dashboard-post-card",
-  templateUrl: "./dashboard-post-card.component.html",
-  styleUrls: ["./dashboard-post-card.component.css"],
+  selector: "app-saved",
+  templateUrl: "./saved.component.html",
+  styleUrls: ["./saved.component.css"],
 })
-export class DashboardPostCardComponent {
+export class SavedComponent {
   ratingsMap: Map<string, { averageRating: number; totalRatings: number }> =
     new Map();
 
   @Input() isLoading: Boolean = false;
-  @Input() cards: any;
   currentDate: Date = new Date();
+
+  savedCards: any[] = [];
+  imagesList: any = [];
+  isScrolledDown = false;
 
   // Pagination properties
   // pageSize = 20;
@@ -29,11 +32,8 @@ export class DashboardPostCardComponent {
   mainCategories: any = [];
   mainCategory: any;
   imageIndex: number = 0;
-  imagesList: any = [1];
   technologies: any = [];
   displayedCardCount: number = 16;
-
-  isScrolledDown = false;
 
   isFavorite: boolean = false;
 
@@ -77,12 +77,47 @@ export class DashboardPostCardComponent {
   ) {}
 
   ngOnInit() {
+    this.userService
+      .getWishListByUserId(Number(localStorage.getItem("id")))
+      .subscribe(
+        (response: any) => {
+          response.forEach((item: any) => {
+            const tabRefGuid = item.projectTableRefGuid;
+            this.handleDashboardData(tabRefGuid);
+          });
+        },
+        (error: any) => {
+          // console.error("API Error:", error);
+        }
+      );
     this.getAllTechnologies();
-    this.fetchReviewsData();
+  }
+
+  handleDashboardData(tabRefGuid: string) {
+    this.projectService.getProjectCodeById(tabRefGuid).subscribe(
+      (dashboardResponse: any) => {
+        if (Array.isArray(dashboardResponse)) {
+          this.savedCards.push(...dashboardResponse);
+          this.isLoading = false;
+        } else if (
+          typeof dashboardResponse === "object" &&
+          dashboardResponse !== null
+        ) {
+          this.savedCards.push(dashboardResponse);
+          this.isLoading = false;
+        } else {
+        }
+        this.fetchReviewsData();
+      },
+      (dashboardError: any) => {
+        this.savedCards = [];
+        this.isLoading = false;
+      }
+    );
   }
 
   fetchReviewsData() {
-    for (const postCard of this.cards) {
+    for (const postCard of this.savedCards) {
       this.projectService.ProjectRatingData(postCard.tableRefGuid).subscribe(
         (data: any) => {
           postCard.reviewsData = data;
@@ -209,42 +244,6 @@ export class DashboardPostCardComponent {
       }
     } else {
       return moment(inputDate).format("MMM DD");
-    }
-  }
-  getCardImageURL(card: any): string {
-    this.imagesList = [];
-    if (card.gadgetImageList && card.gadgetImageList[0]?.imageURL) {
-      this.imagesList = card.gadgetImageList;
-      return card.gadgetImageList[0]?.imageURL;
-    } else if (card.vehicleImageList && card.vehicleImageList[0]?.imageURL) {
-      this.imagesList = card.gadgetImageList;
-      return card.vehicleImageList[0]?.imageURL;
-    } else if (
-      card.electronicApplianceImageList &&
-      card.electronicApplianceImageList[0]?.imageURL
-    ) {
-      this.imagesList = card.gadgetImageList;
-      return card.electronicApplianceImageList[0]?.imageURL;
-    } else if (
-      card.furnitureImageList &&
-      card.furnitureImageList[0]?.imageURL
-    ) {
-      this.imagesList = card.gadgetImageList;
-      return card.furnitureImageList[0]?.imageURL;
-    } else if (card.sportImageList && card.sportImageList[0]?.imageURL) {
-      this.imagesList = card.gadgetImageList;
-      return card.sportImageList[0]?.imageURL;
-    } else if (card.petImageList && card.petImageList[0]?.imageURL) {
-      this.imagesList = card.gadgetImageList;
-      return card.petImageList[0]?.imageURL;
-    } else if (card.fashionImageList && card.fashionImageList[0]?.imageURL) {
-      this.imagesList = card.gadgetImageList;
-      return card.fashionImageList[0]?.imageURL;
-    } else if (card.bookImageList && card.bookImageList[0]?.imageURL) {
-      this.imagesList = card.gadgetImageList;
-      return card.bookImageList[0]?.imageURL;
-    } else {
-      return "../../../assets/image_not_available.png";
     }
   }
   getAllTechnologies() {

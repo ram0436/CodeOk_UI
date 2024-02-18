@@ -68,25 +68,32 @@
           </button>
           <hr class="profile-hr text-white" />
           <button
-          mat-menu-item
-          routerLink="/admin/dashboard"
-          class="button-item"
-        >
-        <!-- *ngIf="isAdmin" -->
-          <span class="material-icons-outlined text-white"> admin_panel_settings </span>
-          <span class="text-white">Admin Dashboard</span>
-        </button>
+            mat-menu-item
+            routerLink="/admin/dashboard"
+            class="button-item"
+            *ngIf="isAdmin"
+          >
+            <!-- *ngIf="isAdmin" -->
+            <span class="material-icons-outlined text-white">
+              admin_panel_settings
+            </span>
+            <span class="text-white">Admin Dashboard</span>
+          </button>
           <button
             mat-menu-item
             routerLink="/user/account/myadds"
             class="button-item"
           >
             <span class="material-icons text-white"> upload_file </span>
-            <span class="text-white">My ads</span>
+            <span class="text-white">Manage Projects</span>
           </button>
-          <button mat-menu-item class="button-item">
+          <button
+            mat-menu-item
+            class="button-item"
+            routerLink="/user/account/mywishlist"
+          >
             <span class="material-icons text-white"> bookmark_border </span>
-            <span class="text-white">Saved</span>
+            <span class="text-white">My WishList</span>
           </button>
           <button mat-menu-item class="button-item">
             <span class="material-icons text-white"> chat_bubble_outline </span>
@@ -136,7 +143,7 @@
                 <span></span>
                 <span></span>
                 <span></span>
-               Become a Seller
+                Become a Seller
               </a>
             </li>
           </ul>

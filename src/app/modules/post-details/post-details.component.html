@@ -1,5 +1,9 @@
 <div class="container-center bg mpt p-relative">
-  <div class="watch-tutorial" [innerHTML]="documentationURL" *ngIf="documentationURL"></div>
+  <div
+    class="watch-tutorial"
+    [innerHTML]="documentationURL"
+    *ngIf="documentationURL"
+  ></div>
 
   <!-- <iframe
       width="350"
@@ -57,25 +61,37 @@
                   [selectedStar]="parseAverageRating()"
                 ></app-star-rating>
               </div>
-              <p class="total-ratings bold margin-t-2"  (click)="goToCustomerReviews()">{{ totalRatings }} Ratings</p>
+              <p
+                class="total-ratings bold margin-t-2"
+                (click)="goToCustomerReviews()"
+              >
+                {{ totalRatings }} Ratings
+              </p>
               <p class="dash margin-t-2">|</p>
-              <p class="see-all-ratings bold margin-t-2" (click)="goToCustomerReviews()">
+              <p
+                class="see-all-ratings bold margin-t-2"
+                (click)="goToCustomerReviews()"
+              >
                 See all reviews
               </p>
             </div>
           </mat-card-content>
         </mat-card>
-        <mat-card class="mt-10 border-1 bg-gray-card" *ngIf="postDetails.serviceTypeId === 1">
-          <mat-card-title class="title-flex">
-            Download</mat-card-title
-          >
+        <mat-card
+          class="mt-10 border-1 bg-gray-card"
+          *ngIf="postDetails.serviceTypeId === 1"
+        >
+          <mat-card-title class="title-flex"> Download</mat-card-title>
           <mat-card-content>
             <button class="download-btn" (click)="downloadCode()">
               Download Code
             </button>
           </mat-card-content>
         </mat-card>
-        <mat-card class="border-1 mt-10" *ngIf="postDetails.serviceTypeId !== 1">
+        <mat-card
+          class="border-1 mt-10"
+          *ngIf="postDetails.serviceTypeId !== 1"
+        >
           <mat-card-content class="bg-gray-card padding-0">
             <div class="top-content">
               <ng-container *ngIf="postDetails.serviceTypeId === 4">
@@ -88,23 +104,40 @@
                     [checked]="serviceTypeData[0]?.items[0].checked"
                   />
                   <i class="cart-service-checkbox-icon checkbox-icon"></i>
-                  <span class="cart-service-label checkbox-label lg">{{ serviceTypeData[0]?.items[0].label }}</span>
+                  <span class="cart-service-label checkbox-label lg">{{
+                    serviceTypeData[0]?.items[0].label
+                  }}</span>
                   <span class="custom-tooltip cart-service-tooltip">
                     <span class="custom-tooltip-button">
-                      <span class="material-icons-outlined cart-service-tooltip-icon color-green" (click)="openLicenseModal(serviceTypeData[0]?.items[0].label); $event.stopPropagation(); $event.preventDefault()">
+                      <span
+                        class="material-icons-outlined cart-service-tooltip-icon color-green"
+                        (click)="
+                          openLicenseModal(serviceTypeData[0]?.items[0].label);
+                          $event.stopPropagation();
+                          $event.preventDefault()
+                        "
+                      >
                         help_outline
                       </span>
                     </span>
                   </span>
-                  <span *ngIf="serviceTypeData[0]?.items[0].price" class="cart-service-prices lg">
-                    <strong class="cart-service-price cart-service-price_discount"><span class="dollar">$</span
-                      >{{ serviceTypeData[0]?.items[0].price }}</strong>
+                  <span
+                    *ngIf="serviceTypeData[0]?.items[0].price"
+                    class="cart-service-prices lg"
+                  >
+                    <strong
+                      class="cart-service-price cart-service-price_discount"
+                      ><span class="dollar">$</span
+                      >{{ serviceTypeData[0]?.items[0].price }}</strong
+                    >
                   </span>
                 </label>
               </ng-container>
-              
+
               <ng-container *ngIf="postDetails.serviceTypeId !== 4">
-                <ng-container *ngFor="let item of serviceTypeData[0]?.items; let i = index">
+                <ng-container
+                  *ngFor="let item of serviceTypeData[0]?.items; let i = index"
+                >
                   <label class="cart-service cart-service_support checkbox">
                     <input
                       type="radio"
@@ -114,60 +147,91 @@
                       [checked]="item.checked"
                     />
                     <i class="cart-service-checkbox-icon checkbox-icon"></i>
-                    <span class="cart-service-label checkbox-label lg">{{ item.label }}</span>
+                    <span class="cart-service-label checkbox-label lg">{{
+                      item.label
+                    }}</span>
                     <span class="custom-tooltip cart-service-tooltip">
                       <span class="custom-tooltip-button">
-                        <span class="material-icons-outlined cart-service-tooltip-icon color-green" (click)="openLicenseModal(item.label); $event.stopPropagation(); $event.preventDefault()">
+                        <span
+                          class="material-icons-outlined cart-service-tooltip-icon color-green"
+                          (click)="
+                            openLicenseModal(item.label);
+                            $event.stopPropagation();
+                            $event.preventDefault()
+                          "
+                        >
                           help_outline
                         </span>
                       </span>
                     </span>
                     <span *ngIf="item.price" class="cart-service-prices lg">
-                      <strong class="cart-service-price cart-service-price_discount"><span class="dollar">$</span
-                        >{{ item.price }}</strong>
+                      <strong
+                        class="cart-service-price cart-service-price_discount"
+                        ><span class="dollar">$</span>{{ item.price }}</strong
+                      >
                     </span>
                   </label>
                 </ng-container>
               </ng-container>
             </div>
-            
-            
-          <div class="bottom-content">
-            <ng-container *ngFor="let item of serviceTypeData[postDetails.serviceTypeId]?.items">
-              <label class="cart-service cart-service_support checkbox">
-                <input 
-                type="checkbox" 
-                name="" 
-                id="" 
-                class="cart-service-checkbox checkbox-input" 
-                [checked]="item.checked" 
-                (change)="onCheckboxChange(item, postDetails.serviceTypeId)"
-                [disabled]="postDetails.serviceTypeId === 4"
-                />
-                <i class="cart-service-checkbox-icon checkbox-icon"></i>
-                <span class="cart-service-label checkbox-label">{{ item.label }}</span>
-                <span *ngIf="item.price" class="cart-service-prices">
-                  <strong class="cart-service-price cart-service-price_discount"><span class="dollar">$</span
-                    >{{ item.price }}</strong>
-                </span>
-              </label>
-            </ng-container>
-            <hr class="line-break">
-            <div class="sp-bw">
-              <p class="summary">Summary:</p>
-              <p class="overall-price"><span class="dollar">$</span
-                >{{ checkboxPrice + radioPrice }}</p>
+
+            <div class="bottom-content">
+              <ng-container
+                *ngFor="
+                  let item of serviceTypeData[postDetails.serviceTypeId]?.items
+                "
+              >
+                <label class="cart-service cart-service_support checkbox">
+                  <input
+                    type="checkbox"
+                    name=""
+                    id=""
+                    class="cart-service-checkbox checkbox-input"
+                    [checked]="item.checked"
+                    (change)="onCheckboxChange(item, postDetails.serviceTypeId)"
+                    [disabled]="postDetails.serviceTypeId === 4"
+                  />
+                  <i class="cart-service-checkbox-icon checkbox-icon"></i>
+                  <span class="cart-service-label checkbox-label">{{
+                    item.label
+                  }}</span>
+                  <span *ngIf="item.price" class="cart-service-prices">
+                    <strong
+                      class="cart-service-price cart-service-price_discount"
+                      ><span class="dollar">$</span>{{ item.price }}</strong
+                    >
+                  </span>
+                </label>
+              </ng-container>
+              <hr class="line-break" />
+              <div class="sp-bw">
+                <p class="summary">Summary:</p>
+                <p class="overall-price">
+                  <span class="dollar">$</span>{{ checkboxPrice + radioPrice }}
+                </p>
+              </div>
+              <button
+                *ngIf="postDetails.serviceTypeId !== 1 && !showDownloadButton"
+                class="buy-btn"
+                (click)="payNow()"
+              >
+                Buy Code
+              </button>
+              <button
+                *ngIf="postDetails.serviceTypeId === 1 || showDownloadButton"
+                class="download-btn"
+                (click)="downloadCode()"
+              >
+                Download Code
+              </button>
             </div>
-            <button *ngIf="postDetails.serviceTypeId !== 1 && !showDownloadButton" class="buy-btn" (click)="payNow()">Buy Code</button>
-            <button *ngIf="postDetails.serviceTypeId === 1 || showDownloadButton" class="download-btn" (click)="downloadCode()">Download Code</button>
-          </div>
           </mat-card-content>
         </mat-card>
         <mat-card class="mt-10 border-1 bg-gray-card">
           <mat-card-title>Overview</mat-card-title>
           <mat-card-content>
             <p style="margin: 0" class="mbot-5">{{ postDetails?.name }}</p>
-            <p class="total-downloads">Total Sales ({{downloadCount}})</p>
+            <p class="total-downloads">Total Sales ({{ downloadCount }})</p>
             <p class="description-content">
               <span>Project category :</span>
               {{ getSingleValue(postDetails?.projectCategoryId, "category") }}
@@ -324,7 +388,7 @@
         </mat-card>
         <mat-card class="mt-10 border-1 bg-gray-card">
           <mat-card-title class="title-flex">
-            Rate Us
+            Rate this code
             <span class="material-icons-outlined" (click)="toggleRateContent()">
               {{ isRateVisible ? "remove" : "add" }}
             </span></mat-card-title
@@ -351,17 +415,47 @@
             </button>
           </mat-card-content>
         </mat-card>
-      <mat-card class="mt-10 approve-btn-carousel border-1 bg-gray-card">
-          <button class="download-btn"           (click)="
-          verifyAdd(postDetails.tableRefGuid)
-        ">
+        <mat-card class="mt-10 border-1 bg-gray-card">
+          <mat-card-title class="title-flex">
+            Rate Codeokk
+            <span
+              class="material-icons-outlined"
+              (click)="toggleRateCodeokkContent()"
+            >
+              {{ isRateCodeokkVisible ? "remove" : "add" }}
+            </span></mat-card-title
+          >
+          <mat-card-content *ngIf="isRateCodeokkVisible">
+            <p>How was your experience with our services?</p>
+            <div class="flex-row">
+              <div class="ratings-stars">
+                <app-star-rating
+                  (ratingSelected)="handleCodeokkRatingSelected($event)"
+                ></app-star-rating>
+              </div>
+            </div>
+            <textarea
+              class="rating-box"
+              [(ngModel)]="rateMessage"
+              placeholder="Write your review"
+            ></textarea>
+            <button class="rate-btn" (click)="submitCodeokkRating()">
+              Rate
+            </button>
+          </mat-card-content>
+        </mat-card>
+        <mat-card
+          class="mt-10 approve-btn-carousel border-1 bg-gray-card"
+          *ngIf="isAdmin && !postDetails.isApproved"
+        >
+          <button
+            class="download-btn"
+            (click)="verifyAdd(postDetails.tableRefGuid)"
+          >
             Approve Now
           </button>
-      </mat-card>
+        </mat-card>
       </div>
     </div>
   </div>
-
-  
 </div>
-
