@@ -1,31 +1,113 @@
-<!-- <mat-dialog-actions>
-    <button mat-button [mat-dialog-close]="true"><mat-icon>close</mat-icon></button>
-</mat-dialog-actions> -->
 <mat-card class="mat-elevation-z12">
-    <mat-card-title style="text-align:center;">SignUp</mat-card-title>
-        <mat-card-content>
-            <form action="">
-                <mat-form-field>
-                    <input matInput placeholder="First name" name="firstName" [(ngModel)]="payload.firstName">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Last name" name="lastName" [(ngModel)]="payload.lastName">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Email" name="email" [(ngModel)]="payload.email">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Phone number" name="mobileNo" [(ngModel)]="payload.mobileNo">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Password" type="password" name="password" [(ngModel)]="payload.password">
-                </mat-form-field>
-                <mat-form-field>
-                    <input matInput placeholder="Confirm Password" type="text" name="confirmPassword" (change)="handleConfirmPassword($event)">
-                </mat-form-field>
-                <button mat-raised-button color="primary" class="login-button" (click)="signUp()">
-                    Sign Up
-                </button>
-            </form>
-        </mat-card-content>
+  <mat-card-title style="text-align: center">Signup</mat-card-title>
+  <mat-card-content>
+    <form action="">
+      <mat-form-field class="customer-details margin-bottom-10">
+        <mat-label>Are You.?</mat-label>
+        <mat-select
+          [(value)]="selectedUserRoleType"
+          (selectionChange)="userTypeSelected($event)"
+        >
+          <mat-option *ngFor="let type of userRoleTypes" [value]="type">
+            {{ type }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <div class="country-select">
+        <mat-form-field class="country-select-field">
+          <mat-label>Select Country</mat-label>
+          <mat-select matNativeControl [(value)]="selectedCountry">
+            <mat-option *ngFor="let country of countries" [value]="country">
+              {{ country.countryName }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <mat-form-field class="margin-bottom-10">
+        <input
+          matInput
+          placeholder="First Name"
+          name="First Name"
+          [(ngModel)]="firstName"
+        />
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="margin-bottom-10">
+        <input
+          matInput
+          placeholder="Last Name"
+          name="Last Name"
+          [(ngModel)]="lastName"
+        />
+        <mat-icon matSuffix>person</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="margin-bottom-10">
+        <input matInput placeholder="Email" name="email" [(ngModel)]="email" />
+        <mat-icon matSuffix>email</mat-icon>
+      </mat-form-field>
+      <p class="failure-message" *ngIf="validEmailMessage">
+        <span class="material-icons-outlined"> report </span>
+        Email should have format like xyz@gmail.com*
+      </p>
+      <mat-form-field class="margin-bottom-10">
+        <span matPrefix class="country-code">{{
+          selectedCountry.countryCode
+        }}</span>
+        <input
+          matInput
+          placeholder="Enter 10 digit mobile."
+          name="phoneNumber"
+          [(ngModel)]="phoneNumber"
+          (input)="validatePhoneNumber()"
+        />
+        <mat-icon matSuffix>phone</mat-icon>
+      </mat-form-field>
+      <p class="failure-message" *ngIf="validPhoneNumberMessage">
+        <span class="material-icons-outlined"> report </span>
+        Phone number should consist of only numbers*
+      </p>
+      <p class="failure-message" *ngIf="phoneNumberErrorMessage">
+        <span class="material-icons-outlined"> report </span>
+        Please enter a valid 10-digit mobile number*
+      </p>
+      <mat-form-field class="margin-bottom-10" *ngIf="!this.isBuyer">
+        <input
+          matInput
+          placeholder="Linkedin URL"
+          name="linkedinURL"
+          [(ngModel)]="linkedinURL"
+        />
+        <mat-icon matSuffix>linkedin</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="margin-bottom-10" *ngIf="!this.isBuyer">
+        <textarea
+          matInput
+          placeholder="About Me"
+          name="aboutMe"
+          [(ngModel)]="aboutMe"
+          rows="2"
+          class="about-textarea"
+        ></textarea>
+        <mat-icon matSuffix>about</mat-icon>
+      </mat-form-field>
+      <mat-form-field class="margin-bottom-10">
+        <input
+          matInput
+          placeholder="Password"
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+        />
+        <mat-icon matSuffix>lock</mat-icon>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        class="signup-button"
+        (click)="signIn()"
+      >
+        Sign Up
+      </button>
+    </form>
+  </mat-card-content>
 </mat-card>

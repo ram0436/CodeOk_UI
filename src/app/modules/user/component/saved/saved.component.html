@@ -1,0 +1,86 @@
+<div class="mat-app-background mpt">
+  <div class="post-card-container">
+    <h3 class="wishlist-title">My Wishlist</h3>
+    <div class="post-card-grid">
+      <div
+        class="post-item-card"
+        *ngFor="let postCard of savedCards; let i = index"
+      >
+        <a class="custom-link">
+          <div class="post-item-img">
+            <img
+              [src]="postCard.projectImageList[0].codeImageURL"
+              alt="Post Pic"
+            />
+            <span class="ribbon-featured">
+              <strong
+                [class.ribbon]="true"
+                [class.community-ribbon]="postCard.serviceTypeId === 1"
+                [class.standard-ribbon]="postCard.serviceTypeId === 2"
+                [class.premium-ribbon]="postCard.serviceTypeId === 3"
+                [class.enterprise-ribbon]="postCard.serviceTypeId === 4"
+              >
+                <span class="hide-visually">This ad is</span>
+                {{ getRibbonText(postCard.serviceTypeId) }}
+              </strong>
+            </span>
+          </div>
+          <div class="post-item-content">
+            <div class="post-item-price" *ngIf="postCard.serviceTypeId === 1">
+              Free
+            </div>
+            <div class="post-item-price" *ngIf="postCard.serviceTypeId !== 1">
+              <span class="dollar">$</span>{{ postCard.price }}
+            </div>
+            <h3 class="post-item-name">
+              {{ truncateTitle(postCard.name) }}
+            </h3>
+            <div class="attrs-wrapper">
+              <div class="included-files">
+                <ul>
+                  <li
+                    class="file-type"
+                    *ngFor="
+                      let technology of getDisplayedTechnologies(postCard)
+                    "
+                  >
+                    {{ getName(technology.technologyId) }}
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="post-item-details">
+              <div class="details-content">
+                <div class="post-item-rating-wrapper">
+                  <div class="star-ratings">
+                    <app-star-rating
+                      [readOnly]="true"
+                      [selectedStar]="
+                        ratingsMap.get(postCard.tableRefGuid)?.averageRating ||
+                        0
+                      "
+                    ></app-star-rating>
+                  </div>
+                  <span class="star-rating-count"
+                    >({{
+                      ratingsMap.get(postCard.tableRefGuid)?.totalRatings || 0
+                    }})</span
+                  >
+                  <button
+                    class="post-item-details-btn"
+                    [routerLink]="'/post-details/' + postCard.tableRefGuid"
+                    target="_self"
+                  >
+                    Details
+                  </button>
+                </div>
+                <div class="post-item-sales">{{ postCard.sales }}</div>
+              </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <h3 *ngIf="savedCards.length == 0">No posts avaialble</h3>
+    </div>
+  </div>
+</div>

@@ -1,44 +1,64 @@
 .login-page {
-    top: 0;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    height: 100%;
-    display: block;
-    background-color: #303F9F;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    overflow: hidden;
-  }
-  
-  mat-card {
-    /* width: 30%; */
-    /* margin: 10% auto; */
-    border-radius: 8px;
-  }
-  mat-form-field, mat-checkbox {
-    width: 80%;
-    display: block;
-    margin: auto;
-  }
-  mat-card-content {
-    margin-top: 20px;
-  }
-  
-  .login-button {
-    margin-top: 20px;
-    display: block;
-    width: 80%;
-    margin: 20px auto;
-  }
-  .cdk-overlay-pane {
-    width: 500px;
-    pointer-events: auto;
-    box-sizing: border-box;
-    z-index: 1000;
-    display: flex;
-    max-height: 100%;
+  top: 0;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+  background-color: #303f9f;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow: hidden;
+}
+
+mat-card {
+  /* width: 30%; */
+  /* margin: 10% auto; */
+  border-radius: 8px;
+}
+mat-form-field,
+mat-checkbox {
+  width: 80%;
+  display: block;
+  margin: auto;
+}
+
+mat-card-content {
+  margin-top: 20px;
+}
+
+.country-select-field {
+  margin: auto;
+  width: 80%;
+  display: block;
+  margin-bottom: -10px;
+}
+
+.userType-section {
+  width: 80%;
+  display: block;
+  margin: auto;
+  margin-bottom: 10px;
+}
+
+.margin-bottom-10 {
+  margin-bottom: -10px;
+}
+
+.login-button {
+  margin-top: 20px;
+  display: block;
+  width: 80%;
+  margin: 20px auto;
+}
+.cdk-overlay-pane {
+  width: 500px;
+  pointer-events: auto;
+  box-sizing: border-box;
+  z-index: 1000;
+  display: flex;
+  max-height: 100%;
 }
 .mat-mdc-tab-group {
   display: flex;
@@ -52,4 +72,8 @@
 }
 .mat-mdc-card-title {
   margin-top: 15px;
+}
+
+.about-textarea {
+  width: 345px;
 }

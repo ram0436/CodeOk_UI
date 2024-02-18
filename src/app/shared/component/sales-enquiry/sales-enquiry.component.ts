@@ -1,67 +1,72 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog';
-import { Router } from '@angular/router';
-import { CustomerType } from '../../enum/CustomerType';
-import { EnquiryType } from '../../enum/EnquiryType';
-import { CommonService } from '../../service/common.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
-
+import { Component, ViewEncapsulation } from "@angular/core";
+import { MatDialogRef } from "@angular/material/dialog";
+import { Router } from "@angular/router";
+import { CustomerType } from "../../enum/CustomerType";
+import { EnquiryType } from "../../enum/EnquiryType";
+import { CommonService } from "../../service/common.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
 
 @Component({
-  selector: 'app-sales-enquiry',
-  templateUrl: './sales-enquiry.component.html',
-  styleUrls: ['./sales-enquiry.component.css'],
+  selector: "app-sales-enquiry",
+  templateUrl: "./sales-enquiry.component.html",
+  styleUrls: ["./sales-enquiry.component.css"],
 })
 export class SalesEnquiryComponent {
-
   email: string = "";
   phoneNumber: string = "";
   password: string = "";
   firstName: string = "";
 
-  message: string = '';
+  message: string = "";
 
   validPhoneNumberMessage: boolean = false;
   phoneNumberErrorMessage: boolean = false;
 
   validEmailMessage: boolean = false;
-  emailErrorMessage: string = '';
+  emailErrorMessage: string = "";
 
   isSubmitClicked: boolean = false;
 
-  countries : any = [
+  countries: any = [
     {
-      "id": 1,
-      "countryName": "India",
-      "countryCode": "+91",
+      id: 1,
+      countryName: "India",
+      countryCode: "+91",
     },
     {
-      "id": 2,
-      "countryName": "USA",
-      "countryCode": "+1",
-    }
+      id: 2,
+      countryName: "USA",
+      countryCode: "+1",
+    },
   ];
 
   selectedCountry = this.countries[0];
 
-  selectedCustomerType: CustomerType | string = CustomerType.IndividualDeveloper;
+  selectedCustomerType: CustomerType | string =
+    CustomerType.IndividualDeveloper;
   selectedEnquiryType: EnquiryType | string = EnquiryType.Urgent;
 
-  customerTypes = Object.values(CustomerType).filter(value => typeof value === 'string');
+  customerTypes = Object.values(CustomerType).filter(
+    (value) => typeof value === "string"
+  );
 
-  enquiryTypes = Object.values(EnquiryType).filter(value => typeof value === 'string');
+  enquiryTypes = Object.values(EnquiryType).filter(
+    (value) => typeof value === "string"
+  );
 
-
-  constructor(private commonService: CommonService, private router: Router, private dialogRef: MatDialogRef<SalesEnquiryComponent>, private snackBar: MatSnackBar) { }
-
+  constructor(
+    private commonService: CommonService,
+    private router: Router,
+    private dialogRef: MatDialogRef<SalesEnquiryComponent>,
+    private snackBar: MatSnackBar
+  ) {}
 
   validatePhoneNumber(): void {
-    if(!this.isSubmitClicked){
+    if (!this.isSubmitClicked) {
       const regex = /^[0-9]*$/;
       const isValid = regex.test(this.phoneNumber);
       this.validPhoneNumberMessage = !isValid;
-    }
-    else if (this.isSubmitClicked){
+    } else if (this.isSubmitClicked) {
       const regex = /^[0-9]{10}$/;
       const isValid = regex.test(this.phoneNumber);
       this.phoneNumberErrorMessage = !isValid;
@@ -87,7 +92,11 @@ export class SalesEnquiryComponent {
 
     this.validatePhoneNumber();
 
-    if (this.validPhoneNumberMessage || this.validEmailMessage || this.phoneNumberErrorMessage) {
+    if (
+      this.validPhoneNumberMessage ||
+      this.validEmailMessage ||
+      this.phoneNumberErrorMessage
+    ) {
       this.isSubmitClicked = false;
       return;
     }
@@ -101,35 +110,32 @@ export class SalesEnquiryComponent {
       email: this.email,
       mobile: this.selectedCountry.countryCode + this.phoneNumber,
       message: this.message,
-      createdOn: new Date().toISOString()
+      createdOn: new Date().toISOString(),
     };
 
-    this.commonService.submitSalesEnquiry(requestBody)
-      .subscribe(
-        (response: any) => {
-          this.showNotification("Enquiry submitted successfully")
-          this.isSubmitClicked = false;
-          this.dialogRef.close();
-        },
-        (error) => {
-        }
-      );
+    this.commonService.submitSalesEnquiry(requestBody).subscribe(
+      (response: any) => {
+        this.showNotification("Enquiry submitted successfully");
+        this.isSubmitClicked = false;
+        this.dialogRef.close();
+      },
+      (error) => {}
+    );
   }
 
   private getEnumId(value: string | number, enumType: any): number {
-    return typeof value === 'string' ? enumType[value] : value;
+    return typeof value === "string" ? enumType[value] : value;
   }
 
-  closeMatDialog(){
+  closeMatDialog() {
     this.dialogRef.close();
   }
 
   showNotification(message: string): void {
-    this.snackBar.open(message, 'Close', {
+    this.snackBar.open(message, "Close", {
       duration: 5000,
-      horizontalPosition: 'end',
-      verticalPosition: 'top'
+      horizontalPosition: "end",
+      verticalPosition: "top",
     });
   }
-
 }

@@ -76,12 +76,19 @@
             />
             <span
               class="material-icons set-fav-card"
-              [class.material-icons-outlined]="!isFavorite"
-              [class.fill]="isFavorite"
-              [class.active]="isFavorite"
-              (click)="toggleFavorite($event)"
+              [class.material-icons-outlined]="
+                !favoriteStatus[postCard?.tableRefGuid]
+              "
+              [class.fill]="favoriteStatus[postCard?.tableRefGuid]"
+              [class.active]="favoriteStatus[postCard?.tableRefGuid]"
+              (click)="toggleFavorite($event, postCard?.tableRefGuid)"
+              title="Add in Wishlist"
             >
-              {{ isFavorite ? "favorite" : "favorite_border" }}
+              {{
+                favoriteStatus[postCard.tableRefGuid]
+                  ? "favorite"
+                  : "favorite_border"
+              }}
             </span>
             <span class="ribbon-featured">
               <strong
