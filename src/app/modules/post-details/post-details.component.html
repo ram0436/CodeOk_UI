@@ -34,12 +34,29 @@
       <div>
         <mat-card
           class="border-1 mb-2 block img-mat-card bg-gray-card"
-          *ngFor="let image of postDetails.projectImageList"
+          *ngFor="let image of postDetails.projectImageList; let i = index"
         >
           <div class="pg-card">
             <div class="postImgCont">
               <img class="postImg" [src]="image.codeImageURL" alt="" />
             </div>
+            <span
+              *ngIf="i === 0"
+              class="material-icons set-fav-card"
+              [class.material-icons-outlined]="
+                !favoriteStatus[postDetails?.tableRefGuid]
+              "
+              [class.fill]="favoriteStatus[postDetails?.tableRefGuid]"
+              [class.active]="favoriteStatus[postDetails?.tableRefGuid]"
+              (click)="toggleFavorite($event, postDetails?.tableRefGuid)"
+              title="Add in Wishlist"
+            >
+              {{
+                favoriteStatus[postDetails.tableRefGuid]
+                  ? "favorite"
+                  : "favorite_border"
+              }}
+            </span>
           </div>
         </mat-card>
       </div>

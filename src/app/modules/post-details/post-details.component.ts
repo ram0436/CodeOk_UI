@@ -14,6 +14,7 @@ import { ProjectService } from "../service/project.service";
 import { UserService } from "../user/service/user.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { AppLicenseComponent } from "src/app/shared/component/app-license/app-license.component";
+import { LoginComponent } from "../user/component/login/login.component";
 
 declare var Razorpay: any;
 
@@ -184,6 +185,10 @@ export class PostDetailsComponent {
   showBuyButton: boolean = false;
 
   isAdmin: boolean = false;
+
+  favoriteStatus: { [key: string]: boolean } = {};
+
+  isUserLogedIn: boolean = false;
 
   constructor(
     private dialog: MatDialog,
@@ -420,6 +425,68 @@ export class PostDetailsComponent {
     this.selectedCodeokkRating = rating;
   }
 
+  toggleFavorite(event: Event, productId: string) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (localStorage.getItem("id") != null) {
+      this.favoriteStatus[productId] = this.favoriteStatus[productId] || false;
+
+      this.favoriteStatus[productId] = !this.favoriteStatus[productId];
+
+      if (this.favoriteStatus[productId]) {
+        this.addToWishlist(productId);
+      } else {
+      }
+    } else {
+      this.openLoginModal();
+    }
+  }
+
+  addToWishlist(productId: string) {
+    const wishlistItem = {
+      id: 0,
+      projectTableRefGuid: productId,
+      createdBy: localStorage.getItem("id"),
+      createdOn: new Date().toISOString(),
+    };
+
+    this.userService.addWishList(wishlistItem).subscribe(
+      (response: any) => {
+        this.showNotification("Post saved successfully");
+      },
+      (error: any) => {}
+    );
+  }
+
+  showNotification(message: string): void {
+    this.snackBar.open(message, "Close", {
+      duration: 5000,
+      horizontalPosition: "end",
+      verticalPosition: "top",
+    });
+  }
+
+  openLoginModal() {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+
+    this.dialogRef = this.dialog.open(LoginComponent, {
+      width: "400px",
+      panelClass: "custom-dialog-container",
+    });
+
+    const dialogRefElement = document.querySelector(".custom-dialog-container");
+    if (dialogRefElement) {
+      dialogRefElement.setAttribute("style", "margin-top: 85px");
+    }
+
+    this.dialogRef.afterClosed().subscribe((result) => {
+      if (localStorage.getItem("authToken") != null) this.isUserLogedIn = true;
+    });
+  }
+
   submitCodeokkRating() {
     const userId = Number(localStorage.getItem("id"));
 
@@ -457,14 +524,6 @@ export class PostDetailsComponent {
       },
       (error) => {}
     );
-  }
-
-  showNotification(message: string): void {
-    this.snackBar.open(message, "Close", {
-      duration: 5000,
-      horizontalPosition: "end",
-      verticalPosition: "top",
-    });
   }
 
   formatTags(tagList: any[]): string {
