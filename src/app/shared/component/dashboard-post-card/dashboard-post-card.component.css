@@ -185,6 +185,10 @@
   min-height: 155px;
 }
 
+.post-item-card:hover .set-fav-card {
+  display: flex;
+}
+
 .post-card-grid .post-item-card .post-item-content .post-item-name {
   font-size: 14px;
   max-height: 40px;

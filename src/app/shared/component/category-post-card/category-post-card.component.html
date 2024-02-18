@@ -115,10 +115,11 @@
               <ul>
                 <li
                   class="file-type"
-                  *ngFor="let version of getDisplayedTechnologiesVersion(postCard)"
+                  *ngFor="
+                    let version of getDisplayedTechnologiesVersion(postCard)
+                  "
                 >
-                  {{ getName(version.technologyVersionId,
-                    "version") }}
+                  {{ getName(version.technologyVersionId, "version") }}
                 </li>
               </ul>
             </div>
@@ -130,7 +131,9 @@
               <ul>
                 <li
                   class="file-type"
-                  *ngFor="let framework of getDisplayedTechnologiesFramework(postCard)"
+                  *ngFor="
+                    let framework of getDisplayedTechnologiesFramework(postCard)
+                  "
                 >
                   {{ getName(framework.technologyFrameworkId, "framework") }}
                 </li>
@@ -157,17 +160,24 @@
               <!-- <span class="material-icons-outlined button-icon">
                 playlist_add
               </span> -->
-              <span class="material-icons-outlined button-icon d-hover">
+              <!-- <span class="material-icons-outlined button-icon d-hover">
                 favorite_border
-              </span>
+              </span> -->
               <span
-                class="material-icons button-icon d-hover"
-                [class.material-icons-outlined]="!isFavorite"
-                [class.fill]="isFavorite"
-                [class.active]="isFavorite"
-                (click)="toggleFavorite($event)"
+                class="material-icons set-fav-card"
+                [class.material-icons-outlined]="
+                  !favoriteStatus[postCard?.tableRefGuid]
+                "
+                [class.fill]="favoriteStatus[postCard?.tableRefGuid]"
+                [class.active]="favoriteStatus[postCard?.tableRefGuid]"
+                (click)="toggleFavorite($event, postCard?.tableRefGuid)"
+                title="Add in Wishlist"
               >
-                {{ isFavorite ? "favorite" : "favorite_border" }}
+                {{
+                  favoriteStatus[postCard.tableRefGuid]
+                    ? "favorite"
+                    : "favorite_border"
+                }}
               </span>
             </div>
             <div class="post-price" *ngIf="postCard.serviceTypeId === 1">
@@ -193,7 +203,7 @@
               >
             </div>
             <div class="download-count">
-              Sales ({{postCard.downloadCount}})
+              Sales ({{ postCard.downloadCount }})
             </div>
             <!-- <div class="sales">1.7k Sales</div> -->
             <div class="last-updated">{{ formatDate(postCard.createdOn) }}</div>
