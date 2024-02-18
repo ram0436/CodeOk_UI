@@ -2,7 +2,7 @@
   <nav class="nav-bar">
     <div class="container">
       <div class="icon-text">
-        <a href="#" title="CODEOK" class="icon-text1">
+        <a href="#" title="CODEOK" class="icon-text1" (click)="getAllItems()">
           <div class="logo-img">
             <img src="../../../../assets/logo.png" alt="" />
             <!-- <div class="logo-text">
@@ -13,7 +13,7 @@
       </div>
       <div class="css-1pr0bng em7g81m0">
         <div class="search-bar-container">
-          <form action="/search">
+          <form action="/search" (ngSubmit)="search()">
             <div class="search-bar">
               <div class="inputs-wrapper">
                 <div class="keyword-search-container">
@@ -31,6 +31,8 @@
                           name="q"
                           value=""
                           [(ngModel)]="searchQuery"
+                          (keydown.enter)="onEnter()"
+                          (input)="onInputChange()"
                         />
                         <span
                           class="material-icons cross-icon"
@@ -94,6 +96,14 @@
           >
             <span class="material-icons text-white"> bookmark_border </span>
             <span class="text-white">My WishList</span>
+          </button>
+          <button
+            mat-menu-item
+            class="button-item"
+            routerLink="/user/account/feedback"
+          >
+            <span class="material-icons-outlined text-white"> reviews </span>
+            <span class="text-white">Feedback</span>
           </button>
           <button mat-menu-item class="button-item">
             <span class="material-icons text-white"> chat_bubble_outline </span>

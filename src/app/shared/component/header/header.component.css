@@ -604,15 +604,7 @@
   padding: 0px 2vw;
   padding-top: 20px;
 }
-.second-nav li {
-  /* padding: 0rem 3rem; */
-  /* margin: auto; */
-  /* border-right:1px solid #ddd; */
-}
-.second-nav li ul li {
-  /* padding: 0rem 3rem;
-     border-right:none; */
-}
+
 .second-nav li li:hover {
   background: none;
 }

@@ -31,5 +31,13 @@ export class DashboardComponent {
       },
       (error: any) => {}
     );
+
+    this.projectService.searchResults$.subscribe((results) => {
+      this.cards = results;
+    });
+
+    this.projectService.getAllItems$.subscribe((results) => {
+      this.cards = results;
+    });
   }
 }

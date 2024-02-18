@@ -34,6 +34,7 @@ export class AuthGuard implements CanActivate {
       "user/account/myadds",
       "user/account/security",
       "user/account/mywishlist",
+      "user/account/feedback",
     ];
     const requestedRoute = route.routeConfig?.path || "";
     if (userRole == "Admin") {
