@@ -21,6 +21,7 @@ import { MatSelectModule } from "@angular/material/select";
 import { SavedComponent } from "./component/saved/saved.component";
 import { StarRatingComponent } from "src/app/shared/component/star-rating/star-rating.component";
 import { SharedModule } from "src/app/shared/shared.module";
+import { FeedbackFormComponent } from './component/feedback-form/feedback-form.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { SharedModule } from "src/app/shared/shared.module";
     MyAddsComponent,
     SecurityComponent,
     SavedComponent,
+    FeedbackFormComponent,
   ],
   imports: [
     SharedModule,

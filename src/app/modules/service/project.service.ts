@@ -1,12 +1,18 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { Observable } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { environment } from "src/environments/environment";
+import { tap } from "rxjs/operators";
 
 @Injectable({
   providedIn: "root",
 })
 export class ProjectService {
+  private searchResultsSubject = new BehaviorSubject<any[]>([]);
+  private getAllItemsSubject = new BehaviorSubject<any[]>([]);
+  public searchResults$ = this.searchResultsSubject.asObservable();
+  public getAllItems$ = this.getAllItemsSubject.asObservable();
+
   constructor(private http: HttpClient) {}
   private BaseURL = environment.baseUrl;
 
@@ -18,8 +24,12 @@ export class ProjectService {
     return this.http.post(`${this.BaseURL}ProjectCode/UploadImages`, formData);
   }
 
-  getAllProjectCodePosts() {
-    return this.http.get(`${this.BaseURL}ProjectCode/GetDashboard`);
+  getAllProjectCodePosts(): Observable<any[]> {
+    return this.http.get<any[]>(`${this.BaseURL}ProjectCode/GetDashboard`).pipe(
+      tap((results) => {
+        this.getAllItemsSubject.next(results);
+      })
+    );
   }
 
   getAllAdminProjectCodePosts() {
@@ -84,6 +94,15 @@ export class ProjectService {
   getProjectByUserId(userId: number) {
     return this.http.get(
       `${this.BaseURL}ProjectCode/GetProjectByUserId?userId=` + userId
+    );
+  }
+
+  searchAds(searchQuery: string): Observable<any[]> {
+    const apiUrl = `${this.BaseURL}ProjectCode/GlobalSearch?searchItem=${searchQuery}`;
+    return this.http.get<any[]>(apiUrl).pipe(
+      tap((results) => {
+        this.searchResultsSubject.next(results);
+      })
     );
   }
 }

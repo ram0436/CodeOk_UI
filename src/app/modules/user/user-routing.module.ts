@@ -5,6 +5,7 @@ import { MyAddsComponent } from "./component/my-adds/my-adds.component";
 import { PersonalComponent } from "./component/personal/personal.component";
 import { SecurityComponent } from "./component/security/security.component";
 import { SavedComponent } from "./component/saved/saved.component";
+import { FeedbackFormComponent } from "./component/feedback-form/feedback-form.component";
 
 const routes: Routes = [
   { path: "account", component: AccountComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: "account/myadds", component: MyAddsComponent },
   { path: "account/mywishlist", component: SavedComponent },
   { path: "account/security", component: SecurityComponent },
+  { path: "account/feedback", component: FeedbackFormComponent },
 ];
 
 @NgModule({

@@ -18,6 +18,9 @@ import { MatIconModule } from "@angular/material/icon";
 import { SportType } from "../../enum/SportType";
 import { CommonService } from "../../service/common.service";
 import { SalesEnquiryComponent } from "../sales-enquiry/sales-enquiry.component";
+import { ProjectService } from "src/app/modules/service/project.service";
+import { MatSnackBar } from "@angular/material/snack-bar";
+
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -44,12 +47,19 @@ export class HeaderComponent implements OnInit {
     languageTech: false,
   };
 
+  searchResults: any[] = [];
+  allItems: any[] = [];
+
   hideSecondNav = false;
   projectCategories: any = [];
   industryTypes: any = [];
   operatingSystems: any = [];
   technologies: any = [];
   versions: any = [];
+
+  searchQuery: string = "";
+
+  locationSearchQuery: string = "";
 
   isAdmin: boolean = false;
   // Function to handle the scroll event
@@ -82,7 +92,9 @@ export class HeaderComponent implements OnInit {
     private userService: UserService,
     private elementRef: ElementRef,
     private renderer: Renderer2,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private projectService: ProjectService,
+    private snackBar: MatSnackBar
   ) {
     var role = localStorage.getItem("role");
     if (role != null && role == "Admin") this.isAdmin = true;
@@ -121,6 +133,37 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  getAllItems() {
+    this.projectService.getAllProjectCodePosts().subscribe(
+      (allItems: any) => {
+        this.allItems = allItems;
+      },
+      (error) => {}
+    );
+  }
+
+  search(): void {
+    if (this.searchQuery && this.searchQuery.length >= 2) {
+      this.projectService.searchAds(this.searchQuery).subscribe(
+        (results: any[]) => {
+          this.searchResults = results;
+          console.log(this.searchResults);
+        },
+        (error) => {}
+      );
+    } else {
+      this.showNotification("Search query should have at least 2 characters");
+    }
+  }
+
+  showNotification(message: string): void {
+    this.snackBar.open(message, "Close", {
+      duration: 5000,
+      horizontalPosition: "end",
+      verticalPosition: "top",
+    });
+  }
+
   generateQueryParams() {
     const queryParams = {
       type: "Gadget",
@@ -133,12 +176,23 @@ export class HeaderComponent implements OnInit {
     return queryParams;
   }
 
-  searchQuery: string = "";
+  onEnter() {
+    if (this.searchQuery.trim() !== "") {
+      this.search();
+    } else {
+      this.getAllItems();
+    }
+  }
 
-  locationSearchQuery: string = "";
+  onInputChange() {
+    if (this.searchQuery.trim() === "") {
+      this.getAllItems();
+    }
+  }
 
   clearSearchText(): void {
     this.searchQuery = "";
+    this.getAllItems();
   }
 
   clearLocationSearchText(): void {

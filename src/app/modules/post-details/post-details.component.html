@@ -415,35 +415,6 @@
             </button>
           </mat-card-content>
         </mat-card>
-        <mat-card class="mt-10 border-1 bg-gray-card">
-          <mat-card-title class="title-flex">
-            Rate Codeokk
-            <span
-              class="material-icons-outlined"
-              (click)="toggleRateCodeokkContent()"
-            >
-              {{ isRateCodeokkVisible ? "remove" : "add" }}
-            </span></mat-card-title
-          >
-          <mat-card-content *ngIf="isRateCodeokkVisible">
-            <p>How was your experience with our services?</p>
-            <div class="flex-row">
-              <div class="ratings-stars">
-                <app-star-rating
-                  (ratingSelected)="handleCodeokkRatingSelected($event)"
-                ></app-star-rating>
-              </div>
-            </div>
-            <textarea
-              class="rating-box"
-              [(ngModel)]="rateMessage"
-              placeholder="Write your review"
-            ></textarea>
-            <button class="rate-btn" (click)="submitCodeokkRating()">
-              Rate
-            </button>
-          </mat-card-content>
-        </mat-card>
         <mat-card
           class="mt-10 approve-btn-carousel border-1 bg-gray-card"
           *ngIf="isAdmin && !postDetails.isApproved"
