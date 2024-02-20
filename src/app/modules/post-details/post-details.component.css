@@ -542,8 +542,75 @@ input {
   padding: 0 8px;
 }
 
+.ribbon-featured {
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+  bottom: 0;
+  right: 0;
+}
+
+.ribbon-featured .ribbon {
+  /* background-color: #007bff;
+    color: #fff; */
+  box-shadow: 0 0 2px 0 rgba(0, 0, 0, 0.2);
+  text-transform: uppercase;
+  display: block;
+  text-align: center;
+  top: 18px;
+  left: -28px;
+  font-weight: 700;
+  width: 112px;
+  height: 24px;
+  padding: 3px 0;
+  position: relative;
+  font-size: 10.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  font-family: "Arial Narrow", sans-serif;
+  letter-spacing: 0.4px;
+}
+
+.ribbon-featured .standard-ribbon {
+  background-color: #7e0d91;
+  color: #fff;
+}
+
+.premium-ribbon {
+  background-color: #960010;
+  color: #fff;
+  letter-spacing: 0.75px !important;
+}
+
+.ribbon-featured .community-ribbon {
+  background-color: #3d0174;
+  color: #fff;
+}
+
+.ribbon-featured .enterprise-ribbon {
+  background-color: #222;
+  color: #d79955;
+}
+
+.hide-visually {
+  border: 0;
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+}
+
 .dollar {
   font-family: "Be Vietnam Pro", sans-serif;
+  margin-right: 3px;
 }
 
 .post-price {
@@ -582,6 +649,30 @@ input {
   margin-left: 8px;
   color: #337ab7;
   cursor: pointer;
+}
+
+.post-title {
+  font-size: 16px;
+  color: #337ab7;
+}
+
+.fz-17 {
+  font-size: 17px;
+}
+
+.fz-26 {
+  font-size: 26px !important;
+}
+
+.d-flex {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  justify-content: center;
+}
+
+.total-downloads {
+  margin-bottom: 10px !important;
 }
 
 .margin-t-2 {

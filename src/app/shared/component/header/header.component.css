@@ -926,8 +926,9 @@ header {
 .logo-img img {
   object-fit: contain;
   height: 10rem;
-  width: 40rem;
+  width: 22rem;
   margin-top: -12px;
+  z-index: 2;
 }
 
 .logo-text {

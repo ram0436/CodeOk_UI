@@ -57,6 +57,18 @@
                   : "favorite_border"
               }}
             </span>
+            <span class="ribbon-featured" *ngIf="i === 0">
+              <strong
+                [class.ribbon]="true"
+                [class.community-ribbon]="postDetails.serviceTypeId === 1"
+                [class.standard-ribbon]="postDetails.serviceTypeId === 2"
+                [class.premium-ribbon]="postDetails.serviceTypeId === 3"
+                [class.enterprise-ribbon]="postDetails.serviceTypeId === 4"
+              >
+                <span class="hide-visually">This ad is</span>
+                {{ getRibbonText(postDetails.serviceTypeId) }}
+              </strong>
+            </span>
           </div>
         </mat-card>
       </div>
@@ -70,6 +82,9 @@
             <!-- <div class="loc-date">
               <p class="date">{{ formatDate(postDetails?.createdOn) }}</p>
             </div> -->
+            <p style="margin: 0" class="mbot-5 post-title">
+              {{ postDetails?.name }}
+            </p>
             <div class="flex-row">
               <p class="bold margin-t-2">{{ averageRating.toFixed(1) }}</p>
               <div class="ratings-stars">
@@ -92,6 +107,7 @@
                 See all reviews
               </p>
             </div>
+            <p class="total-downloads">Total Sales ({{ downloadCount }})</p>
           </mat-card-content>
         </mat-card>
         <mat-card
@@ -100,8 +116,9 @@
         >
           <mat-card-title class="title-flex"> Download</mat-card-title>
           <mat-card-content>
-            <button class="download-btn" (click)="downloadCode()">
-              Download Code
+            <button class="download-btn d-flex" (click)="downloadCode()">
+              <span class="material-icons-outlined fz-26"> file_download </span>
+              <span class="fz-17">Download Code</span>
             </button>
           </mat-card-content>
         </mat-card>
@@ -229,10 +246,13 @@
               </div>
               <button
                 *ngIf="postDetails.serviceTypeId !== 1 && !showDownloadButton"
-                class="buy-btn"
+                class="buy-btn d-flex"
                 (click)="payNow()"
               >
-                Buy Code
+                <span class="material-icons-outlined fz-26">
+                  shopping_cart
+                </span>
+                <span class="fz-17">Buy Code</span>
               </button>
               <button
                 *ngIf="postDetails.serviceTypeId === 1 || showDownloadButton"
@@ -247,8 +267,6 @@
         <mat-card class="mt-10 border-1 bg-gray-card">
           <mat-card-title>Overview</mat-card-title>
           <mat-card-content>
-            <p style="margin: 0" class="mbot-5">{{ postDetails?.name }}</p>
-            <p class="total-downloads">Total Sales ({{ downloadCount }})</p>
             <p class="description-content">
               <span>Project category :</span>
               {{ getSingleValue(postDetails?.projectCategoryId, "category") }}
@@ -379,31 +397,7 @@
             </div>
           </mat-card-content>
         </mat-card>
-        <mat-card class="mt-10 border-1 bg-gray-card">
-          <mat-card-title class="title-flex">
-            What Our Customer Says
-            <span
-              class="material-icons-outlined"
-              (click)="toggleReviewsContent()"
-            >
-              {{ isReviewsVisible ? "remove" : "add" }}
-            </span></mat-card-title
-          >
-          <mat-card-content *ngIf="isReviewsVisible">
-            <div class="user-reviews">
-              <div *ngFor="let review of reviewsData" class="review-item">
-                <div class="ratings-given">
-                  <app-star-rating
-                    [readOnly]="true"
-                    [selectedStar]="review.rating"
-                  ></app-star-rating>
-                </div>
-                <p class="review-given">"{{ review.review }}."</p>
-              </div>
-            </div>
-          </mat-card-content>
-        </mat-card>
-        <mat-card class="mt-10 border-1 bg-gray-card">
+        <mat-card class="mt-10 border-1 bg-gray-card" *ngIf="isAdmin">
           <mat-card-title class="title-flex">
             Rate this code
             <span class="material-icons-outlined" (click)="toggleRateContent()">
@@ -430,6 +424,30 @@
             >
               Rate
             </button>
+          </mat-card-content>
+        </mat-card>
+        <mat-card class="mt-10 bg-gray-card">
+          <mat-card-title class="title-flex">
+            What Our Customer Says
+            <!-- <span
+              class="material-icons-outlined"
+              (click)="toggleReviewsContent()"
+            >
+              {{ isReviewsVisible ? "remove" : "add" }}
+            </span> -->
+          </mat-card-title>
+          <mat-card-content>
+            <div class="user-reviews">
+              <div *ngFor="let review of reviewsData" class="review-item">
+                <div class="ratings-given">
+                  <app-star-rating
+                    [readOnly]="true"
+                    [selectedStar]="review.rating"
+                  ></app-star-rating>
+                </div>
+                <p class="review-given">{{ review.review }}.</p>
+              </div>
+            </div>
           </mat-card-content>
         </mat-card>
         <mat-card

@@ -126,7 +126,13 @@
                       let technology of getDisplayedTechnologies(postCard)
                     "
                   >
-                    {{ getName(technology.technologyId) }}
+                    {{ getName(technology.technologyId, "technology") }}
+                  </li>
+                  <li
+                    class="file-type"
+                    *ngFor="let version of getDisplayedVersions(postCard)"
+                  >
+                    {{ getName(version.technologyVersionId, "version") }}
                   </li>
                 </ul>
               </div>
