@@ -419,6 +419,7 @@
   margin: 30px 0 50px 0;
   border-radius: 4px;
   height: 100%;
+  width: 91% !important;
 }
 
 .mpt {
@@ -458,10 +459,10 @@
 }
 
 .details-wrapper .item-name {
-  font-size: 14px;
+  font-size: 16px;
   display: inline-block;
   max-width: 100%;
-  color: #4d4d4d;
+  color: #337ab7;
   position: relative;
   text-overflow: ellipsis;
   vertical-align: bottom;
@@ -492,8 +493,8 @@
   /* height: 48px;
       line-height: 48px; */
   position: absolute;
-  right: 15px;
-  top: 5px;
+  right: 5px;
+  top: 2px;
   /* width: 48px; */
   padding: 6px 4.5px 4px 5.5px;
   z-index: 10;
@@ -555,6 +556,7 @@
   flex-direction: column;
   text-align: center;
   position: relative;
+  gap: 18px;
 }
 
 .price-wrapper .post-info {
@@ -606,8 +608,8 @@
 
 .dollar {
   font-family: "Be Vietnam Pro", sans-serif;
+  margin-right: 3px;
 }
-
 .price-wrapper .post-info .fav-collections .button-icon:hover {
   color: orangered;
 }
@@ -636,7 +638,7 @@
 
 .price-wrapper .post-info .post-price {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 28px;
 }
 
@@ -645,6 +647,7 @@
   align-items: center;
   justify-content: center;
   width: 100%;
+  margin-top: 2px;
 }
 
 .price-wrapper .post-info .rating-wrapper .star-ratings {

@@ -5,7 +5,7 @@
 
 .post-item-price {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 500;
   line-height: 20px;
   margin: 5px auto 10px auto;
 }
@@ -252,12 +252,13 @@
   .details-content
   .post-item-price {
   font-size: 18px;
-  font-weight: 700;
+  /* font-weight: 700; */
   line-height: 20px;
 }
 
 .dollar {
   font-family: "Be Vietnam Pro", sans-serif;
+  margin-right: 3px;
 }
 
 .post-card-grid

@@ -202,6 +202,9 @@ export class PostDetailsComponent {
     private el: ElementRef
   ) {
     var role = localStorage.getItem("role");
+    if (role != null) {
+      this.isUserLogedIn = true;
+    }
     if (role != null && role == "Admin") this.isAdmin = true;
     else this.isAdmin = false;
   }
@@ -221,8 +224,25 @@ export class PostDetailsComponent {
       this.checkPaymentStatus(tableRefGuid);
     }
     this.getRatingData(tableRefGuid);
-    this.calculateTotal();
     this.getDownloadCount(tableRefGuid);
+  }
+
+  setLicensePrice() {
+    const postPrice = parseFloat(this.postDetails.price);
+
+    this.serviceTypeData[0].items.forEach((item: any) => {
+      if (item.label === "Single App License") {
+        item.price = postPrice.toString();
+      }
+    });
+
+    this.serviceTypeData[0].items.forEach((item: any) => {
+      if (item.label === "Multiple App License") {
+        item.price = (postPrice * 3).toString();
+      }
+    });
+
+    this.calculateTotal();
   }
 
   verifyAdd(tableRefGuid: string): void {
@@ -322,43 +342,47 @@ export class PostDetailsComponent {
   }
 
   payNow() {
-    const totalAmount = (this.checkboxPrice + this.radioPrice) * 100;
+    if (this.isUserLogedIn) {
+      const totalAmount = (this.checkboxPrice + this.radioPrice) * 100;
 
-    const RazorpayOptions = {
-      description: "Razorpay",
-      currency: "USD",
-      amount: totalAmount,
-      name: "Ram",
-      key: "rzp_test_9Jens2a59xJEKP",
-      image: "https://cfdblob.blob.core.windows.net/logo/CodeOkk_logo.gif",
-      theme: {
-        color: "#6466e3",
-      },
-      modal: {
-        ondismiss: () => {},
-      },
-      handler: (response: any) => {
-        if (response && response.razorpay_payment_id) {
-          this.razorpayPaymentId = response.razorpay_payment_id;
-          this.paymentStatus = true;
-          this.verifyPayment();
-          this.checkPaymentStatus(this.postDetails.tableRefGuid);
-        } else {
-        }
-      },
-    };
+      const RazorpayOptions = {
+        description: "Razorpay",
+        currency: "USD",
+        amount: totalAmount,
+        name: "Ram",
+        key: "rzp_test_9Jens2a59xJEKP",
+        image: "https://cfdblob.blob.core.windows.net/logo/CodeOkk_logo.gif",
+        theme: {
+          color: "#6466e3",
+        },
+        modal: {
+          ondismiss: () => {},
+        },
+        handler: (response: any) => {
+          if (response && response.razorpay_payment_id) {
+            this.razorpayPaymentId = response.razorpay_payment_id;
+            this.paymentStatus = true;
+            this.verifyPayment();
+            this.checkPaymentStatus(this.postDetails.tableRefGuid);
+          } else {
+          }
+        },
+      };
 
-    const failureCallback = (e: any) => {
-      this.razorpayPaymentId = "";
-      this.paymentStatus = false;
-      this.verifyPayment();
-      this.checkPaymentStatus(this.postDetails.tableRefGuid);
-    };
+      const failureCallback = (e: any) => {
+        this.razorpayPaymentId = "";
+        this.paymentStatus = false;
+        this.verifyPayment();
+        this.checkPaymentStatus(this.postDetails.tableRefGuid);
+      };
 
-    const rzp = new Razorpay(RazorpayOptions);
-    rzp.on("payment.failed", failureCallback);
+      const rzp = new Razorpay(RazorpayOptions);
+      rzp.on("payment.failed", failureCallback);
 
-    rzp.open();
+      rzp.open();
+    } else {
+      this.openLoginModal();
+    }
   }
 
   verifyPayment() {
@@ -473,8 +497,8 @@ export class PostDetailsComponent {
     }
 
     this.dialogRef = this.dialog.open(LoginComponent, {
-      width: "400px",
-      panelClass: "custom-dialog-container",
+      width: "500px",
+      panelClass: "cdk-overlay-pane",
     });
 
     const dialogRefElement = document.querySelector(".custom-dialog-container");
@@ -574,33 +598,38 @@ export class PostDetailsComponent {
         this.sanitizer.bypassSecurityTrustHtml(modifiedIframeString);
       // this.documentationURL = this.sanitizer.bypassSecurityTrustHtml(res[0].documentaionURL);
       this.isLoading = false;
+      this.setLicensePrice();
     });
   }
 
   downloadCode() {
-    if (
-      this.postDetails?.projectRepositoryList &&
-      this.postDetails.projectRepositoryList.length > 0
-    ) {
-      const repositoryLink =
-        this.postDetails.projectRepositoryList[0].codeRepositoryURL;
-      window.open(repositoryLink, "_blank");
+    if (this.isUserLogedIn) {
+      if (
+        this.postDetails?.projectRepositoryList &&
+        this.postDetails.projectRepositoryList.length > 0
+      ) {
+        const repositoryLink =
+          this.postDetails.projectRepositoryList[0].codeRepositoryURL;
+        window.open(repositoryLink, "_blank");
+      }
+
+      const userId = localStorage.getItem("id");
+
+      const tableRefGuid = this.postDetails.tableRefGuid;
+
+      const payload = {
+        tableRefGuid: tableRefGuid,
+        createdBy: Number(userId),
+        createdOn: new Date().toISOString(),
+      };
+
+      this.projectService.codeDownload(payload).subscribe(
+        (response) => {},
+        (error) => {}
+      );
+    } else {
+      this.openLoginModal();
     }
-
-    const userId = localStorage.getItem("id");
-
-    const tableRefGuid = this.postDetails.tableRefGuid;
-
-    const payload = {
-      tableRefGuid: tableRefGuid,
-      createdBy: Number(userId),
-      createdOn: new Date().toISOString(),
-    };
-
-    this.projectService.codeDownload(payload).subscribe(
-      (response) => {},
-      (error) => {}
-    );
   }
 
   formatDate(date: any): any {
@@ -724,5 +753,20 @@ export class PostDetailsComponent {
       });
     }
     return names;
+  }
+
+  getRibbonText(serviceTypeId: number): string {
+    switch (serviceTypeId) {
+      case 1:
+        return "Community";
+      case 2:
+        return "Standard";
+      case 3:
+        return "Premium";
+      case 4:
+        return "Enterprise";
+      default:
+        return "";
+    }
   }
 }

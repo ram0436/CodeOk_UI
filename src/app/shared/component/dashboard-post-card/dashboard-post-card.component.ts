@@ -31,6 +31,7 @@ export class DashboardPostCardComponent {
   imageIndex: number = 0;
   imagesList: any = [1];
   technologies: any = [];
+  versions: any = [];
   displayedCardCount: number = 16;
 
   isScrolledDown = false;
@@ -211,55 +212,40 @@ export class DashboardPostCardComponent {
       return moment(inputDate).format("MMM DD");
     }
   }
-  getCardImageURL(card: any): string {
-    this.imagesList = [];
-    if (card.gadgetImageList && card.gadgetImageList[0]?.imageURL) {
-      this.imagesList = card.gadgetImageList;
-      return card.gadgetImageList[0]?.imageURL;
-    } else if (card.vehicleImageList && card.vehicleImageList[0]?.imageURL) {
-      this.imagesList = card.gadgetImageList;
-      return card.vehicleImageList[0]?.imageURL;
-    } else if (
-      card.electronicApplianceImageList &&
-      card.electronicApplianceImageList[0]?.imageURL
-    ) {
-      this.imagesList = card.gadgetImageList;
-      return card.electronicApplianceImageList[0]?.imageURL;
-    } else if (
-      card.furnitureImageList &&
-      card.furnitureImageList[0]?.imageURL
-    ) {
-      this.imagesList = card.gadgetImageList;
-      return card.furnitureImageList[0]?.imageURL;
-    } else if (card.sportImageList && card.sportImageList[0]?.imageURL) {
-      this.imagesList = card.gadgetImageList;
-      return card.sportImageList[0]?.imageURL;
-    } else if (card.petImageList && card.petImageList[0]?.imageURL) {
-      this.imagesList = card.gadgetImageList;
-      return card.petImageList[0]?.imageURL;
-    } else if (card.fashionImageList && card.fashionImageList[0]?.imageURL) {
-      this.imagesList = card.gadgetImageList;
-      return card.fashionImageList[0]?.imageURL;
-    } else if (card.bookImageList && card.bookImageList[0]?.imageURL) {
-      this.imagesList = card.gadgetImageList;
-      return card.bookImageList[0]?.imageURL;
-    } else {
-      return "../../../assets/image_not_available.png";
-    }
-  }
   getAllTechnologies() {
     this.commonService.getAllTechnology().subscribe((res) => {
       this.technologies = res;
+      console.log(this.technologies);
+      this.getAllTechnologyVersions(this.technologies);
     });
   }
-  getName(id: number) {
-    var technology = this.technologies.filter(
-      (technology: any) => technology.id == id
-    );
-    if (technology.length > 0) return technology[0].name;
+  getAllTechnologyVersions(technologies: any) {
+    console.log(technologies);
+    technologies.forEach((technology: any) => {
+      this.commonService
+        .getVersionByTechnologyId(technology.id)
+        .subscribe((response: any) => {
+          this.versions.push(...response);
+        });
+    });
+  }
+  getName(id: number, name: string) {
+    if (name == "technology") {
+      var technology = this.technologies.filter(
+        (technology: any) => technology.id == id
+      );
+      if (technology.length > 0) return technology[0].name;
+    } else if (name == "version") {
+      var version = this.versions.filter((version: any) => version.id == id);
+      if (version.length > 0) return version[0].name;
+    }
   }
 
   getDisplayedTechnologies(postCard: any): any[] {
-    return postCard.technologyMappingList.slice(0, 4);
+    return postCard.technologyMappingList.slice(0, 2);
+  }
+
+  getDisplayedVersions(postCard: any): any[] {
+    return postCard.technologyVersionMappingList.slice(0, 2);
   }
 }
