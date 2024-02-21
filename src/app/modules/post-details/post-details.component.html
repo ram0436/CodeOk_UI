@@ -82,9 +82,9 @@
             <!-- <div class="loc-date">
               <p class="date">{{ formatDate(postDetails?.createdOn) }}</p>
             </div> -->
-            <p style="margin: 0" class="mbot-5 post-title">
+            <h3 style="margin: 0" class="mbot-5 post-title">
               {{ postDetails?.name }}
-            </p>
+            </h3>
             <div class="flex-row">
               <p class="bold margin-t-2">{{ averageRating.toFixed(1) }}</p>
               <div class="ratings-stars">
@@ -256,10 +256,13 @@
               </button>
               <button
                 *ngIf="postDetails.serviceTypeId === 1 || showDownloadButton"
-                class="download-btn"
+                class="download-btn d-flex"
                 (click)="downloadCode()"
               >
-                Download Code
+                <span class="material-icons-outlined fz-26">
+                  file_download
+                </span>
+                <span class="fz-17">Download Code</span>
               </button>
             </div>
           </mat-card-content>
