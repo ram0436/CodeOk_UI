@@ -108,13 +108,19 @@
             </div> -->
           </div>
           <div class="post-item-content">
-            <div class="post-item-price" *ngIf="postCard.serviceTypeId === 1">
+            <div
+              class="post-item-price text-orange"
+              *ngIf="postCard.serviceTypeId === 1"
+            >
               Free
             </div>
-            <div class="post-item-price" *ngIf="postCard.serviceTypeId !== 1">
+            <div
+              class="post-item-price text-orange"
+              *ngIf="postCard.serviceTypeId !== 1"
+            >
               <span class="dollar">$</span>{{ postCard.price }}
             </div>
-            <h3 class="post-item-name">
+            <h3 class="post-item-name text-lightblue">
               {{ truncateTitle(postCard.name) }}
             </h3>
             <div class="attrs-wrapper">

@@ -79,7 +79,7 @@
   color: #fff;
   border-radius: 50%;
   cursor: pointer;
-  display: none;
+  display: flex;
   /* height: 48px;
     line-height: 48px; */
   position: absolute;
@@ -190,11 +190,11 @@
 }
 
 .post-card-grid .post-item-card .post-item-content .post-item-name {
-  font-size: 14px;
+  font-size: 16px;
   max-height: 40px;
   max-width: 100%;
   margin: 0;
-  color: #4d4d4d;
+  color: #337ab7;
   cursor: pointer;
   display: inline-block;
   max-width: 100%;

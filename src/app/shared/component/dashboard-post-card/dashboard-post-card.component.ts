@@ -90,7 +90,7 @@ export class DashboardPostCardComponent {
           this.calculateAverageRating(postCard);
         },
         (error) => {
-          console.error("Error fetching reviews data:", error);
+          // console.error("Error fetching reviews data:", error);
         }
       );
     }
@@ -173,7 +173,7 @@ export class DashboardPostCardComponent {
     });
   }
 
-  truncateTitle(title: string, maxLength: number = 43): string {
+  truncateTitle(title: string, maxLength: number = 38): string {
     if (title.length <= maxLength) {
       return title;
     } else {
@@ -215,12 +215,10 @@ export class DashboardPostCardComponent {
   getAllTechnologies() {
     this.commonService.getAllTechnology().subscribe((res) => {
       this.technologies = res;
-      console.log(this.technologies);
       this.getAllTechnologyVersions(this.technologies);
     });
   }
   getAllTechnologyVersions(technologies: any) {
-    console.log(technologies);
     technologies.forEach((technology: any) => {
       this.commonService
         .getVersionByTechnologyId(technology.id)
