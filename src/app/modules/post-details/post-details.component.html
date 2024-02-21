@@ -107,7 +107,18 @@
                 See all reviews
               </p>
             </div>
-            <p class="total-downloads">Total Sales ({{ downloadCount }})</p>
+            <div
+              class="total-downloads"
+              *ngIf="postDetails.serviceTypeId === 1"
+            >
+              Total Downloads ({{ downloadCount }})
+            </div>
+            <div
+              class="total-downloads"
+              *ngIf="postDetails.serviceTypeId !== 1"
+            >
+              Total Sales ({{ downloadCount }})
+            </div>
           </mat-card-content>
         </mat-card>
         <mat-card
