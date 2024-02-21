@@ -180,10 +180,16 @@
                 }}
               </span>
             </div>
-            <div class="post-price" *ngIf="postCard.serviceTypeId === 1">
+            <div
+              class="post-price text-orange"
+              *ngIf="postCard.serviceTypeId === 1"
+            >
               Free
             </div>
-            <div class="post-price" *ngIf="postCard.serviceTypeId !== 1">
+            <div
+              class="post-price text-orange"
+              *ngIf="postCard.serviceTypeId !== 1"
+            >
               <span class="dollar">$</span>{{ postCard.price }}
             </div>
             <div class="rating-wrapper">
