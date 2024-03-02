@@ -1,129 +1,148 @@
-.pricing-plans-section{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 40px 80px;
+.pricing-plans-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 80px;
 }
 
-.pricing-plans-section .pricing-plans-container .pricing-plans-heading{
-    margin-top: 0;
-    margin-bottom: 40px;
-    text-align: center;
-    font-size: 22px;
-    /* font-weight: bold; */
-    color:grey;
+.pricing-plans-section .pricing-plans-container .pricing-plans-heading {
+  margin-top: 0;
+  margin-bottom: 40px;
+  text-align: center;
+  font-size: 22px;
+  /* font-weight: bold; */
+  color: grey;
 }
 
-.text-normal{
-    font-weight: 500;
-    border-bottom: 1px solid rgb(200, 200, 200);
-    font-size: 26px;
+.text-normal {
+  font-weight: 500;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  font-size: 26px;
 }
 
-.youtube-video{
-    text-align: center;
-    margin-bottom: 20px;
+.youtube-video {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
-.pricing-plans-section .pricing-plans-container .pricing-plans{
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.pricing-plans-section .pricing-plans-container .pricing-plans {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
-.plan{
-    /* flex: 1; */
-    max-width: 320px;
-    min-width: 320px;
-    min-height: 600px;
-    height: 600px;
-    max-height: 600px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    /* justify-content: center; */
-    /* padding: 20px 40px; */
-    background-color: #222;
-    color: #fff;
-    border-radius: 10px;
-    overflow: hidden;
+.plan {
+  /* flex: 1; */
+  max-width: 320px;
+  min-width: 320px;
+  min-height: 600px;
+  height: 600px;
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* justify-content: center; */
+  /* padding: 20px 40px; */
+  background-color: #222;
+  color: #fff;
+  border-radius: 10px;
+  overflow: hidden;
 }
 
-.plan .plan-head{
-    min-height: 150px;
-    clip-path: polygon(0 0, 100% 0%, 100% 49%, 0% 100%);
-    width: 100%;
-    padding: 20px 40px;
-    /* display: flex; */
+.plan .plan-head {
+  min-height: 150px;
+  clip-path: polygon(0 0, 100% 0%, 100% 49%, 0% 100%);
+  width: 100%;
+  padding: 20px 40px;
+  /* display: flex; */
 }
 
-.plan .plan-head.community-plan-head{
-    background-color: #3d0174;
+.plan .plan-head.community-plan-head {
+  background-color: #3d0174;
 }
 
-.plan .plan-head.standard-plan-head{
-    background-color: #7e0d91;
+.plan .plan-head.standard-plan-head {
+  background-color: #7e0d91;
 }
 
-.plan .plan-head.premium-plan-head{
-    background-color: #960010;
+.plan .plan-head.premium-plan-head {
+  background-color: #960010;
 }
 
-.plan .plan-head.enterprise-plan-head{
-    /* background-color: #d79955; */
-    background-color: #b28228;
+.plan .plan-head.enterprise-plan-head {
+  /* background-color: #d79955; */
+  background-color: #b28228;
 }
 
-.plan .plan-head .plan-title{
-    margin-top: 20px;
-    font-size: 24px;
-    font-weight: 500;
-    text-align: center;
+.plan .plan-head .plan-title {
+  margin-top: 20px;
+  font-size: 24px;
+  font-weight: 500;
+  text-align: center;
 }
 
-.plan .plan-head .bg-plan{
-    clip-path: polygon(41% 81%, 100% 51%, 100% 100%, 0% 100%);
-    background-color: #7e0d91 !important;
-    margin-top: 30px;
-    width: 100%;
+.plan .plan-head .bg-plan {
+  clip-path: polygon(41% 81%, 100% 51%, 100% 100%, 0% 100%);
+  background-color: #7e0d91 !important;
+  margin-top: 30px;
+  width: 100%;
 }
 
-.plan .plan-body{
-    min-height: 330px;
-    padding: 20px 15px;
+.plan .plan-body {
+  min-height: 330px;
+  padding: 20px 15px;
 }
 
-.plan .plan-body.standard-plan-body{
-    margin-right: 40px;
+.plan .plan-body.standard-plan-body {
+  margin-right: 40px;
 }
 
-.plan .plan-body.community-plan-body{
-    margin-right: 25px;
+.plan .plan-body.community-plan-body {
+  margin-right: 25px;
 }
 
-.plan .plan-body .features-included{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
+.plan .plan-body .features-included {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
-.plan .plan-body .features-included .feature{
-    display: flex;
-    align-items: center;
-    gap: 10px;
+.plan .plan-body .features-included .feature {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-.plan .plan-body .features-included .feature .done-icon{
-    color: #24c223;
-    font-size: 28px;
+.plan .plan-body .features-included .feature .done-icon {
+  color: #24c223;
+  font-size: 28px;
 }
 
-.plan .plan-body .features-included .feature .close-icon{
-    color: red;
-    font-size: 28px;
+.plan .plan-body .features-included .feature .close-icon {
+  color: red;
+  font-size: 28px;
 }
 
-.plan .plan-body .features-included .feature .feature-name{
-    padding-top: 10px;
-    font-size: 16px;
+.plan .plan-body .features-included .feature .feature-name {
+  padding-top: 10px;
+  font-size: 16px;
+}
+
+@media (max-width: 1140px) {
+  .pricing-plans-section {
+    padding: 40px 20px;
+  }
+}
+
+@media (max-width: 760px) {
+  .plan {
+    max-width: 290px;
+    min-width: 290px;
+  }
+
+  .plan .plan-head {
+    min-height: 135px;
+  }
 }

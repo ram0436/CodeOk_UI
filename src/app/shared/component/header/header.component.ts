@@ -61,6 +61,8 @@ export class HeaderComponent implements OnInit {
 
   locationSearchQuery: string = "";
 
+  isSlideVisible = false;
+
   isAdmin: boolean = false;
   // Function to handle the scroll event
   @HostListener("window:scroll", [])
@@ -72,6 +74,14 @@ export class HeaderComponent implements OnInit {
       0;
     // Adjust the value (e.g., 200) based on when you want the effect to trigger
     this.hideSecondNav = scrollPosition > 0;
+  }
+
+  @HostListener("document:click", ["$event"])
+  handleDocumentClick(event: Event) {
+    const clickedInside = this.elementRef.nativeElement.contains(event.target);
+    if (!clickedInside) {
+      this.isSlideVisible = false;
+    }
   }
 
   toggleDropdown(dropdownKey: string) {
@@ -211,6 +221,11 @@ export class HeaderComponent implements OnInit {
     this.getAllIndustryTypes();
     this.getAllTechnologies();
   }
+
+  toggleSlideVisibility() {
+    this.isSlideVisible = !this.isSlideVisible;
+  }
+
   openLoginModal() {
     if (this.dialogRef) {
       this.dialogRef.close();

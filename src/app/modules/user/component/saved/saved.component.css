@@ -185,11 +185,11 @@
 }
 
 .post-card-grid .post-item-card .post-item-content .post-item-name {
-  font-size: 14px;
+  font-size: 16px;
   max-height: 40px;
   max-width: 100%;
   margin: 0;
-  color: #4d4d4d;
+  color: #337ab7;
   cursor: pointer;
   display: inline-block;
   max-width: 100%;
@@ -399,4 +399,49 @@
 
 .wishlist-title {
   margin-bottom: 15px;
+}
+
+@media (max-width: 1400px) {
+  /* .post-item-content .attrs-wrapper .included-files .file-type {
+    margin-bottom: 10px;
+  } */
+  .post-card-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(240px, 1fr));
+    grid-gap: 14px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 1110px) {
+  /* .post-item-content .attrs-wrapper .included-files .file-type {
+    margin-bottom: 10px;
+  } */
+  .post-card-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(240px, 1fr));
+    grid-gap: 14px;
+    width: 100%;
+  }
+}
+
+@media (max-width: 790px) {
+  .post-card-container {
+    margin-top: 50px;
+  }
+}
+
+@media (max-width: 620px) {
+  .post-card-container {
+    max-width: 100%;
+  }
+
+  .post-item-details-btn {
+    padding: 8px 15px;
+  }
+
+  .post-card-grid {
+    grid-gap: 10px;
+    grid-template-columns: repeat(1, minmax(210px, 1fr));
+  }
 }

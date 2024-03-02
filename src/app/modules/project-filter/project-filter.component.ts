@@ -1,22 +1,29 @@
-import { COMMA, ENTER } from '@angular/cdk/keycodes';
-import { DOCUMENT } from '@angular/common';
-import { ChangeDetectorRef, Component, Inject, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
-import { MatAutocomplete } from '@angular/material/autocomplete';
-import { MatSelect } from '@angular/material/select';
-import { ActivatedRoute } from '@angular/router';
-import { Observable, forkJoin, map, startWith } from 'rxjs';
-import { Filter } from 'src/app/shared/model/Filter';
-import { CommonService } from 'src/app/shared/service/common.service';
-import { ServiceType } from 'src/app/shared/enum/ServiceType';
+import { COMMA, ENTER } from "@angular/cdk/keycodes";
+import { DOCUMENT } from "@angular/common";
+import { ChangeDetectorRef, Component, Inject, ViewChild } from "@angular/core";
+import {
+  ElementRef,
+  Renderer2,
+  HostListener,
+  EventEmitter,
+  Output,
+} from "@angular/core";
+import { FormControl } from "@angular/forms";
+import { MatAutocomplete } from "@angular/material/autocomplete";
+import { MatSelect } from "@angular/material/select";
+import { ActivatedRoute } from "@angular/router";
+import { Observable, forkJoin, map, startWith } from "rxjs";
+import { Filter } from "src/app/shared/model/Filter";
+import { CommonService } from "src/app/shared/service/common.service";
+import { ServiceType } from "src/app/shared/enum/ServiceType";
 
 @Component({
-  selector: 'app-project-filter',
-  templateUrl: './project-filter.component.html',
-  styleUrls: ['./project-filter.component.css']
+  selector: "app-project-filter",
+  templateUrl: "./project-filter.component.html",
+  styleUrls: ["./project-filter.component.css"],
 })
 export class ProjectFilterComponent {
-
+  @Output() resetClicked: EventEmitter<void> = new EventEmitter<void>();
   // selectedService: ServiceType[] = [];
 
   filterObj = new Filter();
@@ -24,8 +31,8 @@ export class ProjectFilterComponent {
   industryControl = new FormControl("");
   serviceControl = new FormControl("");
   filteredServices!: Observable<{ id: number; name: string }[]>;
-  filteredCategorys!: Observable<{ id: number; name: string; }[]>;
-  filteredIndustries!: Observable<{ id: number; name: string; }[]>;
+  filteredCategorys!: Observable<{ id: number; name: string }[]>;
+  filteredIndustries!: Observable<{ id: number; name: string }[]>;
   projectCategories: any = [];
   industryTypes: any = [];
   operatingSystems: any = [];
@@ -47,36 +54,39 @@ export class ProjectFilterComponent {
   initialFilters: any;
   menuName: any;
   menuId: any;
-  @ViewChild('osMultiSelect') osMultiSelect!: MatSelect;
-  @ViewChild('serviceMultiSelect') serviceMultiSelect!: MatSelect;
-  @ViewChild('technologyMultiSelect') technologyMultiSelect!: MatSelect;
-  @ViewChild('versionMultiSelect') versionMultiSelect!: MatSelect;
+  @ViewChild("osMultiSelect") osMultiSelect!: MatSelect;
+  @ViewChild("serviceMultiSelect") serviceMultiSelect!: MatSelect;
+  @ViewChild("technologyMultiSelect") technologyMultiSelect!: MatSelect;
+  @ViewChild("versionMultiSelect") versionMultiSelect!: MatSelect;
 
-  @ViewChild('category') categoryAutocomplete!: MatAutocomplete;
-  @ViewChild('industry') industryAutocomplete!: MatAutocomplete;
-  @ViewChild('industry') serviceAutocomplete!: MatAutocomplete;
+  @ViewChild("category") categoryAutocomplete!: MatAutocomplete;
+  @ViewChild("industry") industryAutocomplete!: MatAutocomplete;
+  @ViewChild("industry") serviceAutocomplete!: MatAutocomplete;
 
-  constructor(private commonService: CommonService, private cdr: ChangeDetectorRef,
-    @Inject(DOCUMENT) private document: Document, private route: ActivatedRoute,) { }
+  constructor(
+    private commonService: CommonService,
+    private cdr: ChangeDetectorRef,
+    @Inject(DOCUMENT) private document: Document,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit() {
     this.getAllProjectCategory();
     this.getAllIndustryTypes();
     this.getAllOperatingSystems();
     this.getAllTechnologies();
-    this.route.queryParams.subscribe(params => {
-      this.menuName = params['menu'];
-      if (params['id'] != undefined)
-        this.menuId = Number(params['id']);
+    this.route.queryParams.subscribe((params) => {
+      this.menuName = params["menu"];
+      if (params["id"] != undefined) this.menuId = Number(params["id"]);
       setTimeout(() => {
         this.setInitialFilters();
-      }, 1000)
+      }, 1000);
     });
     this.services = [
-      { id: ServiceType.Community, name: 'Community' },
-      { id: ServiceType.Standard, name: 'Standard' },
-      { id: ServiceType.Premium, name: 'Premium' },
-      { id: ServiceType.Enterprise, name: 'Enterprise' },
+      { id: ServiceType.Community, name: "Community" },
+      { id: ServiceType.Standard, name: "Standard" },
+      { id: ServiceType.Premium, name: "Premium" },
+      { id: ServiceType.Enterprise, name: "Enterprise" },
     ];
     this.filteredServices = this.serviceControl.valueChanges.pipe(
       startWith(""),
@@ -86,10 +96,8 @@ export class ProjectFilterComponent {
 
   filterDropDowns(value: any, data: any): { id: number; name: string }[] {
     var filterValue = "";
-    if (typeof value == 'object')
-      filterValue = value.name.toLowerCase();
-    else
-      filterValue = value.toLowerCase();
+    if (typeof value == "object") filterValue = value.name.toLowerCase();
+    else filterValue = value.toLowerCase();
     return data.filter(
       (brand: any) => brand.name.toLowerCase().indexOf(filterValue) === 0
     );
@@ -99,26 +107,28 @@ export class ProjectFilterComponent {
   }
 
   handleCategory(event: any) {
-    this.filterObj.projectCategoryId = (event == null) ? null : event.id;
+    this.filterObj.projectCategoryId = event == null ? null : event.id;
     this.updateAppliedFilters("projectCategoryId", event.name);
     this.commonService.setData(this.filterObj);
     this.filtersSelected = true;
   }
   handleIndustry(event: any) {
-    this.filterObj.industryTypeId = (event == null) ? null : event.id;
+    this.filterObj.industryTypeId = event == null ? null : event.id;
     this.updateAppliedFilters("industryTypeId", event.name);
     this.commonService.setData(this.filterObj);
     this.filtersSelected = true;
   }
   handleService(event: any) {
-    this.filterObj.serviceTypeId = (event == null) ? null : event.id;
+    this.filterObj.serviceTypeId = event == null ? null : event.id;
     this.updateAppliedFilters("serviceTypeId", event.name);
     this.commonService.setData(this.filterObj);
     this.filtersSelected = true;
   }
   handleOs(event: any) {
     let osIds = [];
-    this.appliedFilters = this.appliedFilters.filter((item: any) => item.name != 'os');
+    this.appliedFilters = this.appliedFilters.filter(
+      (item: any) => item.name != "os"
+    );
     for (let value of event.value) {
       osIds.push(value.id);
       this.updateAppliedFilters("os", value.name);
@@ -131,14 +141,24 @@ export class ProjectFilterComponent {
     this.versions = [];
     var technologyIds: any = [];
     const observables: any = [];
-    this.appliedFilters = this.appliedFilters.filter((item: any) => item.name != 'technology');
-    this.appliedFilters = this.appliedFilters.filter((item: any) => item.name != 'version');
+    this.appliedFilters = this.appliedFilters.filter(
+      (item: any) => item.name != "technology"
+    );
+    this.appliedFilters = this.appliedFilters.filter(
+      (item: any) => item.name != "version"
+    );
     this.technologyMappingList = [];
     this.filterObj.technologyVersionMappingList = null;
     event.value.forEach((technology: any) => {
-      let technologyObj = { id: 0, technologyId: technology.id, projectCodeId: 0 }
+      let technologyObj = {
+        id: 0,
+        technologyId: technology.id,
+        projectCodeId: 0,
+      };
       this.technologyMappingList.push(technologyObj);
-      observables.push(this.commonService.getVersionByTechnologyId(technology.id));
+      observables.push(
+        this.commonService.getVersionByTechnologyId(technology.id)
+      );
       technologyIds.push(technology.id);
       this.updateAppliedFilters("technology", technology.name);
     });
@@ -151,7 +171,9 @@ export class ProjectFilterComponent {
   }
   handleVersion(event: any) {
     let versionIds = [];
-    this.appliedFilters = this.appliedFilters.filter((item: any) => item.name != 'version');
+    this.appliedFilters = this.appliedFilters.filter(
+      (item: any) => item.name != "version"
+    );
     for (let value of event.value) {
       versionIds.push(value.id);
       this.updateAppliedFilters("version", value.name);
@@ -161,26 +183,26 @@ export class ProjectFilterComponent {
     this.filtersSelected = true;
   }
   getAllProjectCategory() {
-    this.commonService.getAllProjectCategory().subscribe(res => {
+    this.commonService.getAllProjectCategory().subscribe((res) => {
       this.projectCategories = res;
       this.getFilteredProjectCategories();
-    })
+    });
   }
   getAllIndustryTypes() {
-    this.commonService.getAllIndustryType().subscribe(res => {
+    this.commonService.getAllIndustryType().subscribe((res) => {
       this.industryTypes = res;
       this.getFilteredIndustryTypes();
-    })
+    });
   }
   getAllOperatingSystems() {
-    this.commonService.getAllOperatingSystem().subscribe(res => {
+    this.commonService.getAllOperatingSystem().subscribe((res) => {
       this.operatingSystems = res;
-    })
+    });
   }
   getAllTechnologies() {
-    this.commonService.getAllTechnology().subscribe(res => {
+    this.commonService.getAllTechnology().subscribe((res) => {
       this.technologies = res;
-    })
+    });
   }
   getFilteredProjectCategories() {
     this.filteredCategorys = this.categoryControl.valueChanges.pipe(
@@ -200,7 +222,12 @@ export class ProjectFilterComponent {
     prices.push(Number(this.toPrice));
     this.filterObj.price = prices;
     this.commonService.setData(this.filterObj);
-    this.updateAppliedFilters("price", this.formatAmount(this.fromPrice) + " - " + this.formatAmount(this.toPrice));
+    this.updateAppliedFilters(
+      "price",
+      this.formatAmount(this.fromPrice) +
+        " - " +
+        this.formatAmount(this.toPrice)
+    );
     this.filtersSelected = true;
   }
 
@@ -209,12 +236,12 @@ export class ProjectFilterComponent {
     this.categoryControl.patchValue("");
     this.industryControl.patchValue("");
     this.serviceControl.patchValue("");
-    this.categoryAutocomplete.options.forEach(option => option.deselect());
-    this.industryAutocomplete.options.forEach(option => option.deselect());
-    this.serviceAutocomplete.options.forEach(option => option.deselect());
+    this.categoryAutocomplete.options.forEach((option) => option.deselect());
+    this.industryAutocomplete.options.forEach((option) => option.deselect());
+    this.serviceAutocomplete.options.forEach((option) => option.deselect());
     this.fromPrice = 0;
     this.toPrice = 0;
-  
+
     this.selectedTechnology = [];
     this.selectedVersion = [];
     this.selectedService = [];
@@ -229,20 +256,25 @@ export class ProjectFilterComponent {
     if (this.osMultiSelect) {
       this.osMultiSelect.writeValue([]);
     }
-  
+
     if (this.serviceMultiSelect) {
       this.serviceMultiSelect.writeValue([]);
     }
-  
+
     if (this.technologyMultiSelect) {
       this.technologyMultiSelect.writeValue([]);
     }
-  
+
     if (this.versionMultiSelect) {
       this.versionMultiSelect.writeValue([]);
     }
-  
+
     this.commonService.setData(this.filterObj);
+    this.resetClicked.emit();
+  }
+
+  closeFilters() {
+    this.resetClicked.emit();
   }
   removeItem(item: any): void {
     const index = this.appliedFilters.indexOf(item);
@@ -254,14 +286,29 @@ export class ProjectFilterComponent {
   updateFilterColumns(filter: any) {
     switch (filter.name) {
       case "technology":
-        this.removeOptionFromArray(this.technologyMultiSelect, (this.filterObj.technologyMappingList || []), "name", filter.value);
+        this.removeOptionFromArray(
+          this.technologyMultiSelect,
+          this.filterObj.technologyMappingList || [],
+          "name",
+          filter.value
+        );
         this.modifyVersions();
         break;
       case "version":
-        this.removeOptionFromArray(this.versionMultiSelect, (this.filterObj.technologyVersionMappingList || []), "name", filter.value);
+        this.removeOptionFromArray(
+          this.versionMultiSelect,
+          this.filterObj.technologyVersionMappingList || [],
+          "name",
+          filter.value
+        );
         break;
       case "os":
-        this.removeOptionFromArray(this.osMultiSelect, (this.filterObj.operatingSystemMappingList || []), "name", filter.value);
+        this.removeOptionFromArray(
+          this.osMultiSelect,
+          this.filterObj.operatingSystemMappingList || [],
+          "name",
+          filter.value
+        );
         break;
       case "projectCategoryId":
         this.resetCategory();
@@ -286,31 +333,48 @@ export class ProjectFilterComponent {
       this.industryControl.patchValue("");
       switch (this.menuName) {
         case "Category": {
-          var selectedCategory = this.projectCategories.find((category: any) => category.id == this.menuId);
+          var selectedCategory = this.projectCategories.find(
+            (category: any) => category.id == this.menuId
+          );
           this.categoryControl.patchValue(selectedCategory);
-          this.appliedFilters.push({ name: "projectCategoryId", value: selectedCategory.name });
+          this.appliedFilters.push({
+            name: "projectCategoryId",
+            value: selectedCategory.name,
+          });
           this.filtersSelected = true;
           this.filterObj.projectCategoryId = this.menuId;
           break;
         }
         case "Industry": {
-          var selectedIndustry = this.industryTypes.find((industry: any) => industry.id == this.menuId);
+          var selectedIndustry = this.industryTypes.find(
+            (industry: any) => industry.id == this.menuId
+          );
           this.industryControl.patchValue(selectedIndustry);
-          this.appliedFilters.push({ name: "industryTypeId", value: selectedIndustry.name });
+          this.appliedFilters.push({
+            name: "industryTypeId",
+            value: selectedIndustry.name,
+          });
           this.filtersSelected = true;
           this.filterObj.industryTypeId = this.menuId;
           break;
         }
         case "Technology": {
           var technologyIds = [];
-          this.selectedTechnology = this.technologies.filter((technology: any) => technology.id == this.menuId);
-          this.appliedFilters.push({ name: "technology", value: this.selectedTechnology[0].name });
+          this.selectedTechnology = this.technologies.filter(
+            (technology: any) => technology.id == this.menuId
+          );
+          this.appliedFilters.push({
+            name: "technology",
+            value: this.selectedTechnology[0].name,
+          });
           this.filtersSelected = true;
           technologyIds.push(this.menuId);
           this.filterObj.technologyVersionMappingList = technologyIds;
-          this.commonService.getVersionByTechnologyId(this.menuId).subscribe(res=>{
-            this.versions =res;
-          })
+          this.commonService
+            .getVersionByTechnologyId(this.menuId)
+            .subscribe((res) => {
+              this.versions = res;
+            });
           break;
         }
       }
@@ -319,19 +383,27 @@ export class ProjectFilterComponent {
   updateAppliedFilters(filterName: string, value: any) {
     let matchFound = false;
     for (let i = 0; i < this.appliedFilters.length; i++) {
-      if (this.appliedFilters[i].name == filterName && (filterName == 'projectCategoryId' || filterName == 'industryTypeId' || filterName == 'price' || filterName == 'serviceTypeId')) {
+      if (
+        this.appliedFilters[i].name == filterName &&
+        (filterName == "projectCategoryId" ||
+          filterName == "industryTypeId" ||
+          filterName == "price" ||
+          filterName == "serviceTypeId")
+      ) {
         matchFound = true;
-        (value == null) ? this.appliedFilters.splice(i, 1) : this.appliedFilters[i].value = value;
+        value == null
+          ? this.appliedFilters.splice(i, 1)
+          : (this.appliedFilters[i].value = value);
         break;
       }
     }
     if (!matchFound)
-      this.appliedFilters.push({ name: filterName, value: value })
+      this.appliedFilters.push({ name: filterName, value: value });
   }
   formatAmount(amount: number): string {
-    return amount.toLocaleString('en-IN', {
-      style: 'currency',
-      currency: 'INR',
+    return amount.toLocaleString("en-IN", {
+      style: "currency",
+      currency: "INR",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     });
@@ -339,24 +411,29 @@ export class ProjectFilterComponent {
   resetCategory() {
     this.categoryControl.patchValue("");
     this.filterObj.projectCategoryId = null;
-    this.categoryAutocomplete.options.forEach(option => option.deselect());
+    this.categoryAutocomplete.options.forEach((option) => option.deselect());
   }
   resetService() {
     this.serviceControl.patchValue("");
     this.filterObj.serviceTypeId = null;
-    this.serviceAutocomplete.options.forEach(option => option.deselect());
+    this.serviceAutocomplete.options.forEach((option) => option.deselect());
   }
   resetIndustry() {
     this.industryControl.patchValue("");
     this.filterObj.industryTypeId = null;
-    this.industryAutocomplete.options.forEach(option => option.deselect());
+    this.industryAutocomplete.options.forEach((option) => option.deselect());
   }
   resetPrice() {
     this.fromPrice = 0;
     this.toPrice = 0;
     this.filterObj.price = null;
   }
-  removeOptionFromArray(select: any, dataArray: any[], key: string | null, value: any) {
+  removeOptionFromArray(
+    select: any,
+    dataArray: any[],
+    key: string | null,
+    value: any
+  ) {
     const selectedOptions = select.value as any[];
     const index = selectedOptions.findIndex((option: any) => {
       if (key) {
@@ -374,16 +451,20 @@ export class ProjectFilterComponent {
       select.writeValue(selectedOptions);
     }
   }
-  modifyVersions(){
+  modifyVersions() {
     const observables: any = [];
     this.versions = [];
     this.selectedTechnology.forEach((technology: any) => {
-      observables.push(this.commonService.getVersionByTechnologyId(technology.id));
+      observables.push(
+        this.commonService.getVersionByTechnologyId(technology.id)
+      );
     });
     forkJoin(observables).subscribe((responses: any) => {
       this.versions = [].concat(...responses);
     });
     this.filterObj.technologyVersionMappingList = null;
-    this.appliedFilters = this.appliedFilters.filter((item: any) => item.name != 'version');
+    this.appliedFilters = this.appliedFilters.filter(
+      (item: any) => item.name != "version"
+    );
   }
 }

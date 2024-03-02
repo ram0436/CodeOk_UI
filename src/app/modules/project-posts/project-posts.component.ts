@@ -1,30 +1,33 @@
-import { ChangeDetectorRef, Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { CommonService } from 'src/app/shared/service/common.service';
-import { ProjectService } from '../service/project.service';
+import { ChangeDetectorRef, Component } from "@angular/core";
+import { ActivatedRoute } from "@angular/router";
+import { CommonService } from "src/app/shared/service/common.service";
+import { ProjectService } from "../service/project.service";
 
 @Component({
-  selector: 'app-project-posts',
-  templateUrl: './project-posts.component.html',
-  styleUrls: ['./project-posts.component.css']
+  selector: "app-project-posts",
+  templateUrl: "./project-posts.component.html",
+  styleUrls: ["./project-posts.component.css"],
 })
 export class ProjectPostsComponent {
-
   menuName: string = "";
   menuId: Number = 0;
   isLoading: boolean = false;
+  showFilters: boolean = false;
   cards: any = [];
   subscription: any;
   actualCards: any;
-  constructor(private route: ActivatedRoute, private cdr: ChangeDetectorRef, private projectService: ProjectService,
-    private commonService: CommonService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef,
+    private projectService: ProjectService,
+    private commonService: CommonService
+  ) {}
 
   ngOnInit() {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.isLoading = true;
-      this.menuName = params['menu'];
-      if (params['id'] != undefined)
-        this.menuId = Number(params['id']);
+      this.menuName = params["menu"];
+      if (params["id"] != undefined) this.menuId = Number(params["id"]);
       this.getPosts();
     });
     this.subscription = this.commonService.getData().subscribe((data: any) => {
@@ -36,29 +39,44 @@ export class ProjectPostsComponent {
     this.cards = [];
     this.projectService.getAllProjectCodePosts().subscribe((data: any) => {
       this.actualCards = data;
-      
+
       if (this.menuId != 0) {
         switch (this.menuName) {
           case "Category": {
-            this.cards = this.actualCards.filter((card: any) => card.projectCategoryId == this.menuId);
+            this.cards = this.actualCards.filter(
+              (card: any) => card.projectCategoryId == this.menuId
+            );
             break;
           }
           case "Industry": {
-            this.cards = this.actualCards.filter((card: any) => card.industryTypeId == this.menuId);
+            this.cards = this.actualCards.filter(
+              (card: any) => card.industryTypeId == this.menuId
+            );
             break;
           }
           case "Technology": {
-            this.cards = this.actualCards.filter((card: any) => card.technologyMappingList.some((mapping: any) => mapping.technologyId == this.menuId));
+            this.cards = this.actualCards.filter((card: any) =>
+              card.technologyMappingList.some(
+                (mapping: any) => mapping.technologyId == this.menuId
+              )
+            );
             break;
           }
         }
-      }
-      else
-        this.cards = data;
+      } else this.cards = data;
       this.isLoading = false;
       this.menuId = 0;
-    })
+    });
   }
+
+  toggleFilters() {
+    this.showFilters = !this.showFilters;
+  }
+
+  onResetClicked() {
+    this.showFilters = false;
+  }
+
   filterPosts(data: any) {
     const filterObj: { [key: string]: { operator: string; value: any } } = {};
 
@@ -66,14 +84,17 @@ export class ProjectPostsComponent {
     //   filterObj['serviceTypeId'] = { operator: 'includes', value: data.serviceTypeId };
     // }
 
-    Object.keys(data).forEach(key => {
+    Object.keys(data).forEach((key) => {
       if (data[key] != null && data[key] != "") {
-        if (key == 'projectCategoryId' || key == 'industryTypeId' || key == 'serviceTypeId')
-          filterObj[key] = { operator: '==', value: data[key] };
-        else if (key == 'price')
-          filterObj[key] = { operator: 'between', value: data[key] };
-        else
-          filterObj[key] = { operator: 'includes', value: data[key] };
+        if (
+          key == "projectCategoryId" ||
+          key == "industryTypeId" ||
+          key == "serviceTypeId"
+        )
+          filterObj[key] = { operator: "==", value: data[key] };
+        else if (key == "price")
+          filterObj[key] = { operator: "between", value: data[key] };
+        else filterObj[key] = { operator: "includes", value: data[key] };
       }
     });
 
@@ -82,17 +103,24 @@ export class ProjectPostsComponent {
         const { operator, value } = condition;
         const itemValue = item[field];
 
-        if (Array.isArray(itemValue) && operator === 'includes') {
-          return itemValue.some(v => value.includes(v?.operatingSystemId || v?.technologyId || v?.technologyVersionId || v?.serviceTypeId));
+        if (Array.isArray(itemValue) && operator === "includes") {
+          return itemValue.some((v) =>
+            value.includes(
+              v?.operatingSystemId ||
+                v?.technologyId ||
+                v?.technologyVersionId ||
+                v?.serviceTypeId
+            )
+          );
         } else {
           switch (operator) {
-            case '==':
+            case "==":
               return item[field] === value;
-            case '<=':
+            case "<=":
               return item[field] <= value;
-            case 'includes':
+            case "includes":
               return value.includes(itemValue);
-            case 'between':
+            case "between":
               return value[0] <= itemValue && value[1] >= itemValue;
             default:
               return true;

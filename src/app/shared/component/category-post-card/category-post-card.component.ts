@@ -1,4 +1,4 @@
-import { Component, HostListener, Input } from "@angular/core";
+import { Component, HostListener, Input, Renderer2 } from "@angular/core";
 import { Router } from "@angular/router";
 import * as moment from "moment";
 import { CommonService } from "../../service/common.service";
@@ -74,10 +74,12 @@ export class CategoryPostCardComponent {
     private projectService: ProjectService,
     private userService: UserService,
     private snackBar: MatSnackBar,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
+    this.renderer.listen("window", "resize", (event) => {});
     this.getAllTechnologies();
     this.fetchPostsData();
     this.fetchReviewsData();
@@ -135,6 +137,26 @@ export class CategoryPostCardComponent {
   }
 
   truncateTitle(title: string, maxLength: number = 45): string {
+    const maxWidth = 1520;
+    const availableWidth = window.innerWidth;
+
+    const midWidth = 1380;
+
+    const smWidth = 510;
+
+    // Adjust maxLength based on available width
+    if (availableWidth <= maxWidth) {
+      maxLength = 36;
+    }
+
+    if (availableWidth <= midWidth) {
+      maxLength = 29;
+    }
+
+    if (availableWidth <= smWidth) {
+      maxLength = 32;
+    }
+
     if (title.length <= maxLength) {
       return title;
     } else {
@@ -294,13 +316,44 @@ export class CategoryPostCardComponent {
     }
   }
   getDisplayedTechnologies(postCard: any): any[] {
-    return postCard.technologyMappingList.slice(0, 5);
+    const maxWidth = 1090;
+    const minWidth = 510;
+    const availableWidth = window.innerWidth;
+
+    if (availableWidth <= maxWidth) {
+      return postCard.technologyMappingList.slice(0, 2);
+    }
+    if (availableWidth <= minWidth) {
+      return postCard.technologyMappingList.slice(0, 3);
+    } else {
+      return postCard.technologyMappingList.slice(0, 3);
+    }
   }
   getDisplayedTechnologiesVersion(postCard: any): any[] {
-    return postCard.technologyVersionMappingList.slice(0, 5);
+    const maxWidth = 1090;
+    const minWidth = 510;
+    const availableWidth = window.innerWidth;
+    if (availableWidth <= maxWidth) {
+      return postCard.technologyVersionMappingList.slice(0, 2);
+    }
+    if (availableWidth <= minWidth) {
+      return postCard.technologyVersionMappingList.slice(0, 3);
+    } else {
+      return postCard.technologyVersionMappingList.slice(0, 3);
+    }
   }
   getDisplayedTechnologiesFramework(postCard: any): any[] {
-    return postCard.technologyFrameworkMappingList.slice(0, 5);
+    const maxWidth = 1090;
+    const minWidth = 510;
+    const availableWidth = window.innerWidth;
+    if (availableWidth <= maxWidth) {
+      return postCard.technologyFrameworkMappingList.slice(0, 2);
+    }
+    if (availableWidth <= minWidth) {
+      return postCard.technologyFrameworkMappingList.slice(0, 3);
+    } else {
+      return postCard.technologyFrameworkMappingList.slice(0, 3);
+    }
   }
   getDisplayedTags(postCard: any): any[] {
     return postCard.tagList.slice(0, 5);

@@ -8,6 +8,7 @@
   line-height: 1.5;
   display: block;
   margin: 5px 5px 15px 5px;
+  overflow: auto;
   /* border-left: 5px solid #ffce32; */
 }
 
@@ -200,6 +201,11 @@
   cursor: pointer;
 }
 
+.live-txt {
+  margin-left: 40px;
+  width: 40%;
+}
+
 .deco-none {
   text-decoration: none;
   color: gray;
@@ -215,13 +221,13 @@
 }
 
 @media (max-width: 1200px) {
-  .rel {
+  .admin-rel {
     width: 105%;
   }
 }
 
 @media (max-width: 900px) {
-  .rel {
+  .admin-rel {
     width: 100%;
   }
 }
@@ -230,5 +236,14 @@
   .adds-conrainer {
     margin-top: 175px;
     padding: 1rem 1.5rem;
+  }
+
+  .date {
+    min-width: 72px;
+  }
+
+  .live-txt {
+    margin-left: 10px;
+    /* width: 40%; */
   }
 }

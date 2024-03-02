@@ -12,6 +12,11 @@
   overflow: hidden;
 }
 
+::ng-deep .cdk-overlay-pane {
+  overflow: auto;
+  scrollbar-width: none;
+}
+
 mat-card {
   /* width: 30%; */
   /* margin: 10% auto; */
@@ -55,6 +60,8 @@ mat-checkbox {
   z-index: 1000;
   display: flex;
   max-height: 100%;
+  overflow: auto !important;
+  scrollbar-width: 0px;
 }
 .mat-mdc-tab-group {
   display: flex;
