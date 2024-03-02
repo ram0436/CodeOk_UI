@@ -12,7 +12,7 @@
         </a>
       </div>
       <div class="css-1pr0bng em7g81m0">
-        <div class="search-bar-container">
+        <div class="search-bar-container md-display-n">
           <form action="/search" (ngSubmit)="search()">
             <div class="search-bar">
               <div class="inputs-wrapper">
@@ -147,7 +147,7 @@
             <li class="login" *ngIf="!isUserLogedIn">
               <a (click)="openLoginModal()">Login</a>
             </li>
-            <li class="neon__button">
+            <li class="neon__button sm-d-none">
               <a (click)="postAdd()" class="postfreeadd">
                 <span></span>
                 <span></span>
@@ -156,37 +156,268 @@
                 Become a Seller
               </a>
             </li>
+            <li class="menu-icon" (click)="toggleSlideVisibility()">
+              <span class="material-icons-outlined"> menu </span>
+              <span class="menu-text">Menu</span>
+            </li>
           </ul>
+          <div
+            *ngIf="isSlideVisible"
+            class="side-nav-box side-nav-box--right slide slide-enter-done"
+          >
+            <nav class="side-menu">
+              <section class="side-meu-section">
+                <span
+                  class="material-icons-outlined cancel-icon"
+                  (click)="toggleSlideVisibility()"
+                >
+                  cancel
+                </span>
+                <div class="side-menu-sublist">
+                  <li
+                    class="neon__button sidemenu-btn"
+                    (click)="toggleSlideVisibility()"
+                  >
+                    <a
+                      (click)="postAdd()"
+                      class="side-menu-link app-download-button"
+                    >
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      <span></span>
+                      Become a Seller
+                    </a>
+                  </li>
+                </div>
+              </section>
+              <section class="side-meu-section">
+                <div class="side-menu-sublist">
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    class="side-menu-link"
+                    routerLink="/"
+                    *ngIf="!isUserLogedIn"
+                  >
+                    <span class="material-icons-outlined"> chevron_right </span>
+                    Home
+                  </a>
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    routerLink="/admin/dashboard"
+                    class="side-menu-link"
+                    *ngIf="isUserLogedIn && isAdmin"
+                  >
+                    <span class="material-icons-outlined"> chevron_right </span>
+                    Admin Dashboard
+                  </a>
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    routerLink="/user/account/personal"
+                    class="side-menu-link"
+                    *ngIf="isUserLogedIn"
+                  >
+                    <span class="material-icons-outlined"> chevron_right </span>
+                    Go to Profile
+                  </a>
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    class="side-menu-link"
+                    *ngIf="isUserLogedIn"
+                    routerLink="/user/account/myadds"
+                  >
+                    <span class="material-icons-outlined"> chevron_right </span>
+                    Manage My Ads
+                  </a>
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    class="side-menu-link"
+                    *ngIf="isUserLogedIn"
+                    routerLink="/user/account/mywishlist"
+                  >
+                    <span class="material-icons-outlined"> chevron_right </span>
+                    My Wishlist
+                  </a>
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    class="side-menu-link"
+                    *ngIf="isUserLogedIn"
+                    routerLink="/user/account/feedback"
+                  >
+                    <span class="material-icons-outlined"> chevron_right </span>
+                    Feedback
+                  </a>
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    routerLink="/company"
+                    class="side-menu-link"
+                  >
+                    <span class="material-icons-outlined"> chevron_right </span>
+                    About Us
+                  </a>
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    class="side-menu-link border-enable"
+                    *ngIf="isUserLogedIn"
+                    routerLink="/user/account"
+                  >
+                    <span class="material-icons-outlined"> chevron_right </span>
+                    Acount & Settings
+                  </a>
+                  <a
+                    (click)="openLoginModal()"
+                    class="side-menu-link"
+                    *ngIf="!isUserLogedIn"
+                  >
+                    <span class="material-icons-outlined"> chevron_right </span>
+                    Login
+                  </a>
+                  <a
+                    (click)="openSignUpModal()"
+                    class="side-menu-link"
+                    *ngIf="!isUserLogedIn"
+                  >
+                    <span class="material-icons-outlined"> chevron_right </span>
+                    Register
+                  </a>
+                  <a
+                    (click)="logout()"
+                    class="side-menu-link"
+                    *ngIf="isUserLogedIn"
+                  >
+                    <span class="material-icons-outlined"> chevron_right </span>
+                    Logout
+                  </a>
+                </div>
+              </section>
+            </nav>
+          </div>
         </div>
       </div>
+    </div>
+    <div class="search-bar-container md-display-bl">
+      <form action="/search" (ngSubmit)="search()">
+        <div class="search-bar">
+          <div class="inputs-wrapper">
+            <div class="keyword-search-container">
+              <div class="keyword-search-field">
+                <div class="form-element form-element--input type-ahead">
+                  <div class="form-element form-element--input">
+                    <input
+                      aria-label="Type search query"
+                      placeholder="What are you looking for?"
+                      maxlength="50"
+                      autocomplete="off"
+                      class="input input-text"
+                      type="text"
+                      id="q"
+                      name="q"
+                      value=""
+                      [(ngModel)]="searchQuery"
+                      (keydown.enter)="onEnter()"
+                      (input)="onInputChange()"
+                    />
+                    <span
+                      class="material-icons cross-icon"
+                      (click)="clearSearchText()"
+                      >clear</span
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button
+              class="button button--primary search-button"
+              rel="noopener noreferrer"
+              type="submit"
+            >
+              <span class="material-icons">search</span>
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </nav>
   <nav class="navbar navbar-inverse" [class.hide-second-nav]="hideSecondNav">
     <div class="second-nav">
-      <ul class="nav navbar-nav no-pointer-nav">
-        <li class="dropdown auto-pointer-events mr-130">
-          <div
-            class="li-item dropdown-toggle"
-            (click)="toggleDropdown('allCategories')"
-          >
-            <a>All Category</a>
-            <span class="material-icons-outlined expand-icon">
-              expand_more
-            </span>
-          </div>
-          <div class="category-dropdown l-0">
-            <div class="col-6 curve-l30">
-              <div class="content-container">
-                <!-- <span class="scroll-right">Scroll Right</span>
+      <div class="menu-scrollable">
+        <ul class="nav navbar-nav no-pointer-nav">
+          <li class="dropdown auto-pointer-events mr-130">
+            <div
+              class="li-item dropdown-toggle"
+              (click)="toggleDropdown('allCategories')"
+            >
+              <a>All Category</a>
+              <span class="material-icons-outlined expand-icon">
+                expand_more
+              </span>
+            </div>
+            <div class="category-dropdown l-0 w-col6">
+              <div class="col-6 curve-l30">
+                <div class="content-container">
+                  <!-- <span class="scroll-right">Scroll Right</span>
                 <span class="scroll-left">Scroll Left</span> -->
-                <div class="category-group">
+                  <div class="category-group">
+                    <a
+                      class="category-group-title categories-group-title mtn-4"
+                      routerLink="/project-posts"
+                      >Project</a
+                    >
+                    <a
+                      *ngFor="let projectCategory of projectCategories"
+                      [routerLink]="'/project-posts'"
+                      [queryParams]="{
+                        menu: 'Category',
+                        id: projectCategory.id
+                      }"
+                      >{{ projectCategory.name }}</a
+                    >
+                    <a class="category-group-title industry-group-title"
+                      >Industry</a
+                    >
+                    <a
+                      *ngFor="let industryType of industryTypes"
+                      [routerLink]="'/project-posts'"
+                      [queryParams]="{
+                        menu: 'Industry',
+                        id: industryType.id
+                      }"
+                      >{{ industryType.name }}</a
+                    >
+                    <a class="category-group-title lt-group-titel"
+                      >Technology</a
+                    >
+                    <a
+                      *ngFor="let technology of technologies"
+                      [routerLink]="'/project-posts'"
+                      [queryParams]="{
+                        menu: 'Technology',
+                        id: technology.id
+                      }"
+                      >{{ technology.name }}</a
+                    >
+                    <!-- <a class="category-group-subtitle">Client Side</a> -->
+                    <!-- <a class="category-group-subtitle">Server Side</a> -->
+                    <!-- <a class="category-group-subtitle">Mobile</a> -->
+                    <!-- <a class="category-group-subtitle">Cloud</a> -->
+                    <!-- <a class="category-group-subtitle">Others</a> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="dropdown auto-pointer-events">
+            <div
+              class="li-item dropdown-toggle"
+              (click)="toggleDropdown('projectType')"
+            >
+              <a>Project Category</a>
+              <span class="material-icons expand-icon"> expand_more </span>
+            </div>
+            <div class="category-dropdown w-col2">
+              <ul class="category-dropdown-menu col-2">
+                <li *ngFor="let projectCategory of projectCategories">
                   <a
-                    class="category-group-title categories-group-title mtn-4"
-                    routerLink="/project-posts"
-                    >Project</a
-                  >
-                  <a
-                    *ngFor="let projectCategory of projectCategories"
                     [routerLink]="'/project-posts'"
                     [queryParams]="{
                       menu: 'Category',
@@ -194,11 +425,24 @@
                     }"
                     >{{ projectCategory.name }}</a
                   >
-                  <a class="category-group-title industry-group-title"
-                    >Industry</a
-                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="dropdown auto-pointer-events">
+            <div
+              class="li-item dropdown-toggle"
+              (click)="toggleDropdown('projectCategory')"
+            >
+              <a>Industry Type</a>
+              <span class="material-icons-outlined expand-icon">
+                expand_more
+              </span>
+            </div>
+            <div class="category-dropdown w-col3">
+              <ul class="category-dropdown-menu">
+                <li *ngFor="let industryType of industryTypes">
                   <a
-                    *ngFor="let industryType of industryTypes"
                     [routerLink]="'/project-posts'"
                     [queryParams]="{
                       menu: 'Industry',
@@ -206,9 +450,24 @@
                     }"
                     >{{ industryType.name }}</a
                   >
-                  <a class="category-group-title lt-group-titel">Technology</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="dropdown auto-pointer-events">
+            <div
+              class="li-item dropdown-toggle"
+              (click)="toggleDropdown('languageTech')"
+            >
+              <a>Technology</a>
+              <span class="material-icons-outlined expand-icon"
+                >expand_more</span
+              >
+            </div>
+            <div class="category-dropdown w-col3 t-col3">
+              <ul class="category-dropdown-menu col-3">
+                <li *ngFor="let technology of technologies">
                   <a
-                    *ngFor="let technology of technologies"
                     [routerLink]="'/project-posts'"
                     [queryParams]="{
                       menu: 'Technology',
@@ -216,192 +475,116 @@
                     }"
                     >{{ technology.name }}</a
                   >
-                  <!-- <a class="category-group-subtitle">Client Side</a> -->
-                  <!-- <a class="category-group-subtitle">Server Side</a> -->
-                  <!-- <a class="category-group-subtitle">Mobile</a> -->
-                  <!-- <a class="category-group-subtitle">Cloud</a> -->
-                  <!-- <a class="category-group-subtitle">Others</a> -->
-                </div>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="dropdown auto-pointer-events">
+            <div
+              class="li-item dropdown-toggle"
+              (click)="toggleDropdown('projectType')"
+            >
+              <a>Premium Apps</a>
+              <span class="material-icons-outlined expand-icon">
+                expand_more
+              </span>
+            </div>
+            <div class="category-dropdown w-col2">
+              <ul class="category-dropdown-menu col-2">
+                <li class="category-group-subtitle-li">
+                  <a class="category-group-subtitle">E-Commerce</a>
+                </li>
+                <!-- <li class="category-group-subtitle-li">
+                <a class="category-group-subtitle">B2C</a>
+              </li> -->
+                <li><a>Clothing</a></li>
+                <li><a>Classified</a></li>
+                <li><a>Footwear</a></li>
+                <li><a>Electronics</a></li>
+                <li><a>Health & Wellness</a></li>
+                <li><a>Beauty & Personal Care</a></li>
+                <li><a>Consumer Electronics</a></li>
+                <li><a>Furniture & Decoration</a></li>
+                <li><a>Auto & Parts</a></li>
+                <li><a>Food & Beverage</a></li>
+                <li><a>Pet & Animals</a></li>
+                <li><a>Toys & Games</a></li>
+                <!-- <li class="category-group-subtitle-li">
+                <a class="category-group-subtitle">C2C</a>
+              </li> -->
+                <li><a>Classified Portal</a></li>
+                <li class="category-group-subtitle-li">
+                  <a class="category-group-subtitle">Chat</a>
+                </li>
+                <li>
+                  <a>Chatbot</a>
+                </li>
+                <li>
+                  <a>Whatsapp Chat</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="dropdown auto-pointer-events">
+            <div
+              class="li-item dropdown-toggle"
+              (click)="toggleDropdown('projectType')"
+            >
+              <a>Enterprise Apps</a>
+              <span class="material-icons-outlined expand-icon">
+                expand_more
+              </span>
+            </div>
+            <div class="category-dropdown w-col2">
+              <ul class="category-dropdown-menu col-2">
+                <li class="category-group-subtitle-li">
+                  <a class="category-group-subtitle">E-Commerce</a>
+                </li>
+                <!-- <li class="category-group-subtitle-li">
+                <a class="category-group-subtitle">B2C</a>
+              </li> -->
+                <li><a>Clothing</a></li>
+                <li><a>Classified</a></li>
+                <li><a>Footwear</a></li>
+                <li><a>Electronics</a></li>
+                <li><a>Health & Wellness</a></li>
+                <li><a>Beauty & Personal Care</a></li>
+                <li><a>Consumer Electronics</a></li>
+                <li><a>Furniture & Decoration</a></li>
+                <li><a>Auto & Parts</a></li>
+                <li><a>Food & Beverage</a></li>
+                <li><a>Pet & Animals</a></li>
+                <li><a>Toys & Games</a></li>
+                <!-- <li class="category-group-subtitle-li">
+                <a class="category-group-subtitle">C2C</a>
+              </li> -->
+                <li><a>Classified Portal</a></li>
+                <li class="category-group-subtitle-li">
+                  <a class="category-group-subtitle">Chat</a>
+                </li>
+                <li>
+                  <a>Chatbot</a>
+                </li>
+                <li>
+                  <a>Whatsapp Chat</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="dropdown sales-enquiry-li auto-pointer-events">
+            <div class="sales-enquiry-menu li-item">
+              <div class="enquiry">
+                <img
+                  src="../../../../assets/landline.svg"
+                  alt="Landline"
+                  class="landline-icon"
+                />
+                <a (click)="openSalesEnquiryModal()">Sales Enquiry</a>
               </div>
             </div>
-          </div>
-        </li>
-        <li class="dropdown auto-pointer-events">
-          <div
-            class="li-item dropdown-toggle"
-            (click)="toggleDropdown('projectType')"
-          >
-            <a>Project Category</a>
-            <span class="material-icons expand-icon"> expand_more </span>
-          </div>
-          <div class="category-dropdown">
-            <ul class="category-dropdown-menu col-2">
-              <li *ngFor="let projectCategory of projectCategories">
-                <a
-                  [routerLink]="'/project-posts'"
-                  [queryParams]="{
-                    menu: 'Category',
-                    id: projectCategory.id
-                  }"
-                  >{{ projectCategory.name }}</a
-                >
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="dropdown auto-pointer-events">
-          <div
-            class="li-item dropdown-toggle"
-            (click)="toggleDropdown('projectCategory')"
-          >
-            <a>Industry Type</a>
-            <span class="material-icons-outlined expand-icon">
-              expand_more
-            </span>
-          </div>
-          <div class="category-dropdown">
-            <ul class="category-dropdown-menu">
-              <li *ngFor="let industryType of industryTypes">
-                <a
-                  [routerLink]="'/project-posts'"
-                  [queryParams]="{
-                    menu: 'Industry',
-                    id: industryType.id
-                  }"
-                  >{{ industryType.name }}</a
-                >
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="dropdown auto-pointer-events">
-          <div
-            class="li-item dropdown-toggle"
-            (click)="toggleDropdown('languageTech')"
-          >
-            <a>Technology</a>
-            <span class="material-icons-outlined expand-icon">expand_more</span>
-          </div>
-          <div class="category-dropdown">
-            <ul class="category-dropdown-menu col-3">
-              <li *ngFor="let technology of technologies">
-                <a
-                  [routerLink]="'/project-posts'"
-                  [queryParams]="{
-                    menu: 'Technology',
-                    id: technology.id
-                  }"
-                  >{{ technology.name }}</a
-                >
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="dropdown auto-pointer-events">
-          <div
-            class="li-item dropdown-toggle"
-            (click)="toggleDropdown('projectType')"
-          >
-            <a>Premium Apps</a>
-            <span class="material-icons-outlined expand-icon">
-              expand_more
-            </span>
-          </div>
-          <div class="category-dropdown">
-            <ul class="category-dropdown-menu col-2">
-              <li class="category-group-subtitle-li">
-                <a class="category-group-subtitle">E-Commerce</a>
-              </li>
-              <!-- <li class="category-group-subtitle-li">
-                <a class="category-group-subtitle">B2C</a>
-              </li> -->
-              <li><a>Clothing</a></li>
-              <li><a>Classified</a></li>
-              <li><a>Footwear</a></li>
-              <li><a>Electronics</a></li>
-              <li><a>Health & Wellness</a></li>
-              <li><a>Beauty & Personal Care</a></li>
-              <li><a>Consumer Electronics</a></li>
-              <li><a>Furniture & Decoration</a></li>
-              <li><a>Auto & Parts</a></li>
-              <li><a>Food & Beverage</a></li>
-              <li><a>Pet & Animals</a></li>
-              <li><a>Toys & Games</a></li>
-              <!-- <li class="category-group-subtitle-li">
-                <a class="category-group-subtitle">C2C</a>
-              </li> -->
-              <li><a>Classified Portal</a></li>
-              <li class="category-group-subtitle-li">
-                <a class="category-group-subtitle">Chat</a>
-              </li>
-              <li>
-                <a>Chatbot</a>
-              </li>
-              <li>
-                <a>Whatsapp Chat</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="dropdown auto-pointer-events">
-          <div
-            class="li-item dropdown-toggle"
-            (click)="toggleDropdown('projectType')"
-          >
-            <a>Enterprise Apps</a>
-            <span class="material-icons-outlined expand-icon">
-              expand_more
-            </span>
-          </div>
-          <div class="category-dropdown">
-            <ul class="category-dropdown-menu col-2">
-              <li class="category-group-subtitle-li">
-                <a class="category-group-subtitle">E-Commerce</a>
-              </li>
-              <!-- <li class="category-group-subtitle-li">
-                <a class="category-group-subtitle">B2C</a>
-              </li> -->
-              <li><a>Clothing</a></li>
-              <li><a>Classified</a></li>
-              <li><a>Footwear</a></li>
-              <li><a>Electronics</a></li>
-              <li><a>Health & Wellness</a></li>
-              <li><a>Beauty & Personal Care</a></li>
-              <li><a>Consumer Electronics</a></li>
-              <li><a>Furniture & Decoration</a></li>
-              <li><a>Auto & Parts</a></li>
-              <li><a>Food & Beverage</a></li>
-              <li><a>Pet & Animals</a></li>
-              <li><a>Toys & Games</a></li>
-              <!-- <li class="category-group-subtitle-li">
-                <a class="category-group-subtitle">C2C</a>
-              </li> -->
-              <li><a>Classified Portal</a></li>
-              <li class="category-group-subtitle-li">
-                <a class="category-group-subtitle">Chat</a>
-              </li>
-              <li>
-                <a>Chatbot</a>
-              </li>
-              <li>
-                <a>Whatsapp Chat</a>
-              </li>
-            </ul>
-          </div>
-        </li>
-        <li class="dropdown sales-enquiry-li auto-pointer-events">
-          <div class="sales-enquiry-menu li-item">
-            <div class="enquiry">
-              <img
-                src="../../../../assets/landline.svg"
-                alt="Landline"
-                class="landline-icon"
-              />
-              <a (click)="openSalesEnquiryModal()">Sales Enquiry</a>
-            </div>
-          </div>
-        </li>
-      </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   </nav>
 </header>

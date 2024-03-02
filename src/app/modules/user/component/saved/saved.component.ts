@@ -1,4 +1,4 @@
-import { Component, HostListener, Input } from "@angular/core";
+import { Component, HostListener, Input, Renderer2 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import * as moment from "moment";
 import { ProjectService } from "src/app/modules/service/project.service";
@@ -73,10 +73,12 @@ export class SavedComponent {
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private userService: UserService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
+    this.renderer.listen("window", "resize", (event) => {});
     this.userService
       .getWishListByUserId(Number(localStorage.getItem("id")))
       .subscribe(
@@ -207,7 +209,27 @@ export class SavedComponent {
     });
   }
 
-  truncateTitle(title: string, maxLength: number = 43): string {
+  truncateTitle(title: string, maxLength: number = 38): string {
+    const maxWidth = 742;
+    const availableWidth = window.innerWidth;
+
+    const midWidth = 655;
+
+    const smWidth = 620;
+
+    // Adjust maxLength based on available width
+    if (availableWidth <= maxWidth) {
+      maxLength = 32;
+    }
+
+    if (availableWidth <= midWidth) {
+      maxLength = 26;
+    }
+
+    if (availableWidth <= smWidth) {
+      maxLength = 30;
+    }
+
     if (title.length <= maxLength) {
       return title;
     } else {
@@ -259,6 +281,18 @@ export class SavedComponent {
   }
 
   getDisplayedTechnologies(postCard: any): any[] {
-    return postCard.technologyMappingList.slice(0, 4);
+    const maxWidth = 742;
+    const availableWidth = window.innerWidth;
+    const sliceIndex = availableWidth <= maxWidth ? 2 : 4;
+
+    return postCard.technologyMappingList.slice(0, sliceIndex);
+  }
+
+  getDisplayedVersions(postCard: any): any[] {
+    const maxWidth = 742;
+    const availableWidth = window.innerWidth;
+    const sliceIndex = availableWidth <= maxWidth ? 1 : 2;
+
+    return postCard.technologyVersionMappingList.slice(0, sliceIndex);
   }
 }

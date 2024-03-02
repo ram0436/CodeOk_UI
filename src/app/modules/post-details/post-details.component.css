@@ -629,6 +629,7 @@ input {
   display: flex;
   align-items: center;
   gap: 5px;
+  flex-wrap: wrap;
 }
 
 .ratings-stars {
@@ -788,4 +789,116 @@ input {
 
 .dollar {
   font-family: "Be Vietnam Pro", sans-serif;
+}
+
+@media (max-width: 1260px) {
+  .postImg {
+    width: 530px;
+    height: 350px;
+  }
+
+  .col-5 {
+    width: 35%;
+  }
+}
+
+@media (max-width: 1180px) {
+  .ml-190 {
+    margin-left: 125px;
+  }
+}
+
+@media (max-width: 1040px) {
+  .postImg {
+    width: 430px;
+    height: 300px;
+  }
+
+  .col-5 {
+    width: 38%;
+  }
+}
+
+@media (max-width: 960px) {
+  .flex {
+    flex-wrap: wrap;
+  }
+
+  .ml-190 {
+    margin-left: 190px;
+  }
+
+  .col-5 {
+    width: 600px;
+  }
+
+  .postImg {
+    width: 600px;
+    height: 400px;
+  }
+}
+
+@media (max-width: 880px) {
+  .ml-190 {
+    margin-left: 160px;
+  }
+}
+
+@media (max-width: 760px) {
+  .ml-190 {
+    margin-left: 120px;
+  }
+}
+
+@media (max-width: 700px) {
+  .col-5 {
+    width: 500px;
+  }
+
+  .postImg {
+    width: 500px;
+    height: 350px;
+  }
+}
+
+@media (max-width: 580px) {
+  .col-5 {
+    width: 400px;
+  }
+
+  .postImg {
+    width: 400px;
+    height: 250px;
+  }
+
+  .ml-190 {
+    margin-left: 90px;
+  }
+}
+
+@media (max-width: 460px) {
+  .col-5 {
+    width: 310px;
+  }
+
+  .postImg {
+    width: 310px;
+    height: 200px;
+  }
+
+  .see-all-ratings {
+    margin-top: -10px;
+  }
+
+  .fz-26 {
+    font-size: 22px !important;
+  }
+
+  .fz-17 {
+    font-size: 14px;
+  }
+
+  .ml-190 {
+    margin-left: 45px;
+  }
 }

@@ -290,3 +290,26 @@
     transform: translateX(-100%);
   }
 }
+
+@media (max-width: 832px) {
+  .d-card {
+    margin-top: 168px !important;
+  }
+}
+@media (max-width: 774px) {
+  .d-card {
+    margin-top: 190px !important;
+  }
+}
+
+@media (max-width: 626px) {
+  .d-card {
+    margin-top: 200px !important;
+  }
+}
+
+@media (max-width: 580px) {
+  .d-card {
+    margin-top: 180px !important;
+  }
+}

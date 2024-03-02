@@ -1,4 +1,4 @@
-import { Component, HostListener, Input } from "@angular/core";
+import { Component, HostListener, Input, Renderer2 } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import * as moment from "moment";
 import { CommonService } from "../../service/common.service";
@@ -74,12 +74,14 @@ export class DashboardPostCardComponent {
     private route: ActivatedRoute,
     private dialog: MatDialog,
     private userService: UserService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private renderer: Renderer2
   ) {}
 
   ngOnInit() {
     this.getAllTechnologies();
     this.fetchReviewsData();
+    this.renderer.listen("window", "resize", (event) => {});
   }
 
   fetchReviewsData() {
@@ -173,7 +175,35 @@ export class DashboardPostCardComponent {
     });
   }
 
+  // truncateTitle(title: string, maxLength: number = 38): string {
+  //   if (title.length <= maxLength) {
+  //     return title;
+  //   } else {
+  //     return title.substring(0, maxLength) + "...";
+  //   }
+  // }
+
   truncateTitle(title: string, maxLength: number = 38): string {
+    const maxWidth = 742;
+    const availableWidth = window.innerWidth;
+
+    const midWidth = 655;
+
+    const smWidth = 620;
+
+    // Adjust maxLength based on available width
+    if (availableWidth <= maxWidth) {
+      maxLength = 32;
+    }
+
+    if (availableWidth <= midWidth) {
+      maxLength = 26;
+    }
+
+    if (availableWidth <= smWidth) {
+      maxLength = 30;
+    }
+
     if (title.length <= maxLength) {
       return title;
     } else {
@@ -240,10 +270,18 @@ export class DashboardPostCardComponent {
   }
 
   getDisplayedTechnologies(postCard: any): any[] {
-    return postCard.technologyMappingList.slice(0, 2);
+    const maxWidth = 742;
+    const availableWidth = window.innerWidth;
+    const sliceIndex = availableWidth <= maxWidth ? 1 : 2;
+
+    return postCard.technologyMappingList.slice(0, sliceIndex);
   }
 
   getDisplayedVersions(postCard: any): any[] {
-    return postCard.technologyVersionMappingList.slice(0, 2);
+    const maxWidth = 742;
+    const availableWidth = window.innerWidth;
+    const sliceIndex = availableWidth <= maxWidth ? 1 : 2;
+
+    return postCard.technologyVersionMappingList.slice(0, sliceIndex);
   }
 }
