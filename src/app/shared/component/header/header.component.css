@@ -1096,6 +1096,23 @@ header {
   margin-top: 10px;
 }
 
+.pt-30 {
+  padding-top: 50px;
+  position: relative;
+}
+
+.ul-head {
+  position: absolute;
+  top: 15px;
+  left: 140px;
+}
+
+.ul-head {
+  font-size: 19px !important;
+  font-weight: 500 !important;
+  color: orangered !important;
+}
+
 @media (max-width: 1500px) {
   .search-bar-container {
     width: 55%;

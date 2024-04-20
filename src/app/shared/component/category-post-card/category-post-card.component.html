@@ -69,10 +69,33 @@
     <div class="post-card" *ngFor="let postCard of cards">
       <a class="flex custom-link">
         <div class="img-wrapper">
-          <img
+          <img [src]="getCardImageURL(postCard)" alt="Post Pic" />
+          <span
+            class="material-icons pg_arrow pg_arrow_left"
+            (click)="showPrevious($event, postCard)"
+          >
+            arrow_back_ios_new
+          </span>
+          <span
+            class="material-icons pg_arrow pg_arrow_right"
+            (click)="showNext($event, postCard)"
+            [ngClass]="{
+              disable: postCard.imageIndex === imagesList.length - 1
+            }"
+            id="{{ 'postCardId' + postCard.id }}"
+          >
+            arrow_forward_ios
+          </span>
+
+          <div class="image-count">
+            <span class="material-icons"> photo_camera </span>
+            {{ postCard.imageIndex + (imagesList.length > 0 ? 1 : 0) }} of
+            {{ imagesList.length }}
+          </div>
+          <!-- <img
             [src]="postCard.projectImageList[0].codeImageURL"
             alt="Post Pic"
-          />
+          /> -->
           <span class="ribbon-featured">
             <strong
               [class.ribbon]="true"

@@ -505,6 +505,31 @@
   justify-content: center;
 }
 
+.pg_arrow {
+  position: absolute;
+
+  padding: 8px 2px;
+  background-color: #222;
+  color: #fff;
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 5;
+  font-size: 20px;
+}
+
+.pg_arrow_left {
+  top: 40%;
+  left: 0%;
+}
+
+.pg_arrow_right {
+  top: 40%;
+  right: 0%;
+}
+
 .set-fav-card:hover {
   color: orangered;
 }

@@ -83,6 +83,47 @@ export class CategoryPostCardComponent {
     this.getAllTechnologies();
     this.fetchPostsData();
     this.fetchReviewsData();
+    this.updateCards(this.cards);
+  }
+
+  updateCards(cards: any) {
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].imageIndex = 0;
+    }
+  }
+
+  getCardImageURL(card: any): string {
+    this.imagesList = [];
+    if (
+      card.projectImageList &&
+      card.projectImageList[card.imageIndex]?.codeImageURL
+    ) {
+      this.imagesList = card.projectImageList;
+      return card.projectImageList[card.imageIndex]?.codeImageURL;
+    } else {
+      return "../../../assets/image_not_available.jpg";
+    }
+  }
+
+  showPrevious(event: Event, card: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (card.imageIndex > 0) {
+      card.imageIndex = card.imageIndex - 1;
+      this.getCardImageURL(card);
+    }
+  }
+  showNext(event: Event, card: any) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const totalImages =
+      (card.projectImageList && card.projectImageList.length) || 0;
+
+    if (card.imageIndex < totalImages - 1) {
+      card.imageIndex = card.imageIndex + 1;
+      this.getCardImageURL(card);
+    }
   }
 
   fetchReviewsData() {
@@ -183,33 +224,6 @@ export class CategoryPostCardComponent {
       }
     } else {
       return moment(inputDate).format("MMM YYYY");
-    }
-  }
-  getCardImageURL(card: any): string {
-    if (card.gadgetImageList && card.gadgetImageList[0]?.imageURL) {
-      return card.gadgetImageList[0]?.imageURL;
-    } else if (card.vehicleImageList && card.vehicleImageList[0]?.imageURL) {
-      return card.vehicleImageList[0]?.imageURL;
-    } else if (
-      card.electronicApplianceImageList &&
-      card.electronicApplianceImageList[0]?.imageURL
-    ) {
-      return card.electronicApplianceImageList[0]?.imageURL;
-    } else if (
-      card.furnitureImageList &&
-      card.furnitureImageList[0]?.imageURL
-    ) {
-      return card.furnitureImageList[0]?.imageURL;
-    } else if (card.sportImageList && card.sportImageList[0]?.imageURL) {
-      return card.sportImageList[0]?.imageURL;
-    } else if (card.petImageList && card.petImageList[0]?.imageURL) {
-      return card.petImageList[0]?.imageURL;
-    } else if (card.fashionImageList && card.fashionImageList[0]?.imageURL) {
-      return card.fashionImageList[0]?.imageURL;
-    } else if (card.bookImageList && card.bookImageList[0]?.imageURL) {
-      return card.bookImageList[0]?.imageURL;
-    } else {
-      return "../../../assets/image_not_available.png";
     }
   }
   getAllTechnologies() {
