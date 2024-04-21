@@ -32,6 +32,7 @@ export class DashboardPostCardComponent {
   imagesList: any = [1];
   technologies: any = [];
   versions: any = [];
+
   displayedCardCount: number = 16;
 
   isScrolledDown = false;
@@ -46,20 +47,6 @@ export class DashboardPostCardComponent {
 
   isUserLogedIn: boolean = false;
   dialogRef: MatDialogRef<any> | null = null;
-
-  scrollToTop() {
-    const scrollDuration = 300; // Duration of the scroll animation in milliseconds
-    const scrollStep = -window.scrollY / (scrollDuration / 15); // Divide the scroll distance into smaller steps
-
-    const scrollAnimation = () => {
-      if (window.scrollY !== 0) {
-        window.scrollBy(0, scrollStep);
-        requestAnimationFrame(scrollAnimation); // Continue scrolling until reaching the top
-      }
-    };
-
-    requestAnimationFrame(scrollAnimation);
-  }
 
   @HostListener("window:scroll", [])
   onScroll() {
@@ -81,14 +68,32 @@ export class DashboardPostCardComponent {
   ngOnInit() {
     this.getAllTechnologies();
     this.fetchReviewsData();
-    this.updateCards(this.cards);
+    this.updateCards();
     this.renderer.listen("window", "resize", (event) => {});
   }
 
-  updateCards(cards: any) {
-    for (var i = 0; i < cards.length; i++) {
-      cards[i].imageIndex = 0;
+  updateCards() {
+    for (var i = 0; i < this.cards.length; i++) {
+      this.cards[i].imageIndex = 0;
     }
+    this.paginatedCards = this.cards.slice(0, this.displayedCardCount);
+  }
+
+  loadMoreCards() {
+    this.displayedCardCount += 16; // Increase the count for the next set of cards
+    this.paginatedCards = this.cards.slice(0, this.displayedCardCount);
+  }
+
+  scrollToTop() {
+    const scrollDuration = 300; // Duration of the scroll animation in milliseconds
+    const scrollStep = -window.scrollY / (scrollDuration / 15); // Divide the scroll distance into smaller steps
+
+    const scrollAnimation = () => {
+      if (window.scrollY !== 0) {
+        window.scrollBy(0, scrollStep);
+        requestAnimationFrame(scrollAnimation); // Continue scrolling until reaching the top
+      }
+    };
   }
 
   getCardImageURL(card: any): string {
