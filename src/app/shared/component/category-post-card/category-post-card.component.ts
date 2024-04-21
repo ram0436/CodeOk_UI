@@ -83,13 +83,19 @@ export class CategoryPostCardComponent {
     this.getAllTechnologies();
     this.fetchPostsData();
     this.fetchReviewsData();
-    this.updateCards(this.cards);
+    this.updateCards();
   }
 
-  updateCards(cards: any) {
-    for (var i = 0; i < cards.length; i++) {
-      cards[i].imageIndex = 0;
+  updateCards() {
+    for (var i = 0; i < this.cards.length; i++) {
+      this.cards[i].imageIndex = 0;
     }
+    this.paginatedCards = this.cards.slice(0, this.displayedCardCount);
+  }
+
+  loadMoreCards() {
+    this.displayedCardCount += 16; // Increase the count for the next set of cards
+    this.paginatedCards = this.cards.slice(0, this.displayedCardCount);
   }
 
   getCardImageURL(card: any): string {
@@ -203,11 +209,6 @@ export class CategoryPostCardComponent {
     } else {
       return title.substring(0, maxLength) + "...";
     }
-  }
-
-  loadMoreCards() {
-    this.displayedCardCount += 16; // Increase the count for the next set of cards
-    this.paginatedCards = this.cards.slice(0, this.displayedCardCount);
   }
 
   formatDate(date: any): any {

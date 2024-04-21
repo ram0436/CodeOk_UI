@@ -65,13 +65,24 @@
 </div> -->
 
 <div class="mat-app-background mpt">
+  <button
+    class="back-to-top-btn"
+    (click)="scrollToTop()"
+    *ngIf="isScrolledDown"
+  >
+    <span class="material-icons-outlined"> keyboard_double_arrow_up </span>
+    Back to Top
+  </button>
   <div class="post-card-container">
     <div class="post-card-grid">
-      <div class="post-item-card" *ngFor="let postCard of cards; let i = index">
+      <div
+        class="post-item-card"
+        *ngFor="let postCard of paginatedCards; let i = index"
+      >
         <a class="custom-link">
           <div class="post-item-img">
             <img [src]="getCardImageURL(postCard)" alt="Post Pic" />
-            <span
+            <!-- <span
               class="material-icons pg_arrow pg_arrow_left"
               (click)="showPrevious($event, postCard)"
             >
@@ -86,7 +97,7 @@
               id="{{ 'postCardId' + postCard.id }}"
             >
               arrow_forward_ios
-            </span>
+            </span> -->
             <span
               class="material-icons set-fav-card"
               [class.material-icons-outlined]="
@@ -115,14 +126,10 @@
                 {{ getRibbonText(postCard.serviceTypeId) }}
               </strong>
             </span>
-            <div class="image-count">
+            <!-- <div class="image-count">
               <span class="material-icons"> photo_camera </span>
               {{ postCard.imageIndex + (imagesList.length > 0 ? 1 : 0) }} of
               {{ imagesList.length }}
-            </div>
-            <!-- <div class="image-count">
-              <span class="material-icons"> photo_camera </span>
-              {{ postCard.projectImageList.length }}
             </div> -->
           </div>
           <div class="post-item-content">
@@ -207,6 +214,12 @@
       </div>
       <h3 *ngIf="cards.length == 0">No posts avaialble</h3>
     </div>
+  </div>
+  <div class="load-more-container" *ngIf="displayedCardCount < cards.length">
+    <button class="load-more-btn" (click)="loadMoreCards()">
+      <span class="material-icons-outlined"> keyboard_double_arrow_down </span>
+      Load More
+    </button>
   </div>
 </div>
 
