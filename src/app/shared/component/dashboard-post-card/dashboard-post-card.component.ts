@@ -81,7 +81,48 @@ export class DashboardPostCardComponent {
   ngOnInit() {
     this.getAllTechnologies();
     this.fetchReviewsData();
+    this.updateCards(this.cards);
     this.renderer.listen("window", "resize", (event) => {});
+  }
+
+  updateCards(cards: any) {
+    for (var i = 0; i < cards.length; i++) {
+      cards[i].imageIndex = 0;
+    }
+  }
+
+  getCardImageURL(card: any): string {
+    this.imagesList = [];
+    if (
+      card.projectImageList &&
+      card.projectImageList[card.imageIndex]?.codeImageURL
+    ) {
+      this.imagesList = card.projectImageList;
+      return card.projectImageList[card.imageIndex]?.codeImageURL;
+    } else {
+      return "../../../assets/image_not_available.jpg";
+    }
+  }
+
+  showPrevious(event: Event, card: any) {
+    event.preventDefault();
+    event.stopPropagation();
+    if (card.imageIndex > 0) {
+      card.imageIndex = card.imageIndex - 1;
+      this.getCardImageURL(card);
+    }
+  }
+  showNext(event: Event, card: any) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    const totalImages =
+      (card.projectImageList && card.projectImageList.length) || 0;
+
+    if (card.imageIndex < totalImages - 1) {
+      card.imageIndex = card.imageIndex + 1;
+      this.getCardImageURL(card);
+    }
   }
 
   fetchReviewsData() {
@@ -242,6 +283,7 @@ export class DashboardPostCardComponent {
       return moment(inputDate).format("MMM DD");
     }
   }
+
   getAllTechnologies() {
     this.commonService.getAllTechnology().subscribe((res) => {
       this.technologies = res;

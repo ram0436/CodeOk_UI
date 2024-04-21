@@ -189,6 +189,31 @@
   display: flex;
 }
 
+.pg_arrow {
+  position: absolute;
+
+  padding: 8px 2px;
+  background-color: #222;
+  color: #fff;
+  display: flex;
+  align-items: center !important;
+  justify-content: center !important;
+  cursor: pointer;
+  border-radius: 5px;
+  z-index: 5;
+  font-size: 20px;
+}
+
+.pg_arrow_left {
+  top: 40%;
+  left: 0%;
+}
+
+.pg_arrow_right {
+  top: 40%;
+  right: 0%;
+}
+
 .post-card-grid .post-item-card .post-item-content .post-item-name {
   font-size: 16px;
   max-height: 40px;
@@ -392,7 +417,7 @@
 .image-count {
   position: absolute;
   bottom: 0px;
-  left: 12px;
+  left: 0px;
   display: flex;
   align-items: center;
   gap: 3px;
