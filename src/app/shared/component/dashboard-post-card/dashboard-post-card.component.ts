@@ -94,6 +94,8 @@ export class DashboardPostCardComponent {
         requestAnimationFrame(scrollAnimation); // Continue scrolling until reaching the top
       }
     };
+
+    requestAnimationFrame(scrollAnimation);
   }
 
   getCardImageURL(card: any): string {
