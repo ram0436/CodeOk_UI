@@ -12,11 +12,6 @@
   overflow: hidden;
 }
 
-::ng-deep .cdk-overlay-pane {
-  overflow: auto;
-  scrollbar-width: none;
-}
-
 mat-card {
   /* width: 30%; */
   /* margin: 10% auto; */
@@ -24,47 +19,46 @@ mat-card {
 }
 mat-form-field,
 mat-checkbox {
-  width: 80%;
+  width: 85%;
   display: block;
   margin: auto;
 }
-
 mat-card-content {
   margin-top: 20px;
 }
 
-.country-select-field {
-  margin: auto;
-  width: 80%;
-  display: block;
-  margin-bottom: -10px;
-}
-
-.userType-section {
-  width: 80%;
-  display: block;
-  margin: auto;
-  margin-bottom: 10px;
-}
-
-.margin-bottom-10 {
-  margin-bottom: -10px;
-}
-
 .login-button {
-  margin-top: 20px;
   display: block;
-  width: 80%;
+  width: 85%;
   margin: 20px auto;
+  margin-top: 40px;
+  color: #fff !important;
+  background-color: #3c3241 !important;
 }
-.cdk-overlay-pane {
-  width: 500px;
+
+::ng-deep .cdk-overlay-pane {
+  /* width: 500px; */
   pointer-events: auto;
   box-sizing: border-box;
   z-index: 1000;
   display: flex;
   max-height: 100%;
 }
+
+/* ::ng-deep .mat-mdc-form-field-infix.ng-tns-c20-1{
+  display: flex !important;
+  align-items: center !important;
+  flex-wrap: nowrap !important;
+} */
+
+.login-form {
+  margin-top: 20px;
+}
+
+.country-code {
+  padding-left: 12px;
+}
+
 .mat-mdc-tab-group {
   display: flex;
   flex-direction: column;
@@ -79,6 +73,74 @@ mat-card-content {
   margin-top: 15px;
 }
 
-.about-textarea {
-  width: 345px;
+.login-cancel-icon {
+  cursor: pointer;
+  font-size: 25px;
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  color: gray;
+}
+
+.countdown-message {
+  color: #172b4d;
+}
+
+/* #9e9798 */
+
+.resend-link {
+  color: #0065ff;
+  cursor: pointer;
+  text-decoration: underline;
+  margin-left: 5px; /* Add margin for spacing */
+}
+
+.receive-message {
+  width: 85%;
+  margin: 0px auto 20px auto;
+  display: block;
+  color: #9e9798;
+  font-weight: 500;
+  font-size: 13px;
+}
+
+.otp-send-message {
+  width: 85%;
+  margin: 20px auto 10px auto;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 13px;
+  color: #008c15;
+}
+
+.otp-send-message .material-icons-outlined,
+.otp-failure-message .material-icons-outlined {
+  font-size: 22px;
+}
+
+.otp-failure-message {
+  width: 85%;
+  margin: -10px auto 10px auto;
+  display: block;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+  font-size: 13px;
+  color: red;
+}
+
+.login-logo {
+  height: 5rem;
+  width: 12rem;
+  margin: 30px auto 0 auto;
+}
+
+.login-title {
+  margin-top: 8px;
+  margin-bottom: 15px;
+  font-family: "Roboto", sans-serif;
 }

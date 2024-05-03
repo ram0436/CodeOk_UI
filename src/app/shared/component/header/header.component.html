@@ -141,11 +141,14 @@
                 >
               </button>
             </li>
-            <li class="login" *ngIf="!isUserLogedIn">
+            <!-- <li class="login" *ngIf="!isUserLogedIn">
               <a (click)="openSignUpModal()" class="b-right">Register</a>
-            </li>
+            </li> -->
             <li class="login" *ngIf="!isUserLogedIn">
-              <a (click)="openLoginModal()">Login</a>
+              <a class="login-flex" (click)="openLoginModal()">
+                <span class="material-icons"> person </span>
+                Login & Register</a
+              >
             </li>
             <li class="neon__button sm-d-none">
               <a (click)="postAdd()" class="postfreeadd">
