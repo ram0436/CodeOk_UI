@@ -45,7 +45,11 @@ export class AuthGuard implements CanActivate {
         this.router.navigate(["/"]);
         return false;
       }
-    } else if (userRole == "Buyer" || userRole == "Seller") {
+    } else if (
+      userRole == "Buyer" ||
+      userRole == "Seller" ||
+      userRole == "User"
+    ) {
       if (allowedUserRoutes.includes(requestedRoute)) {
         return true;
       } else if (commonRoutes.includes(requestedRoute)) return true;

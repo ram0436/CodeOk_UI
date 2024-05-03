@@ -1,12 +1,15 @@
 import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, Subject } from "rxjs";
+import { environment } from "src/environments/environment";
 
 @Injectable({
   providedIn: "root",
 })
 export class UserService {
   private dataSubject = new Subject<any>();
+
+  private BaseURL = environment.baseUrl;
 
   constructor(private httpClient: HttpClient) {}
 
@@ -106,5 +109,29 @@ export class UserService {
     return this.httpClient.get(
       `https://codeokk.azurewebsites.net/api/User/IsPaymentVerified?projectTableRefGuid=${tableRefGuid}&userId=${userId}`
     );
+  }
+
+  sendLoginOTP(
+    mobileNumber: string,
+    ipAddress: string,
+    createdOn: string
+  ): Observable<any> {
+    const url = `${this.BaseURL}Auth/SendLoginOTP`;
+    const body = {
+      mobile: mobileNumber,
+      ipAddress: ipAddress,
+      createdOn: createdOn,
+    };
+    const headers = new HttpHeaders({ "Content-Type": "application/json" });
+    return this.httpClient.post(url, body, { headers: headers });
+  }
+
+  OTPLogin(mobileNo: string, otp: number, firstName: string): Observable<any> {
+    const url = `${this.BaseURL}Auth/OTPLogin?mobileNo=${mobileNo}&otp=${otp}&firstName=${firstName}`;
+    return this.httpClient.post(url, null, {
+      headers: new HttpHeaders({
+        Accept: "*/*",
+      }),
+    });
   }
 }
