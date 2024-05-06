@@ -1,4 +1,4 @@
-import { Component, ViewEncapsulation } from "@angular/core";
+import { Component, OnInit, ViewEncapsulation } from "@angular/core";
 import { MatDialogRef } from "@angular/material/dialog";
 import { Router } from "@angular/router";
 import { CustomerType } from "../../enum/CustomerType";
@@ -11,13 +11,16 @@ import { MatSnackBar } from "@angular/material/snack-bar";
   templateUrl: "./sales-enquiry.component.html",
   styleUrls: ["./sales-enquiry.component.css"],
 })
-export class SalesEnquiryComponent {
+export class SalesEnquiryComponent implements OnInit {
   email: string = "";
   phoneNumber: string = "";
   password: string = "";
   firstName: string = "";
 
   message: string = "";
+
+  selectedCountry: any = {};
+  countries: any[] = [];
 
   validPhoneNumberMessage: boolean = false;
   phoneNumberErrorMessage: boolean = false;
@@ -27,20 +30,18 @@ export class SalesEnquiryComponent {
 
   isSubmitClicked: boolean = false;
 
-  countries: any = [
-    {
-      id: 1,
-      countryName: "India",
-      countryCode: "+91",
-    },
-    {
-      id: 2,
-      countryName: "USA",
-      countryCode: "+1",
-    },
-  ];
-
-  selectedCountry = this.countries[0];
+  // countries: any = [
+  //   {
+  //     id: 1,
+  //     name: "India",
+  //     countryCode: "+91",
+  //   },
+  //   {
+  //     id: 2,
+  //     name: "USA",
+  //     countryCode: "+1",
+  //   },
+  // ];
 
   selectedCustomerType: CustomerType | string =
     CustomerType.IndividualDeveloper;
@@ -71,6 +72,32 @@ export class SalesEnquiryComponent {
       const isValid = regex.test(this.phoneNumber);
       this.phoneNumberErrorMessage = !isValid;
     }
+  }
+
+  ngOnInit() {
+    this.getAllCountries();
+  }
+
+  getAllCountries() {
+    this.commonService.getAllCountry().subscribe(
+      (response: any) => {
+        this.countries = response.map((country: any) => {
+          switch (country.name) {
+            case "INDIA":
+              country.countryCode = "+91";
+              break;
+            case "USA":
+              country.countryCode = "+1";
+              break;
+            default:
+              country.countryCode = "";
+          }
+          return country;
+        });
+        this.selectedCountry = this.countries[0];
+      },
+      (error) => {}
+    );
   }
 
   validateEmail(): void {
