@@ -33,7 +33,7 @@
         <mat-label>Select Country</mat-label>
         <mat-select matNativeControl required [(ngModel)]="selectedCountry">
           <mat-option *ngFor="let country of countries" [value]="country">
-            {{ country.countryName }}
+            {{ country.name }}
           </mat-option>
         </mat-select>
       </mat-form-field>
@@ -64,9 +64,9 @@
       Email should have format like xyz@gmail.com*
     </p>
     <mat-form-field>
-      <span matPrefix class="country-code">{{
-        selectedCountry.countryCode
-      }}</span>
+      <span matPrefix class="country-code" *ngIf="selectedCountry.countryCode">
+        {{ selectedCountry.countryCode }}
+      </span>
       <input
         matInput
         placeholder="Enter 10 digit mobile."

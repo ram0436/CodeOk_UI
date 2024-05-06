@@ -1,16 +1,15 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Subject } from 'rxjs';
-import { environment } from 'src/environments/environment';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { BehaviorSubject, Subject } from "rxjs";
+import { environment } from "src/environments/environment";
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class CommonService {
-
   private dataSubject = new Subject<any>();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
   private BaseURL = environment.baseUrl;
 
   getAllProjectCategory() {
@@ -30,7 +29,13 @@ export class CommonService {
   }
 
   getVersionByTechnologyId(id: number) {
-    return this.http.get(`${this.BaseURL}Common/GetVersionByTechnologyId?technologyId=${id}`)
+    return this.http.get(
+      `${this.BaseURL}Common/GetVersionByTechnologyId?technologyId=${id}`
+    );
+  }
+
+  getAllCountry() {
+    return this.http.get(`${this.BaseURL}Common/GetAllCountry`);
   }
 
   setData(data: any) {
@@ -42,6 +47,6 @@ export class CommonService {
   }
 
   submitSalesEnquiry(payload: any) {
-    return this.http.post(`${this.BaseURL}SalesEnquiry`, payload)
+    return this.http.post(`${this.BaseURL}SalesEnquiry`, payload);
   }
 }
