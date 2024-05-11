@@ -366,6 +366,11 @@
   scrollbar-width: none;
 }
 
+.sub-text {
+  color: yellow;
+  font-size: 9.5px;
+}
+
 .login-flex {
   display: flex;
   flex-direction: column;
