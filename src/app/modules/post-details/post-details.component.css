@@ -714,8 +714,22 @@ input {
 }
 
 .demo-btn {
-  margin-left: 50px;
+  position: absolute;
+  top: -54.5px;
+  left: 45%;
+  /* margin-left: 15%; */
   gap: 8px;
+}
+
+.demo-btn button {
+  color: #005cbb;
+  border: 1px solid #005cbb;
+  background-color: transparent;
+}
+
+.demo-btn:hover button {
+  background-color: #005cbb;
+  color: #fff;
 }
 
 .a-link {

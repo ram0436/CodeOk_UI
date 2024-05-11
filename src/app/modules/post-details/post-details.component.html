@@ -15,17 +15,14 @@
         <span class="material-icons-outlined"> chevron_left </span>Back
       </button>
 
-      <a
+      <!-- <a
         [href]="postDetails?.demoURL"
         target="_blank"
         class="demo-btn a-link"
         *ngIf="postDetails?.demoURL"
       >
-        <button class="back-btn">
-          See Demo
-          <span class="material-icons-outlined"> remove_red_eye </span>
-        </button>
-      </a>
+        <button class="back-btn">Live Demo</button>
+      </a> -->
     </div>
     <div class="flex flex-r gap-2 pt-3">
       <div>
@@ -37,6 +34,14 @@
             <div class="postImgCont">
               <img class="postImg" [src]="image.codeImageURL" alt="" />
             </div>
+            <a
+              [href]="postDetails?.demoURL"
+              target="_blank"
+              class="demo-btn a-link"
+              *ngIf="postDetails?.demoURL"
+            >
+              <button class="back-btn">Live Demo</button>
+            </a>
             <span
               *ngIf="i === 0"
               class="material-icons set-fav-card"
