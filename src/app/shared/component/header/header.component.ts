@@ -287,6 +287,12 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+  navigateToPostDetails(postId: string): void {
+    this.router.navigateByUrl("/", { skipLocationChange: true }).then(() => {
+      this.router.navigate(["/post-details", postId]);
+    });
+  }
+
   toggleExpandIcons(): void {
     this.expandIconVisible = !this.expandIconVisible;
   }

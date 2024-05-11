@@ -713,6 +713,15 @@ input {
   justify-content: center;
 }
 
+.demo-btn {
+  margin-left: 50px;
+  gap: 8px;
+}
+
+.a-link {
+  text-decoration: none;
+}
+
 .set-fav-card:hover {
   color: orangered;
 }

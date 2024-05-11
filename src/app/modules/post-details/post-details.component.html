@@ -4,17 +4,6 @@
     [innerHTML]="documentationURL"
     *ngIf="documentationURL"
   ></div>
-
-  <!-- <iframe
-      width="350"
-      height="250"
-      src="https://www.youtube.com/embed/79pKwdiqcwI?si=6kbVhP7426vGJx-4"
-      title="YouTube video player"
-      frameborder="0"
-      class="youtube-video"
-      allow="autoplay;"
-      allowfullscreen
-    ></iframe> -->
   <div class="spinner__loading" *ngIf="isLoading">
     <div>
       <mat-spinner></mat-spinner>
@@ -25,10 +14,18 @@
       <button class="back-btn" (click)="goBack()">
         <span class="material-icons-outlined"> chevron_left </span>Back
       </button>
-      <!-- <div class="pl-50">
-        <h1>{{ postDetails?.name }}</h1>
-        <p>Posted : {{formatDate(postDetails?.createdOn) }}</p>
-      </div> -->
+
+      <a
+        [href]="postDetails?.demoURL"
+        target="_blank"
+        class="demo-btn a-link"
+        *ngIf="postDetails?.demoURL"
+      >
+        <button class="back-btn">
+          See Demo
+          <span class="material-icons-outlined"> remove_red_eye </span>
+        </button>
+      </a>
     </div>
     <div class="flex flex-r gap-2 pt-3">
       <div>
@@ -85,7 +82,7 @@
             <h3 style="margin: 0" class="mbot-5 post-title">
               {{ postDetails?.name }}
             </h3>
-            <br>
+            <br />
             <div class="flex-row">
               <p class="bold margin-t-2">{{ averageRating.toFixed(1) }}</p>
               <div class="ratings-stars">
