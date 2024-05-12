@@ -276,6 +276,7 @@ export class HeaderComponent implements OnInit {
       this.userService
         .getUserById(Number(localStorage.getItem("id")))
         .subscribe((userData: any) => {
+          console.log(userData);
           this.userData = userData[0];
           if (this.userData.userImageList.length > 0) {
             this.imageUrl =
