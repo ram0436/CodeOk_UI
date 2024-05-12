@@ -38,7 +38,7 @@
               [href]="postDetails?.demoURL"
               target="_blank"
               class="demo-btn a-link"
-              *ngIf="postDetails?.demoURL"
+              *ngIf="postDetails?.demoURL && i === 0"
             >
               <button class="back-btn">Live Demo</button>
             </a>
