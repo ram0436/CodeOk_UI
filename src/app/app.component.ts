@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent{
-  title = 'CodeOkk';
+
+  title="CODEOKK.COM | Code Marketplace | Buy eCommerce Apps";
 
   currentRoute!: Observable<string>;
 
