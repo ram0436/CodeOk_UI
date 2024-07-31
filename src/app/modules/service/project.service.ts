@@ -73,16 +73,13 @@ export class ProjectService {
 
   applyForVacancy(vacancyData: any): Observable<any> {
     return this.http.post<any>(
-      `https://codeokk.azurewebsites.net/api/User/ApplyForVacancy`,
+      `${this.BaseURL}User/ApplyForVacancy`,
       vacancyData
     );
   }
 
   uploadResume(formData: any) {
-    return this.http.post(
-      `https://codeokk.azurewebsites.net/api/User/uploadResume`,
-      formData
-    );
+    return this.http.post(`${this.BaseURL}User/uploadResume`, formData);
   }
 
   getFrameworkByTechnologyId(id: number) {
