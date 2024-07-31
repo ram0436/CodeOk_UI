@@ -1,4 +1,3 @@
 export const environment = {
   production: true,
-  baseUrl : "https://codeokk.azurewebsites.net/api/"
-};
+  baseUrl : "https://codeokk-dudkaxejacatc5dk.centralindia-01.azurewebsites.net/api/"};
