@@ -98,8 +98,7 @@ export class LoginComponent {
       localStorage.setItem("id", data.id);
       this.dialogRef.close();
       this.userService.setData("login");
-      if (data.role == "Admin")
-        this.router.navigate(["/Admin/admin-dashboard"]);
+      if (data.role == "Admin") this.router.navigate(["/admin/dashboard"]);
       else this.router.navigate(["/user/account"]);
     });
   }
@@ -194,7 +193,7 @@ export class LoginComponent {
             this.dialogRef.close();
             this.userService.setData("login");
             if (data.role == "Admin")
-              this.router.navigate(["/Admin/admin-dashboard"]);
+              this.router.navigate(["/admin/dashboard"]);
             else this.router.navigate(["/user/account"]);
           },
           (error) => {
