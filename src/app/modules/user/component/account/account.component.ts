@@ -1,16 +1,20 @@
-import { DOCUMENT } from '@angular/common';
-import { Component, Inject } from '@angular/core';
-import { UserService } from '../../service/user.service';
+import { DOCUMENT } from "@angular/common";
+import { Component, Inject } from "@angular/core";
+import { UserService } from "../../service/user.service";
 
 @Component({
-  selector: 'app-account',
-  templateUrl: './account.component.html',
-  styleUrls: ['./account.component.css']
+  selector: "app-account",
+  templateUrl: "./account.component.html",
+  styleUrls: ["./account.component.css"],
 })
 export class AccountComponent {
-  imageUrl = "https://icon-library.com/images/default-profile-icon/default-profile-icon-24.jpg";
+  imageUrl =
+    "https://icon-library.com/images/default-profile-icon/default-profile-icon-24.jpg";
   userData: any;
-  constructor(private userService: UserService, @Inject(DOCUMENT) private document: Document) { }
+  constructor(
+    private userService: UserService,
+    @Inject(DOCUMENT) private document: Document
+  ) {}
 
   selectFile() {
     if (this.document) {
@@ -29,26 +33,35 @@ export class AccountComponent {
     this.userService.uploadProfilePicture(formData).subscribe((data: any) => {
       if (data.length > 0) {
         this.imageUrl = data[0];
-        this.userService.getUserById(Number(localStorage.getItem("id"))).subscribe((userData: any) => {
-          if (userData.length > 0) {
-            userData[0].userImageList.push({ "id": 0, "userImageURL": this.imageUrl });
-            console.log(userData[0])
-            this.userService.updateUser(userData[0]).subscribe(res => {
-            })
-          }
-        })
+        this.userService
+          .getUserById(Number(localStorage.getItem("id")))
+          .subscribe((userData: any) => {
+            if (userData.length > 0) {
+              userData[0].userImageList.push({
+                id: 0,
+                userImageURL: this.imageUrl,
+              });
+              console.log(userData[0]);
+              this.userService.updateUser(userData[0]).subscribe((res) => {});
+            }
+          });
       }
-    })
+    });
   }
-  
+
   ngOnInit() {
     if (localStorage.getItem("id") != null) {
-      this.userService.getUserById(Number(localStorage.getItem("id"))).subscribe((userData: any) => {
-        this.userData = userData[0];
-        if (this.userData.userImageList.length > 0) {
-          this.imageUrl = this.userData.userImageList[this.userData.userImageList.length - 1].userImageURL;
-        }
-      });
+      this.userService
+        .getUserById(Number(localStorage.getItem("id")))
+        .subscribe((userData: any) => {
+          this.userData = userData[0];
+          if (this.userData?.userImageList.length > 0) {
+            this.imageUrl =
+              this.userData.userImageList[
+                this.userData.userImageList.length - 1
+              ].userImageURL;
+          }
+        });
     }
   }
 }

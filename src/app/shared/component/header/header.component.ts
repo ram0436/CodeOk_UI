@@ -157,7 +157,6 @@ export class HeaderComponent implements OnInit {
       this.projectService.searchAds(this.searchQuery).subscribe(
         (results: any[]) => {
           this.searchResults = results;
-          console.log(this.searchResults);
         },
         (error) => {}
       );
@@ -276,9 +275,8 @@ export class HeaderComponent implements OnInit {
       this.userService
         .getUserById(Number(localStorage.getItem("id")))
         .subscribe((userData: any) => {
-          console.log(userData);
           this.userData = userData[0];
-          if (this.userData.userImageList.length > 0) {
+          if (this.userData?.userImageList?.length > 0) {
             this.imageUrl =
               this.userData.userImageList[
                 this.userData.userImageList.length - 1
