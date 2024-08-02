@@ -2,5 +2,7 @@
     "appService.zipIgnorePattern": [
         "node_modules{,/**}",
         ".vscode{,/**}"
-    ]
+    ],
+    "appService.defaultWebAppToDeploy": "/subscriptions/e1481fab-d5ff-4ca2-b295-58e66956a909/resourceGroups/Alpha/providers/Microsoft.Web/sites/codeokk-prd",
+    "appService.deploySubpath": "dist"
 }

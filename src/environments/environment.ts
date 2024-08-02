@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl : "https://codeokk-dudkaxejacatc5dk.centralindia-01.azurewebsites.net/api/"
+  baseUrl : "https://codeokk-api-bjcebbd5djhdfah8.centralindia-01.azurewebsites.net/api/"
 };
 
 /*
