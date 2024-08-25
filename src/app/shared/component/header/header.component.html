@@ -2,8 +2,12 @@
   <nav class="nav-bar">
     <div class="container">
       <div class="icon-text">
-        <a href="#" title="Codeokk.com | Source code marketplace | Buy eCommerce app" class="icon-text1"
-          (click)="getAllItems()">
+        <a
+          href="#"
+          title="Codeokk.com | Source code marketplace | Buy eCommerce app"
+          class="icon-text1"
+          (click)="getAllItems()"
+        >
           <div class="logo-img">
             <img src="../../../../assets/logo.png" alt="" />
             <!-- <div class="logo-text">
@@ -21,53 +25,95 @@
                   <div class="keyword-search-field">
                     <div class="form-element form-element--input type-ahead">
                       <div class="form-element form-element--input">
-                        <input aria-label="Type search query" placeholder="What are you looking for?" maxlength="50"
-                          autocomplete="off" class="input input-text" type="text" id="q" name="q" value=""
-                          [(ngModel)]="searchQuery" (keydown.enter)="onEnter()" (input)="onInputChange()" />
-                        <span class="material-icons cross-icon" (click)="clearSearchText()">clear</span>
+                        <input
+                          aria-label="Type search query"
+                          placeholder="What are you looking for?"
+                          maxlength="50"
+                          autocomplete="off"
+                          class="input input-text"
+                          type="text"
+                          id="q"
+                          name="q"
+                          value=""
+                          [(ngModel)]="searchQuery"
+                          (keydown.enter)="onEnter()"
+                          (input)="onInputChange()"
+                        />
+                        <span
+                          class="material-icons cross-icon"
+                          (click)="clearSearchText()"
+                          >clear</span
+                        >
                       </div>
                     </div>
                   </div>
                 </div>
-                <button class="button button--primary search-button" rel="noopener noreferrer" type="submit">
+                <button
+                  class="button button--primary search-button"
+                  rel="noopener noreferrer"
+                  type="submit"
+                >
                   <span class="material-icons">search</span>
                 </button>
               </div>
             </div>
           </form>
         </div>
-        <mat-menu #beforeMenu="matMenu" xPosition="before" [class]="customMatMenuClass">
+        <mat-menu
+          #beforeMenu="matMenu"
+          xPosition="before"
+          [class]="customMatMenuClass"
+        >
           <button mat-menu-item class="">
             <img [src]="imageUrl" alt="" class="img_stl" />
             <div class="mt-10">
               <p class="mt-0 text-white">{{ userData?.firstName || "" }}</p>
-              <a routerLink="/user/account/personal" class="text-orange">Go to profile</a>
+              <a routerLink="/user/account/personal" class="text-orange"
+                >Go to profile</a
+              >
             </div>
           </button>
           <hr class="profile-hr text-white" />
-          <button mat-menu-item routerLink="/admin/dashboard" class="button-item" *ngIf="isAdmin">
+          <button
+            mat-menu-item
+            routerLink="/admin/dashboard"
+            class="button-item"
+            *ngIf="isAdmin"
+          >
             <!-- *ngIf="isAdmin" -->
             <span class="material-icons-outlined text-white">
               admin_panel_settings
             </span>
             <span class="text-white">Admin Dashboard</span>
           </button>
-          <button mat-menu-item routerLink="/user/account/myadds" class="button-item">
+          <button
+            mat-menu-item
+            routerLink="/user/account/myadds"
+            class="button-item"
+          >
             <span class="material-icons text-white"> upload_file </span>
             <span class="text-white">Manage Projects</span>
           </button>
-          <button mat-menu-item class="button-item" routerLink="/user/account/mywishlist">
+          <button
+            mat-menu-item
+            class="button-item"
+            routerLink="/user/account/mywishlist"
+          >
             <span class="material-icons text-white"> bookmark_border </span>
             <span class="text-white">My WishList</span>
           </button>
-          <button mat-menu-item class="button-item" routerLink="/user/account/feedback">
+          <button
+            mat-menu-item
+            class="button-item"
+            routerLink="/user/account/feedback"
+          >
             <span class="material-icons-outlined text-white"> reviews </span>
             <span class="text-white">Feedback</span>
           </button>
-          <button mat-menu-item class="button-item">
+          <!-- <button mat-menu-item class="button-item">
             <span class="material-icons text-white"> chat_bubble_outline </span>
             <span class="text-white">Chats</span>
-          </button>
+          </button> -->
           <hr class="profile-hr" />
           <button mat-menu-item routerLink="/user/account" class="button-item">
             <span class="material-icons text-white">settings</span>
@@ -83,9 +129,21 @@
           <ul class="nav navbar-nav navbar-right">
             <li class="login profile_i" *ngIf="isUserLogedIn">
               <img [src]="imageUrl" alt="" class="img_stl" />
-              <button class="arrow" mat-button [matMenuTriggerFor]="beforeMenu" (click)="toggleExpandIcons()">
-                <mat-icon class="expand" *ngIf="!expandIconVisible">expand_less</mat-icon>
-                <mat-icon class="expand" *ngIf="expandIconVisible" class="expand">expand_more</mat-icon>
+              <button
+                class="arrow"
+                mat-button
+                [matMenuTriggerFor]="beforeMenu"
+                (click)="toggleExpandIcons()"
+              >
+                <mat-icon class="expand" *ngIf="!expandIconVisible"
+                  >expand_less</mat-icon
+                >
+                <mat-icon
+                  class="expand"
+                  *ngIf="expandIconVisible"
+                  class="expand"
+                  >expand_more</mat-icon
+                >
               </button>
             </li>
             <!-- <li class="login" *ngIf="!isUserLogedIn">
@@ -94,7 +152,8 @@
             <li class="login" *ngIf="!isUserLogedIn">
               <a class="login-flex" (click)="openLoginModal()">
                 <span class="material-icons"> person </span>
-                Login & Register</a>
+                Login & Register</a
+              >
             </li>
             <li class="neon__button sm-d-none">
               <a (click)="postAdd()" class="postfreeadd">
@@ -110,15 +169,27 @@
               <span class="menu-text">Menu</span>
             </li>
           </ul>
-          <div *ngIf="isSlideVisible" class="side-nav-box side-nav-box--right slide slide-enter-done">
+          <div
+            *ngIf="isSlideVisible"
+            class="side-nav-box side-nav-box--right slide slide-enter-done"
+          >
             <nav class="side-menu">
               <section class="side-meu-section">
-                <span class="material-icons-outlined cancel-icon" (click)="toggleSlideVisibility()">
+                <span
+                  class="material-icons-outlined cancel-icon"
+                  (click)="toggleSlideVisibility()"
+                >
                   cancel
                 </span>
                 <div class="side-menu-sublist">
-                  <li class="neon__button sidemenu-btn" (click)="toggleSlideVisibility()">
-                    <a (click)="postAdd()" class="side-menu-link app-download-button">
+                  <li
+                    class="neon__button sidemenu-btn"
+                    (click)="toggleSlideVisibility()"
+                  >
+                    <a
+                      (click)="postAdd()"
+                      class="side-menu-link app-download-button"
+                    >
                       <span></span>
                       <span></span>
                       <span></span>
@@ -130,53 +201,98 @@
               </section>
               <section class="side-meu-section">
                 <div class="side-menu-sublist">
-                  <a (click)="toggleSlideVisibility()" class="side-menu-link" routerLink="/" *ngIf="!isUserLogedIn">
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    class="side-menu-link"
+                    routerLink="/"
+                    *ngIf="!isUserLogedIn"
+                  >
                     <span class="material-icons-outlined"> chevron_right </span>
                     Home
                   </a>
-                  <a (click)="toggleSlideVisibility()" routerLink="/admin/dashboard" class="side-menu-link"
-                    *ngIf="isUserLogedIn && isAdmin">
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    routerLink="/admin/dashboard"
+                    class="side-menu-link"
+                    *ngIf="isUserLogedIn && isAdmin"
+                  >
                     <span class="material-icons-outlined"> chevron_right </span>
                     Admin Dashboard
                   </a>
-                  <a (click)="toggleSlideVisibility()" routerLink="/user/account/personal" class="side-menu-link"
-                    *ngIf="isUserLogedIn">
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    routerLink="/user/account/personal"
+                    class="side-menu-link"
+                    *ngIf="isUserLogedIn"
+                  >
                     <span class="material-icons-outlined"> chevron_right </span>
                     Go to Profile
                   </a>
-                  <a (click)="toggleSlideVisibility()" class="side-menu-link" *ngIf="isUserLogedIn"
-                    routerLink="/user/account/myadds">
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    class="side-menu-link"
+                    *ngIf="isUserLogedIn"
+                    routerLink="/user/account/myadds"
+                  >
                     <span class="material-icons-outlined"> chevron_right </span>
                     Manage My Ads
                   </a>
-                  <a (click)="toggleSlideVisibility()" class="side-menu-link" *ngIf="isUserLogedIn"
-                    routerLink="/user/account/mywishlist">
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    class="side-menu-link"
+                    *ngIf="isUserLogedIn"
+                    routerLink="/user/account/mywishlist"
+                  >
                     <span class="material-icons-outlined"> chevron_right </span>
                     My Wishlist
                   </a>
-                  <a (click)="toggleSlideVisibility()" class="side-menu-link" *ngIf="isUserLogedIn"
-                    routerLink="/user/account/feedback">
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    class="side-menu-link"
+                    *ngIf="isUserLogedIn"
+                    routerLink="/user/account/feedback"
+                  >
                     <span class="material-icons-outlined"> chevron_right </span>
                     Feedback
                   </a>
-                  <a (click)="toggleSlideVisibility()" routerLink="/company" class="side-menu-link">
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    routerLink="/company"
+                    class="side-menu-link"
+                  >
                     <span class="material-icons-outlined"> chevron_right </span>
                     About Us
                   </a>
-                  <a (click)="toggleSlideVisibility()" class="side-menu-link border-enable" *ngIf="isUserLogedIn"
-                    routerLink="/user/account">
+                  <a
+                    (click)="toggleSlideVisibility()"
+                    class="side-menu-link border-enable"
+                    *ngIf="isUserLogedIn"
+                    routerLink="/user/account"
+                  >
                     <span class="material-icons-outlined"> chevron_right </span>
                     Acount & Settings
                   </a>
-                  <a (click)="openLoginModal()" class="side-menu-link" *ngIf="!isUserLogedIn">
+                  <a
+                    (click)="openLoginModal()"
+                    class="side-menu-link"
+                    *ngIf="!isUserLogedIn"
+                  >
                     <span class="material-icons-outlined"> chevron_right </span>
                     Login
                   </a>
-                  <a (click)="openSignUpModal()" class="side-menu-link" *ngIf="!isUserLogedIn">
+                  <a
+                    (click)="openSignUpModal()"
+                    class="side-menu-link"
+                    *ngIf="!isUserLogedIn"
+                  >
                     <span class="material-icons-outlined"> chevron_right </span>
                     Register
                   </a>
-                  <a (click)="logout()" class="side-menu-link" *ngIf="isUserLogedIn">
+                  <a
+                    (click)="logout()"
+                    class="side-menu-link"
+                    *ngIf="isUserLogedIn"
+                  >
                     <span class="material-icons-outlined"> chevron_right </span>
                     Logout
                   </a>
@@ -195,15 +311,34 @@
               <div class="keyword-search-field">
                 <div class="form-element form-element--input type-ahead">
                   <div class="form-element form-element--input">
-                    <input aria-label="Type search query" placeholder="What are you looking for?" maxlength="50"
-                      autocomplete="off" class="input input-text" type="text" id="q" name="q" value=""
-                      [(ngModel)]="searchQuery" (keydown.enter)="onEnter()" (input)="onInputChange()" />
-                    <span class="material-icons cross-icon" (click)="clearSearchText()">clear</span>
+                    <input
+                      aria-label="Type search query"
+                      placeholder="What are you looking for?"
+                      maxlength="50"
+                      autocomplete="off"
+                      class="input input-text"
+                      type="text"
+                      id="q"
+                      name="q"
+                      value=""
+                      [(ngModel)]="searchQuery"
+                      (keydown.enter)="onEnter()"
+                      (input)="onInputChange()"
+                    />
+                    <span
+                      class="material-icons cross-icon"
+                      (click)="clearSearchText()"
+                      >clear</span
+                    >
                   </div>
                 </div>
               </div>
             </div>
-            <button class="button button--primary search-button" rel="noopener noreferrer" type="submit">
+            <button
+              class="button button--primary search-button"
+              rel="noopener noreferrer"
+              type="submit"
+            >
               <span class="material-icons">search</span>
             </button>
           </div>
@@ -216,7 +351,10 @@
       <div class="menu-scrollable">
         <ul class="nav navbar-nav no-pointer-nav">
           <li class="dropdown auto-pointer-events mr-130">
-            <div class="li-item dropdown-toggle" (click)="toggleDropdown('allCategories')">
+            <div
+              class="li-item dropdown-toggle"
+              (click)="toggleDropdown('allCategories')"
+            >
               <a>All Category</a>
               <span class="material-icons-outlined expand-icon">
                 expand_more
@@ -228,21 +366,44 @@
                   <!-- <span class="scroll-right">Scroll Right</span>
                 <span class="scroll-left">Scroll Left</span> -->
                   <div class="category-group">
-                    <a class="category-group-title categories-group-title mtn-4" routerLink="/project-posts">Project</a>
-                    <a *ngFor="let projectCategory of projectCategories" [routerLink]="'/project-posts'" [queryParams]="{
+                    <a
+                      class="category-group-title categories-group-title mtn-4"
+                      routerLink="/project-posts"
+                      >Project</a
+                    >
+                    <a
+                      *ngFor="let projectCategory of projectCategories"
+                      [routerLink]="'/project-posts'"
+                      [queryParams]="{
                         menu: 'Category',
                         id: projectCategory.id
-                      }">{{ projectCategory.name }}</a>
-                    <a class="category-group-title industry-group-title">Industry</a>
-                    <a *ngFor="let industryType of industryTypes" [routerLink]="'/project-posts'" [queryParams]="{
+                      }"
+                      >{{ projectCategory.name }}</a
+                    >
+                    <a class="category-group-title industry-group-title"
+                      >Industry</a
+                    >
+                    <a
+                      *ngFor="let industryType of industryTypes"
+                      [routerLink]="'/project-posts'"
+                      [queryParams]="{
                         menu: 'Industry',
                         id: industryType.id
-                      }">{{ industryType.name }}</a>
-                    <a class="category-group-title lt-group-titel">Technology</a>
-                    <a *ngFor="let technology of technologies" [routerLink]="'/project-posts'" [queryParams]="{
+                      }"
+                      >{{ industryType.name }}</a
+                    >
+                    <a class="category-group-title lt-group-titel"
+                      >Technology</a
+                    >
+                    <a
+                      *ngFor="let technology of technologies"
+                      [routerLink]="'/project-posts'"
+                      [queryParams]="{
                         menu: 'Technology',
                         id: technology.id
-                      }">{{ technology.name }}</a>
+                      }"
+                      >{{ technology.name }}</a
+                    >
                     <!-- <a class="category-group-subtitle">Client Side</a> -->
                     <!-- <a class="category-group-subtitle">Server Side</a> -->
                     <!-- <a class="category-group-subtitle">Mobile</a> -->
@@ -254,23 +415,33 @@
             </div>
           </li>
           <li class="dropdown auto-pointer-events">
-            <div class="li-item dropdown-toggle" (click)="toggleDropdown('projectType')">
+            <div
+              class="li-item dropdown-toggle"
+              (click)="toggleDropdown('projectType')"
+            >
               <a>Project Category</a>
               <span class="material-icons expand-icon"> expand_more </span>
             </div>
             <div class="category-dropdown w-col2">
               <ul class="category-dropdown-menu col-2">
                 <li *ngFor="let projectCategory of projectCategories">
-                  <a [routerLink]="'/project-posts'" [queryParams]="{
+                  <a
+                    [routerLink]="'/project-posts'"
+                    [queryParams]="{
                       menu: 'Category',
                       id: projectCategory.id
-                    }">{{ projectCategory.name }}</a>
+                    }"
+                    >{{ projectCategory.name }}</a
+                  >
                 </li>
               </ul>
             </div>
           </li>
           <li class="dropdown auto-pointer-events">
-            <div class="li-item dropdown-toggle" (click)="toggleDropdown('projectCategory')">
+            <div
+              class="li-item dropdown-toggle"
+              (click)="toggleDropdown('projectCategory')"
+            >
               <a>Industry Type</a>
               <span class="material-icons-outlined expand-icon">
                 expand_more
@@ -279,32 +450,48 @@
             <div class="category-dropdown w-col3">
               <ul class="category-dropdown-menu">
                 <li *ngFor="let industryType of industryTypes">
-                  <a [routerLink]="'/project-posts'" [queryParams]="{
+                  <a
+                    [routerLink]="'/project-posts'"
+                    [queryParams]="{
                       menu: 'Industry',
                       id: industryType.id
-                    }">{{ industryType.name }}</a>
+                    }"
+                    >{{ industryType.name }}</a
+                  >
                 </li>
               </ul>
             </div>
           </li>
           <li class="dropdown auto-pointer-events">
-            <div class="li-item dropdown-toggle" (click)="toggleDropdown('languageTech')">
+            <div
+              class="li-item dropdown-toggle"
+              (click)="toggleDropdown('languageTech')"
+            >
               <a>Technology</a>
-              <span class="material-icons-outlined expand-icon">expand_more</span>
+              <span class="material-icons-outlined expand-icon"
+                >expand_more</span
+              >
             </div>
             <div class="category-dropdown w-col3 t-col3">
               <ul class="category-dropdown-menu col-3">
                 <li *ngFor="let technology of technologies">
-                  <a [routerLink]="'/project-posts'" [queryParams]="{
+                  <a
+                    [routerLink]="'/project-posts'"
+                    [queryParams]="{
                       menu: 'Technology',
                       id: technology.id
-                    }">{{ technology.name }}</a>
+                    }"
+                    >{{ technology.name }}</a
+                  >
                 </li>
               </ul>
             </div>
           </li>
           <li class="dropdown auto-pointer-events">
-            <div class="li-item dropdown-toggle" (click)="toggleDropdown('projectType')">
+            <div
+              class="li-item dropdown-toggle"
+              (click)="toggleDropdown('projectType')"
+            >
               <a>Premium Apps</a>
               <span class="material-icons-outlined expand-icon">
                 expand_more
@@ -319,109 +506,156 @@
                 <!-- <li class="category-group-subtitle-li">
                 <a class="category-group-subtitle">B2C</a>
               </li> -->
-                <li (click)="
+                <li
+                  (click)="
                     navigateToPostDetails(
                       '50b32eb6-7b86-4b02-88a0-b02649cd4bbc'
                     )
-                  ">
+                  "
+                >
                   <a>Classified <span class="sub-text">&nbsp; Live</span></a>
                 </li>
-                <li (click)="
+                <li
+                  (click)="
                     navigateToPostDetails(
                       'e85bf33c-abec-445f-be99-4a6336dc099d'
                     )
-                  ">
+                  "
+                >
                   <a>Clothing wear <span class="sub-text">&nbsp; Live</span></a>
                 </li>
-                <li (click)="
-                  navigateToPostDetails(
-                    '941c01fd-1151-4b45-a173-c1beab4d6eb7'
-                  )
-                ">
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      '941c01fd-1151-4b45-a173-c1beab4d6eb7'
+                    )
+                  "
+                >
                   <a>Beauty Care <span class="sub-text">&nbsp; Live</span></a>
                 </li>
-                <li (click)="
-                navigateToPostDetails(
-                  '40ff2cf6-e68d-40af-bc5b-c3e8ab35bd3b'
-                )
-              ">
-                  <a>Furniture<span class="sub-text">&nbsp; &nbsp; Live</span></a>
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      '40ff2cf6-e68d-40af-bc5b-c3e8ab35bd3b'
+                    )
+                  "
+                >
+                  <a
+                    >Furniture<span class="sub-text"
+                      >&nbsp; &nbsp; Live</span
+                    ></a
+                  >
                 </li>
 
-
-                <li (click)="
-              navigateToPostDetails(
-                'edc07c8f-c565-4f8e-a815-987643f44f01'
-              )
-            ">
-                  <a>Gift & Occasion<span class="sub-text">&nbsp; Live</span></a>
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      'edc07c8f-c565-4f8e-a815-987643f44f01'
+                    )
+                  "
+                >
+                  <a
+                    >Gift & Occasion<span class="sub-text">&nbsp; Live</span></a
+                  >
                 </li>
 
-                <li (click)="
-            navigateToPostDetails(
-              '6ea8f316-3c07-424e-811d-381308d1bb5f'
-            )
-          ">
-                  <a>Household Items<span class="sub-text">&nbsp; Live</span></a>
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      '6ea8f316-3c07-424e-811d-381308d1bb5f'
+                    )
+                  "
+                >
+                  <a
+                    >Household Items<span class="sub-text">&nbsp; Live</span></a
+                  >
                 </li>
 
-                <li (click)="
-          navigateToPostDetails(
-            '2fb2bf27-b35d-47b4-b4eb-9d27537b6060'
-          )
-        ">
-                  <a>Artificial Jewelry<span class="sub-text">&nbsp; Live</span></a>
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      '2fb2bf27-b35d-47b4-b4eb-9d27537b6060'
+                    )
+                  "
+                >
+                  <a
+                    >Artificial Jewelry<span class="sub-text"
+                      >&nbsp; Live</span
+                    ></a
+                  >
                 </li>
 
-                <li (click)="
-        navigateToPostDetails(
-          '20810a23-f5f1-4af2-a4a0-7dcfbf9b774f'
-        )
-      ">
-                  <a>Sports & Hobbies<span class="sub-text">&nbsp; Live</span></a>
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      '20810a23-f5f1-4af2-a4a0-7dcfbf9b774f'
+                    )
+                  "
+                >
+                  <a
+                    >Sports & Hobbies<span class="sub-text"
+                      >&nbsp; Live</span
+                    ></a
+                  >
                 </li>
 
-                <li (click)="
-      navigateToPostDetails(
-        '488b23dc-8ac3-4db6-b738-0bb0f67d3eb3'
-      )
-    ">
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      '488b23dc-8ac3-4db6-b738-0bb0f67d3eb3'
+                    )
+                  "
+                >
                   <a>Travel & Bags<span class="sub-text">&nbsp; Live</span></a>
                 </li>
 
-                <li (click)="
-    navigateToPostDetails(
-      '12afc56d-c25d-434a-9eb9-9a7f044bf64f'
-    )
-  ">
-                  <a>Fruit & Vegetables<span class="sub-text">&nbsp; Live</span></a>
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      '12afc56d-c25d-434a-9eb9-9a7f044bf64f'
+                    )
+                  "
+                >
+                  <a
+                    >Fruit & Vegetables<span class="sub-text"
+                      >&nbsp; Live</span
+                    ></a
+                  >
                 </li>
 
-                <li (click)="
-  navigateToPostDetails(
-    'f5b7636b-f5d9-4de7-9141-70b2237956ee'
-  )
-">
-                  <a>Nursery & Plants<span class="sub-text">&nbsp; Live</span></a>
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      'f5b7636b-f5d9-4de7-9141-70b2237956ee'
+                    )
+                  "
+                >
+                  <a
+                    >Nursery & Plants<span class="sub-text"
+                      >&nbsp; Live</span
+                    ></a
+                  >
                 </li>
 
-                <li (click)="
-  navigateToPostDetails(
-    'd772dcaa-a7fb-4969-9c68-709414a44f5f'
-  )
-">
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      'd772dcaa-a7fb-4969-9c68-709414a44f5f'
+                    )
+                  "
+                >
                   <a>Carpet & Rugs<span class="sub-text">&nbsp; Live</span></a>
                 </li>
 
                 <li
-                (click)="
-                  navigateToPostDetails(
-                    '18865971-4487-4bf0-8874-9f2be76c3e7b'
-                  )
-                "
-              >
-                <a>Tiles<span class="sub-text">&nbsp; Live</span></a>
-              </li>
+                  (click)="
+                    navigateToPostDetails(
+                      '18865971-4487-4bf0-8874-9f2be76c3e7b'
+                    )
+                  "
+                >
+                  <a>Tiles<span class="sub-text">&nbsp; Live</span></a>
+                </li>
 
                 <!-- Mobile App List -->
 
@@ -451,10 +685,12 @@
               </li> -->
               </ul>
             </div>
-
           </li>
           <li class="dropdown auto-pointer-events">
-            <div class="li-item dropdown-toggle" (click)="toggleDropdown('projectType')">
+            <div
+              class="li-item dropdown-toggle"
+              (click)="toggleDropdown('projectType')"
+            >
               <a>Enterprise Apps</a>
               <span class="material-icons-outlined expand-icon">
                 expand_more
@@ -469,109 +705,156 @@
                 <!-- <li class="category-group-subtitle-li">
                 <a class="category-group-subtitle">B2C</a>
               </li> -->
-                <li (click)="
+                <li
+                  (click)="
                     navigateToPostDetails(
                       '50b32eb6-7b86-4b02-88a0-b02649cd4bbc'
                     )
-                  ">
+                  "
+                >
                   <a>Classified <span class="sub-text">&nbsp; Live</span></a>
                 </li>
-                <li (click)="
+                <li
+                  (click)="
                     navigateToPostDetails(
                       'e85bf33c-abec-445f-be99-4a6336dc099d'
                     )
-                  ">
+                  "
+                >
                   <a>Clothing wear <span class="sub-text">&nbsp; Live</span></a>
                 </li>
-                <li (click)="
-                  navigateToPostDetails(
-                    '941c01fd-1151-4b45-a173-c1beab4d6eb7'
-                  )
-                ">
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      '941c01fd-1151-4b45-a173-c1beab4d6eb7'
+                    )
+                  "
+                >
                   <a>Beauty Care <span class="sub-text">&nbsp; Live</span></a>
                 </li>
-                <li (click)="
-                navigateToPostDetails(
-                  '40ff2cf6-e68d-40af-bc5b-c3e8ab35bd3b'
-                )
-              ">
-                  <a>Furniture<span class="sub-text">&nbsp; &nbsp; Live</span></a>
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      '40ff2cf6-e68d-40af-bc5b-c3e8ab35bd3b'
+                    )
+                  "
+                >
+                  <a
+                    >Furniture<span class="sub-text"
+                      >&nbsp; &nbsp; Live</span
+                    ></a
+                  >
                 </li>
 
-
-                <li (click)="
-              navigateToPostDetails(
-                'edc07c8f-c565-4f8e-a815-987643f44f01'
-              )
-            ">
-                  <a>Gift & Occasion<span class="sub-text">&nbsp; Live</span></a>
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      'edc07c8f-c565-4f8e-a815-987643f44f01'
+                    )
+                  "
+                >
+                  <a
+                    >Gift & Occasion<span class="sub-text">&nbsp; Live</span></a
+                  >
                 </li>
 
-                <li (click)="
-            navigateToPostDetails(
-              '6ea8f316-3c07-424e-811d-381308d1bb5f'
-            )
-          ">
-                  <a>Household Items<span class="sub-text">&nbsp; Live</span></a>
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      '6ea8f316-3c07-424e-811d-381308d1bb5f'
+                    )
+                  "
+                >
+                  <a
+                    >Household Items<span class="sub-text">&nbsp; Live</span></a
+                  >
                 </li>
 
-                <li (click)="
-          navigateToPostDetails(
-            '2fb2bf27-b35d-47b4-b4eb-9d27537b6060'
-          )
-        ">
-                  <a>Artificial Jewelry<span class="sub-text">&nbsp; Live</span></a>
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      '2fb2bf27-b35d-47b4-b4eb-9d27537b6060'
+                    )
+                  "
+                >
+                  <a
+                    >Artificial Jewelry<span class="sub-text"
+                      >&nbsp; Live</span
+                    ></a
+                  >
                 </li>
 
-                <li (click)="
-        navigateToPostDetails(
-          '20810a23-f5f1-4af2-a4a0-7dcfbf9b774f'
-        )
-      ">
-                  <a>Sports & Hobbies<span class="sub-text">&nbsp; Live</span></a>
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      '20810a23-f5f1-4af2-a4a0-7dcfbf9b774f'
+                    )
+                  "
+                >
+                  <a
+                    >Sports & Hobbies<span class="sub-text"
+                      >&nbsp; Live</span
+                    ></a
+                  >
                 </li>
 
-                <li (click)="
-      navigateToPostDetails(
-        '488b23dc-8ac3-4db6-b738-0bb0f67d3eb3'
-      )
-    ">
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      '488b23dc-8ac3-4db6-b738-0bb0f67d3eb3'
+                    )
+                  "
+                >
                   <a>Travel & Bags<span class="sub-text">&nbsp; Live</span></a>
                 </li>
 
-                <li (click)="
-    navigateToPostDetails(
-      '12afc56d-c25d-434a-9eb9-9a7f044bf64f'
-    )
-  ">
-                  <a>Fruit & Vegetables<span class="sub-text">&nbsp; Live</span></a>
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      '12afc56d-c25d-434a-9eb9-9a7f044bf64f'
+                    )
+                  "
+                >
+                  <a
+                    >Fruit & Vegetables<span class="sub-text"
+                      >&nbsp; Live</span
+                    ></a
+                  >
                 </li>
 
-                <li (click)="
-  navigateToPostDetails(
-    'f5b7636b-f5d9-4de7-9141-70b2237956ee'
-  )
-">
-                  <a>Nursery & Plants<span class="sub-text">&nbsp; Live</span></a>
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      'f5b7636b-f5d9-4de7-9141-70b2237956ee'
+                    )
+                  "
+                >
+                  <a
+                    >Nursery & Plants<span class="sub-text"
+                      >&nbsp; Live</span
+                    ></a
+                  >
                 </li>
 
-                <li (click)="
-  navigateToPostDetails(
-    'd772dcaa-a7fb-4969-9c68-709414a44f5f'
-  )
-">
+                <li
+                  (click)="
+                    navigateToPostDetails(
+                      'd772dcaa-a7fb-4969-9c68-709414a44f5f'
+                    )
+                  "
+                >
                   <a>Carpet & Rugs<span class="sub-text">&nbsp; Live</span></a>
                 </li>
 
                 <li
-                (click)="
-                  navigateToPostDetails(
-                    '18865971-4487-4bf0-8874-9f2be76c3e7b'
-                  )
-                "
-              >
-                <a>Tiles<span class="sub-text">&nbsp; Live</span></a>
-              </li>
+                  (click)="
+                    navigateToPostDetails(
+                      '18865971-4487-4bf0-8874-9f2be76c3e7b'
+                    )
+                  "
+                >
+                  <a>Tiles<span class="sub-text">&nbsp; Live</span></a>
+                </li>
 
                 <!-- Mobile App List -->
 
@@ -605,7 +888,11 @@
           <li class="dropdown sales-enquiry-li auto-pointer-events">
             <div class="sales-enquiry-menu li-item">
               <div class="enquiry">
-                <img src="../../../../assets/landline.svg" alt="Landline" class="landline-icon" />
+                <img
+                  src="../../../../assets/landline.svg"
+                  alt="Landline"
+                  class="landline-icon"
+                />
                 <a (click)="openSalesEnquiryModal()">Sales Enquiry</a>
               </div>
             </div>

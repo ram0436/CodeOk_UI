@@ -15,6 +15,7 @@ import { UserService } from "../user/service/user.service";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { AppLicenseComponent } from "src/app/shared/component/app-license/app-license.component";
 import { LoginComponent } from "../user/component/login/login.component";
+import { SalesEnquiryComponent } from "src/app/shared/component/sales-enquiry/sales-enquiry.component";
 
 declare var Razorpay: any;
 
@@ -139,41 +140,18 @@ export class PostDetailsComponent {
     },
     3: {
       items: [
-        {
-          label: "Include one time initial project setup cost",
-          price: "25",
-          checked: false,
-        },
-        {
-          label: "Include future project updates",
-          price: "25",
-          checked: false,
-        },
-        {
-          label: "Include 3 months customer support",
-          price: "25",
-          checked: false,
-        },
-        {
-          label: "Extend customer support for 6 months",
-          price: "35",
-          checked: false,
-        },
-        {
-          label: "Extend customer support for 12 months",
-          price: "45",
-          checked: false,
-        },
+        { label: "One time product cost", checked: true, price: "499" },
+        { label: "Annual hosting cost", checked: true, price: "139" },
+        { label: "Product setup cost included", checked: true },
+        { label: "SSL certificate cost included", checked: true },
       ],
     },
     4: {
       items: [
-        { label: "Code quality assured by CodeOKK", checked: true },
-        { label: "Project setup cost included", checked: true },
-        { label: "Future project updates Included", checked: true },
-        { label: "Customer support included", checked: true },
-        { label: "Technical support included", checked: true },
-        { label: "AMC required", checked: true },
+        { label: "One time product cost", checked: true, price: "1299" },
+        { label: "Annual hosting cost", checked: true, price: "399" },
+        { label: "Product setup cost included", checked: true },
+        { label: "SSL certificate cost included", checked: true },
       ],
     },
   };
@@ -282,33 +260,33 @@ export class PostDetailsComponent {
     );
   }
 
-  onRadioChange(selectedItem: any) {
-    this.serviceTypeData[0].items.forEach((item: any) => {
-      item.checked = false;
-      if (item === selectedItem) {
-        this.radioPrice = 0;
-        selectedItem.checked = true;
-      }
-    });
+  // onRadioChange(selectedItem: any) {
+  //   this.serviceTypeData[0].items.forEach((item: any) => {
+  //     item.checked = false;
+  //     if (item === selectedItem) {
+  //       this.radioPrice = 0;
+  //       selectedItem.checked = true;
+  //     }
+  //   });
 
-    this.calculateTotal();
-  }
+  //   this.calculateTotal();
+  // }
 
   calculateTotal() {
-    this.checkboxPrice = 0;
+    this.checkboxPrice = 0; // Reset total price to 0
 
-    this.serviceTypeData[0].items.forEach((item: any) => {
-      if (item.checked) {
-        this.radioPrice = parseFloat(item.price);
-      }
-    });
-
-    for (let key = 1; key < Object.keys(this.serviceTypeData).length; key++) {
-      this.serviceTypeData[key].items.forEach((item: any) => {
-        if (item.checked && item.price) {
-          this.checkboxPrice += parseFloat(item.price);
+    // Ensure we only calculate for the relevant serviceTypeId
+    if (
+      this.postDetails &&
+      this.serviceTypeData[this.postDetails.serviceTypeId]
+    ) {
+      this.serviceTypeData[this.postDetails.serviceTypeId].items.forEach(
+        (item: any) => {
+          if (item.checked && item.price) {
+            this.checkboxPrice += parseFloat(item.price); // Sum up the prices of checked items
+          }
         }
-      });
+      );
     }
   }
 
@@ -328,6 +306,16 @@ export class PostDetailsComponent {
     item.checked = !item.checked;
 
     this.calculateTotal();
+  }
+
+  openSalesEnquiryModal() {
+    if (this.dialogRef) {
+      this.dialogRef.close();
+    }
+
+    this.dialogRef = this.dialog.open(SalesEnquiryComponent, {
+      width: "500px",
+    });
   }
 
   openLicenseModal(selectedLicenseType: string) {

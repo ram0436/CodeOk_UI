@@ -35,14 +35,14 @@
 
 .plan {
   /* flex: 1; */
-  max-width: 320px;
-  min-width: 320px;
-  min-height: 790px;
-  height: 790px;
-  max-height: 790px;
+  max-width: 355px;
+  min-width: 355px;
+  min-height: 865px;
+  height: 865px;
+  /* max-height: 790px; */
   display: flex;
   flex-direction: column;
-  align-items: center;
+  /* align-items: center; */
   /* justify-content: center; */
   /* padding: 20px 40px; */
   background-color: #222;
@@ -92,16 +92,16 @@
 
 .plan .plan-body {
   min-height: 330px;
-  padding: 20px 15px;
+  padding: 20px 20px;
 }
 
-.plan .plan-body.standard-plan-body {
+/* .plan .plan-body.standard-plan-body {
   margin-right: 40px;
 }
 
 .plan .plan-body.community-plan-body {
   margin-right: 70px;
-}
+} */
 
 .plan .plan-body .features-included {
   display: flex;
