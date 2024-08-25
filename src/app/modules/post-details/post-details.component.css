@@ -68,6 +68,7 @@
 
 .ml-190 {
   margin-left: 190px;
+  height: 40px;
 }
 
 .flex {
@@ -259,6 +260,28 @@
   /* z-index: 1100; */
   font-weight: 500;
   font-size: 16px;
+}
+
+.buy-code {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.buy-code .code-btn {
+  border: none;
+  outline: none;
+  color: #337ab7;
+  background-color: transparent;
+  padding: 0px;
+}
+
+.pg-btn {
+  position: absolute;
+  top: -54.5px;
+  left: 2%;
+  /* margin-left: 15%; */
+  gap: 8px;
 }
 
 .zoomed {

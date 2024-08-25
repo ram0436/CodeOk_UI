@@ -11,10 +11,6 @@
   </div>
   <div class="pd-3" *ngIf="!isLoading">
     <div class="flex ml-190">
-      <button class="back-btn" (click)="goBack()">
-        <span class="material-icons-outlined"> chevron_left </span>Back
-      </button>
-
       <!-- <a
         [href]="postDetails?.demoURL"
         target="_blank"
@@ -42,6 +38,9 @@
             >
               <button class="back-btn">Live Demo</button>
             </a>
+            <button class="back-btn pg-btn" (click)="goBack()" *ngIf="i === 0">
+              <span class="material-icons-outlined"> chevron_left </span>Back
+            </button>
             <span
               *ngIf="i === 0"
               class="material-icons set-fav-card"
@@ -141,7 +140,7 @@
           *ngIf="postDetails.serviceTypeId !== 1"
         >
           <mat-card-content class="bg-gray-card padding-0">
-            <div class="top-content">
+            <!-- <div class="top-content">
               <ng-container *ngIf="postDetails.serviceTypeId === 4">
                 <label class="cart-service cart-service_support checkbox">
                   <input
@@ -221,7 +220,7 @@
                   </label>
                 </ng-container>
               </ng-container>
-            </div>
+            </div> -->
 
             <div class="bottom-content">
               <ng-container
@@ -237,7 +236,10 @@
                     class="cart-service-checkbox checkbox-input"
                     [checked]="item.checked"
                     (change)="onCheckboxChange(item, postDetails.serviceTypeId)"
-                    [disabled]="postDetails.serviceTypeId === 4"
+                    [disabled]="
+                      postDetails.serviceTypeId === 4 ||
+                      postDetails.serviceTypeId === 3
+                    "
                   />
                   <i class="cart-service-checkbox-icon checkbox-icon"></i>
                   <span class="cart-service-label checkbox-label">{{
@@ -255,7 +257,7 @@
               <div class="sp-bw">
                 <p class="summary">Summary:</p>
                 <p class="overall-price">
-                  <span class="dollar">$</span>{{ checkboxPrice + radioPrice }}
+                  <span class="dollar">$</span>{{ checkboxPrice }}
                 </p>
               </div>
               <button
@@ -266,7 +268,7 @@
                 <span class="material-icons-outlined fz-26">
                   shopping_cart
                 </span>
-                <span class="fz-17">Buy Code</span>
+                <span class="fz-17">Buy Product</span>
               </button>
               <button
                 *ngIf="postDetails.serviceTypeId === 1 || showDownloadButton"
@@ -278,6 +280,11 @@
                 </span>
                 <span class="fz-17">Download Code</span>
               </button>
+              <div class="buy-code">
+                <button class="code-btn" (click)="openSalesEnquiryModal()">
+                  I am interested to buy this product source code.
+                </button>
+              </div>
             </div>
           </mat-card-content>
         </mat-card>
