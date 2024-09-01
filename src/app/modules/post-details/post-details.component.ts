@@ -208,6 +208,7 @@ export class PostDetailsComponent {
   setLicensePrice() {
     const postPrice = parseFloat(this.postDetails.price);
 
+    // Update prices dynamically based on postDetails.price
     this.serviceTypeData[0].items.forEach((item: any) => {
       if (item.label === "Single App License") {
         item.price = postPrice.toString();
@@ -217,6 +218,19 @@ export class PostDetailsComponent {
     this.serviceTypeData[0].items.forEach((item: any) => {
       if (item.label === "Multiple App License") {
         item.price = (postPrice * 3).toString();
+      }
+    });
+
+    // Dynamically set prices for "One time product cost"
+    this.serviceTypeData[3].items.forEach((item: any) => {
+      if (item.label === "One time product cost") {
+        item.price = postPrice.toString();
+      }
+    });
+
+    this.serviceTypeData[4].items.forEach((item: any) => {
+      if (item.label === "One time product cost") {
+        item.price = postPrice.toString();
       }
     });
 
